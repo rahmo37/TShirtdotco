@@ -5,25 +5,29 @@
  */
 
 // Importing Modules
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
-const customerAuth = require("./routes/auth/customerAuth");
-const employeeAuth = require("./routes/auth/employeeAuth");
+const customerAuth = require("./routes/authentication/customerAuth");
+const employeeAuth = require("./routes/authentication/employeeAuth");
 const errorHandler = require("./middlewares/errorHandler");
+const Customer = require("./models/Customer");
+const Employee = require("./models/Employee");
 const dbConfig = require("./config/db");
+const hashPassword = require("./misc/hashPassword");
 
 // Creating application instance
 const erpSystem = express();
 
 // Data parsing middleware
-erpSystem.use(express.json);
+erpSystem.use(express.json());
 
 // Routes
-// erpSystem.use("api/login/customer", customerAuth);
-// erpSystem.use("api/login/employee", employeeAuth);
+erpSystem.use("/api/customer", customerAuth);
+erpSystem.use("/api/employee", employeeAuth);
 
 // Error handling middleware
-// erpSystem.use(errorHandler);
+erpSystem.use(errorHandler);
 
 // Database connection
 mongoose
@@ -39,6 +43,9 @@ mongoose
     erpSystem.listen(PORT, () => {
       console.log(`ERP Server is listening request on port ${PORT}...`);
     });
+
+    // Hash entity passwords
+    hashPassword(Customer);
   })
   .catch((err) => {
     console.error("Database connection error:", err);

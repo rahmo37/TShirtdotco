@@ -1,17 +1,18 @@
 {
-  "name": "erpsystembackend",
+  "name": "ERPSystem(backend)",
   "version": "1.0.0",
-  "description": "All the backendlogic and apis are implemented in this project",
+  "description": "All the backend logic and apis are implemented in this project",
   "main": "ERPSystem.js",
   "scripts": {
-    "start": "nodemon ERPSystem",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon ERPSystem"
   },
   "author": "Nick and Obaedur",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.5",
     "express": "^4.21.0",
+    "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.6.2",
     "nodemon": "^3.1.4"
   }

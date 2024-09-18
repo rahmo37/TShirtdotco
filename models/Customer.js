@@ -5,7 +5,7 @@
 // import packages
 const mongoose = require("mongoose");
 
-// sreating schema instance
+// creating schema instance
 const Schema = mongoose.Schema;
 
 /**
@@ -27,26 +27,28 @@ const orderSchema = new Schema({
 });
 
 // customer schema
-const customerSchema = new Schema({
-  customerID: Number,
-  email: { type: String, required: true, unique: true },
-  phone: String,
-  password: { type: String, required: true, select: false },
-  customerBio: {
-    firstName: String,
-    lastName: String,
-    address: {
-      street: String,
-      city: String,
-      country: String,
+const customerSchema = new Schema(
+  {
+    customerID: Number,
+    email: { type: String, required: true, unique: true },
+    phone: String,
+    password: { type: String, required: true, select: false },
+    customerBio: {
+      firstName: String,
+      lastName: String,
+      address: {
+        street: String,
+        city: String,
+        country: String,
+      },
+      gender: String,
     },
-    gender: String,
+    orders: { type: [orderSchema], default: [] }, // adding order schema as a sub-document
   },
-  orders: { type: [orderSchema], default: [] }, // adding order schema as a sub-document
-});
+  { collection: "customers" }
+);
 
 // creating a customer model using the schema
-const Customer = mongoose.model("Customer", customerSchema);
-const Order = mongoose.model("Order", orderSchema);
+const Customer = mongoose.model("Customers", customerSchema);
 
-module.exports = { Order, Customer };
+module.exports = Customer;
