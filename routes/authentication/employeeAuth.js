@@ -5,6 +5,6 @@ const express = require("express");
 const employeeAuthRoute = express.Router();
 const employeeController = require("../../controllers/employeeController");
 
-employeeAuthRoute.post("/login");
+employeeAuthRoute.post("/login", employeeController.login);
 
 module.exports = employeeAuthRoute;

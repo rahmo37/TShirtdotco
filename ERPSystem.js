@@ -45,7 +45,7 @@ mongoose
     });
 
     // Hash entity passwords
-    hashPassword(Customer);
+    hashPassword([Customer, Employee]);
   })
   .catch((err) => {
     console.error("Database connection error:", err);
