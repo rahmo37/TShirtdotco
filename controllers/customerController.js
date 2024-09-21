@@ -5,6 +5,7 @@
 
 // Importing Modules
 const Customer = require("../models/Customer");
+const Order = require("../models/Order");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const jwtConfig = require("../config/jwtConfig");
@@ -29,6 +30,12 @@ async function login(req, res, next) {
       return next(err);
     }
 
+    const orders = await Order.find({
+      customerID: customer.customerID,
+    });
+
+    console.log(orders);
+
     // Generate JWT token
     const payload = {
       id: customer._id,
@@ -47,6 +54,7 @@ async function login(req, res, next) {
     // Sending response
     res.status(200).json({
       user: customerData,
+      orders,
       token,
     });
   } catch (err) {
