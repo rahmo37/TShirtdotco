@@ -28,13 +28,13 @@ async function login(req, res, next) {
       return next(err);
     }
 
-    const payload = {
+    const userPayload = {
       id: employee._id,
       email: employee.email,
       role: employee.isAdmin ? "admin" : "employee",
     };
 
-    const token = jwt.sign(payload, jwtConfig.secret, {
+    const token = jwt.sign(userPayload, jwtConfig.secret, {
       expiresIn: jwtConfig.expiresIn,
     });
 

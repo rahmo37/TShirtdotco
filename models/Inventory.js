@@ -1,27 +1,36 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
-// Define the schema for individual product details
-const productSchema = new mongoose.Schema({
-  productID: { type: String, required: true, unique: true },
-  productName: { type: String, required: true },
-  productDescription: { type: String, required: true },
-  unitPrice: { type: Number, required: true },
-  initialQuantity: { type: Number, required: true },
-  currentQuantity: { type: Number, required: true },
-  totalSold: { type: Number, required: true },
-  imageUrl: { type: String },
-  stockStatus: { type: String, required: true },
-  createdAt: { type: Date, default: Date.now },
-  color: { type: String },
+// Define the stock info schema for better clarity and reuse
+const stockInfoSchema = new Schema({
+  currentQuantity: Number,
+  totalSold: Number,
+  restockThreshold: Number,
+  lastRestock: Date,
+  restockQuantity: Number,
+  stockStatus: String,
 });
 
-// Define the schema for inventory, which embeds the products
-const inventorySchema = new mongoose.Schema({
-  categoryName: { type: String, required: true, unique: true },
-  products: [productSchema], // Embeds an array of products
+// Define the product schema
+const productSchema = new Schema({
+  productID: String,
+  productName: String,
+  productDescription: String,
+  unitPrice: Number,
+  stockInfo: stockInfoSchema, // Embedding stock info
+  imageUrl: String,
+  dateAdded: Date,
+  color: String,
 });
 
-// Create the Mongoose model
-const Inventory = mongoose.model("inventory", inventorySchema);
+// Define the category schema, which embeds products
+const categorySchema = new Schema({
+  categoryID: String,
+  categoryName: String,
+  products: [productSchema], // Array of products
+});
 
-module.exports = Category;
+// Create and export the models
+const Inventory = mongoose.model("Inventory", categorySchema);
+
+module.exports = { Inventory };

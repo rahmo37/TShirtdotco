@@ -36,14 +36,15 @@ async function login(req, res, next) {
 
     console.log(orders);
 
-    // Generate JWT token
-    const payload = {
+    // Generate payload to be signed by JT
+    const userPayload = {
       id: customer._id,
       email: customer.email,
       role: "customer",
     };
 
-    const token = jwt.sign(payload, jwtConfig.secret, {
+    // JWT Signature
+    const token = jwt.sign(userPayload, jwtConfig.secret, {
       expiresIn: jwtConfig.expiresIn,
     });
 

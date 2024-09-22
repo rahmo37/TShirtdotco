@@ -10,6 +10,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const customerAuth = require("./routes/authentication/customerAuth");
 const employeeAuth = require("./routes/authentication/employeeAuth");
+const adminOperations = require("./routes/inventory/adminOperations");
 const errorHandler = require("./middlewares/errorHandler");
 const Customer = require("./models/Customer");
 const Employee = require("./models/Employee");
@@ -25,6 +26,7 @@ erpSystem.use(express.json());
 // Routes
 erpSystem.use("/api/customer", customerAuth);
 erpSystem.use("/api/employee", employeeAuth);
+erpSystem.use("/api/admin", adminOperations);
 
 // Error handling middleware
 erpSystem.use(errorHandler);
