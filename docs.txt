@@ -1,0 +1,23 @@
+routes:
+/api/employee/login -> employee login
+/api/customer/login -> customer login
+/api/admin/inventory (GET) -> view inventory data
+/api/admin/inventory (DELETE) -> delete a product and update order data
+
+
+// misc
+    // Navigation example of the inventory data
+    // const test = fullInventory
+    //   .map((cat) => cat.toObject())
+    //   .filter((cat) => cat.categoryName === "t_shirts")
+    //   .flatMap((each) => each.products)
+    //   .map((product) => product.stockInfo);
+
+
+// Get a product with the product id and category id
+  const inventory = await Inventory.findOne(
+    {
+      categoryID: categoryId,
+    },
+    { products: { $elemMatch: { productID: productId } } }
+  );

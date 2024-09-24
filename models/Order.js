@@ -11,6 +11,7 @@ const orderItemSchema = new mongoose.Schema({
   quantity: { type: Number, required: true },
   unitPrice: { type: Number, required: true },
   subtotal: { type: Number, required: true },
+  currentAvailabilityStatus: { type: String, required: true },
 });
 
 const orderSchema = new mongoose.Schema({

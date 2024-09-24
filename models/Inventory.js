@@ -24,13 +24,16 @@ const productSchema = new Schema({
 });
 
 // Define the category schema, which embeds products
-const categorySchema = new Schema({
-  categoryID: String,
-  categoryName: String,
-  products: [productSchema], // Array of products
-});
+const categorySchema = new Schema(
+  {
+    categoryID: String,
+    categoryName: String,
+    products: [productSchema], // Array of products
+  },
+  { collection: "inventory" }
+);
 
 // Create and export the models
 const Inventory = mongoose.model("Inventory", categorySchema);
 
-module.exports = { Inventory };
+module.exports = Inventory;

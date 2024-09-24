@@ -10,8 +10,9 @@ const express = require("express");
 const mongoose = require("mongoose");
 const customerAuth = require("./routes/authentication/customerAuth");
 const employeeAuth = require("./routes/authentication/employeeAuth");
-const adminOperations = require("./routes/inventory/adminOperations");
+const adminOperations = require("./routes/inventory/adminInventoryOperations");
 const errorHandler = require("./middlewares/errorHandler");
+const routeNotFoundHandler = require("./middlewares/routeNotFoundHandler");
 const Customer = require("./models/Customer");
 const Employee = require("./models/Employee");
 const dbConfig = require("./config/db");
@@ -27,6 +28,9 @@ erpSystem.use(express.json());
 erpSystem.use("/api/customer", customerAuth);
 erpSystem.use("/api/employee", employeeAuth);
 erpSystem.use("/api/admin", adminOperations);
+
+// Not found error handler, if no routes matches this middleware is called
+erpSystem.use(routeNotFoundHandler);
 
 // Error handling middleware
 erpSystem.use(errorHandler);
