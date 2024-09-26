@@ -14,7 +14,7 @@ const authenticateToken = (req, res, next) => {
 
   if (!token) {
     const err = new Error("Missing token...");
-    err.status = 401;
+    err.status = 403;
     return next(err);
   }
 

@@ -19,4 +19,11 @@ adminInventoryRoute.delete(
   inventoryFunctions.deleteProduct
 );
 
+adminInventoryRoute.put(
+  "/inventory/:categoryId/:productId",
+  inventoryFunctions.updateProduct
+);
+
+adminInventoryRoute.post("/inventory/:categoryId", inventoryFunctions.createProduct);
+
 module.exports = adminInventoryRoute;

@@ -4,11 +4,12 @@
 const Inventory = require("../models/Inventory");
 const Orders = require("../models/Order");
 const mongoose = require("mongoose");
+const generateId = require("../misc/generateId");
 
 // object to accumulate all functions
 const inventoryFunctions = {};
 
-// view inventory function
+// view inventory - function
 inventoryFunctions.viewInventory = async (req, res, next) => {
   try {
     // excluding the mongoose given ids, since we are using more meaningful ids
@@ -18,13 +19,15 @@ inventoryFunctions.viewInventory = async (req, res, next) => {
     );
 
     // Sending the inventory data
-    res.status(200).json(fullInventory);
+    res
+      .status(200)
+      .json({ message: "Inventory data included", data: fullInventory });
   } catch (err) {
-    next(err);
+    return next(err);
   }
 };
 
-// delete a product function
+// delete a product - function
 inventoryFunctions.deleteProduct = async (req, res, next) => {
   const { categoryId, productId } = req.params;
 
@@ -47,7 +50,6 @@ inventoryFunctions.deleteProduct = async (req, res, next) => {
     // if not available send error
     if (!inventoryBeforeUpdate) {
       await session.abortTransaction();
-      session.endSession();
       const err = new Error(
         "Request cannot be completed, because the product is not found in the inventory!"
       );
@@ -70,8 +72,7 @@ inventoryFunctions.deleteProduct = async (req, res, next) => {
     // if unable to delete
     if (!updateInventory) {
       await session.abortTransaction();
-      session.endSession();
-      const err = new Error("Product deletion failed!");
+      const err = new Error("Product not found, thus cannot be deleted!");
       err.status = 404;
       return next(err);
     }
@@ -81,7 +82,6 @@ inventoryFunctions.deleteProduct = async (req, res, next) => {
      * Update the availability of the product in the orders data if any
      */
     const test = await Orders.findOne({ "items.productID": productId });
-    console.log(test);
 
     const updateOrder = await Orders.updateMany(
       { "items.productID": productId }, // find the orders with the matching product id
@@ -105,16 +105,162 @@ inventoryFunctions.deleteProduct = async (req, res, next) => {
     await session.commitTransaction();
 
     // Send successful status
-    res.status(200).json("Product Deleted!");
+    res.status(200).json({ message: "Product Deleted!" });
   } catch (err) {
     // cancel the transaction on error, if any
     await session.abortTransaction();
 
     // and send the error to error handler
-    next(err);
+    return next(err);
   } finally {
     // End session
+    // This runs regardless of any errors or returns
     session.endSession();
+  }
+};
+
+inventoryFunctions.updateProduct = async (req, res, next) => {
+  // Retrieving the ids, category name and the revised product
+  const { categoryId, productId } = req.params;
+  const categoryName = req.body.categoryName;
+  const revisedProduct = req.body.product;
+
+  // checking if the fields are provided
+  if (!categoryName && !revisedProduct) {
+    const err = new Error(
+      "You must provide a category name or product details to update."
+    );
+    err.status = 400;
+    return next(err);
+  }
+
+  // Database update starts...
+  try {
+    const updatedInventory = await Inventory.findOneAndUpdate(
+      {
+        categoryID: categoryId,
+        "products.productID": productId,
+      },
+      {
+        categoryName: categoryName,
+        "products.$": revisedProduct,
+      },
+      {
+        new: true,
+      }
+    );
+
+    // if nor product is found
+    if (!updatedInventory) {
+      const err = new Error(
+        "The request cannot be completed, because Category or Product provided does not exist in the Inventory!"
+      );
+      err.status = 404;
+      return next(err);
+    }
+
+    // Send success message and the updated product
+    res.status(200).json({
+      message: "Updated successfully",
+      data: updatedInventory,
+    });
+  } catch (err) {
+    return next(err);
+  }
+};
+
+inventoryFunctions.createProduct = async (req, res, next) => {
+  try {
+    const { categoryId } = req.params;
+    const generatedProductId = generateId("PRO_");
+
+    if (categoryId.toLowerCase() === "new") {
+      const newCategoryWithProduct = {};
+      const newProductsArray = [];
+      const { categoryName } = req.body;
+      const { product } = req.body;
+      const generatedCategoryId = generateId("CAT_");
+
+      // if category name and product is not provided
+      if (!categoryName || !product) {
+        const err = new Error(
+          "You must provide a category name and a valid product"
+        );
+        err.status = 400;
+        return next(err);
+      }
+
+      const categoryExists = await Inventory.findOne({
+        categoryName: categoryName,
+      });
+      if (categoryExists) {
+        const err = new Error(
+          "A category with the provided name already exists. If you are adding a new product to an existing category, please a provide a corresponding category id with the URL"
+        );
+        err.status = 400;
+        return next(err);
+      }
+
+      // Assign generated product ID to the new product
+      product.productID = generatedProductId;
+      newProductsArray.push(product);
+
+      // Combine into a new category object
+      newCategoryWithProduct.categoryName = categoryName;
+      newCategoryWithProduct.categoryID = generatedCategoryId;
+      newCategoryWithProduct.products = newProductsArray;
+
+      // Save the new category with the product
+      const newCategory = new Inventory(newCategoryWithProduct);
+      await newCategory.save();
+
+      // Send response
+      res.status(200).json({
+        message: "new category with the product created",
+        data: newCategoryWithProduct,
+      });
+    } else if (categoryId.slice(0, 4) === "CAT_" && categoryId.length === 16) {
+      // Retrieving the category where the product will be pushed
+      const category = await Inventory.findOne({ categoryID: categoryId });
+
+      // if invalid category id provided
+      if (!category) {
+        const err = new Error("Invalid category id provided!");
+        err.status = 400;
+        return next(err);
+      }
+
+      // retrieve the product from the request body
+      const { product } = req.body;
+      if (!product) {
+        const err = new Error("You must provide a valid product");
+        err.status = 400;
+        return next(err);
+      }
+
+      // add the generated id in the product
+      product.productID = generatedProductId;
+
+      // now push the new product
+      category.products.push(product);
+
+      // save the category
+      await category.save();
+
+      // send a response
+      res.status(200).json({
+        message: "new product created",
+        data: category.toObject(),
+      });
+    } else {
+      const err = new Error(
+        `Please provide a correct parameter with the URL. Add the word "new" for a new category or a valid category id for adding product in an existing category`
+      );
+      err.status = 400;
+      return next(err);
+    }
+  } catch (err) {
+    return next(err);
   }
 };
 

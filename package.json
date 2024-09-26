@@ -4,12 +4,13 @@
   "description": "All the backend logic and apis are implemented in this project",
   "main": "ERPSystem.js",
   "scripts": {
-    "start": "nodemon ERPSystem"
+    "start": "cls && nodemon ERPSystem"
   },
   "author": "Nick and Obaedur",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.21.0",
     "jsonwebtoken": "^9.0.2",

@@ -46,7 +46,7 @@ async function login(req, res, next) {
       token,
     });
   } catch (err) {
-    next(err);
+    return next(err);
   }
 }
 

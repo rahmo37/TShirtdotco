@@ -26,7 +26,7 @@ async function login(req, res, next) {
 
     if (!isMatch) {
       const err = new Error("Invalid email or password");
-      err.status = 404;
+      err.status = 400;
       return next(err);
     }
 
@@ -59,7 +59,7 @@ async function login(req, res, next) {
       token,
     });
   } catch (err) {
-    next(err);
+    return next(err);
   }
 }
 

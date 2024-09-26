@@ -8,6 +8,7 @@
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 const customerAuth = require("./routes/authentication/customerAuth");
 const employeeAuth = require("./routes/authentication/employeeAuth");
 const adminOperations = require("./routes/inventory/adminInventoryOperations");
@@ -20,6 +21,9 @@ const hashPassword = require("./misc/hashPassword");
 
 // Creating application instance
 const erpSystem = express();
+
+// Enable cors-origin requests
+erpSystem.use(cors());
 
 // Data parsing middleware
 erpSystem.use(express.json());
