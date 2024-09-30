@@ -12,12 +12,13 @@ const orderItemSchema = new mongoose.Schema({
   unitPrice: { type: Number, required: true },
   subtotal: { type: Number, required: true },
   currentAvailabilityStatus: { type: String, required: true },
+  imageUrl: String,
 });
 
 const orderSchema = new mongoose.Schema({
   orderID: { type: Number, unique: true, required: true },
   customerID: { type: String, required: true }, // Reference to Customer
-  orderStatus: { type: String, default: "pending" },
+  orderStatus: { type: String, default: "preparing" },
   orderDate: { type: Date, default: Date.now },
   items: [orderItemSchema],
   totalPrice: { type: Number, required: true },

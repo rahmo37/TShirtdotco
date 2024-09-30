@@ -3,20 +3,20 @@ const Schema = mongoose.Schema;
 
 // Define the stock info schema for better clarity and reuse
 const stockInfoSchema = new Schema({
-  currentQuantity: Number,
-  totalSold: Number,
-  restockThreshold: Number,
+  currentQuantity: { type: Number, required: true, unique: true },
+  totalSold: { type: Number, required: true, unique: true },
+  restockThreshold: { type: Number, required: true, unique: true },
   lastRestock: Date,
-  restockQuantity: Number,
-  stockStatus: String,
+  restockQuantity: { type: Number, required: true, unique: true },
+  stockStatus: { type: String, required: true, unique: true },
 });
 
 // Define the product schema
 const productSchema = new Schema({
-  productID: String,
-  productName: String,
-  productDescription: String,
-  unitPrice: Number,
+  productID: { type: String, required: true, unique: true },
+  productName: { type: String, required: true, unique: true },
+  productDescription: { type: String, required: true, unique: true },
+  unitPrice: { type: Number, required: true, unique: true },
   stockInfo: stockInfoSchema, // Embedding stock info
   imageUrl: String,
   dateAdded: Date,
