@@ -281,7 +281,7 @@ inventoryFunctions.getInventoryReport = async (req, res, next) => {
     // retrieve inventory data for products sold last month
     inventoryReport.lastMonthSoldProducts = await getSoldProductsReport(
       session,
-      await getDateRange(1)
+      getDateRange(1)
     );
 
     // retrieve inventory data from start of the year till current month starting
@@ -290,7 +290,7 @@ inventoryFunctions.getInventoryReport = async (req, res, next) => {
       await getDateRange(new Date().getMonth())
     );
 
-    console.log(inventoryReport.lastMonthSoldProducts);
+    // console.log(inventoryReport.lastMonthSoldProducts);
 
     // commit the transaction
     await session.commitTransaction();
@@ -316,7 +316,7 @@ function throwInventoryError(
 }
 
 // generic date range function
-async function getDateRange(valueToSubtract) {
+function getDateRange(valueToSubtract) {
   // making a new date instance. its month will be set by subtracting the given value
   const dateA = new Date();
 

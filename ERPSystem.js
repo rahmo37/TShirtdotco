@@ -14,6 +14,7 @@ const employeeAuth = require("./routes/authentication/employeeAuth");
 const adminOperations = require("./routes/inventory/adminInventoryOperations");
 const errorHandler = require("./middlewares/errorHandler");
 const routeNotFoundHandler = require("./middlewares/routeNotFoundHandler");
+const requestInfo = require("./middlewares/logRequestInformation");
 const Customer = require("./models/Customer");
 const Employee = require("./models/Employee");
 const dbConfig = require("./config/db");
@@ -24,6 +25,9 @@ const erpSystem = express();
 
 // Enable cors-origin requests
 erpSystem.use(cors());
+
+// Print request information
+erpSystem.use(requestInfo);
 
 // Data parsing middleware
 erpSystem.use(express.json());

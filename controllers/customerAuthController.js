@@ -34,8 +34,6 @@ async function login(req, res, next) {
       customerID: customer.customerID,
     });
 
-    console.log(orders);
-
     // Generate payload to be signed by JT
     const userPayload = {
       id: customer._id,
