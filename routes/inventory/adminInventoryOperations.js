@@ -25,6 +25,12 @@ adminInventoryRoute.put(
   inventoryFunctions.updateProduct
 );
 
+// Restock a product
+adminInventoryRoute.put(
+  "/inventory/restock/:categoryId/:productId",
+  inventoryFunctions.restockProduct
+);
+
 // Create product route
 adminInventoryRoute.post(
   "/inventory/:categoryId",

@@ -119,7 +119,7 @@ inventoryFunctions.deleteProduct = async (req, res, next) => {
   }
 };
 
-// update a product
+// update a product - function
 inventoryFunctions.updateProduct = async (req, res, next) => {
   // Retrieving the ids, category name and the revised product
   const { categoryId, productId } = req.params;
@@ -170,7 +170,7 @@ inventoryFunctions.updateProduct = async (req, res, next) => {
   }
 };
 
-// create a product
+// create a product - function
 inventoryFunctions.createProduct = async (req, res, next) => {
   try {
     const { categoryId } = req.params;
@@ -266,6 +266,87 @@ inventoryFunctions.createProduct = async (req, res, next) => {
   }
 };
 
+// restock product - function
+inventoryFunctions.restockProduct = async (req, res, next) => {
+  const { categoryId, productId } = req.params;
+
+  try {
+    // First finding the product in the given categoryID
+    const inventory = await Inventory.findOne({
+      categoryID: categoryId,
+      "products.productID": productId,
+    });
+
+    // if nor product is found
+    if (!inventory) {
+      const err = new Error(
+        "The request cannot be completed, because categoryID or productID provided does not exist in the Inventory!"
+      );
+      err.status = 404;
+      return next(err);
+    }
+
+    // find the product which we will restock
+    const productToRestock = inventory.products.find(
+      (p) => p.productID === productId
+    );
+
+    if (!productToRestock) {
+      const err = new Error(
+        "The request cannot be completed, because ProductId provided does not exist in the Inventory!"
+      );
+      err.status = 404;
+      return next(err);
+    }
+
+    const currentQuantity = productToRestock.stockInfo.currentQuantity;
+    const restockThreshold = productToRestock.stockInfo.restockThreshold;
+    const restockQuantity = productToRestock.stockInfo.restockQuantity;
+
+    if (currentQuantity > restockThreshold) {
+      const err = new Error(
+        "The current quantity for this product has not reached below the restock threshold yet! Please update the product's stock info if necessary"
+      );
+      err.status = 400;
+      return next(err);
+    }
+    // calculate the new quantity
+    const newQuantity = currentQuantity + restockQuantity;
+
+    // get the current date in format YYYY-MM-DD
+    const currentDate = new Date().toISOString().split("T")[0];
+
+    const updateStock = await Inventory.updateOne(
+      {
+        categoryID: categoryId,
+        "products.productID": productId,
+      },
+      {
+        $set: {
+          "products.$.stockInfo.currentQuantity": newQuantity,
+          "products.$.stockInfo.lastRestock": currentDate,
+          "products.$.stockInfo.stockStatus": "In Stock",
+        },
+      }
+    );
+
+    if (!updateStock) {
+      const err = new Error("Error while restocking the product");
+      err.status = 500;
+      next(err);
+    }
+
+    res.status(200).json({
+      categoryId,
+      productId,
+      currentQuantity: newQuantity,
+      lastRestock: currentDate,
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
 // get the current inventory report
 inventoryFunctions.getInventoryReport = async (req, res, next) => {
   // declare the session
@@ -287,8 +368,21 @@ inventoryFunctions.getInventoryReport = async (req, res, next) => {
     // retrieve inventory data from start of the year till current month starting
     inventoryReport.inventoryUpToCurrentMonth = await getSoldProductsReport(
       session,
-      await getDateRange(new Date().getMonth())
+      getDateRange(new Date().getMonth())
     );
+
+    // get the current quantity of products
+    inventoryReport.currentQuantityOfProducts =
+      await getCurrentQuantityOfProducts(session);
+
+    // get the 5 top selling products
+    inventoryReport.topSellingProducts = await getTopSellingProducts(
+      session,
+      getDateRange(new Date().getMonth())
+    );
+
+    // get low stock products
+    inventoryReport.lowStockProducts = await getLowStockProducts(session);
 
     // console.log(inventoryReport.lastMonthSoldProducts);
 
@@ -305,7 +399,7 @@ inventoryFunctions.getInventoryReport = async (req, res, next) => {
 
 //! Helper functions to gather inventory report
 
-// generic inventory error function
+//* generic inventory error function - helper function
 function throwInventoryError(
   message = "Error retrieving inventory data",
   code = 500
@@ -315,7 +409,7 @@ function throwInventoryError(
   throw err;
 }
 
-// generic date range function
+//* generic date range function - helper function
 function getDateRange(valueToSubtract) {
   // making a new date instance. its month will be set by subtracting the given value
   const dateA = new Date();
@@ -333,7 +427,7 @@ function getDateRange(valueToSubtract) {
   return [dateA.toISOString(), dateB.toISOString()];
 }
 
-// generic function to gather inventory report on sold products
+//* generic function to gather inventory report on sold products - helper function
 async function getSoldProductsReport(session, dateArr) {
   try {
     // using aggregation pipeline to accumulate data
@@ -393,8 +487,170 @@ async function getSoldProductsReport(session, dateArr) {
       endMonth,
     };
   } catch (err) {
-    console.log("Error occurred while gathering sold product's report: ", err);
+    console.log("Error while gathering sold product's report: ", err);
     throwInventoryError("Error while gathering sold product's report");
+  }
+}
+
+//* get the current quantity of each product - helper function
+async function getCurrentQuantityOfProducts(session) {
+  try {
+    const currentQuantityReport = await Inventory.aggregate([
+      {
+        $unwind: "$products",
+      },
+      {
+        $group: {
+          _id: "$categoryName",
+          products: {
+            $push: {
+              productName: "$products.productName",
+              currentQuantity: "$products.stockInfo.currentQuantity",
+              imageUrl: "$products.imageUrl",
+            },
+          },
+        },
+      },
+      {
+        $project: {
+          _id: 0,
+          categoryName: "$_id",
+          products: 1,
+        },
+      },
+    ]).session(session);
+
+    return currentQuantityReport;
+  } catch (err) {
+    console.log("Error while gathering current quantity of products: ", err);
+    throwInventoryError("Error while gathering current quantity of products");
+  }
+}
+
+//* get the top selling products - helper function
+async function getTopSellingProducts(session, dateArr) {
+  try {
+    const topSellingProducts = await Orders.aggregate([
+      // Step 1, match the orders from the this years and with the status completed
+      {
+        $match: {
+          orderStatus: "completed",
+          orderDate: {
+            $gte: dateArr[0],
+            $lte: new Date().toISOString(),
+          },
+        },
+      },
+      // Step 2, Unwind the items array so that each product gets it own document
+      {
+        $unwind: "$items",
+      },
+      // Step 3: Group by productID and calculate total quantity sold
+      {
+        $group: {
+          _id: "$items.productID",
+          totalQuantitySold: {
+            $sum: "$items.quantity",
+          },
+        },
+      },
+      // Step 4: Lookup to inventory to get product details like name, category, and imageUrl
+      {
+        $lookup: {
+          from: "inventory",
+          let: { productId: "$_id" },
+          pipeline: [
+            { $unwind: "$products" },
+            {
+              $match: {
+                $expr: { $eq: ["$products.productID", "$$productId"] },
+              },
+            },
+            {
+              $project: {
+                productName: "$products.productName",
+                categoryName: "$categoryName",
+                imageUrl: "$products.imageUrl",
+              },
+            },
+          ],
+          as: "productDetails",
+        },
+      },
+      // Step 5: Flatten the product details
+      {
+        $unwind: "$productDetails",
+      },
+      // Step 6: Sort by totalQuantitySold in descending order
+      {
+        $sort: {
+          totalQuantitySold: -1,
+        },
+      },
+      // Step 7: Limit to top 5 products
+      {
+        $limit: 5,
+      },
+      {
+        $project: {
+          _id: 0,
+          productID: "$_id",
+          productName: "$productDetails.productName",
+          categoryName: "$productDetails.categoryName",
+          imageUrl: "$productDetails.imageUrl",
+          totalQuantitySold: 1,
+        },
+      },
+    ]);
+    return topSellingProducts;
+  } catch (err) {
+    console.log("Error while getting top selling products", err);
+    throwInventoryError("Error while getting top selling products");
+  }
+}
+
+//* get low stock products - helper function
+async function getLowStockProducts(session) {
+  try {
+    const lowStockProducts = await Inventory.aggregate([
+      // Step 1: Unwind the products array to work with each product individually
+      {
+        $unwind: "$products",
+      },
+      // Step 2: Match products with both conditions, low stock and quantity less then or equal to re stock threshold
+      {
+        $match: {
+          // "products.stockInfo.stockStatus": "Low Stock",
+          $expr: {
+            $lt: [
+              "$products.stockInfo.currentQuantity",
+              "$products.stockInfo.restockThreshold",
+            ],
+          },
+        },
+      },
+      // Step 3: Project the necessary fields and extracting only the date part of lastRestock
+      {
+        $project: {
+          _id: 0,
+          categoryID: 1,
+          productID: "$products.productID",
+          currentQuantity: "$products.stockInfo.currentQuantity",
+          restockQuantity: "$products.stockInfo.restockQuantity",
+          lastRestock: {
+            $dateToString: {
+              format: "%Y-%m-%d",
+              date: { $toDate: "$products.stockInfo.lastRestock" },
+            },
+          },
+        },
+      },
+    ]).session(session);
+
+    return lowStockProducts;
+  } catch (err) {
+    console.log("Error while gathering low stock products: ", err);
+    throwInventoryError("Error while gathering low stock products");
   }
 }
 

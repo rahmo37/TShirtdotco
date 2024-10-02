@@ -6,7 +6,7 @@ const stockInfoSchema = new Schema({
   currentQuantity: { type: Number, required: true, unique: true },
   totalSold: { type: Number, required: true, unique: true },
   restockThreshold: { type: Number, required: true, unique: true },
-  lastRestock: Date,
+  lastRestock: { type: String, required: true },
   restockQuantity: { type: Number, required: true, unique: true },
   stockStatus: { type: String, required: true, unique: true },
 });
