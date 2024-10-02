@@ -1,0 +1,74 @@
+[
+    {
+        "customerID": "CUS_65c9deee56a3",
+        "email": "larry@gmail.com",
+        "phone": "6311233213",
+        "password": "$2b$10$6I/DW3JPNUJOHuplGqgS8O9SRgd/bNFHFXxkQUvLxiHgdSVMvUIPu",
+        "customerBio": {
+            "firstName": "Larry",
+            "lastName": "Rangoon",
+            "address": {
+                "street": "123 test st",
+                "city": "test town",
+                "country": "USA"
+            },
+            "gender": "Male"
+        },
+        "accountCreated": "2024-09-17T00:00:00",
+        "accountStatus": "Active"
+    },
+    {
+        "customerID": "CUS_c65af7bc37a7",
+        "email": "sarah@example.com",
+        "phone": "6319876543",
+        "password": "$2b$10$LRLyjxiqGc33Cat7ikq32uIrMDChbk91FnXM.lSsfDOuIOsJzZCcK",
+        "customerBio": {
+            "firstName": "Sarah",
+            "lastName": "Johnson",
+            "address": {
+                "street": "456 example rd",
+                "city": "sample city",
+                "country": "Canada"
+            },
+            "gender": "Female"
+        },
+        "accountCreated": "2024-09-18T00:00:00",
+        "accountStatus": "Active"
+    },
+    {
+        "customerID": "CUS_d9b3fe967858",
+        "email": "michael@example.com",
+        "phone": "6317896543",
+        "password": "$2b$10$sOB330ItqeNtSxhjXifFOetP3HcAIVbuqfgOJwnFtS0VUW2s.1JfK",
+        "customerBio": {
+            "firstName": "Michael",
+            "lastName": "Smith",
+            "address": {
+                "street": "789 sample ave",
+                "city": "demo town",
+                "country": "USA"
+            },
+            "gender": "Male"
+        },
+        "accountCreated": "2024-09-20T00:00:00",
+        "accountStatus": "Active"
+    },
+    {
+        "customerID": "CUS_8c865487fe86",
+        "email": "susan@gmail.com",
+        "phone": "6319876543",
+        "password": "$2b$10$ujfR9J.g/5Zh9CsSY1/H4OhbuUgHVwxmhlcSV4SxS0/TQgWKRRuoq",
+        "customerBio": {
+            "firstName": "Susan",
+            "lastName": "Wellington",
+            "address": {
+                "street": "456 example ave",
+                "city": "sample city",
+                "country": "USA"
+            },
+            "gender": "Female"
+        },
+        "accountCreated": "2024-09-17T00:00:00",
+        "accountStatus": "Active"
+    }
+]

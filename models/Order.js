@@ -16,7 +16,7 @@ const orderItemSchema = new mongoose.Schema({
 });
 
 const orderSchema = new mongoose.Schema({
-  orderID: { type: Number, unique: true, required: true },
+  orderID: { type: String, unique: true, required: true },
   customerID: { type: String, required: true }, // Reference to Customer
   orderStatus: { type: String, default: "preparing" },
   orderDate: { type: Date, default: Date.now },

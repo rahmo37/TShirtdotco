@@ -135,6 +135,8 @@ inventoryFunctions.updateProduct = async (req, res, next) => {
     return next(err);
   }
 
+  revisedProduct.productID = productId;
+
   // Database update starts...
   try {
     const updatedInventory = await Inventory.findOneAndUpdate(
@@ -183,10 +185,11 @@ inventoryFunctions.createProduct = async (req, res, next) => {
       return next(err);
     }
 
-    // Assign productId and dateAdded once, since it's common for both cases
+    // Assign productId and dateAdded
     const generatedProductId = generateId("PRO_");
     product.productID = generatedProductId;
-    product.dateAdded = new Date().toISOString().split("T")[0];
+    product.dateAdded = new Date();
+    product.stockInfo.lastRestock = new Date();
 
     if (categoryId.toLowerCase() === "new") {
       const newProductsArray = [];
@@ -311,8 +314,8 @@ inventoryFunctions.restockProduct = async (req, res, next) => {
     // calculate the new quantity
     const newQuantity = currentQuantity + restockQuantity;
 
-    // get the current date in format YYYY-MM-DD
-    const currentDate = new Date().toISOString().split("T")[0];
+    // get the current date
+    const currentDate = new Date();
 
     const updateStock = await Inventory.updateOne(
       {
@@ -422,7 +425,7 @@ function getDateRange(valueToSubtract) {
   dateB.setDate(1);
   dateB.setHours(0, 0, 0, 0);
 
-  return [dateA.toISOString(), dateB.toISOString()];
+  return [dateA, dateB];
 }
 
 //* generic function to gather inventory report on sold products - helper function
@@ -535,7 +538,7 @@ async function getTopSellingProducts(session, dateArr) {
           orderStatus: "completed",
           orderDate: {
             $gte: dateArr[0],
-            $lte: new Date().toISOString(),
+            $lte: new Date(),
           },
         },
       },

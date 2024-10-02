@@ -25,6 +25,8 @@ const customerSchema = new Schema(
       },
       gender: String,
     },
+    accountCreated: { type: Date, required: true },
+    accountStatus: { type: String, required: true },
   },
   { collection: "customers" }
 );

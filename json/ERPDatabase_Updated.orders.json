@@ -1,0 +1,283 @@
+[
+    {
+        "orderStatus": "completed",
+        "orderDate": "2024-09-21 10:30:00+00:00",
+        "items": [
+            {
+                "productID": "PRO_29e5f51631ca",
+                "productName": "Slim Fit T-Shirt",
+                "productDescription": "A classic slim fit T-shirt made with high-quality cotton.",
+                "quantity": 2,
+                "unitPrice": 19.99,
+                "subtotal": 39.98,
+                "currentAvailabilityStatus": "Available",
+                "imageUrl": "https://example.com/products/slim-fit-tshirt.jpg"
+            },
+            {
+                "productID": "PRO_117fd7de621f",
+                "productName": "V-Neck T-Shirt",
+                "productDescription": "Soft and comfortable V-neck T-shirt.",
+                "quantity": 1,
+                "unitPrice": 22.5,
+                "subtotal": 22.5,
+                "currentAvailabilityStatus": "Available",
+                "imageUrl": "https://example.com/products/v-neck-tshirt.jpg"
+            }
+        ],
+        "totalPrice": 62.48,
+        "tax": 5,
+        "grandTotal": 67.48,
+        "customerID": "CUS_65c9deee56a3",
+        "orderID": "ORD_5830e7991b8b"
+    },
+    {
+        "orderStatus": "completed",
+        "orderDate": "2024-09-28 10:30:00+00:00",
+        "items": [
+            {
+                "productID": "PRO_c9c9348162dc",
+                "productName": "Sunset Graphic Tee",
+                "productDescription": "Cool graphic T-shirt with a sunset design.",
+                "quantity": 2,
+                "unitPrice": 24.99,
+                "subtotal": 49.98,
+                "currentAvailabilityStatus": "Available",
+                "imageUrl": "https://example.com/products/sunset-graphic-tee.jpg"
+            }
+        ],
+        "totalPrice": 49.98,
+        "tax": 3.9984,
+        "grandTotal": 53.98,
+        "customerID": "CUS_c65af7bc37a7",
+        "orderID": "ORD_393f15ebb974"
+    },
+    {
+        "orderStatus": "completed",
+        "orderDate": "2024-09-28 10:45:00+00:00",
+        "items": [
+            {
+                "productID": "PRO_a63b20165329",
+                "productName": "Vintage Band Tee",
+                "productDescription": "Retro-style band tee with a distressed print.",
+                "quantity": 1,
+                "unitPrice": 29.99,
+                "subtotal": 29.99,
+                "currentAvailabilityStatus": "Available",
+                "imageUrl": "https://example.com/products/vintage-band-tee.jpg"
+            }
+        ],
+        "totalPrice": 29.99,
+        "tax": 2.3992,
+        "grandTotal": 32.39,
+        "customerID": "CUS_d9b3fe967858",
+        "orderID": "ORD_ed326acfb78c"
+    },
+    {
+        "orderStatus": "shipped",
+        "orderDate": "2024-09-28 11:00:00+00:00",
+        "items": [
+            {
+                "productID": "PRO_bf2569c11f5e",
+                "productName": "Pullover Hoodie",
+                "productDescription": "Comfortable pullover hoodie with adjustable drawstring.",
+                "quantity": 1,
+                "unitPrice": 39.99,
+                "subtotal": 39.99,
+                "currentAvailabilityStatus": "Available",
+                "imageUrl": "https://example.com/products/pullover-hoodie.jpg"
+            }
+        ],
+        "totalPrice": 39.99,
+        "tax": 3.1992,
+        "grandTotal": 43.19,
+        "customerID": "CUS_8c865487fe86",
+        "orderID": "ORD_b64a810249ce"
+    },
+    {
+        "orderID": "ORD_8891795982",
+        "orderStatus": "completed",
+        "orderDate": "2024-10-01 05:39:45.951033",
+        "items": [
+            {
+                "productID": "PRO_29e5f51631ca",
+                "productName": "Slim Fit T-Shirt",
+                "productDescription": "A classic slim fit T-shirt made with high-quality cotton.",
+                "quantity": 1,
+                "unitPrice": 19.99,
+                "subtotal": 19.99,
+                "currentAvailabilityStatus": "In Stock",
+                "imageUrl": "https://example.com/products/slim-fit-tshirt.jpg"
+            }
+        ],
+        "totalPrice": 19.99,
+        "tax": 1.5992,
+        "grandTotal": 21.589199999999998,
+        "customerID": "CUS_65c9deee56a3"
+    },
+    {
+        "orderID": "ORD_2953827026",
+        "orderStatus": "processing",
+        "orderDate": "2024-10-01 05:39:45.951066",
+        "items": [
+            {
+                "productID": "PRO_a63b20165329",
+                "productName": "Vintage Band Tee",
+                "productDescription": "Retro-style band tee with a distressed print.",
+                "quantity": 3,
+                "unitPrice": 29.99,
+                "subtotal": 89.97,
+                "currentAvailabilityStatus": "In Stock",
+                "imageUrl": "https://example.com/products/vintage-band-tee.jpg"
+            }
+        ],
+        "totalPrice": 89.97,
+        "tax": 7.1976,
+        "grandTotal": 97.1676,
+        "customerID": "CUS_8c865487fe86"
+    },
+    {
+        "orderID": "ORD_1455001613",
+        "orderStatus": "completed",
+        "orderDate": "2024-10-01 05:39:45.951094",
+        "items": [
+            {
+                "productID": "PRO_bf2569c11f5e",
+                "productName": "Pullover Hoodie",
+                "productDescription": "Comfortable pullover hoodie with adjustable drawstring.",
+                "quantity": 1,
+                "unitPrice": 39.99,
+                "subtotal": 39.99,
+                "currentAvailabilityStatus": "In Stock",
+                "imageUrl": "https://example.com/products/pullover-hoodie.jpg"
+            },
+            {
+                "productID": "PRO_c9c9348162dc",
+                "productName": "Sunset Graphic Tee",
+                "productDescription": "Cool graphic T-shirt with a sunset design.",
+                "quantity": 2,
+                "unitPrice": 24.99,
+                "subtotal": 49.98,
+                "currentAvailabilityStatus": "In Stock",
+                "imageUrl": "https://example.com/products/sunset-graphic-tee.jpg"
+            }
+        ],
+        "totalPrice": 89.97,
+        "tax": 7.1976,
+        "grandTotal": 97.1676,
+        "customerID": "CUS_8c865487fe86"
+    },
+    {
+        "orderID": "ORD_5587731696",
+        "orderStatus": "processing",
+        "orderDate": "2024-10-01 05:39:45.951113",
+        "items": [
+            {
+                "productID": "PRO_45fd82fb30dd",
+                "productName": "Classic Crew Neck Tee",
+                "productDescription": "Simple and stylish crew neck T-shirt.",
+                "quantity": 2,
+                "unitPrice": 15.99,
+                "subtotal": 31.98,
+                "currentAvailabilityStatus": "In Stock",
+                "imageUrl": "https://example.com/products/classic-crew-neck-tee.jpg"
+            },
+            {
+                "productID": "PRO_c9c9348162dc",
+                "productName": "Sunset Graphic Tee",
+                "productDescription": "Cool graphic T-shirt with a sunset design.",
+                "quantity": 3,
+                "unitPrice": 24.99,
+                "subtotal": 74.97,
+                "currentAvailabilityStatus": "In Stock",
+                "imageUrl": "https://example.com/products/sunset-graphic-tee.jpg"
+            }
+        ],
+        "totalPrice": 106.95,
+        "tax": 8.556000000000001,
+        "grandTotal": 115.506,
+        "customerID": "CUS_c65af7bc37a7"
+    },
+    {
+        "orderID": "ORD_5551715352",
+        "orderStatus": "completed",
+        "orderDate": "2024-10-01 05:39:45.951148",
+        "items": [
+            {
+                "productID": "PRO_a63b20165329",
+                "productName": "Vintage Band Tee",
+                "productDescription": "Retro-style band tee with a distressed print.",
+                "quantity": 3,
+                "unitPrice": 29.99,
+                "subtotal": 89.97,
+                "currentAvailabilityStatus": "In Stock",
+                "imageUrl": "https://example.com/products/vintage-band-tee.jpg"
+            },
+            {
+                "productID": "PRO_a63b20165329",
+                "productName": "Vintage Band Tee",
+                "productDescription": "Retro-style band tee with a distressed print.",
+                "quantity": 1,
+                "unitPrice": 29.99,
+                "subtotal": 29.99,
+                "currentAvailabilityStatus": "In Stock",
+                "imageUrl": "https://example.com/products/vintage-band-tee.jpg"
+            },
+            {
+                "productID": "PRO_45fd82fb30dd",
+                "productName": "Classic Crew Neck Tee",
+                "productDescription": "Simple and stylish crew neck T-shirt.",
+                "quantity": 1,
+                "unitPrice": 15.99,
+                "subtotal": 15.99,
+                "currentAvailabilityStatus": "In Stock",
+                "imageUrl": "https://example.com/products/classic-crew-neck-tee.jpg"
+            }
+        ],
+        "totalPrice": 135.95,
+        "tax": 10.876,
+        "grandTotal": 146.826,
+        "customerID": "CUS_65c9deee56a3"
+    },
+    {
+        "orderID": "ORD_7284309418",
+        "orderStatus": "processing",
+        "orderDate": "2024-10-01 05:52:33.946586",
+        "items": [
+            {
+                "productID": "PRO_29e5f51631ca",
+                "productName": "Slim Fit T-Shirt",
+                "productDescription": "A classic slim fit T-shirt made with high-quality cotton.",
+                "quantity": 70,
+                "unitPrice": 19.99,
+                "subtotal": 1399.3,
+                "currentAvailabilityStatus": "In Stock",
+                "imageUrl": "https://example.com/products/slim-fit-tshirt.jpg"
+            }
+        ],
+        "totalPrice": 1399.3,
+        "tax": 111.944,
+        "grandTotal": 1511.2440000000001,
+        "customerID": "CUS_65c9deee56a3"
+    },
+    {
+        "orderID": "ORD_4171348877",
+        "orderStatus": "processing",
+        "orderDate": "2024-10-01 05:52:33.946709",
+        "items": [
+            {
+                "productID": "PRO_117fd7de621f",
+                "productName": "V-Neck T-Shirt",
+                "productDescription": "Soft and comfortable V-neck T-shirt.",
+                "quantity": 85,
+                "unitPrice": 22.5,
+                "subtotal": 1912.5,
+                "currentAvailabilityStatus": "In Stock",
+                "imageUrl": "https://example.com/products/v-neck-tshirt.jpg"
+            }
+        ],
+        "totalPrice": 1912.5,
+        "tax": 153,
+        "grandTotal": 2065.5,
+        "customerID": "CUS_65c9deee56a3"
+    }
+]

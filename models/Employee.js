@@ -10,7 +10,7 @@ const employeeSchema = new Schema(
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true, select: false }, // by default the password is hidden, but if asked explicitly, it will be provided
     phone: String,
-    lastLogin: Date,
+    lastLogin: { type: Date, required: true },
     isAdmin: { type: Boolean, default: false },
     employeeBio: {
       firstName: String,
@@ -27,7 +27,7 @@ const employeeSchema = new Schema(
     workInfo: {
       jobTitle: String,
       employeeType: String,
-      hireDate: Date,
+      hireDate: { type: Date, required: true },
       payFrequency: String,
       payAmount: {
         baseSalary: Number,

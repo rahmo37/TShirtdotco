@@ -1,0 +1,177 @@
+[
+    {
+        "employeeId": "EMP_7df244ab40d9",
+        "email": "chris@gmail.com",
+        "password": "$2b$10$ktYU2wlY8f0QaWGchKbWbeP61FOHNt7okXylBtKDsA8w.E5AP/f/6",
+        "phone": "631123126",
+        "lastLogin": "2024-09-17 07:40:33.406000+00:00",
+        "isAdmin": true,
+        "employeeBio": {
+            "firstName": "Chris",
+            "lastName": "Smith",
+            "address": {
+                "street": "154 example st",
+                "city": "example town",
+                "state": "NY",
+                "zipCode": "12345",
+                "country": "USA"
+            },
+            "gender": "Male"
+        },
+        "workInfo": {
+            "jobTitle": "Warehouse Manager",
+            "employeeType": "permanent",
+            "hireDate": "2020-08-15 00:00:00z",
+            "payFrequency": "monthly",
+            "payAmount": {
+                "baseSalary": 6000,
+                "bonus": 750
+            },
+            "department": "Warehouse",
+            "workingHours": {
+                "startTime": "09:00",
+                "endTime": "17:00"
+            }
+        }
+    },
+    {
+        "employeeId": "EMP_5b7fe5552af8",
+        "email": "john@gmail.com",
+        "password": "$2b$10$2R8.fMLfxDDHuxjgTay8kukzoKKDW3oo.sdxkcmTCnxCjGlH9McGW",
+        "phone": "631123124",
+        "lastLogin": "2024-09-17 05:35:33.406000+00:00",
+        "isAdmin": true,
+        "employeeBio": {
+            "firstName": "John",
+            "lastName": "Doe",
+            "address": {
+                "street": "123 example st",
+                "city": "example town",
+                "state": "NY",
+                "zipCode": "12345",
+                "country": "USA"
+            },
+            "gender": "Male"
+        },
+        "workInfo": {
+            "jobTitle": "Sales Manager",
+            "employeeType": "permanent",
+            "hireDate": "2021-03-01 00:00:00",
+            "payFrequency": "monthly",
+            "payAmount": {
+                "baseSalary": 5000,
+                "bonus": 500
+            },
+            "department": "Sales",
+            "workingHours": {
+                "startTime": "09:00",
+                "endTime": "17:00"
+            }
+        }
+    },
+    {
+        "employeeId": "EMP_334f86fa782e",
+        "email": "jennifer@gmail.com",
+        "password": "$2b$10$A6G7/ooREsJM8k4o36HSreUyAViCMei3GfLx8ujIGuWuI2/7rArJK",
+        "phone": "631123128",
+        "lastLogin": "2024-09-17 08:12:40.406000+00:00",
+        "isAdmin": false,
+        "employeeBio": {
+            "firstName": "Jennifer",
+            "lastName": "Jones",
+            "address": {
+                "street": "188 example st",
+                "city": "example town",
+                "state": "NY",
+                "zipCode": "12345",
+                "country": "USA"
+            },
+            "gender": "Female"
+        },
+        "workInfo": {
+            "jobTitle": "Sales Representative",
+            "employeeType": "permanent",
+            "hireDate": "2022-07-19 00:00:00",
+            "payFrequency": "monthly",
+            "payAmount": {
+                "baseSalary": 4000,
+                "bonus": 400
+            },
+            "department": "Sales",
+            "workingHours": {
+                "startTime": "09:00",
+                "endTime": "17:00"
+            }
+        }
+    },
+    {
+        "employeeId": "EMP_531397a05100",
+        "email": "michael.smith@gmail.com",
+        "password": "$2b$10$DHO0tmFuEjh36ZWvUBrvletah1oFYYHCMKEc.pgSaHJJt2Wf3Wm6K",
+        "phone": "6319876543",
+        "lastLogin": "2023-08-25 14:30:00+00:00",
+        "isAdmin": true,
+        "employeeBio": {
+            "firstName": "Michael",
+            "lastName": "Smith",
+            "address": {
+                "street": "500 sample ave",
+                "city": "sample city",
+                "state": "NY",
+                "zipCode": "54321",
+                "country": "USA"
+            },
+            "gender": "Male"
+        },
+        "workInfo": {
+            "jobTitle": "IT Manager",
+            "employeeType": "permanent",
+            "hireDate": "2020-04-12 00:00:00",
+            "payFrequency": "bi-weekly",
+            "payAmount": {
+                "baseSalary": 6500,
+                "bonus": 600
+            },
+            "department": "IT",
+            "workingHours": {
+                "startTime": "08:00",
+                "endTime": "16:00"
+            }
+        }
+    },
+    {
+        "employeeId": "EMP_f2f91d3ab90c",
+        "email": "susan@gmail.com",
+        "password": "$2b$10$p/estVavyKnk3KBHXq25d.8A51RprfwjWGbrCadHpQ2P2378HBC4K",
+        "phone": "6315551234",
+        "lastLogin": "2024-09-18 09:45:12.503000+00:00",
+        "isAdmin": false,
+        "employeeBio": {
+            "firstName": "Susan",
+            "lastName": "Smith",
+            "address": {
+                "street": "456 sample rd",
+                "city": "sample city",
+                "state": "CA",
+                "zipCode": "90210",
+                "country": "USA"
+            },
+            "gender": "Female"
+        },
+        "workInfo": {
+            "jobTitle": "Marketing Coordinator",
+            "employeeType": "permanent",
+            "hireDate": "2022-06-15 00:00:00",
+            "payFrequency": "bi-weekly",
+            "payAmount": {
+                "baseSalary": 3500,
+                "bonus": 200
+            },
+            "department": "Marketing",
+            "workingHours": {
+                "startTime": "08:00",
+                "endTime": "16:00"
+            }
+        }
+    }
+]
