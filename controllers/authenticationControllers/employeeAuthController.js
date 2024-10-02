@@ -4,10 +4,10 @@
  */
 
 // Importing Modules
-const Employee = require("../models/Employee");
+const Employee = require("../../models/Employee");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const jwtConfig = require("../config/jwtConfig");
+const jwtConfig = require("../../config/jwtConfig");
 
 async function login(req, res, next) {
   try {

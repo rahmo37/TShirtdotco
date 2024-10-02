@@ -1,10 +1,10 @@
 // This file handles all admin operations related to the inventory
 
 // Importing modules
-const Inventory = require("../models/Inventory");
-const Orders = require("../models/Order");
+const Inventory = require("../../models/Inventory");
+const Orders = require("../../models/Order");
 const mongoose = require("mongoose");
-const generateId = require("../misc/generateId");
+const generateId = require("../../misc/generateId");
 
 // object to accumulate all functions
 const inventoryFunctions = {};
@@ -174,17 +174,26 @@ inventoryFunctions.updateProduct = async (req, res, next) => {
 inventoryFunctions.createProduct = async (req, res, next) => {
   try {
     const { categoryId } = req.params;
+    const { categoryName, product } = req.body;
+
+    // Ensure product is provided
+    if (!product) {
+      const err = new Error("You must provide a valid product");
+      err.status = 400;
+      return next(err);
+    }
+
+    // Assign productId and dateAdded once, since it's common for both cases
     const generatedProductId = generateId("PRO_");
+    product.productID = generatedProductId;
+    product.dateAdded = new Date().toISOString().split("T")[0];
 
     if (categoryId.toLowerCase() === "new") {
-      const newCategoryWithProduct = {};
       const newProductsArray = [];
-      const { categoryName } = req.body;
-      const { product } = req.body;
       const generatedCategoryId = generateId("CAT_");
 
-      // if category name and product is not provided
-      if (!categoryName || !product) {
+      // Ensure categoryName is provided
+      if (!categoryName) {
         const err = new Error(
           "You must provide a category name and a valid product"
         );
@@ -192,71 +201,60 @@ inventoryFunctions.createProduct = async (req, res, next) => {
         return next(err);
       }
 
-      const categoryExists = await Inventory.findOne({
-        categoryName: categoryName,
-      });
+      // Check if the category already exists
+      const categoryExists = await Inventory.findOne({ categoryName });
       if (categoryExists) {
         const err = new Error(
-          "A category with the provided name already exists. If you are adding a new product to an existing category, please a provide a corresponding category id with the URL"
+          "A category with the provided name already exists. If you are adding a new product to an existing category, please provide a corresponding category ID with the URL"
         );
         err.status = 400;
         return next(err);
       }
 
-      // Assign generated product ID to the new product
-      product.productID = generatedProductId;
+      // Assign generated product ID to the new product and push it to array
       newProductsArray.push(product);
 
       // Combine into a new category object
-      newCategoryWithProduct.categoryName = categoryName;
-      newCategoryWithProduct.categoryID = generatedCategoryId;
-      newCategoryWithProduct.products = newProductsArray;
+      const newCategoryWithProduct = {
+        categoryName,
+        categoryID: generatedCategoryId,
+        products: newProductsArray,
+      };
 
       // Save the new category with the product
       const newCategory = new Inventory(newCategoryWithProduct);
       await newCategory.save();
 
       // Send response
-      res.status(200).json({
-        message: "new category with the product created",
+      return res.status(200).json({
+        message: "New category with the product created",
         data: newCategoryWithProduct,
       });
     } else if (categoryId.slice(0, 4) === "CAT_" && categoryId.length === 16) {
       // Retrieving the category where the product will be pushed
       const category = await Inventory.findOne({ categoryID: categoryId });
 
-      // if invalid category id provided
+      // If invalid category id provided
       if (!category) {
-        const err = new Error("Invalid category id provided!");
+        const err = new Error("Invalid category ID provided!");
         err.status = 400;
         return next(err);
       }
 
-      // retrieve the product from the request body
-      const { product } = req.body;
-      if (!product) {
-        const err = new Error("You must provide a valid product");
-        err.status = 400;
-        return next(err);
-      }
-
-      // add the generated id in the product
-      product.productID = generatedProductId;
-
-      // now push the new product
+      // Now push the new product
       category.products.push(product);
 
-      // save the category
+      // Save the category
       await category.save();
 
-      // send a response
-      res.status(200).json({
-        message: "new product created",
+      // Send a response
+      return res.status(200).json({
+        message: "New product created",
         data: category.toObject(),
       });
     } else {
       const err = new Error(
-        `Please provide a correct parameter with the URL. Add the word "new" for a new category or a valid category id for adding product in an existing category`
+        `Please provide a correct parameter with the URL. Add the word "new" for a new category or a valid category ID for adding product to an existing category`
       );
       err.status = 400;
       return next(err);

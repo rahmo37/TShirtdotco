@@ -2,45 +2,49 @@
 
 // Requiring express
 const express = require("express");
-const adminInventoryRoute = express.Router();
-const inventoryFunctions = require("../../controllers/adminInventoryController");
+const admin_InventoryOperationRoutes = express.Router();
+const inventoryFunctions = require("../../controllers/adminControllers/adminInventoryController");
 const jwtVerifyToken = require("../../middlewares/jwtVerifyToken");
 const { isAdmin } = require("../../middlewares/roleVerification");
 
 // Register necessary middlewares to  verify token and role
+// TODO Uncomment token code later
 // adminInventoryRoute.use(jwtVerifyToken, isAdmin);
 
 // View inventory route
-adminInventoryRoute.get("/inventory", inventoryFunctions.viewInventory);
+admin_InventoryOperationRoutes.get(
+  "/inventory",
+  inventoryFunctions.viewInventory
+);
 
 // Delete product route
-adminInventoryRoute.delete(
+admin_InventoryOperationRoutes.delete(
   "/inventory/:categoryId/:productId",
   inventoryFunctions.deleteProduct
 );
 
 // Update product route
-adminInventoryRoute.put(
+admin_InventoryOperationRoutes.put(
   "/inventory/:categoryId/:productId",
   inventoryFunctions.updateProduct
 );
 
 // Restock a product
-adminInventoryRoute.put(
+admin_InventoryOperationRoutes.put(
   "/inventory/restock/:categoryId/:productId",
   inventoryFunctions.restockProduct
 );
 
 // Create product route
-adminInventoryRoute.post(
+admin_InventoryOperationRoutes.post(
   "/inventory/:categoryId",
   inventoryFunctions.createProduct
 );
 
 // View inventory report route
-adminInventoryRoute.get(
+admin_InventoryOperationRoutes.get(
   "/inventory/report",
   inventoryFunctions.getInventoryReport
 );
 
-module.exports = adminInventoryRoute;
+module.exports = admin_InventoryOperationRoutes;

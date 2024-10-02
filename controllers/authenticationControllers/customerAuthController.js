@@ -4,11 +4,11 @@
  */
 
 // Importing Modules
-const Customer = require("../models/Customer");
-const Order = require("../models/Order");
+const Customer = require("../../models/Customer");
+const Order = require("../../models/Order");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const jwtConfig = require("../config/jwtConfig");
+const jwtConfig = require("../../config/jwtConfig");
 
 // login function
 async function login(req, res, next) {

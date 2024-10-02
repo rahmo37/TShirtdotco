@@ -19,7 +19,7 @@ const productSchema = new Schema({
   unitPrice: { type: Number, required: true, unique: true },
   stockInfo: stockInfoSchema, // Embedding stock info
   imageUrl: String,
-  dateAdded: Date,
+  dateAdded: { type: String, required: true },
   color: String,
 });
 
