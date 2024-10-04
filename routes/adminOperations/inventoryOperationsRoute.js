@@ -30,7 +30,7 @@ admin_InventoryOperationRoutes.put(
 );
 
 // Restock a product
-admin_InventoryOperationRoutes.put(
+admin_InventoryOperationRoutes.patch(
   "/inventory/restock/:categoryId/:productId",
   inventoryFunctions.restockProduct
 );

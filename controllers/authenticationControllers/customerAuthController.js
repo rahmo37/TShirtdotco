@@ -22,6 +22,12 @@ async function login(req, res, next) {
       return next(err);
     }
 
+    if (customer.accountStatus != "Active") {
+      const err = new Error("This account is currently frozen!");
+      err.status = 404;
+      return next(err);
+    }
+
     const isMatch = await bcrypt.compare(password, customer.password);
 
     if (!isMatch) {

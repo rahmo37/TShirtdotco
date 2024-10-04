@@ -18,6 +18,18 @@ inventoryFunctions.viewInventory = async (req, res, next) => {
       { _id: 0, "products._id": 0, "products.stockInfo._id": 0 }
     );
 
+    // checking if the inventory is empty o not
+    const emptyInventory = fullInventory.every(
+      (category) => category.products.length === 0
+    );
+
+    // send an error if the inventory is empty
+    if (emptyInventory) {
+      const err = new Error("Empty Inventory");
+      err.status = 500;
+      next(err);
+    }
+
     // Sending the inventory data
     res
       .status(200)
@@ -29,13 +41,13 @@ inventoryFunctions.viewInventory = async (req, res, next) => {
 
 // delete a product - function
 inventoryFunctions.deleteProduct = async (req, res, next) => {
-  const { categoryId, productId } = req.params;
-
-  // starting a session for transaction
-  const session = await mongoose.startSession();
-  session.startTransaction();
-
   try {
+    const { categoryId, productId } = req.params;
+
+    // starting a session for transaction
+    const session = await mongoose.startSession();
+    session.startTransaction();
+
     /**
      * !Operation 1
      * check the inventory to see if the product exists or not
@@ -121,24 +133,26 @@ inventoryFunctions.deleteProduct = async (req, res, next) => {
 
 // update a product - function
 inventoryFunctions.updateProduct = async (req, res, next) => {
-  // Retrieving the ids, category name and the revised product
-  const { categoryId, productId } = req.params;
-  const categoryName = req.body.categoryName;
-  const revisedProduct = req.body.product;
-
-  // checking if the fields are provided
-  if (!categoryName && !revisedProduct) {
-    const err = new Error(
-      "You must provide a category name or product details to update."
-    );
-    err.status = 400;
-    return next(err);
-  }
-
-  revisedProduct.productID = productId;
-
-  // Database update starts...
   try {
+    // Retrieving the ids, category name and the revised product
+    const { categoryId, productId } = req.params;
+    const categoryName = req.body.categoryName;
+    const revisedProduct = req.body.product;
+
+    // checking if the fields are provided
+    if (!categoryName && !revisedProduct) {
+      const err = new Error(
+        "You must provide a category name or product details to update."
+      );
+      err.status = 400;
+      return next(err);
+    }
+
+    // add the productId back to the updated product
+    revisedProduct.productID = productId;
+
+    // Database update starts...
+
     const updatedInventory = await Inventory.findOneAndUpdate(
       {
         categoryID: categoryId,
@@ -338,10 +352,13 @@ inventoryFunctions.restockProduct = async (req, res, next) => {
     }
 
     res.status(200).json({
-      categoryId,
-      productId,
-      currentQuantity: newQuantity,
-      lastRestock: currentDate,
+      message: "Product restocked",
+      data: {
+        categoryId,
+        productId,
+        currentQuantity: newQuantity,
+        lastRestock: currentDate,
+      },
     });
   } catch (err) {
     next(err);
@@ -655,4 +672,5 @@ async function getLowStockProducts(session) {
   }
 }
 
+// Exporting the inventoryFunction object
 module.exports = inventoryFunctions;

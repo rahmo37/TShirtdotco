@@ -10,6 +10,7 @@ const methodColors = {
   POST: "yellow",
   PUT: "blue",
   DELETE: "red",
+  PATCH:"magenta"
 };
 
 const requestInfo = (req, res, next) => {
