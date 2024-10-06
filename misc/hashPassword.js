@@ -4,7 +4,13 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 
-async function hashPassword(entityModels) {
+const hashPassword = {};
+
+hashPassword.getHashedPassword = async (password) => {
+  return await bcrypt.hash(password, 10);
+};
+
+hashPassword.hashPasswordsInDatabase = async function (entityModels) {
   // TODO Delete Later
   // {
   // const customer = await Customer.find().select('+password');
@@ -37,6 +43,6 @@ async function hashPassword(entityModels) {
   }
 
   console.log("Hashing Completed...");
-}
+};
 
 module.exports = hashPassword;

@@ -167,10 +167,10 @@ inventoryFunctions.updateProduct = async (req, res, next) => {
       }
     );
 
-    // if nor product is found
+    // if product is not found
     if (!updatedInventory) {
       const err = new Error(
-        "The request cannot be completed, because Category or Product provided does not exist in the Inventory!"
+        "The request cannot be completed, unable to find any category or product with the provided ids"
       );
       err.status = 404;
       return next(err);

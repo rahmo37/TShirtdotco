@@ -13,13 +13,14 @@ const customerAuth = require("./routes/authentication/customerAuth");
 const employeeAuth = require("./routes/authentication/employeeAuth");
 const adminInventoryOperations = require("./routes/adminOperations/inventoryOperationsRoute");
 const adminCustomerOperations = require("./routes/adminOperations/customerOperationsRoute");
+const adminEmployeeOperations = require("./routes/adminOperations/employeeOperationsRoute");
 const errorHandler = require("./middlewares/errorHandler");
 const routeNotFoundHandler = require("./middlewares/routeNotFoundHandler");
 const requestInfo = require("./middlewares/logRequestInformation");
 const Customer = require("./models/Customer");
 const Employee = require("./models/Employee");
 const dbConfig = require("./config/db");
-const hashPassword = require("./misc/hashPassword");
+const { hashPasswordsInDatabase } = require("./misc/hashPassword");
 
 // Creating application instance
 const erpSystem = express();
@@ -38,6 +39,7 @@ erpSystem.use("/api/customer", customerAuth);
 erpSystem.use("/api/employee", employeeAuth);
 erpSystem.use("/api/admin", adminInventoryOperations);
 erpSystem.use("/api/admin", adminCustomerOperations);
+erpSystem.use("/api/admin", adminEmployeeOperations);
 
 // Not found error handler, if no routes matches this middleware is called
 erpSystem.use(routeNotFoundHandler);
@@ -61,7 +63,7 @@ mongoose
     });
 
     // Hash entity passwords
-    hashPassword([Customer, Employee]);
+    hashPasswordsInDatabase([Customer, Employee]);
   })
   .catch((err) => {
     console.error("Database connection error:", err);

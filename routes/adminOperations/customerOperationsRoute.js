@@ -32,5 +32,11 @@ admin_CustomerOperationRoutes.put(
   customerFunctions.updateCustomer
 );
 
+// create a customer account
+admin_CustomerOperationRoutes.post(
+  "/customer",
+  customerFunctions.createCustomer
+);
+
 // export the module
 module.exports = admin_CustomerOperationRoutes;
