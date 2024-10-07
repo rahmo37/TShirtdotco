@@ -4,7 +4,7 @@
         "email": "chris@gmail.com",
         "password": "$2b$10$ktYU2wlY8f0QaWGchKbWbeP61FOHNt7okXylBtKDsA8w.E5AP/f/6",
         "phone": "631123126",
-        "lastLogin": "2024-09-17 07:40:33.406000+00:00",
+        "lastLogin": "2024-09-17T07:40:33.406Z",
         "isAdmin": true,
         "employeeBio": {
             "firstName": "Chris",
@@ -21,7 +21,7 @@
         "workInfo": {
             "jobTitle": "Warehouse Manager",
             "employeeType": "permanent",
-            "hireDate": "2020-08-15 00:00:00z",
+            "hireDate": "2020-08-15T00:00:00.000Z",
             "payFrequency": "monthly",
             "payAmount": {
                 "baseSalary": 6000,
@@ -32,14 +32,17 @@
                 "startTime": "09:00",
                 "endTime": "17:00"
             }
-        }
+        },
+        "__v": 0,
+        "accountCreated": "2024-09-17T04:00:00.000+00:00",
+        "accountStatus": "Active"
     },
     {
         "employeeId": "EMP_5b7fe5552af8",
         "email": "john@gmail.com",
         "password": "$2b$10$2R8.fMLfxDDHuxjgTay8kukzoKKDW3oo.sdxkcmTCnxCjGlH9McGW",
         "phone": "631123124",
-        "lastLogin": "2024-09-17 05:35:33.406000+00:00",
+        "lastLogin": "2024-09-17T05:35:33.406Z",
         "isAdmin": true,
         "employeeBio": {
             "firstName": "John",
@@ -56,7 +59,7 @@
         "workInfo": {
             "jobTitle": "Sales Manager",
             "employeeType": "permanent",
-            "hireDate": "2021-03-01 00:00:00",
+            "hireDate": "2021-03-01T05:00:00.000Z",
             "payFrequency": "monthly",
             "payAmount": {
                 "baseSalary": 5000,
@@ -67,14 +70,17 @@
                 "startTime": "09:00",
                 "endTime": "17:00"
             }
-        }
+        },
+        "__v": 0,
+        "accountCreated": "2024-09-17T04:00:00.000+00:00",
+        "accountStatus": "Active"
     },
     {
         "employeeId": "EMP_334f86fa782e",
         "email": "jennifer@gmail.com",
         "password": "$2b$10$A6G7/ooREsJM8k4o36HSreUyAViCMei3GfLx8ujIGuWuI2/7rArJK",
         "phone": "631123128",
-        "lastLogin": "2024-09-17 08:12:40.406000+00:00",
+        "lastLogin": "2024-09-17T08:12:40.406Z",
         "isAdmin": false,
         "employeeBio": {
             "firstName": "Jennifer",
@@ -91,7 +97,7 @@
         "workInfo": {
             "jobTitle": "Sales Representative",
             "employeeType": "permanent",
-            "hireDate": "2022-07-19 00:00:00",
+            "hireDate":  "2022-07-19T04:00:00.000Z",
             "payFrequency": "monthly",
             "payAmount": {
                 "baseSalary": 4000,
@@ -102,14 +108,17 @@
                 "startTime": "09:00",
                 "endTime": "17:00"
             }
-        }
+        },
+        "__v": 0,
+        "accountCreated": "2024-09-17T04:00:00.000+00:00",
+        "accountStatus": "Active"
     },
     {
         "employeeId": "EMP_531397a05100",
         "email": "michael.smith@gmail.com",
         "password": "$2b$10$DHO0tmFuEjh36ZWvUBrvletah1oFYYHCMKEc.pgSaHJJt2Wf3Wm6K",
         "phone": "6319876543",
-        "lastLogin": "2023-08-25 14:30:00+00:00",
+        "lastLogin": "2023-08-25T14:30:00.000Z",
         "isAdmin": true,
         "employeeBio": {
             "firstName": "Michael",
@@ -126,7 +135,7 @@
         "workInfo": {
             "jobTitle": "IT Manager",
             "employeeType": "permanent",
-            "hireDate": "2020-04-12 00:00:00",
+            "hireDate": "2020-04-12T04:00:00.000Z",
             "payFrequency": "bi-weekly",
             "payAmount": {
                 "baseSalary": 6500,
@@ -137,14 +146,18 @@
                 "startTime": "08:00",
                 "endTime": "16:00"
             }
-        }
+        },
+        "__v": 0,
+        "accountCreated": "2024-09-17T04:00:00.000+00:00",
+        "accountStatus": "Active"
     },
     {
         "employeeId": "EMP_f2f91d3ab90c",
         "email": "susan@gmail.com",
         "password": "$2b$10$p/estVavyKnk3KBHXq25d.8A51RprfwjWGbrCadHpQ2P2378HBC4K",
         "phone": "6315551234",
-        "lastLogin": "2024-09-18 09:45:12.503000+00:00",
+        "lastLogin": "2024-09-18T09:45:12.503Z"
+        ,
         "isAdmin": false,
         "employeeBio": {
             "firstName": "Susan",
@@ -161,7 +174,7 @@
         "workInfo": {
             "jobTitle": "Marketing Coordinator",
             "employeeType": "permanent",
-            "hireDate": "2022-06-15 00:00:00",
+            "hireDate": "2022-06-15T04:00:00.000Z",
             "payFrequency": "bi-weekly",
             "payAmount": {
                 "baseSalary": 3500,
@@ -172,6 +185,9 @@
                 "startTime": "08:00",
                 "endTime": "16:00"
             }
-        }
+        },
+        "__v": 0,
+        "accountCreated": "2024-09-17T04:00:00.000+00:00",
+        "accountStatus": "Active"
     }
 ]

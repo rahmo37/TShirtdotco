@@ -16,7 +16,7 @@ const insertEmployees = async () => {
   try {
     // Read employee data from JSON file
     const employeeData = fs.readFileSync(
-      "../json/ERPDatabase_Updated.employees.json",
+      "../../json/modified_employees.json",
       "utf8"
     );
     const employees = JSON.parse(employeeData);

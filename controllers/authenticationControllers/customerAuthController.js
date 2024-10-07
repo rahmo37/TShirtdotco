@@ -42,7 +42,7 @@ async function login(req, res, next) {
 
     // Generate payload to be signed by JT
     const userPayload = {
-      id: customer._id,
+      id: customer.customerID,
       email: customer.email,
       role: "customer",
     };

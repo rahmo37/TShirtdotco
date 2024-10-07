@@ -9,10 +9,25 @@ const { isAdmin } = require("../../middlewares/roleVerification");
 
 // Register necessary middlewares to verify token and role
 // TODO Uncomment token code later
-// adminInventoryRoute.use(jwtVerifyToken, isAdmin);
+// admin_EmployeeOperationRoutes.use(jwtVerifyToken, isAdmin);
 
 //view employee list route
 admin_EmployeeOperationRoutes.get("/employee", employeeFunctions.viewEmployees);
+
+//close employee account route
+admin_EmployeeOperationRoutes.patch(
+  "/employee/close/:employeeId",
+  employeeFunctions.closeEmployeeAccount
+);
+
+//close employee account route
+admin_EmployeeOperationRoutes.patch(
+  "/employee/reopen/:employeeId",
+  employeeFunctions.reopenEmployeeAccount
+);
+
+//update employee account route
+admin_EmployeeOperationRoutes.put("/employee/:employeeId", employeeFunctions.updateEmployee);
 
 // Exporting the module
 module.exports = admin_EmployeeOperationRoutes;

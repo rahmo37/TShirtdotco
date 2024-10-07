@@ -28,10 +28,17 @@ async function login(req, res, next) {
       return next(err);
     }
 
+    if (employee.accountStatus != "Active") {
+      const err = new Error("This account is currently closed!");
+      err.status = 404;
+      return next(err);
+    }
+
     const userPayload = {
-      id: employee._id,
+      id: employee.employeeID,
       email: employee.email,
       role: employee.isAdmin ? "admin" : "employee",
+
     };
 
     const token = jwt.sign(userPayload, jwtConfig.secret, {

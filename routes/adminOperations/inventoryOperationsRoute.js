@@ -9,7 +9,7 @@ const { isAdmin } = require("../../middlewares/roleVerification");
 
 // Register necessary middlewares to  verify token and role
 // TODO Uncomment token code later
-// adminInventoryRoute.use(jwtVerifyToken, isAdmin);
+// admin_InventoryOperationRoutes.use(jwtVerifyToken, isAdmin);
 
 // View inventory route
 admin_InventoryOperationRoutes.get(

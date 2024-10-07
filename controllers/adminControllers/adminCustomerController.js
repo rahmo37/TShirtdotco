@@ -30,46 +30,6 @@ customerFunctions.viewCustomers = async (req, res, next) => {
           as: "orders", // Store the joined orders in the 'orders' array
         },
       },
-      {
-        // Use $addFields to modify the orders array, removing the customerID and _id from each order
-        $addFields: {
-          orders: {
-            $map: {
-              input: "$orders",
-              as: "order",
-              in: {
-                // Project each order, removing the customerID and _id field
-                orderID: "$$order.orderID",
-                orderStatus: "$$order.orderStatus",
-                orderDate: "$$order.orderDate",
-                items: {
-                  $map: {
-                    input: "$$order.items",
-                    as: "item",
-                    in: {
-                      productID: "$$item.productID",
-                      productName: "$$item.productName",
-                      productDescription: "$$item.productDescription",
-                      quantity: "$$item.quantity",
-                      unitPrice: "$$item.unitPrice",
-                      subtotal: "$$item.subtotal",
-                      currentAvailabilityStatus:
-                        "$$item.currentAvailabilityStatus",
-                      imageUrl: "$$item.imageUrl",
-                      // Note: No _id field in the items
-                    },
-                  },
-                },
-                totalPrice: "$$order.totalPrice",
-                tax: "$$order.tax",
-                grandTotal: "$$order.grandTotal",
-                placedBy: "$$order.placedBy",
-                // No _id and customerID in the order
-              },
-            },
-          },
-        },
-      },
     ]);
 
     res.status(200).json({
@@ -100,11 +60,11 @@ customerFunctions.freezeCustomerAccount = async (req, res, next) => {
 
     if (customerData.accountStatus === "Frozen") {
       const err = new Error("This account is already frozen");
-      err.status = 404;
+      err.status = 400;
       return next(err);
     }
 
-    // freeze the account status
+    // Set the account status to Frozen
     customerData.accountStatus = "Frozen";
 
     // Then save the change
@@ -140,18 +100,18 @@ customerFunctions.unFreezeCustomerAccount = async (req, res, next) => {
 
     if (customerData.accountStatus === "Active") {
       const err = new Error("This account is already active");
-      err.status = 404;
+      err.status = 400;
       return next(err);
     }
 
-    // unfreeze the account status
+    // Set the account status to Active
     customerData.accountStatus = "Active";
 
     // Then save the change
     await customerData.save();
 
     res.status(200).json({
-      message: "Account is now active",
+      message: "This account is now active",
       data: {
         customerData,
       },
@@ -168,7 +128,7 @@ customerFunctions.updateCustomer = async (req, res, next) => {
     const { customerId } = req.params;
     const revisedCustomer = req.body;
 
-    // checking i the updated date is provided
+    // checking if the updated date is provided
     if (!revisedCustomer) {
       const err = new Error("You must provide customer details to update");
       err.status = 400;
@@ -196,13 +156,10 @@ customerFunctions.updateCustomer = async (req, res, next) => {
     // save the customer
     await customerData.save();
 
-    // Delete the password before sending
-    delete customerData.password;
-
     res.status(200).json({
       message: "Customer updated successfully",
       data: {
-        customerData,
+        ...customerData.toObject(), // casting to mongoose object which will remove the password
       },
     });
   } catch (err) {
@@ -210,6 +167,7 @@ customerFunctions.updateCustomer = async (req, res, next) => {
   }
 };
 
+// create a customer
 customerFunctions.createCustomer = async (req, res, next) => {
   try {
     // retrieving the new customer data
@@ -220,6 +178,12 @@ customerFunctions.createCustomer = async (req, res, next) => {
       const err = new Error(
         "The request cannot be processed without providing the new customer's information"
       );
+      err.status = 400;
+      return next(err);
+    }
+
+    if (!newCustomer.password) {
+      const err = new Error("Password is required to create a customer");
       err.status = 400;
       return next(err);
     }
@@ -241,19 +205,15 @@ customerFunctions.createCustomer = async (req, res, next) => {
     // save the customer
     await new Customer(newCustomer).save();
 
-    delete newCustomer.password;
-
     // Send response
-    return res.status(200).json({
+    return res.status(201).json({
       message: "New customer created",
-      data: newCustomer,
+      data: { ...newCustomer.toObject() },
     });
   } catch (err) {
     next(err);
   }
 };
-
-// create a customer
 
 // exporting the module
 module.exports = customerFunctions;

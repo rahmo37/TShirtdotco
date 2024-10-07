@@ -6,7 +6,7 @@ const Schema = mongoose.Schema;
 
 const employeeSchema = new Schema(
   {
-    employeeId: { type: String, required: true, unique: true },
+    employeeID: { type: String, required: true, unique: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true, select: false }, // by default the password is hidden, but if asked explicitly, it will be provided
     phone: String,
@@ -39,6 +39,8 @@ const employeeSchema = new Schema(
         endTime: String,
       },
     },
+    accountCreated: { type: Date, required: true },
+    accountStatus: { type: String, required: true },
   },
   { collection: "employees" }
 );
