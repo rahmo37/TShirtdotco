@@ -10,7 +10,7 @@ const employeeSchema = new Schema(
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true, select: false }, // by default the password is hidden, but if asked explicitly, it will be provided
     phone: String,
-    lastLogin: { type: Date, required: true },
+    lastLogin: { type: Date, default: null},
     isAdmin: { type: Boolean, default: false },
     employeeBio: {
       firstName: String,

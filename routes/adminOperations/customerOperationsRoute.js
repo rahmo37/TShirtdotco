@@ -14,6 +14,12 @@ const { isAdmin } = require("../../middlewares/roleVerification");
 // view customer list route
 admin_CustomerOperationRoutes.get("/customer", customerFunctions.viewCustomers);
 
+// update a customer account
+admin_CustomerOperationRoutes.get(
+  "/customer/:customerId",
+  customerFunctions.getACustomerInfo
+);
+
 // freeze a customer account route
 admin_CustomerOperationRoutes.patch(
   "/customer/freeze/:customerId",

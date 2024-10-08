@@ -14,6 +14,12 @@ const { isAdmin } = require("../../middlewares/roleVerification");
 //view employee list route
 admin_EmployeeOperationRoutes.get("/employee", employeeFunctions.viewEmployees);
 
+//get an employee route
+admin_EmployeeOperationRoutes.get(
+  "/employee/:employeeId",
+  employeeFunctions.getAnEmployeeInfo
+);
+
 //close employee account route
 admin_EmployeeOperationRoutes.patch(
   "/employee/close/:employeeId",
@@ -27,7 +33,16 @@ admin_EmployeeOperationRoutes.patch(
 );
 
 //update employee account route
-admin_EmployeeOperationRoutes.put("/employee/:employeeId", employeeFunctions.updateEmployee);
+admin_EmployeeOperationRoutes.put(
+  "/employee/:employeeId",
+  employeeFunctions.updateEmployee
+);
+
+//create employee account route
+admin_EmployeeOperationRoutes.post(
+  "/employee",
+  employeeFunctions.createEmployee
+);
 
 // Exporting the module
 module.exports = admin_EmployeeOperationRoutes;

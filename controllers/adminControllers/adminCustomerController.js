@@ -41,6 +41,37 @@ customerFunctions.viewCustomers = async (req, res, next) => {
   }
 };
 
+// get an customer function - function
+customerFunctions.getACustomerInfo = async (req, res, next) => {
+  try {
+    // get the customerId from the request parameter
+    const { customerId } = req.params;
+
+    // retrieve the customer
+    const customerData = await Customer.findOne({
+      customerID: customerId,
+    });
+
+    // see if the customer exists or not
+    if (!customerData) {
+      const err = new Error(
+        "Request cannot be completed, because there is no customer exists with the customerId provided"
+      );
+      err.status = 400;
+      return next(err);
+    }
+
+    res.status(200).json({
+      message: "Customer data included",
+      data: {
+        customerData,
+      },
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
 // freeze customer account - function
 customerFunctions.freezeCustomerAccount = async (req, res, next) => {
   try {
@@ -121,7 +152,7 @@ customerFunctions.unFreezeCustomerAccount = async (req, res, next) => {
   }
 };
 
-// update a customer
+// update a customer - function
 customerFunctions.updateCustomer = async (req, res, next) => {
   try {
     // Retrieve the customerId
@@ -167,14 +198,14 @@ customerFunctions.updateCustomer = async (req, res, next) => {
   }
 };
 
-// create a customer
+// create a customer - function
 customerFunctions.createCustomer = async (req, res, next) => {
   try {
     // retrieving the new customer data
-    const newCustomer = req.body;
+    const customerData = req.body;
 
     // if customer data is not provided
-    if (Object.keys(newCustomer).length == 0) {
+    if (Object.keys(customerData).length == 0) {
       const err = new Error(
         "The request cannot be processed without providing the new customer's information"
       );
@@ -182,14 +213,53 @@ customerFunctions.createCustomer = async (req, res, next) => {
       return next(err);
     }
 
-    if (!newCustomer.password) {
+    // checking for password
+    if (!customerData.password) {
       const err = new Error("Password is required to create a customer");
       err.status = 400;
       return next(err);
     }
 
+    // checking for email
+    if (!customerData.email) {
+      const err = new Error("Email is required to create a customer");
+      err.status = 400;
+      return next(err);
+    }
+
+    // checking for phone number
+    if (!customerData.phone) {
+      const err = new Error("Phone number is required to create a customer");
+      err.status = 400;
+      return next(err);
+    }
+
+    // retrieving the email
+    const email = await Customer.findOne({
+      email: customerData.email,
+    });
+
+    // checking if a customer with that email already exists
+    if (email) {
+      const err = new Error("A customer with this email already exists");
+      err.status = 400;
+      return next(err);
+    }
+
+    // retrieving phone
+    const phone = await Customer.findOne({
+      phone: customerData.phone,
+    });
+
+    // checking if a customer with that email already exists
+    if (phone) {
+      const err = new Error("A customer with this phone number already exists");
+      err.status = 400;
+      return next(err);
+    }
+
     // hashing the customer's password
-    const hashedPassword = await getHashedPassword(newCustomer.password);
+    const hashedPassword = await getHashedPassword(customerData.password);
 
     // generating an id for the customer
     const customerId = generateId("CUS_");
@@ -198,17 +268,20 @@ customerFunctions.createCustomer = async (req, res, next) => {
     const accountCreated = new Date();
 
     // add the above properties to the customer
-    newCustomer.password = hashedPassword;
-    newCustomer.customerID = customerId;
-    newCustomer.accountCreated = accountCreated;
+    customerData.password = hashedPassword;
+    customerData.customerID = customerId;
+    customerData.accountCreated = accountCreated;
 
     // save the customer
-    await new Customer(newCustomer).save();
+    await new Customer(customerData).save();
+
+    // delete the password before sending
+    delete customerData.password;
 
     // Send response
     return res.status(201).json({
       message: "New customer created",
-      data: { ...newCustomer.toObject() },
+      data: { customerData },
     });
   } catch (err) {
     next(err);
