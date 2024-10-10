@@ -8,6 +8,7 @@ const Employee = require("../../models/Employee");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const jwtConfig = require("../../config/jwtConfig");
+const newYorkDateAndTime = require("../../misc/getNewYorkDateAndTime");
 
 async function login(req, res, next) {
   try {
@@ -34,11 +35,16 @@ async function login(req, res, next) {
       return next(err);
     }
 
+    // update the the last login field
+    employee.lastLogin = newYorkDateAndTime();
+    // save the time
+    await employee.save();
+
+    // creating a payload that will be sent with the token
     const userPayload = {
       id: employee.employeeID,
       email: employee.email,
       role: employee.isAdmin ? "admin" : "employee",
-
     };
 
     const token = jwt.sign(userPayload, jwtConfig.secret, {
@@ -49,6 +55,7 @@ async function login(req, res, next) {
     delete employeeData.password;
 
     res.status(200).json({
+      message: "User validated",
       user: employeeData,
       token,
     });

@@ -58,6 +58,7 @@ async function login(req, res, next) {
 
     // Sending response
     res.status(200).json({
+      message: "User validated",
       user: customerData,
       orders,
       token,

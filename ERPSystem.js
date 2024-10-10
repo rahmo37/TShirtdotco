@@ -14,6 +14,8 @@ const employeeAuth = require("./routes/authentication/employeeAuth");
 const adminInventoryOperations = require("./routes/adminOperations/inventoryOperationsRoute");
 const adminCustomerOperations = require("./routes/adminOperations/customerOperationsRoute");
 const adminEmployeeOperations = require("./routes/adminOperations/employeeOperationsRoute");
+const employeeInformationUpdate = require("./routes/updateAccountInformation/employeeInfoUpdateRoute");
+const customerInformationUpdate = require("./routes/updateAccountInformation/customerInfoUpdateRoute");
 const errorHandler = require("./middlewares/errorHandler");
 const routeNotFoundHandler = require("./middlewares/routeNotFoundHandler");
 const requestInfo = require("./middlewares/logRequestInformation");
@@ -36,10 +38,12 @@ erpSystem.use(express.json());
 
 // Routes
 erpSystem.use("/api/customer", customerAuth);
+erpSystem.use("/api/customer", customerInformationUpdate);
 erpSystem.use("/api/employee", employeeAuth);
 erpSystem.use("/api/admin", adminInventoryOperations);
 erpSystem.use("/api/admin", adminCustomerOperations);
 erpSystem.use("/api/admin", adminEmployeeOperations);
+erpSystem.use("/api/employee", employeeInformationUpdate);
 
 // Not found error handler, if no routes matches this middleware is called
 erpSystem.use(routeNotFoundHandler);

@@ -41,6 +41,7 @@ inventoryFunctions.viewInventory = async (req, res, next) => {
 
 // delete a product - function
 inventoryFunctions.deleteProduct = async (req, res, next) => {
+  const session = await mongoose.startSession();
   try {
     const { categoryId, productId } = req.params;
 
@@ -283,9 +284,8 @@ inventoryFunctions.createProduct = async (req, res, next) => {
 
 // restock product - function
 inventoryFunctions.restockProduct = async (req, res, next) => {
-  const { categoryId, productId } = req.params;
-
   try {
+    const { categoryId, productId } = req.params;
     // First finding the product in the given categoryID
     const inventory = await Inventory.findOne({
       categoryID: categoryId,
@@ -367,11 +367,9 @@ inventoryFunctions.restockProduct = async (req, res, next) => {
 
 // get the current inventory report
 inventoryFunctions.getInventoryReport = async (req, res, next) => {
-  // declare the session
-  let session;
+  // declare and initialize a session for a transaction
+  let session = await mongoose.startSession();
   try {
-    // initialize a session for transaction
-    session = await mongoose.startSession();
     session.startTransaction();
 
     // object to store the compiled inventory report
