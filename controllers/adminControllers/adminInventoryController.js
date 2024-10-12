@@ -5,6 +5,7 @@ const Inventory = require("../../models/Inventory");
 const Orders = require("../../models/Order");
 const mongoose = require("mongoose");
 const generateId = require("../../misc/generateId");
+const dynamicObjectUpdate = require("../../misc/dynamicObjectUpdate");
 
 // object to accumulate all functions
 const inventoryFunctions = {};
@@ -137,11 +138,10 @@ inventoryFunctions.updateProduct = async (req, res, next) => {
   try {
     // Retrieving the ids, category name and the revised product
     const { categoryId, productId } = req.params;
-    const categoryName = req.body.categoryName;
-    const revisedProduct = req.body.product;
+    const revisedData = req.body;
 
     // checking if the fields are provided
-    if (!categoryName && !revisedProduct) {
+    if (!revisedData || Object.keys(revisedData).length === 0) {
       const err = new Error(
         "You must provide a category name or product details to update."
       );
@@ -149,27 +149,14 @@ inventoryFunctions.updateProduct = async (req, res, next) => {
       return next(err);
     }
 
-    // add the productId back to the updated product
-    revisedProduct.productID = productId;
-
-    // Database update starts...
-
-    const updatedInventory = await Inventory.findOneAndUpdate(
-      {
-        categoryID: categoryId,
-        "products.productID": productId,
-      },
-      {
-        categoryName: categoryName,
-        "products.$": revisedProduct,
-      },
-      {
-        new: true,
-      }
-    );
+    // Get the category with provided ids
+    let categoryData = await Inventory.findOne({
+      categoryID: categoryId,
+      "products.productID": productId,
+    });
 
     // if product is not found
-    if (!updatedInventory) {
+    if (!categoryData) {
       const err = new Error(
         "The request cannot be completed, unable to find any category or product with the provided ids"
       );
@@ -177,10 +164,41 @@ inventoryFunctions.updateProduct = async (req, res, next) => {
       return next(err);
     }
 
+    // Get the specific product from the products array
+    const targetProduct = categoryData.products.find(
+      (product) => product.productID === productId
+    );
+
+    // Check if target product exists
+    if (!targetProduct) {
+      const err = new Error(
+        "Product with provided ID not found in the category"
+      );
+      err.status = 404;
+      return next(err);
+    }
+
+    // update the product
+    Object.assign(
+      targetProduct,
+      dynamicObjectUpdate(targetProduct.toObject(), revisedData)
+    );
+
+    // If a category name needs to be updated
+    if (revisedData.categoryName) {
+      categoryData.categoryName = revisedData.categoryName;
+    }
+
+    // then save the category object
+    await categoryData.save();
+
     // Send success message and the updated product
     res.status(200).json({
       message: "Updated successfully",
-      data: updatedInventory,
+      data: {
+        category: categoryData.categoryName,
+        updateProduct: targetProduct,
+      },
     });
   } catch (err) {
     return next(err);

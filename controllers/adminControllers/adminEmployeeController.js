@@ -4,6 +4,7 @@
 const Employee = require("../../models/Employee");
 const generateId = require("../../misc/generateId");
 const { getHashedPassword } = require("../../misc/hashPassword");
+const dynamicObjectUpdate = require("../../misc/dynamicObjectUpdate");
 
 // object that will accumulate all functions
 const employeeFunctions = {};
@@ -157,10 +158,10 @@ employeeFunctions.updateEmployee = async (req, res, next) => {
   try {
     const { employeeId } = req.params;
     const revisedEmployee = req.body;
-    const userId = req.user.id;
+    // const userId = req.user.id;
 
     // checking if the updated date is provided
-    if (!revisedEmployee) {
+    if (!revisedEmployee || Object.keys(revisedEmployee).length === 0) {
       const err = new Error("You must provide employee details to update");
       err.status = 400;
       return next(err);
@@ -175,13 +176,12 @@ employeeFunctions.updateEmployee = async (req, res, next) => {
     //   return next(err);
     //! }
 
-    // add the employeeId back to the employee details
-    revisedEmployee.employeeID = employeeId;
-
+    // Find the employee
     let employeeData = await Employee.findOne({
       employeeID: employeeId, // Query to find the employee by employeeID
     });
 
+    // If not found
     if (!employeeData) {
       const err = new Error(
         "The request cannot be completed, unable to find any employee with the provided employeeID"
@@ -190,6 +190,7 @@ employeeFunctions.updateEmployee = async (req, res, next) => {
       return next(err);
     }
 
+    // if the employee the is being updated is Admin,
     if (employeeData.isAdmin) {
       const err = new Error(
         "You don't have the necessary permissions to complete this action"
@@ -199,7 +200,10 @@ employeeFunctions.updateEmployee = async (req, res, next) => {
     }
 
     // update the employee
-    Object.assign(employeeData, revisedEmployee);
+    Object.assign(
+      employeeData,
+      dynamicObjectUpdate(employeeData.toObject(), revisedEmployee)
+    );
 
     // save the employee
     await employeeData.save();

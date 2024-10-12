@@ -4,6 +4,7 @@
 const Customer = require("../../models/Customer");
 const generateId = require("../../misc/generateId");
 const { getHashedPassword } = require("../../misc/hashPassword");
+const dynamicObjectUpdate = require("../../misc/dynamicObjectUpdate");
 
 // object to accumulate all functions
 const customerFunctions = {};
@@ -160,19 +161,18 @@ customerFunctions.updateCustomer = async (req, res, next) => {
     const revisedCustomer = req.body;
 
     // checking if the updated date is provided
-    if (!revisedCustomer) {
+    if (!revisedCustomer || Object.keys(revisedCustomer).length === 0) {
       const err = new Error("You must provide customer details to update");
       err.status = 400;
       return next(err);
     }
 
-    // add the customerId back to the customer details
-    revisedCustomer.customerID = customerId;
-
+    // Query to find the customer by customerID
     let customerData = await Customer.findOne({
-      customerID: customerId, // Query to find the customer by customerID
+      customerID: customerId,
     });
 
+    // If no customer data is provided
     if (!customerData) {
       const err = new Error(
         "The request cannot be completed, unable to find any customer with the provided customerID"
@@ -182,7 +182,10 @@ customerFunctions.updateCustomer = async (req, res, next) => {
     }
 
     // update the customer
-    Object.assign(customerData, revisedCustomer);
+    Object.assign(
+      customerData,
+      dynamicObjectUpdate(customerData.toObject(), revisedCustomer)
+    );
 
     // save the customer
     await customerData.save();
