@@ -1,48 +1,50 @@
-// Admin customer operations router
+// Employee customer operations router
 
 // Requiring express
 const express = require("express");
-const admin_CustomerOperationRoutes = express.Router();
-const customerFunctions = require("../../controllers/adminControllers/adminCustomerController");
+const employee_CustomerOperationRoutes = express.Router();
+const customerFunctions = require("../../controllers/employeeControllers/employeeCustomerController");
 const jwtVerifyToken = require("../../middlewares/jwtVerifyToken");
 const { isAdmin } = require("../../middlewares/roleVerification");
 
 // Register necessary middlewares to  verify token and role
 // TODO Uncomment token code later
-// admin_CustomerOperationRoutes.use(jwtVerifyToken, isAdmin);
+//! employee_CustomerOperationRoutes.use(jwtVerifyToken);
 
 // view customer list route
-admin_CustomerOperationRoutes.get("/customer", customerFunctions.viewCustomers);
+employee_CustomerOperationRoutes.get("/customer", customerFunctions.viewCustomers);
 
-// update a customer account
-admin_CustomerOperationRoutes.get(
+// get a customer account
+employee_CustomerOperationRoutes.get(
   "/customer/:customerId",
   customerFunctions.getACustomerInfo
 );
 
 // freeze a customer account route
-admin_CustomerOperationRoutes.patch(
-  "/customer/freeze/:customerId",
+employee_CustomerOperationRoutes.patch(
+  "/customer/freeze/:customerId", 
+  //! isAdmin,
   customerFunctions.freezeCustomerAccount
 );
 
 // unfreeze a customer account route
-admin_CustomerOperationRoutes.patch(
+employee_CustomerOperationRoutes.patch(
   "/customer/unfreeze/:customerId",
+  //! isAdmin,
   customerFunctions.unFreezeCustomerAccount
 );
 
 // update a customer account
-admin_CustomerOperationRoutes.put(
+employee_CustomerOperationRoutes.put(
   "/customer/:customerId",
   customerFunctions.updateCustomer
 );
 
 // create a customer account
-admin_CustomerOperationRoutes.post(
+employee_CustomerOperationRoutes.post(
   "/customer",
   customerFunctions.createCustomer
 );
 
 // export the module
-module.exports = admin_CustomerOperationRoutes;
+module.exports = employee_CustomerOperationRoutes;

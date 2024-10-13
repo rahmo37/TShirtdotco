@@ -5,9 +5,7 @@ const roleVerify = {};
 
 roleVerify.isAdmin = (req, res, next) => {
   if (req.user.role !== "admin") {
-    const err = new Error(
-      "Access denied! You do not have the necessary permissions to view this resource"
-    );
+    const err = new Error("Not enough permission!");
     err.status = 403;
     return next(err);
   }

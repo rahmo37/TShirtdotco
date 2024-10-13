@@ -13,7 +13,7 @@ const authenticateToken = (req, res, next) => {
   const token = authHeader && authHeader.split(" ")[1];
 
   if (!token) {
-    const err = new Error("Missing token...");
+    const err = new Error("Missing token... you need an authorization token to complete this action");
     err.status = 403;
     return next(err);
   }

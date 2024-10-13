@@ -1,4 +1,4 @@
-// This file handles all the customer related operation admin has
+// This file handles all the customer related operation employee has
 
 // importing modules
 const Customer = require("../../models/Customer");
@@ -167,6 +167,14 @@ customerFunctions.updateCustomer = async (req, res, next) => {
       return next(err);
     }
 
+    // If not an admin, the account status cannot be changed
+    let isAttempted = false;
+    // TODO uncomment later
+    // if (revisedCustomer.accountStatus && req.user.role !== "admin") {
+    //   isAttempted = true;
+    //   delete revisedCustomer.accountStatus;
+    // }
+
     // Query to find the customer by customerID
     let customerData = await Customer.findOne({
       customerID: customerId,
@@ -191,7 +199,11 @@ customerFunctions.updateCustomer = async (req, res, next) => {
     await customerData.save();
 
     res.status(200).json({
-      message: "Customer updated successfully",
+      message:
+        "Customer updated successfully!" +
+        (isAttempted
+          ? " However the attempt to update account status failed due to limited permissions"
+          : ""),
       data: {
         ...customerData.toObject(), // casting to mongoose object which will remove the password
       },

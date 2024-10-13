@@ -190,7 +190,7 @@ employeeFunctions.updateEmployee = async (req, res, next) => {
       return next(err);
     }
 
-    // if the employee the is being updated is Admin,
+    // if the employee, being updated is an Admin,
     if (employeeData.isAdmin) {
       const err = new Error(
         "You don't have the necessary permissions to complete this action"

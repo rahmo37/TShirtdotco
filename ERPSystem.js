@@ -11,9 +11,9 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const customerAuth = require("./routes/authentication/customerAuth");
 const employeeAuth = require("./routes/authentication/employeeAuth");
-const adminInventoryOperations = require("./routes/adminOperations/inventoryOperationsRoute");
-const adminCustomerOperations = require("./routes/adminOperations/customerOperationsRoute");
-const adminEmployeeOperations = require("./routes/adminOperations/employeeOperationsRoute");
+const employeeInventoryOperations = require("./routes/employeeOperations/inventoryOperationsRoute");
+const employeeCustomerOperations = require("./routes/employeeOperations/customerOperationsRoute");
+const employee_EmployeeOperations = require("./routes/employeeOperations/employeeOperationsRoute");
 const employeeInformationUpdate = require("./routes/updateAccountInformation/employeeInfoUpdateRoute");
 const customerInformationUpdate = require("./routes/updateAccountInformation/customerInfoUpdateRoute");
 const errorHandler = require("./middlewares/errorHandler");
@@ -38,11 +38,11 @@ erpSystem.use(express.json());
 
 // Routes
 erpSystem.use("/api/customer", customerAuth);
-erpSystem.use("/api/customer", customerInformationUpdate);
 erpSystem.use("/api/employee", employeeAuth);
-erpSystem.use("/api/admin", adminInventoryOperations);
-erpSystem.use("/api/admin", adminCustomerOperations);
-erpSystem.use("/api/admin", adminEmployeeOperations);
+erpSystem.use("/api/employee", employeeInventoryOperations);
+erpSystem.use("/api/employee", employeeCustomerOperations);
+erpSystem.use("/api/employee", employee_EmployeeOperations);
+erpSystem.use("/api/customer", customerInformationUpdate);
 erpSystem.use("/api/employee", employeeInformationUpdate);
 
 // Not found error handler, if no routes matches this middleware is called

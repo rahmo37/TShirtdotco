@@ -1,4 +1,4 @@
-// This file handles all admin operations related to the inventory
+// This file handles all employee operations related to the inventory
 
 // Importing modules
 const Inventory = require("../../models/Inventory");

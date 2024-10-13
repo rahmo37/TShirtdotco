@@ -2,47 +2,52 @@
 
 // Requiring express
 const express = require("express");
-const admin_EmployeeOperationRoutes = express.Router();
-const employeeFunctions = require("../../controllers/adminControllers/adminEmployeeController");
+const employee_EmployeeOperationRoutes = express.Router();
+const employeeFunctions = require("../../controllers/employeeControllers/employee_EmployeeController");
 const jwtVerifyToken = require("../../middlewares/jwtVerifyToken");
 const { isAdmin } = require("../../middlewares/roleVerification");
 
 // Register necessary middlewares to verify token and role
 // TODO Uncomment token code later
-// admin_EmployeeOperationRoutes.use(jwtVerifyToken, isAdmin);
+//! employee_EmployeeOperationRoutes.use(jwtVerifyToken);
 
 //view employee list route
-admin_EmployeeOperationRoutes.get("/employee", employeeFunctions.viewEmployees);
+employee_EmployeeOperationRoutes.get("/", employeeFunctions.viewEmployees);
 
 //get an employee route
-admin_EmployeeOperationRoutes.get(
-  "/employee/:employeeId",
+employee_EmployeeOperationRoutes.get(
+  "/:employeeId",
+  //! isAdmin,
   employeeFunctions.getAnEmployeeInfo
 );
 
 //close employee account route
-admin_EmployeeOperationRoutes.patch(
-  "/employee/close/:employeeId",
+employee_EmployeeOperationRoutes.patch(
+  "/close/:employeeId",
+  //! isAdmin,
   employeeFunctions.closeEmployeeAccount
 );
 
 //close employee account route
-admin_EmployeeOperationRoutes.patch(
-  "/employee/reopen/:employeeId",
+employee_EmployeeOperationRoutes.patch(
+  "/reopen/:employeeId",
+  //! isAdmin,
   employeeFunctions.reopenEmployeeAccount
 );
 
 //update employee account route
-admin_EmployeeOperationRoutes.put(
-  "/employee/:employeeId",
+employee_EmployeeOperationRoutes.put(
+  "/:employeeId",
+  //! isAdmin,
   employeeFunctions.updateEmployee
 );
 
 //create employee account route
-admin_EmployeeOperationRoutes.post(
-  "/employee",
+employee_EmployeeOperationRoutes.post(
+  "/",
+  //! isAdmin,
   employeeFunctions.createEmployee
 );
 
 // Exporting the module
-module.exports = admin_EmployeeOperationRoutes;
+module.exports = employee_EmployeeOperationRoutes;
