@@ -1,6 +1,6 @@
 // Customer authentication router
 
-// Requiring express
+// Importing modules
 const express = require("express");
 const customerAuthRoute = express.Router();
 const customerController = require("../../controllers/authenticationControllers/customerAuthController");
