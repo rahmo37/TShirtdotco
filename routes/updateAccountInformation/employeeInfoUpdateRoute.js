@@ -24,4 +24,6 @@ employee_InfoUpdateRoutes.patch(
   employeeUpdateFunctions.changePassword
 );
 
+
+// Export the module
 module.exports = employee_InfoUpdateRoutes;

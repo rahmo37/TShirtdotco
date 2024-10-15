@@ -5,25 +5,43 @@
  */
 
 // Importing Modules
+// Project configuration imports
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const customerAuth = require("./routes/authentication/customerAuth");
+const dbConfig = require("./config/db");
+const requestInfo = require("./middlewares/logRequestInformation");
+const { hashPasswordsInDatabase } = require("./misc/hashPassword");
+
+// Employee related imports
 const employeeAuth = require("./routes/authentication/employeeAuth");
 const employeeInventoryOperations = require("./routes/employeeOperations/inventoryOperationsRoute");
 const employeeCustomerOperations = require("./routes/employeeOperations/customerOperationsRoute");
 const employee_EmployeeOperations = require("./routes/employeeOperations/employeeOperationsRoute");
+const employeeOrderOperations = require("./routes/employeeOperations/orderOperationsRoute");
 const employeeInformationUpdate = require("./routes/updateAccountInformation/employeeInfoUpdateRoute");
+
+// Customer related imports
+const customerAuth = require("./routes/authentication/customerAuth");
 const customerInformationUpdate = require("./routes/updateAccountInformation/customerInfoUpdateRoute");
+const customerOrderRequests = require("./routes/customerRequests/orderRequestRoute");
+
+// Shared routes imports
+const sharedCreateCustomer = require("./routes/sharedRoutes/createCustomerRoute");
+const sharedCreateOrder = require("./routes/sharedRoutes/createOrderRoute");
+
+// Error related imports
 const errorHandler = require("./middlewares/errorHandler");
 const routeNotFoundHandler = require("./middlewares/routeNotFoundHandler");
-const requestInfo = require("./middlewares/logRequestInformation");
+
+// Model imports
 const Customer = require("./models/Customer");
 const Employee = require("./models/Employee");
-const dbConfig = require("./config/db");
-const { hashPasswordsInDatabase } = require("./misc/hashPassword");
 
+//!---------------------- Application logic starts ----------------------
+
+// Configuring application
 // Creating application instance
 const erpSystem = express();
 
@@ -37,13 +55,22 @@ erpSystem.use(requestInfo);
 erpSystem.use(express.json());
 
 // Routes
-erpSystem.use("/api/customer", customerAuth);
-erpSystem.use("/api/employee", employeeAuth);
-erpSystem.use("/api/employee", employeeInventoryOperations);
-erpSystem.use("/api/employee", employeeCustomerOperations);
-erpSystem.use("/api/employee", employee_EmployeeOperations);
-erpSystem.use("/api/customer", customerInformationUpdate);
-erpSystem.use("/api/employee", employeeInformationUpdate);
+// Employee routes
+erpSystem.use("/api/employee/login", employeeAuth);
+erpSystem.use("/api/employee/inventory", employeeInventoryOperations);
+erpSystem.use("/api/employee/customer", employeeCustomerOperations);
+erpSystem.use("/api/employee/manage", employee_EmployeeOperations);
+erpSystem.use("/api/employee/update", employeeInformationUpdate);
+erpSystem.use("/api/employee/order", employeeOrderOperations);
+
+//Customer routes
+erpSystem.use("/api/customer/login", customerAuth);
+erpSystem.use("/api/customer/update", customerInformationUpdate);
+erpSystem.use("/api/customer/order", customerOrderRequests);
+
+// Shared routes
+erpSystem.use("/api/shared/customer", sharedCreateCustomer);
+erpSystem.use("/api/shared/order", sharedCreateOrder);
 
 // Not found error handler, if no routes matches this middleware is called
 erpSystem.use(routeNotFoundHandler);
@@ -66,7 +93,7 @@ mongoose
       console.log(`ERP Server is listening request on port ${PORT}...`);
     });
 
-    // Hash entity passwords
+    // Hash entity passwords, implies when records are added manually in the database
     hashPasswordsInDatabase([Customer, Employee]);
   })
   .catch((err) => {

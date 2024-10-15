@@ -24,4 +24,6 @@ customer_InfoUpdateRoutes.patch(
   customerUpdateFunctions.changePassword
 );
 
+
+// Export the module
 module.exports = customer_InfoUpdateRoutes;

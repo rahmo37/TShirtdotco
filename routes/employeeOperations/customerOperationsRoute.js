@@ -12,39 +12,40 @@ const { isAdmin } = require("../../middlewares/roleVerification");
 //! employee_CustomerOperationRoutes.use(jwtVerifyToken);
 
 // view customer list route
-employee_CustomerOperationRoutes.get("/customer", customerFunctions.viewCustomers);
+employee_CustomerOperationRoutes.get("/", customerFunctions.viewCustomers);
 
 // get a customer account
 employee_CustomerOperationRoutes.get(
-  "/customer/:customerId",
+  "/:customerId",
   customerFunctions.getACustomerInfo
 );
 
 // freeze a customer account route
 employee_CustomerOperationRoutes.patch(
-  "/customer/freeze/:customerId", 
+  "/freeze/:customerId", 
   //! isAdmin,
   customerFunctions.freezeCustomerAccount
 );
 
 // unfreeze a customer account route
 employee_CustomerOperationRoutes.patch(
-  "/customer/unfreeze/:customerId",
+  "/unfreeze/:customerId",
   //! isAdmin,
   customerFunctions.unFreezeCustomerAccount
 );
 
 // update a customer account
 employee_CustomerOperationRoutes.put(
-  "/customer/:customerId",
+  "/:customerId",
   customerFunctions.updateCustomer
 );
 
+// This routes is currently shared in the shared routes folder
 // create a customer account
-employee_CustomerOperationRoutes.post(
-  "/customer",
-  customerFunctions.createCustomer
-);
+// employee_CustomerOperationRoutes.post(
+//   "/",
+//   customerFunctions.createCustomer
+// );
 
 // export the module
 module.exports = employee_CustomerOperationRoutes;

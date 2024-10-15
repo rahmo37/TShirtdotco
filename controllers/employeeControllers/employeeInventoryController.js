@@ -2,7 +2,7 @@
 
 // Importing modules
 const Inventory = require("../../models/Inventory");
-const Orders = require("../../models/Order");
+const Order = require("../../models/Order");
 const mongoose = require("mongoose");
 const generateId = require("../../misc/generateId");
 const dynamicObjectUpdate = require("../../misc/dynamicObjectUpdate");
@@ -95,9 +95,9 @@ inventoryFunctions.deleteProduct = async (req, res, next) => {
      * !Operation 3
      * Update the availability of the product in the orders data if any
      */
-    const test = await Orders.findOne({ "items.productID": productId });
+    const test = await Order.findOne({ "items.productID": productId });
 
-    const updateOrder = await Orders.updateMany(
+    const updateOrder = await Order.updateMany(
       { "items.productID": productId }, // find the orders with the matching product id
       { $set: { "items.$[elem].currentAvailabilityStatus": "Unavailable" } }, // update the current status to unavailable
       {
@@ -465,7 +465,7 @@ function getDateRange(valueToSubtract) {
 async function getSoldProductsReport(session, dateArr) {
   try {
     // using aggregation pipeline to accumulate data
-    const productReport = await Orders.aggregate([
+    const productReport = await Order.aggregate([
       {
         $match: {
           orderStatus: "completed", // only completed Orders will be taken
@@ -564,7 +564,7 @@ async function getCurrentQuantityOfProducts(session) {
 //* get the top selling products - helper function
 async function getTopSellingProducts(session, dateArr) {
   try {
-    const topSellingProducts = await Orders.aggregate([
+    const topSellingProducts = await Order.aggregate([
       // Step 1, match the orders from the this years and with the status completed
       {
         $match: {

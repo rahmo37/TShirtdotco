@@ -12,37 +12,37 @@ const jwtVerifyToken = require("../../middlewares/jwtVerifyToken");
 
 // View inventory route
 employee_InventoryOperationRoutes.get(
-  "/inventory",
+  "/",
   inventoryFunctions.viewInventory
 );
 
 // Delete product route
 employee_InventoryOperationRoutes.delete(
-  "/inventory/:categoryId/:productId",
+  "/:categoryId/:productId",
   inventoryFunctions.deleteProduct
 );
 
 // Update product route
 employee_InventoryOperationRoutes.put(
-  "/inventory/:categoryId/:productId",
+  "/:categoryId/:productId",
   inventoryFunctions.updateProduct
 );
 
 // Restock a product
 employee_InventoryOperationRoutes.patch(
-  "/inventory/restock/:categoryId/:productId",
+  "/restock/:categoryId/:productId",
   inventoryFunctions.restockProduct
 );
 
 // Create product route
 employee_InventoryOperationRoutes.post(
-  "/inventory/:categoryId",
+  "/:categoryId",
   inventoryFunctions.createProduct
 );
 
 // View inventory report route
 employee_InventoryOperationRoutes.get(
-  "/inventory/report",
+  "/report",
   inventoryFunctions.getInventoryReport
 );
 

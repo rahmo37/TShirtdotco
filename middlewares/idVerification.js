@@ -1,4 +1,4 @@
-// This module checks if the passed in Id matches the id used to sign in the token
+// This module checks if the passed in Id, matches the id used to sign the web token
 module.exports = (req, res, next) => {
   // TODO Delete later or uncomment to log the ids
   // console.log(req.user.id, req.params.id);
