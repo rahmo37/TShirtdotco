@@ -23,6 +23,7 @@ const orderSchema = new mongoose.Schema({
   items: [orderItemSchema],
   totalPrice: { type: Number, required: true },
   tax: { type: Number, required: true },
+  discountInPercentage: { type: Number },
   grandTotal: { type: Number, required: true },
 });
 

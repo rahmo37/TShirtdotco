@@ -6,6 +6,7 @@ const Order = require("../../models/Order");
 const mongoose = require("mongoose");
 const generateId = require("../../misc/generateId");
 const dynamicObjectUpdate = require("../../misc/dynamicObjectUpdate");
+const currentNewYorkDateTime = require("../../misc/getNewYorkDateAndTime");
 
 // object to accumulate all functions
 const inventoryFunctions = {};
@@ -221,8 +222,8 @@ inventoryFunctions.createProduct = async (req, res, next) => {
     // Assign productId and dateAdded
     const generatedProductId = generateId("PRO_");
     product.productID = generatedProductId;
-    product.dateAdded = new Date();
-    product.stockInfo.lastRestock = new Date();
+    product.dateAdded = currentNewYorkDateTime();
+    product.stockInfo.lastRestock = currentNewYorkDateTime();
 
     if (categoryId.toLowerCase() === "new") {
       const newProductsArray = [];
@@ -347,7 +348,7 @@ inventoryFunctions.restockProduct = async (req, res, next) => {
     const newQuantity = currentQuantity + restockQuantity;
 
     // get the current date
-    const currentDate = new Date();
+    const currentDate = currentNewYorkDateTime();
 
     const updateStock = await Inventory.updateOne(
       {
