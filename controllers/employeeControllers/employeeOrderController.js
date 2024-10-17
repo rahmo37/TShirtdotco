@@ -138,8 +138,9 @@ orderFunctions.addDiscount = async (req, res, next) => {
     Object.assign(order, { discountInPercentage });
 
     // Change the grand total
-    const discountAmount = (order.totalPrice * discount) / 100;
+    const discountAmount = (order.totalPrice * discountInPercentage) / 100;
     const discountedTotal = order.totalPrice - discountAmount;
+    order.totalPrice = +discountedTotal.toFixed(2);
     order.grandTotal = +(discountedTotal + order.tax).toFixed(2);
 
     // Then save the order
@@ -154,7 +155,7 @@ orderFunctions.addDiscount = async (req, res, next) => {
   }
 };
 
-// cancel an order - function
+// Cancel an order - function
 orderFunctions.cancelAnOrder = async (req, res, next) => {
   const session = await mongoose.startSession();
   session.startTransaction();
@@ -162,10 +163,10 @@ orderFunctions.cancelAnOrder = async (req, res, next) => {
     // Retrieve the order ID from the request parameters
     const orderID = req.params.orderId;
 
-    // Find the order with the given order ID**
+    // Find the order with the given order ID
     const order = await Order.findOne({ orderID });
 
-    // If no order is found, return a 404 error**
+    // If no order is found, return a 404 error
     if (!order) {
       const err = new Error("No order found with the given orderId");
       err.status = 404;
@@ -188,13 +189,13 @@ orderFunctions.cancelAnOrder = async (req, res, next) => {
       return next(err);
     }
 
-    // Extract the products and their quantities from the order items
+    // Extract the quantities from the order items and make the productId as each item's key
     const productQuantity = {};
     order.items.forEach((eachItem) => {
       productQuantity[eachItem.productID] = eachItem.quantity;
     });
 
-    // Retrieve the list of product IDs from the order
+    // Retrieve the list of product IDs from the order, so their corresponding products can be fetched out from the inventory
     const productIDs = Object.keys(productQuantity);
 
     // Retrieve inventory information for the products in the order
@@ -215,7 +216,7 @@ orderFunctions.cancelAnOrder = async (req, res, next) => {
 
     // Prepare bulk update queries to restock the inventory
     const updateQueriesArray = Object.keys(productQuantity)
-      // Filter out product IDs that don't exist in the inventory. Important if the product is discontinued
+      // Filter out product IDs that don't exist in the inventory. Important if the item in the order is discontinued
       .filter((id) => inventory.find((product) => product.productID === id))
       .map((id) => {
         // Find the product in the inventory
@@ -241,7 +242,7 @@ orderFunctions.cancelAnOrder = async (req, res, next) => {
                 "products.$.stockInfo.totalSold": -quantityToRestock,
               },
               $set: {
-                // **Update the stock status**
+                // Update the stock status
                 "products.$.stockInfo.stockStatus": stockStatus,
               },
             },
@@ -277,5 +278,162 @@ orderFunctions.cancelAnOrder = async (req, res, next) => {
   }
 };
 
+// Remove an item from the order - function
+orderFunctions.removeAnItemFromTheOrder = async (req, res, next) => {
+  try {
+    // retrieve the orderId from the URL
+    const orderID = req.params.orderId;
+    // retrieve the productId from the the body
+    const productID = req.body.productId;
+
+    // check the productId
+    if (!productID || productID === "") {
+      const err = new Error(
+        "ProductId must be provided in the body and cannot be empty string"
+      );
+      err.status = 400;
+      return next(err);
+    }
+
+    // Now retrieve the order
+    const order = await Order.findOne({ orderID });
+
+    // Check if the order exist with the provided orderId
+    if (!order) {
+      const err = new Error(
+        "Request cannot be completed, because no order was found with the orderId provided"
+      );
+      err.status = 404;
+      return next(err);
+    }
+
+    // If the order is already completed
+    if (order.orderStatus === "completed") {
+      const err = new Error(
+        "This order is completed, thus no changes can be made!"
+      );
+      err.status = 400; // Use 400 Bad Request for invalid operations
+      return next(err);
+    }
+
+    // Now check if the item exists in the order
+    const item = order.items.find((product) => product.productID === productID);
+
+    // Check the item if it exists
+    if (!item) {
+      const err = new Error(
+        "No product was found in the order matching the provided productId. Please recheck the productId and try again"
+      );
+      err.status = 404;
+      return next(err);
+    }
+
+    // If this is the only item in the order its better to use the cancel order route
+    if (order.items.length === 1) {
+      const err = new Error(
+        "This is the only item in the order and cannot be removed. If necessary, please use the cancel order route to cancel the order"
+      );
+      err.status = 400;
+      return next(err);
+    }
+
+    // Retrieve the subtotal for future use in updating the order's price information
+    const subtotal = item.subtotal;
+
+    // Now lets find the product from the inventory
+    //! Note that if we cannot find the order in the inventory that means we discontinued the product, In that case we will just remove the product from the order, without making any changes to the inventory
+    const inventory = await Inventory.findOne({
+      "products.productID": productID,
+    });
+
+    if (inventory) {
+      const product = inventory.products.find(
+        (product) => product.productID === productID
+      );
+
+      if (product) {
+        const productStockInfo = product.stockInfo;
+
+        // Retrieve the quantity to restock
+        const quantityToRestock = item.quantity;
+
+        // Calculate the new quantity incase we need to update the stockStatus
+        const newQuantity =
+          productStockInfo.currentQuantity + quantityToRestock;
+
+        const newTotalSold = productStockInfo.totalSold - quantityToRestock;
+
+        // Determine the new stock status based on the restock threshold
+        const stockStatus =
+          newQuantity > productStockInfo.restockThreshold
+            ? "In Stock"
+            : "Low Stock";
+
+        // Change the updated information
+        productStockInfo.currentQuantity = newQuantity;
+        productStockInfo.stockStatus = stockStatus;
+        productStockInfo.totalSold = newTotalSold;
+
+        // Then save the inventory
+        await inventory.save();
+      }
+    }
+
+    // Now remove the product from the order and recalculate the price
+    const index = order.items.findIndex(
+      (product) => product.productID === productID
+    );
+
+    if (index !== -1) {
+      // Remove the item from the array
+      order.items.splice(index, 1);
+    } else {
+      const err = new Error(
+        "An unexpected error occurred, and the product could not be removed"
+      );
+      err.status = 500;
+      return next(err);
+    }
+
+    // Now we are recalculating the price information
+    // Recalculate the total price from remaining items
+    const totalPriceBeforeDiscount = order.items.reduce(
+      (sum, item) => sum + item.subtotal,
+      0
+    );
+
+    // Apply the discount if any
+    let discountAmount = 0;
+    if (order.discountInPercentage) {
+      discountAmount =
+        (totalPriceBeforeDiscount * order.discountInPercentage) / 100;
+    }
+
+    // Calculate tax on the total price before discount
+    const taxRate = 8; // Since we are applying 8% tax rate
+    const tax = (totalPriceBeforeDiscount * taxRate) / 100;
+
+    // Calculate the total price after discount
+    const totalPriceAfterDiscount = totalPriceBeforeDiscount - discountAmount;
+
+    // Calculate the grand total
+    const grandTotal = +(totalPriceAfterDiscount + tax).toFixed(2);
+
+    // Update the order with new calculations
+    order.totalPrice = +totalPriceAfterDiscount.toFixed(2);
+    order.tax = +tax.toFixed(2);
+    order.grandTotal = grandTotal;
+
+    await order.save();
+
+    res.status(200).json({
+      message:
+        "Product removed from the order successfully, new prices has been updated",
+      data: { ...order.toObject() },
+    });
+  } catch (err) {
+    return next(err);
+  }
+};
 // Export the module
 module.exports = orderFunctions;

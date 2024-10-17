@@ -31,5 +31,10 @@ employee_OrderOperationRoutes.patch(
   orderFunctions.cancelAnOrder
 );
 
+employee_OrderOperationRoutes.patch(
+  "/item/:orderId",
+  orderFunctions.removeAnItemFromTheOrder
+);
+
 // export the module
 module.exports = employee_OrderOperationRoutes;
