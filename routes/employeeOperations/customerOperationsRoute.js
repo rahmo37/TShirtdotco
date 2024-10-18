@@ -40,12 +40,12 @@ employee_CustomerOperationRoutes.put(
   customerFunctions.updateCustomer
 );
 
-// This routes is currently shared in the shared routes folder
+//! This routes is currently shared in the shared routes folder
 // create a customer account
 // employee_CustomerOperationRoutes.post(
 //   "/",
 //   customerFunctions.createCustomer
 // );
 
-// export the module
+// Export the module
 module.exports = employee_CustomerOperationRoutes;

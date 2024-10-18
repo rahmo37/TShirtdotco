@@ -10,11 +10,13 @@ const jwtVerifyToken = require("../../middlewares/jwtVerifyToken");
 // TODO Uncomment token code later
 // ! employee_InventoryOperationRoutes.use(jwtVerifyToken);
 
+
+//! this route is currently moved to the shared route folder 
 // View inventory route
-employee_InventoryOperationRoutes.get(
-  "/",
-  inventoryFunctions.viewInventory
-);
+// employee_InventoryOperationRoutes.get(
+//   "/",
+//   inventoryFunctions.viewInventory
+// );
 
 // Delete product route
 employee_InventoryOperationRoutes.delete(
@@ -46,4 +48,6 @@ employee_InventoryOperationRoutes.get(
   inventoryFunctions.getInventoryReport
 );
 
+
+// Export the module
 module.exports = employee_InventoryOperationRoutes;

@@ -25,16 +25,18 @@ employee_OrderOperationRoutes.patch(
   orderFunctions.addDiscount
 );
 
+// ! This route is currently moved to the shared routes folder
 // cancel an order
-employee_OrderOperationRoutes.patch(
-  "/cancel/:orderId",
-  orderFunctions.cancelAnOrder
-);
+// employee_OrderOperationRoutes.patch(
+//   "/cancel/:orderId",
+//   orderFunctions.cancelAnOrder
+// );
 
-employee_OrderOperationRoutes.patch(
-  "/item/:orderId",
-  orderFunctions.removeAnItemFromTheOrder
-);
+// ! This route is currently moved to the shared routes folder
+// employee_OrderOperationRoutes.patch(
+//   "/item/:orderId",
+//   orderFunctions.removeAnItemFromTheOrder
+// );
 
-// export the module
+// Export the module
 module.exports = employee_OrderOperationRoutes;

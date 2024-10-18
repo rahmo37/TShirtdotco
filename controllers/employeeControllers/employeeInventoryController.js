@@ -11,36 +11,6 @@ const currentNewYorkDateTime = require("../../misc/getNewYorkDateAndTime");
 // object to accumulate all functions
 const inventoryFunctions = {};
 
-// view inventory - function
-inventoryFunctions.viewInventory = async (req, res, next) => {
-  try {
-    // excluding the mongoose given ids, since we are using more meaningful ids
-    const fullInventory = await Inventory.find(
-      {},
-      { _id: 0, "products._id": 0, "products.stockInfo._id": 0 }
-    );
-
-    // checking if the inventory is empty o not
-    const emptyInventory = fullInventory.every(
-      (category) => category.products.length === 0
-    );
-
-    // send an error if the inventory is empty
-    if (emptyInventory) {
-      const err = new Error("Empty Inventory");
-      err.status = 500;
-      next(err);
-    }
-
-    // Sending the inventory data
-    res
-      .status(200)
-      .json({ message: "Inventory data included", data: fullInventory });
-  } catch (err) {
-    return next(err);
-  }
-};
-
 // delete a product - function
 inventoryFunctions.deleteProduct = async (req, res, next) => {
   const session = await mongoose.startSession();

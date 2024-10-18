@@ -20,6 +20,7 @@ const employeeInventoryOperations = require("./routes/employeeOperations/invento
 const employeeCustomerOperations = require("./routes/employeeOperations/customerOperationsRoute");
 const employee_EmployeeOperations = require("./routes/employeeOperations/employeeOperationsRoute");
 const employeeOrderOperations = require("./routes/employeeOperations/orderOperationsRoute");
+const employeeSaleOperations = require("./routes/employeeOperations/saleOperations");
 const employeeInformationUpdate = require("./routes/updateAccountInformation/employeeInfoUpdateRoute");
 
 // Customer related imports
@@ -29,7 +30,8 @@ const customerOrderRequests = require("./routes/customerRequests/orderRequestRou
 
 // Shared routes imports
 const sharedCreateCustomer = require("./routes/sharedRoutes/createCustomerRoute");
-const sharedCreateOrder = require("./routes/sharedRoutes/createOrderRoute");
+const sharedOrderOperations = require("./routes/sharedRoutes/sharedOrderOperationsRoute");
+const sharedGetInventory = require("./routes/sharedRoutes/getInventoryRoute");
 
 // Error related imports
 const errorHandler = require("./middlewares/errorHandler");
@@ -62,6 +64,7 @@ erpSystem.use("/api/employee/customer", employeeCustomerOperations);
 erpSystem.use("/api/employee/manage", employee_EmployeeOperations);
 erpSystem.use("/api/employee/update", employeeInformationUpdate);
 erpSystem.use("/api/employee/order", employeeOrderOperations);
+erpSystem.use("/api/employee/sale", employeeSaleOperations);
 
 //Customer routes
 erpSystem.use("/api/customer/login", customerAuth);
@@ -70,7 +73,8 @@ erpSystem.use("/api/customer/order", customerOrderRequests);
 
 // Shared routes
 erpSystem.use("/api/shared/customer", sharedCreateCustomer);
-erpSystem.use("/api/shared/order", sharedCreateOrder);
+erpSystem.use("/api/shared/order", sharedOrderOperations);
+erpSystem.use("/api/shared/inventory", sharedGetInventory);
 
 // Not found error handler, if no routes matches this middleware is called
 erpSystem.use(routeNotFoundHandler);

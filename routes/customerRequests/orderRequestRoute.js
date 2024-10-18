@@ -8,7 +8,7 @@ const jwtVerifyToken = require("../../middlewares/jwtVerifyToken");
 
 // Verify token
 // TODO uncomment later
-customer_orderRoutes.use(jwtVerifyToken);
+// customer_orderRoutes.use(jwtVerifyToken);
 
 customer_orderRoutes.get("/:customerId", orderFunctions.viewOrders);
 
