@@ -5,11 +5,11 @@ const express = require("express");
 const employee_EmployeeOperationRoutes = express.Router();
 const employeeFunctions = require("../../controllers/employeeControllers/employee_EmployeeController");
 const jwtVerifyToken = require("../../middlewares/jwtVerifyToken");
-const { isAdmin } = require("../../middlewares/roleVerification");
+const { isAdmin, isEmployee } = require("../../middlewares/roleVerification");
 
 // Register necessary middlewares to verify token and role
 // TODO Uncomment token code later
-//! employee_EmployeeOperationRoutes.use(jwtVerifyToken);
+//! employee_EmployeeOperationRoutes.use(jwtVerifyToken, isEmployee);
 
 //view employee list route
 employee_EmployeeOperationRoutes.get("/", employeeFunctions.viewEmployees);

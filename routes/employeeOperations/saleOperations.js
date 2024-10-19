@@ -5,10 +5,10 @@ const express = require("express");
 const employee_SaleOperationsRoute = express.Router();
 const saleFunction = require("../../controllers/employeeControllers/employeeSalesController");
 const jwtVerifyToken = require("../../middlewares/jwtVerifyToken");
-const isAdmin = require("../../middlewares/roleVerification");
+const { isAdmin, isEmployee } = require("../../middlewares/roleVerification");
 
 // Register necessary middlewares to verify token and role
-// ! employee_SaleOperationsRoute.use(jwtVerifyToken,isAdmin);
+// ! employee_SaleOperationsRoute.use(jwtVerifyToken,isEmployee,isAdmin);
 
 // retrieve the sales report
 employee_SaleOperationsRoute.get("/", saleFunction.salesReport);

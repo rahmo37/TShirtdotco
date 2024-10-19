@@ -607,6 +607,7 @@ async function getTopSellingProducts(session, dateArr) {
         },
       },
     ]);
+    console.log(topSellingProducts);
     return topSellingProducts;
   } catch (err) {
     console.log("Error while getting top selling products", err);

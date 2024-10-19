@@ -5,11 +5,11 @@ const express = require("express");
 const employee_CustomerOperationRoutes = express.Router();
 const customerFunctions = require("../../controllers/employeeControllers/employeeCustomerController");
 const jwtVerifyToken = require("../../middlewares/jwtVerifyToken");
-const { isAdmin } = require("../../middlewares/roleVerification");
+const { isAdmin, isEmployee } = require("../../middlewares/roleVerification");
 
 // Register necessary middlewares to  verify token and role
 // TODO Uncomment token code later
-//! employee_CustomerOperationRoutes.use(jwtVerifyToken);
+//! employee_CustomerOperationRoutes.use(jwtVerifyToken, isEmployee);
 
 // view customer list route
 employee_CustomerOperationRoutes.get("/", customerFunctions.viewCustomers);
@@ -22,7 +22,7 @@ employee_CustomerOperationRoutes.get(
 
 // freeze a customer account route
 employee_CustomerOperationRoutes.patch(
-  "/freeze/:customerId", 
+  "/freeze/:customerId",
   //! isAdmin,
   customerFunctions.freezeCustomerAccount
 );

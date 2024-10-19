@@ -5,13 +5,13 @@ const express = require("express");
 const employee_InventoryOperationRoutes = express.Router();
 const inventoryFunctions = require("../../controllers/employeeControllers/employeeInventoryController");
 const jwtVerifyToken = require("../../middlewares/jwtVerifyToken");
+const { isEmployee } = require("../../middlewares/roleVerification");
 
 // Register necessary middlewares to  verify token and role
 // TODO Uncomment token code later
-// ! employee_InventoryOperationRoutes.use(jwtVerifyToken);
+// ! employee_InventoryOperationRoutes.use(jwtVerifyToken, isEmployee);
 
-
-//! this route is currently moved to the shared route folder 
+//! this route is currently moved to the shared route folder
 // View inventory route
 // employee_InventoryOperationRoutes.get(
 //   "/",
@@ -47,7 +47,6 @@ employee_InventoryOperationRoutes.get(
   "/report",
   inventoryFunctions.getInventoryReport
 );
-
 
 // Export the module
 module.exports = employee_InventoryOperationRoutes;

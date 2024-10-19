@@ -1,5 +1,49 @@
 [{
   "_id": {
+    "$oid": "66fd7e32779dd89a160c92db"
+  },
+  "orderID": "ORD_5551715352",
+  "customerID": "CUS_65c9deee56a3",
+  "orderStatus": "completed",
+  "orderDate": {
+    "$date": "2024-10-01T09:39:45.951Z"
+  },
+  "items": [
+    {
+      "productID": "PRO_a63b20165329",
+      "productName": "Vintage Band Tee",
+      "productDescription": "Retro-style band tee with a distressed print.",
+      "quantity": 1,
+      "unitPrice": 29.99,
+      "subtotal": 29.99,
+      "currentAvailabilityStatus": "Available",
+      "imageUrl": "https://example.com/products/vintage-band-tee.jpg",
+      "_id": {
+        "$oid": "66fd7e32779dd89a160c92dd"
+      }
+    },
+    {
+      "productID": "PRO_45fd82fb30dd",
+      "productName": "Classic Crew Neck Tee",
+      "productDescription": "Simple and stylish crew neck T-shirt.",
+      "quantity": 1,
+      "unitPrice": 15.99,
+      "subtotal": 15.99,
+      "currentAvailabilityStatus": "Unavailable",
+      "imageUrl": "https://example.com/products/classic-crew-neck-tee.jpg",
+      "_id": {
+        "$oid": "66fd7e32779dd89a160c92de"
+      }
+    }
+  ],
+  "totalPrice": 45.98,
+  "tax": 3.6784,
+  "grandTotal": 49.66,
+  "__v": 1,
+  "placedBy": "customer"
+},
+{
+  "_id": {
     "$oid": "66fd7e32779dd89a160c92c8"
   },
   "orderID": "ORD_5830e7991b8b",
@@ -23,7 +67,7 @@
       }
     },
     {
-      "productID": "PRO_117fd7de621f",
+      "productID": "PRO_0af0bdae11f7",
       "productName": "V-Neck T-Shirt",
       "productDescription": "Soft and comfortable V-neck T-shirt.",
       "quantity": 1,
@@ -41,6 +85,37 @@
   "grandTotal": 67.48,
   "__v": 0,
   "placedBy": "EMP_7df244ab40d9"
+},
+{
+  "_id": {
+    "$oid": "66fd7e32779dd89a160c92d3"
+  },
+  "orderID": "ORD_2953827026",
+  "customerID": "CUS_8c865487fe86",
+  "orderStatus": "completed",
+  "orderDate": {
+    "$date": "2024-10-01T09:39:45.951Z"
+  },
+  "items": [
+    {
+      "productID": "PRO_a63b20165329",
+      "productName": "Vintage Band Tee",
+      "productDescription": "Retro-style band tee with a distressed print.",
+      "quantity": 3,
+      "unitPrice": 29.99,
+      "subtotal": 89.97,
+      "currentAvailabilityStatus": "Available",
+      "imageUrl": "https://example.com/products/vintage-band-tee.jpg",
+      "_id": {
+        "$oid": "66fd7e32779dd89a160c92d4"
+      }
+    }
+  ],
+  "totalPrice": 89.97,
+  "tax": 7.1976,
+  "grandTotal": 97.1676,
+  "__v": 0,
+  "placedBy": "customer"
 },
 {
   "_id": {
@@ -70,68 +145,6 @@
   "totalPrice": 49.98,
   "tax": 3.9984,
   "grandTotal": 53.98,
-  "__v": 0,
-  "placedBy": "customer"
-},
-{
-  "_id": {
-    "$oid": "66fd7e32779dd89a160c92cd"
-  },
-  "orderID": "ORD_ed326acfb78c",
-  "customerID": "CUS_d9b3fe967858",
-  "orderStatus": "completed",
-  "orderDate": {
-    "$date": "2024-09-28T10:45:00.000Z"
-  },
-  "items": [
-    {
-      "productID": "PRO_a63b20165329",
-      "productName": "Vintage Band Tee",
-      "productDescription": "Retro-style band tee with a distressed print.",
-      "quantity": 1,
-      "unitPrice": 29.99,
-      "subtotal": 29.99,
-      "currentAvailabilityStatus": "Available",
-      "imageUrl": "https://example.com/products/vintage-band-tee.jpg",
-      "_id": {
-        "$oid": "66fd7e32779dd89a160c92ce"
-      }
-    }
-  ],
-  "totalPrice": 29.99,
-  "tax": 2.3992,
-  "grandTotal": 32.39,
-  "__v": 0,
-  "placedBy": "customer"
-},
-{
-  "_id": {
-    "$oid": "66fd7e32779dd89a160c92cf"
-  },
-  "orderID": "ORD_b64a810249ce",
-  "customerID": "CUS_8c865487fe86",
-  "orderStatus": "shipped",
-  "orderDate": {
-    "$date": "2024-09-28T11:00:00.000Z"
-  },
-  "items": [
-    {
-      "productID": "PRO_bf2569c11f5e",
-      "productName": "Pullover Hoodie",
-      "productDescription": "Comfortable pullover hoodie with adjustable drawstring.",
-      "quantity": 1,
-      "unitPrice": 39.99,
-      "subtotal": 39.99,
-      "currentAvailabilityStatus": "Available",
-      "imageUrl": "https://example.com/products/pullover-hoodie.jpg",
-      "_id": {
-        "$oid": "66fd7e32779dd89a160c92d0"
-      }
-    }
-  ],
-  "totalPrice": 39.99,
-  "tax": 3.1992,
-  "grandTotal": 43.19,
   "__v": 0,
   "placedBy": "customer"
 },
@@ -168,76 +181,32 @@
 },
 {
   "_id": {
-    "$oid": "66fd7e32779dd89a160c92d3"
+    "$oid": "66fd7e32779dd89a160c92df"
   },
-  "orderID": "ORD_2953827026",
-  "customerID": "CUS_8c865487fe86",
+  "orderID": "ORD_7284309418",
+  "customerID": "CUS_65c9deee56a3",
   "orderStatus": "completed",
   "orderDate": {
-    "$date": "2024-10-01T09:39:45.951Z"
+    "$date": "2024-10-01T09:52:33.946Z"
   },
   "items": [
     {
-      "productID": "PRO_a63b20165329",
-      "productName": "Vintage Band Tee",
-      "productDescription": "Retro-style band tee with a distressed print.",
-      "quantity": 3,
-      "unitPrice": 29.99,
-      "subtotal": 89.97,
+      "productID": "PRO_29e5f51631ca",
+      "productName": "Slim Fit T-Shirt",
+      "productDescription": "A classic slim fit T-shirt made with high-quality cotton.",
+      "quantity": 70,
+      "unitPrice": 19.99,
+      "subtotal": 1399.3,
       "currentAvailabilityStatus": "Available",
-      "imageUrl": "https://example.com/products/vintage-band-tee.jpg",
+      "imageUrl": "https://example.com/products/slim-fit-tshirt.jpg",
       "_id": {
-        "$oid": "66fd7e32779dd89a160c92d4"
+        "$oid": "66fd7e32779dd89a160c92e0"
       }
     }
   ],
-  "totalPrice": 89.97,
-  "tax": 7.1976,
-  "grandTotal": 97.1676,
-  "__v": 0,
-  "placedBy": "customer"
-},
-{
-  "_id": {
-    "$oid": "66fd7e32779dd89a160c92d5"
-  },
-  "orderID": "ORD_1455001613",
-  "customerID": "CUS_8c865487fe86",
-  "orderStatus": "completed",
-  "orderDate": {
-    "$date": "2024-10-01T09:39:45.951Z"
-  },
-  "items": [
-    {
-      "productID": "PRO_bf2569c11f5e",
-      "productName": "Pullover Hoodie",
-      "productDescription": "Comfortable pullover hoodie with adjustable drawstring.",
-      "quantity": 1,
-      "unitPrice": 39.99,
-      "subtotal": 39.99,
-      "currentAvailabilityStatus": "Available",
-      "imageUrl": "https://example.com/products/pullover-hoodie.jpg",
-      "_id": {
-        "$oid": "66fd7e32779dd89a160c92d6"
-      }
-    },
-    {
-      "productID": "PRO_c9c9348162dc",
-      "productName": "Sunset Graphic Tee",
-      "productDescription": "Cool graphic T-shirt with a sunset design.",
-      "quantity": 2,
-      "unitPrice": 24.99,
-      "subtotal": 49.98,
-      "currentAvailabilityStatus": "Available",
-      "imageUrl": "https://example.com/products/sunset-graphic-tee.jpg",
-      "_id": {
-        "$oid": "66fd7e32779dd89a160c92d7"
-      }
-    }
-  ],
-  "totalPrice": 89.97,
-  "tax": 7.1976,
-  "grandTotal": 97.1676,
+  "totalPrice": 1399.3,
+  "tax": 111.944,
+  "grandTotal": 1511.2440000000001,
   "__v": 0,
   "placedBy": "customer"
 },
@@ -287,94 +256,6 @@
 },
 {
   "_id": {
-    "$oid": "66fd7e32779dd89a160c92db"
-  },
-  "orderID": "ORD_5551715352",
-  "customerID": "CUS_65c9deee56a3",
-  "orderStatus": "completed",
-  "orderDate": {
-    "$date": "2024-10-01T09:39:45.951Z"
-  },
-  "items": [
-    {
-      "productID": "PRO_a63b20165329",
-      "productName": "Vintage Band Tee",
-      "productDescription": "Retro-style band tee with a distressed print.",
-      "quantity": 3,
-      "unitPrice": 29.99,
-      "subtotal": 89.97,
-      "currentAvailabilityStatus": "Available",
-      "imageUrl": "https://example.com/products/vintage-band-tee.jpg",
-      "_id": {
-        "$oid": "66fd7e32779dd89a160c92dc"
-      }
-    },
-    {
-      "productID": "PRO_a63b20165329",
-      "productName": "Vintage Band Tee",
-      "productDescription": "Retro-style band tee with a distressed print.",
-      "quantity": 1,
-      "unitPrice": 29.99,
-      "subtotal": 29.99,
-      "currentAvailabilityStatus": "Available",
-      "imageUrl": "https://example.com/products/vintage-band-tee.jpg",
-      "_id": {
-        "$oid": "66fd7e32779dd89a160c92dd"
-      }
-    },
-    {
-      "productID": "PRO_45fd82fb30dd",
-      "productName": "Classic Crew Neck Tee",
-      "productDescription": "Simple and stylish crew neck T-shirt.",
-      "quantity": 1,
-      "unitPrice": 15.99,
-      "subtotal": 15.99,
-      "currentAvailabilityStatus": "Unavailable",
-      "imageUrl": "https://example.com/products/classic-crew-neck-tee.jpg",
-      "_id": {
-        "$oid": "66fd7e32779dd89a160c92de"
-      }
-    }
-  ],
-  "totalPrice": 135.95,
-  "tax": 10.876,
-  "grandTotal": 146.826,
-  "__v": 0,
-  "placedBy": "customer"
-},
-{
-  "_id": {
-    "$oid": "66fd7e32779dd89a160c92df"
-  },
-  "orderID": "ORD_7284309418",
-  "customerID": "CUS_65c9deee56a3",
-  "orderStatus": "completed",
-  "orderDate": {
-    "$date": "2024-10-01T09:52:33.946Z"
-  },
-  "items": [
-    {
-      "productID": "PRO_29e5f51631ca",
-      "productName": "Slim Fit T-Shirt",
-      "productDescription": "A classic slim fit T-shirt made with high-quality cotton.",
-      "quantity": 70,
-      "unitPrice": 19.99,
-      "subtotal": 1399.3,
-      "currentAvailabilityStatus": "Available",
-      "imageUrl": "https://example.com/products/slim-fit-tshirt.jpg",
-      "_id": {
-        "$oid": "66fd7e32779dd89a160c92e0"
-      }
-    }
-  ],
-  "totalPrice": 1399.3,
-  "tax": 111.944,
-  "grandTotal": 1511.2440000000001,
-  "__v": 0,
-  "placedBy": "customer"
-},
-{
-  "_id": {
     "$oid": "66fd7e32779dd89a160c92e1"
   },
   "orderID": "ORD_4171348877",
@@ -385,7 +266,7 @@
   },
   "items": [
     {
-      "productID": "PRO_117fd7de621f",
+      "productID": "PRO_0af0bdae11f7",
       "productName": "V-Neck T-Shirt",
       "productDescription": "Soft and comfortable V-neck T-shirt.",
       "quantity": 85,
@@ -403,4 +284,295 @@
   "grandTotal": 2065.5,
   "__v": 0,
   "placedBy": "customer"
+},
+{
+  "_id": {
+    "$oid": "66fd7e32779dd89a160c92cf"
+  },
+  "orderID": "ORD_b64a810249ce",
+  "customerID": "CUS_8c865487fe86",
+  "orderStatus": "cancelled",
+  "orderDate": {
+    "$date": "2024-09-28T11:00:00.000Z"
+  },
+  "items": [
+    {
+      "productID": "PRO_bf2569c11f5e",
+      "productName": "Pullover Hoodie",
+      "productDescription": "Comfortable pullover hoodie with adjustable drawstring.",
+      "quantity": 1,
+      "unitPrice": 39.99,
+      "subtotal": 39.99,
+      "currentAvailabilityStatus": "Available",
+      "imageUrl": "https://example.com/products/pullover-hoodie.jpg",
+      "_id": {
+        "$oid": "66fd7e32779dd89a160c92d0"
+      }
+    }
+  ],
+  "totalPrice": 39.99,
+  "tax": 3.1992,
+  "grandTotal": 43.19,
+  "__v": 0,
+  "placedBy": "customer"
+},
+{
+  "_id": {
+    "$oid": "66fd7e32779dd89a160c92cd"
+  },
+  "orderID": "ORD_ed326acfb78c",
+  "customerID": "CUS_d9b3fe967858",
+  "orderStatus": "completed",
+  "orderDate": {
+    "$date": "2024-09-28T10:45:00.000Z"
+  },
+  "items": [
+    {
+      "productID": "PRO_a63b20165329",
+      "productName": "Vintage Band Tee",
+      "productDescription": "Retro-style band tee with a distressed print.",
+      "quantity": 1,
+      "unitPrice": 29.99,
+      "subtotal": 29.99,
+      "currentAvailabilityStatus": "Available",
+      "imageUrl": "https://example.com/products/vintage-band-tee.jpg",
+      "_id": {
+        "$oid": "66fd7e32779dd89a160c92ce"
+      }
+    }
+  ],
+  "totalPrice": 29.99,
+  "tax": 2.3992,
+  "grandTotal": 32.39,
+  "__v": 0,
+  "placedBy": "customer"
+},
+{
+  "_id": {
+    "$oid": "66fd7e32779dd89a160c92d5"
+  },
+  "orderID": "ORD_1455001613",
+  "customerID": "CUS_8c865487fe86",
+  "orderStatus": "completed",
+  "orderDate": {
+    "$date": "2024-10-01T09:39:45.951Z"
+  },
+  "items": [
+    {
+      "productID": "PRO_bf2569c11f5e",
+      "productName": "Pullover Hoodie",
+      "productDescription": "Comfortable pullover hoodie with adjustable drawstring.",
+      "quantity": 1,
+      "unitPrice": 39.99,
+      "subtotal": 39.99,
+      "currentAvailabilityStatus": "Available",
+      "imageUrl": "https://example.com/products/pullover-hoodie.jpg",
+      "_id": {
+        "$oid": "66fd7e32779dd89a160c92d6"
+      }
+    },
+    {
+      "productID": "PRO_c9c9348162dc",
+      "productName": "Sunset Graphic Tee",
+      "productDescription": "Cool graphic T-shirt with a sunset design.",
+      "quantity": 2,
+      "unitPrice": 24.99,
+      "subtotal": 49.98,
+      "currentAvailabilityStatus": "Available",
+      "imageUrl": "https://example.com/products/sunset-graphic-tee.jpg",
+      "_id": {
+        "$oid": "66fd7e32779dd89a160c92d7"
+      }
+    }
+  ],
+  "totalPrice": 89.97,
+  "tax": 7.1976,
+  "grandTotal": 97.1676,
+  "__v": 0,
+  "placedBy": "customer"
+},
+{
+  "_id": {
+    "$oid": "670f1e7d6525fab73bd39b2d"
+  },
+  "orderID": "ORD_fd9d8ec12929",
+  "customerID": "CUS_db665bdd3c2a",
+  "orderStatus": "processing",
+  "orderDate": {
+    "$date": "2024-10-15T22:01:32.906Z"
+  },
+  "items": [
+    {
+      "productID": "PRO_4eb0feec0e25",
+      "productName": "Baseball Cap",
+      "productDescription": "Classic baseball cap with adjustable strap.",
+      "quantity": 2,
+      "unitPrice": 12.99,
+      "subtotal": 25.98,
+      "currentAvailabilityStatus": "Available",
+      "imageUrl": "https://example.com/products/baseball-cap.jpg",
+      "_id": {
+        "$oid": "670f1e7d6525fab73bd39b2e"
+      }
+    }
+  ],
+  "totalPrice": 23.38,
+  "tax": 2.08,
+  "grandTotal": 25.46,
+  "__v": 1,
+  "discountInPercentage": 10
+},
+{
+  "_id": {
+    "$oid": "670f43bc9cd365567f177888"
+  },
+  "orderID": "ORD_f2c68ef08a85",
+  "customerID": "CUS_db665bdd3c2a",
+  "orderStatus": "shipped",
+  "orderDate": {
+    "$date": "2024-10-16T00:40:26.885Z"
+  },
+  "items": [
+    {
+      "productID": "PRO_23749bf628da",
+      "productName": "Tote Bag",
+      "productDescription": "Spacious and durable tote bag for everyday use.",
+      "quantity": 1,
+      "unitPrice": 16.99,
+      "subtotal": 16.99,
+      "currentAvailabilityStatus": "Available",
+      "imageUrl": "https://example.com/products/tote-bag.jpg",
+      "_id": {
+        "$oid": "670f43bc9cd365567f17788a"
+      }
+    }
+  ],
+  "totalPrice": 14.44,
+  "tax": 1.36,
+  "discountInPercentage": 15,
+  "grandTotal": 15.8,
+  "__v": 1
+},
+{
+  "_id": {
+    "$oid": "670f44bc9cd365567f17788e"
+  },
+  "orderID": "ORD_4b84a3ee2fe9",
+  "customerID": "CUS_db665bdd3c2a",
+  "orderStatus": "processing",
+  "orderDate": {
+    "$date": "2024-10-16T00:44:44.409Z"
+  },
+  "items": [
+    {
+      "productID": "PRO_41c069bf9e61",
+      "productName": "Slim Fit T-Shirt",
+      "productDescription": "A classic slim fit T-shirt made with high-quality cotton.",
+      "quantity": 1,
+      "unitPrice": 19.99,
+      "subtotal": 19.99,
+      "currentAvailabilityStatus": "Available",
+      "imageUrl": "https://example.com/products/slim-fit-tshirt.jpg",
+      "_id": {
+        "$oid": "670f44bc9cd365567f17788f"
+      }
+    }
+  ],
+  "totalPrice": 18.99,
+  "tax": 1.59,
+  "discountInPercentage": 5,
+  "grandTotal": 20.58,
+  "__v": 1
+},
+{
+  "_id": {
+    "$oid": "670f761723ef2d3a30b83657"
+  },
+  "orderID": "ORD_3184879e775f",
+  "customerID": "CUS_db665bdd3c2a",
+  "orderStatus": "cancelled",
+  "orderDate": {
+    "$date": "2024-10-16T04:15:19.521Z"
+  },
+  "items": [
+    {
+      "productID": "PRO_23749bf628da",
+      "productName": "Tote Bag",
+      "productDescription": "Spacious and durable tote bag for everyday use.",
+      "quantity": 87,
+      "unitPrice": 16.99,
+      "subtotal": 19.99,
+      "currentAvailabilityStatus": "Unavailable",
+      "imageUrl": "https://example.com/products/tote-bag.jpg",
+      "_id": {
+        "$oid": "670f761723ef2d3a30b83658"
+      }
+    }
+  ],
+  "totalPrice": 1739.13,
+  "tax": 139.13,
+  "grandTotal": 1878.26,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6710c3f520ce5909e47e9c34"
+  },
+  "orderID": "ORD_0d7d238d4290",
+  "customerID": "CUS_db665bdd3c2a",
+  "orderStatus": "processing",
+  "orderDate": {
+    "$date": "2024-10-17T03:59:49.417Z"
+  },
+  "items": [
+    {
+      "productID": "PRO_66295f6bcd36",
+      "productName": "Zip-Up Sweatshirt",
+      "productDescription": "Stylish zip-up sweatshirt for casual wear.",
+      "quantity": 2,
+      "unitPrice": 45,
+      "subtotal": 90,
+      "currentAvailabilityStatus": "Available",
+      "imageUrl": "https://example.com/products/zip-up-sweatshirt.jpg",
+      "_id": {
+        "$oid": "6710c3f520ce5909e47e9c36"
+      }
+    }
+  ],
+  "totalPrice": 76.5,
+  "tax": 7.2,
+  "grandTotal": 83.7,
+  "__v": 1,
+  "discountInPercentage": 15
+},
+{
+  "_id": {
+    "$oid": "6712054dd08c85e87576445e"
+  },
+  "orderID": "ORD_e31016b5fe46",
+  "customerID": "CUS_db665bdd3c2a",
+  "orderStatus": "cancelled",
+  "orderDate": {
+    "$date": "2024-10-18T02:50:53.212Z"
+  },
+  "items": [
+    {
+      "productID": "PRO_66295f6bcd36",
+      "productName": "Zip-Up Sweatshirt",
+      "productDescription": "Stylish zip-up sweatshirt for casual wear.",
+      "quantity": 2,
+      "unitPrice": 45,
+      "subtotal": 90,
+      "currentAvailabilityStatus": "Available",
+      "imageUrl": "https://example.com/products/zip-up-sweatshirt.jpg",
+      "_id": {
+        "$oid": "6712054dd08c85e875764460"
+      }
+    }
+  ],
+  "totalPrice": 76.5,
+  "tax": 7.2,
+  "grandTotal": 83.7,
+  "__v": 1,
+  "discountInPercentage": 15
 }]

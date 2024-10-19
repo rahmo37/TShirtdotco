@@ -6,13 +6,13 @@
   "categoryName": "t_shirts",
   "products": [
     {
-      "productID": "PRO_41c069bf9e61",
+      "productID": "PRO_29e5f51631ca",
       "productName": "Slim Fit T-Shirt",
       "productDescription": "A classic slim fit T-shirt made with high-quality cotton.",
       "unitPrice": 19.99,
       "stockInfo": {
-        "currentQuantity": 57,
-        "totalSold": 73,
+        "currentQuantity": 56,
+        "totalSold": 74,
         "restockThreshold": 30,
         "lastRestock": {
           "$date": "2024-10-02T21:21:33.097Z"
@@ -58,9 +58,100 @@
       "_id": {
         "$oid": "670f15c53aa7e186b3eebf6d"
       }
+    },
+    {
+      "productID": "PRO_ce3cee8f0cec",
+      "productName": "Test Shi",
+      "productDescription": "Test different catego",
+      "unitPrice": 43,
+      "stockInfo": {
+        "currentQuantity": 34,
+        "totalSold": 0,
+        "restockThreshold": 4,
+        "lastRestock": {
+          "$date": "2024-10-17T19:38:00.222Z"
+        },
+        "restockQuantity": 2,
+        "stockStatus": "In Stock",
+        "_id": {
+          "$oid": "6711679861d739f51c2090ee"
+        }
+      },
+      "imageUrl": "wallpaper_city.jpg",
+      "dateAdded": {
+        "$date": "2024-10-17T19:38:00.222Z"
+      },
+      "color": "Gra",
+      "_id": {
+        "$oid": "6711679861d739f51c2090ed"
+      }
     }
   ],
-  "__v": 9
+  "__v": 13
+},
+{
+  "_id": {
+    "$oid": "66fd7c171505788fc4bd322a"
+  },
+  "categoryID": "CAT_51189d17aeee",
+  "categoryName": "hoodies_sweatshirts",
+  "products": [
+    {
+      "productID": "PRO_bf2569c11f5e",
+      "productName": "Pullover Hoodie",
+      "productDescription": "Comfortable pullover hoodie with adjustable drawstring.",
+      "unitPrice": 39.99,
+      "stockInfo": {
+        "currentQuantity": 49,
+        "totalSold": 1,
+        "restockThreshold": 20,
+        "lastRestock": {
+          "$date": "2024-09-17T04:00:00.000Z"
+        },
+        "restockQuantity": 30,
+        "stockStatus": "In Stock",
+        "_id": {
+          "$oid": "66fd7c171505788fc4bd322c"
+        }
+      },
+      "imageUrl": "https://example.com/products/pullover-hoodie.jpg",
+      "dateAdded": {
+        "$date": "2024-09-17T04:00:00.000Z"
+      },
+      "color": "Black",
+      "_id": {
+        "$oid": "66fd7c171505788fc4bd322b"
+      }
+    },
+    {
+      "productID": "PRO_66295f6bcd36",
+      "productName": "Zip-Up Sweatshirt",
+      "productDescription": "Stylish zip-up sweatshirt for casual wear.",
+      "unitPrice": 45,
+      "stockInfo": {
+        "currentQuantity": 48,
+        "totalSold": 2,
+        "restockThreshold": 10,
+        "lastRestock": {
+          "$date": "2024-09-18T04:00:00.000Z"
+        },
+        "restockQuantity": 40,
+        "stockStatus": "In Stock",
+        "_id": {
+          "$oid": "66fd7c171505788fc4bd322e"
+        }
+      },
+      "imageUrl": "https://example.com/products/zip-up-sweatshirt.jpg",
+      "dateAdded": {
+        "$date": "2024-09-18T04:00:00.000Z"
+      },
+      "color": "Navy",
+      "_id": {
+        "$oid": "66fd7c171505788fc4bd322d"
+      }
+    }
+  ],
+  "__v": 0
 },
 {
   "_id": {
@@ -102,8 +193,8 @@
       "productDescription": "Retro-style band tee with a distressed print.",
       "unitPrice": 29.99,
       "stockInfo": {
-        "currentQuantity": 82,
-        "totalSold": 8,
+        "currentQuantity": 85,
+        "totalSold": 5,
         "restockThreshold": 30,
         "lastRestock": {
           "$date": "2024-09-16T04:00:00.000Z"
@@ -300,70 +391,6 @@
 },
 {
   "_id": {
-    "$oid": "66fd7c171505788fc4bd322a"
-  },
-  "categoryID": "CAT_51189d17aeee",
-  "categoryName": "hoodies_sweatshirts",
-  "products": [
-    {
-      "productID": "PRO_bf2569c11f5e",
-      "productName": "Pullover Hoodie",
-      "productDescription": "Comfortable pullover hoodie with adjustable drawstring.",
-      "unitPrice": 39.99,
-      "stockInfo": {
-        "currentQuantity": 48,
-        "totalSold": 2,
-        "restockThreshold": 20,
-        "lastRestock": {
-          "$date": "2024-09-17T04:00:00.000Z"
-        },
-        "restockQuantity": 30,
-        "stockStatus": "In Stock",
-        "_id": {
-          "$oid": "66fd7c171505788fc4bd322c"
-        }
-      },
-      "imageUrl": "https://example.com/products/pullover-hoodie.jpg",
-      "dateAdded": {
-        "$date": "2024-09-17T04:00:00.000Z"
-      },
-      "color": "Black",
-      "_id": {
-        "$oid": "66fd7c171505788fc4bd322b"
-      }
-    },
-    {
-      "productID": "PRO_66295f6bcd36",
-      "productName": "Zip-Up Sweatshirt",
-      "productDescription": "Stylish zip-up sweatshirt for casual wear.",
-      "unitPrice": 45,
-      "stockInfo": {
-        "currentQuantity": 50,
-        "totalSold": 0,
-        "restockThreshold": 10,
-        "lastRestock": {
-          "$date": "2024-09-18T04:00:00.000Z"
-        },
-        "restockQuantity": 40,
-        "stockStatus": "In Stock",
-        "_id": {
-          "$oid": "66fd7c171505788fc4bd322e"
-        }
-      },
-      "imageUrl": "https://example.com/products/zip-up-sweatshirt.jpg",
-      "dateAdded": {
-        "$date": "2024-09-18T04:00:00.000Z"
-      },
-      "color": "Navy",
-      "_id": {
-        "$oid": "66fd7c171505788fc4bd322d"
-      }
-    }
-  ],
-  "__v": 0
-},
-{
-  "_id": {
     "$oid": "66fd7c171505788fc4bd322f"
   },
   "categoryID": "CAT_8199c505d83b",
@@ -375,8 +402,8 @@
       "productDescription": "Classic baseball cap with adjustable strap.",
       "unitPrice": 12.99,
       "stockInfo": {
-        "currentQuantity": 130,
-        "totalSold": 0,
+        "currentQuantity": 128,
+        "totalSold": 2,
         "restockThreshold": 50,
         "lastRestock": {
           "$date": "2024-09-19T04:00:00.000Z"
@@ -402,8 +429,8 @@
       "productDescription": "Spacious and durable tote bag for everyday use.",
       "unitPrice": 16.99,
       "stockInfo": {
-        "currentQuantity": 90,
-        "totalSold": 0,
+        "currentQuantity": 89,
+        "totalSold": 1,
         "restockThreshold": 40,
         "lastRestock": {
           "$date": "2024-10-15T20:43:11.585Z"

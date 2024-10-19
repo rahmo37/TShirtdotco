@@ -6,9 +6,10 @@ const employee_InfoUpdateRoutes = express.Router();
 const employeeUpdateFunctions = require("../../controllers/updateAccountInformationController/employeeInfoUpdateController");
 const jwtVerifyToken = require("../../middlewares/jwtVerifyToken");
 const idVerify = require("../../middlewares/idVerification");
+const { isEmployee } = require("../../middlewares/roleVerification");
 
 // Register necessary middlewares to verify token
-employee_InfoUpdateRoutes.use(jwtVerifyToken);
+employee_InfoUpdateRoutes.use(jwtVerifyToken, isEmployee);
 
 // Update employee info route
 employee_InfoUpdateRoutes.patch(
@@ -23,7 +24,6 @@ employee_InfoUpdateRoutes.patch(
   idVerify,
   employeeUpdateFunctions.changePassword
 );
-
 
 // Export the module
 module.exports = employee_InfoUpdateRoutes;
