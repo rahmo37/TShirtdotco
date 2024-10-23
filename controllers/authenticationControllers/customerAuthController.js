@@ -32,7 +32,7 @@ async function login(req, res, next) {
 
     if (!isMatch) {
       const err = new Error("Invalid email or password");
-      err.status = 400;
+      err.status = 401;
       return next(err);
     }
 

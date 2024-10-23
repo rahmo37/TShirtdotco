@@ -11,7 +11,7 @@ const { isAdmin, isEmployee } = require("../../middlewares/roleVerification");
 // ! employee_SaleOperationsRoute.use(jwtVerifyToken,isEmployee,isAdmin);
 
 // retrieve the sales report
-employee_SaleOperationsRoute.get("/", saleFunction.salesReport);
+employee_SaleOperationsRoute.get("/report", saleFunction.salesReport);
 
 // Export the module
 module.exports = employee_SaleOperationsRoute;

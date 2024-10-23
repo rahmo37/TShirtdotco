@@ -393,7 +393,12 @@ inventoryFunctions.getInventoryReport = async (req, res, next) => {
 
     // commit the transaction
     await session.commitTransaction();
-    res.status(200).json(inventoryReport);
+    res.status(200).json({
+      message: "Inventor data included",
+      data: {
+        inventoryReport,
+      },
+    });
   } catch (err) {
     await session.abortTransaction();
     next(err); // pass error to the error handler
