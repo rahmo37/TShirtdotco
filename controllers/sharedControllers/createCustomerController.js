@@ -4,7 +4,7 @@
 const Customer = require("../../models/Customer");
 const generateId = require("../../misc/generateId");
 const { getHashedPassword } = require("../../misc/hashPassword");
-
+const currentNewYorkDateTime = require("../../misc/getNewYorkDateAndTime");
 // create a customer - function
 const createCustomer = async (req, res, next) => {
   try {
@@ -72,12 +72,13 @@ const createCustomer = async (req, res, next) => {
     const customerId = generateId("CUS_");
 
     // get the current date and time for account created variable
-    const accountCreated = new Date();
+    const accountCreated = currentNewYorkDateTime();
 
     // add the above properties to the customer
     customerData.password = hashedPassword;
     customerData.customerID = customerId;
     customerData.accountCreated = accountCreated;
+    customerData.accountStatus = "Active";
 
     // save the customer
     await new Customer(customerData).save();
@@ -94,7 +95,6 @@ const createCustomer = async (req, res, next) => {
     next(err);
   }
 };
-
 
 // Export the module
 module.exports = createCustomer;
