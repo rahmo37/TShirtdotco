@@ -22,6 +22,7 @@ const employee_EmployeeOperations = require("./routes/employeeOperations/employe
 const employeeOrderOperations = require("./routes/employeeOperations/orderOperationsRoute");
 const employeeSaleOperations = require("./routes/employeeOperations/saleOperations");
 const employeeInformationUpdate = require("./routes/updateAccountInformation/employeeInfoUpdateRoute");
+const imageUploader = require("./routes/employeeOperations/imageUploadRoute");
 
 // Customer related imports
 const customerAuth = require("./routes/authentication/customerAuth");
@@ -65,6 +66,7 @@ erpSystem.use("/api/employee/manage", employee_EmployeeOperations);
 erpSystem.use("/api/employee/update", employeeInformationUpdate);
 erpSystem.use("/api/employee/order", employeeOrderOperations);
 erpSystem.use("/api/employee/sale", employeeSaleOperations);
+erpSystem.use("/api/upload", imageUploader);
 
 //Customer routes
 erpSystem.use("/api/customer/login", customerAuth);

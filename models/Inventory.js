@@ -8,7 +8,7 @@ const stockInfoSchema = new Schema({
   restockThreshold: { type: Number, required: true },
   lastRestock: { type: Date, required: true },
   restockQuantity: { type: Number, required: true },
-  stockStatus: { type: String, required: true},
+  stockStatus: { type: String, required: true },
 });
 
 // Define the product schema
@@ -18,7 +18,7 @@ const productSchema = new Schema({
   productDescription: { type: String, required: true, unique: true },
   unitPrice: { type: Number, required: true },
   stockInfo: stockInfoSchema, // Embedding stock info
-  imageUrl: String,
+  imageUrl: { type: String, require: true },
   dateAdded: { type: Date, required: true },
   color: String,
 });

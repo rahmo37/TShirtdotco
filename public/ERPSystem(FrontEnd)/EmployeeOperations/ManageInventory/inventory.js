@@ -5,7 +5,13 @@ import { errorPopUp } from "../../helper/errorPopUpHandler.js";
 import { successPopUp } from "../../helper/successPopupHandler.js";
 import { confirmPopUp } from "../../helper/confirmPopUpHandler.js";
 import { filterTable } from "../../helper/searchTable.js";
+
+// Initialize event listener for search input
 const searchInput = document.getElementById("searchInput");
+searchInput.addEventListener("input", () => {
+  filterTable();
+});
+
 (function () {
   const inventoryContainer = document.getElementById("table-container");
   const addProductBtn = document.getElementById("add-new-btn");
@@ -38,12 +44,8 @@ const searchInput = document.getElementById("searchInput");
       const data = await fetchHandler.sendRequest(requestInfo);
       inventoryData = data.data; // Store inventory data
       renderInventory(inventoryData);
-
-      searchInput.addEventListener("input", () => {
-        filterTable();
-      });
     } catch (error) {
-      errorPopUp.showErrorModal(error.message);
+      errorPopUp.showErrorModal(error.message || "An unexpected error occurred.");
     }
   }
 
@@ -56,9 +58,13 @@ const searchInput = document.getElementById("searchInput");
       };
 
       const data = await fetchHandler.sendRequest(requestInfo);
-      successPopUp.showSuccessModal(data.message);
+      if (data && data.message) {
+        successPopUp.showSuccessModal(data.message);
+      } else {
+        errorPopUp.showErrorModal("Unexpected server response.");
+      }
     } catch (error) {
-      errorPopUp.showErrorModal(error.message);
+      errorPopUp.showErrorModal(error.message || "An unexpected error occurred.");
     }
   }
 
@@ -70,9 +76,13 @@ const searchInput = document.getElementById("searchInput");
       };
 
       const result = await fetchHandler.sendRequest(requestInfo);
-      successPopUp.showSuccessModal(result.message);
+      if (result && result.message) {
+        successPopUp.showSuccessModal(result.message);
+      } else {
+        errorPopUp.showErrorModal("Unexpected server response.");
+      }
     } catch (error) {
-      errorPopUp.showErrorModal(error.message);
+      errorPopUp.showErrorModal(error.message || "An unexpected error occurred.");
     }
   }
 
@@ -84,12 +94,13 @@ const searchInput = document.getElementById("searchInput");
       };
 
       const result = await fetchHandler.sendRequest(requestInfo);
-      showSuccessModal.showSuccessModal(
-        "Product restocked successfully:",
-        result
-      );
+      if (result && result.message) {
+        successPopUp.showSuccessModal(result.message);
+      } else {
+        errorPopUp.showErrorModal("Unexpected server response.");
+      }
     } catch (error) {
-      errorPopUp.showErrorModal(error.message);
+      errorPopUp.showErrorModal(error.message || "An unexpected error occurred.");
     }
   }
 
@@ -102,9 +113,13 @@ const searchInput = document.getElementById("searchInput");
       };
 
       const data = await fetchHandler.sendRequest(requestInfo);
-      successPopUp.showSuccessModal(data.message);
+      if (data && data.message) {
+        successPopUp.showSuccessModal(data.message);
+      } else {
+        errorPopUp.showErrorModal("Unexpected server response.");
+      }
     } catch (error) {
-      errorPopUp.showErrorModal(error.message);
+      errorPopUp.showErrorModal(error.message || "An unexpected error occurred.");
     }
   }
 
@@ -228,7 +243,7 @@ const searchInput = document.getElementById("searchInput");
     const editProductForm = document.getElementById("edit-product-form");
 
     // Define the form submission handler
-    async function formSubmitHandler(event) {
+    const formSubmitHandler = async (event) => {
       event.preventDefault();
 
       const formData = new FormData(event.target);
@@ -267,54 +282,63 @@ const searchInput = document.getElementById("searchInput");
 
       // Only send updated fields
       if (Object.keys(updatedProductData).length > 0) {
-        await updateProductData(
-          categoryID,
-          product.productID,
-          updatedProductData
-        );
+        confirmPopUp.showConfirmModal("Commit the changes?", async () => {
+          await updateProductData(
+            categoryID,
+            product.productID,
+            updatedProductData
+          );
+          closeModal();
+          await getAdminInventory(); // Refresh the inventory
+          searchInput.value = "";
+        });
+      } else {
+        closeModal();
       }
+    };
 
-      closeModal();
-      await getAdminInventory(); // Refresh the inventory
-      searchInput.value = "";
-    }
-
-    // Remove previous event listener to prevent duplicates
-    editProductForm.removeEventListener("submit", formSubmitHandler);
+    // Attach event listener to the form
     editProductForm.addEventListener("submit", formSubmitHandler);
 
     // Restock button handler
     const restockButton = document.getElementById("restock-product-btn");
-    async function restockHandler(event) {
+    const restockHandler = async (event) => {
       event.preventDefault();
-      try {
-        await restockProduct(categoryID, product.productID);
-        closeModal();
-        await getAdminInventory();
-        searchInput.value = "";
-      } catch (error) {
-        errorPopUp.showErrorModal(error.message);
-        closeModal();
-        errorPopUp.showErrorModal(error.message);
-      }
-    }
-    restockButton.removeEventListener("click", restockHandler);
+      confirmPopUp.showConfirmModal(
+        "Are you sure you want to restock this product?",
+        async () => {
+          try {
+            await restockProduct(categoryID, product.productID);
+            closeModal();
+            await getAdminInventory();
+            searchInput.value = "";
+          } catch (error) {
+            errorPopUp.showErrorModal(error.message || "An unexpected error occurred.");
+            closeModal();
+          }
+        }
+      );
+    };
     restockButton.addEventListener("click", restockHandler);
 
     // Delete button handler
     const deleteButton = document.getElementById("delete-btn");
-    async function deleteHandler(event) {
+    const deleteHandler = (event) => {
       event.preventDefault();
-      try {
-        await deleteProduct(categoryID, product.productID);
-        closeModal();
-        await getAdminInventory();
-        searchInput.value = "";
-      } catch (error) {
-        errorPopUp.showErrorModal(error.message);
-      }
-    }
-    deleteButton.removeEventListener("click", deleteHandler);
+      confirmPopUp.showConfirmModal(
+        "Are you sure you want to delete this product?",
+        async () => {
+          try {
+            await deleteProduct(categoryID, product.productID);
+            closeModal();
+            await getAdminInventory();
+            searchInput.value = "";
+          } catch (error) {
+            errorPopUp.showErrorModal(error.message || "An unexpected error occurred.");
+          }
+        }
+      );
+    };
     deleteButton.addEventListener("click", deleteHandler);
   }
 
@@ -338,6 +362,7 @@ const searchInput = document.getElementById("searchInput");
   function closeAddProductModal() {
     addProductModal.style.display = "none";
     addProductModalOverlay.style.display = "none";
+    inventoryForm.reset(); // Reset the form fields
   }
 
   closeAddProductModalBtn.addEventListener("click", closeAddProductModal);
@@ -354,7 +379,6 @@ const searchInput = document.getElementById("searchInput");
   // Form submission logic for adding new product
   inventoryForm.addEventListener("submit", async (event) => {
     event.preventDefault();
-    const allowedExtensions = ["jpg", "jpeg", "png"];
     // Get data from form
     const formData = new FormData(inventoryForm);
     const categoryName = formData.get("categoryName");
@@ -373,20 +397,20 @@ const searchInput = document.getElementById("searchInput");
       isNaN(restockThreshold) ||
       isNaN(restockQuantity)
     ) {
-      alert("Please enter valid numbers for price and stock quantities.");
+      errorPopUp.showErrorModal(
+        "Please enter valid numbers for price and stock quantities."
+      );
       return;
     }
 
-    // Process the image, here...
+    // Process the image
+    const imageFile = formData.get("imageUrl");
+
     if (imageFile && imageFile.name) {
       const extension = imageFile.name.split(".").pop().toLowerCase();
-
-      // Example: Check if the extension is one of the allowed types
-      const allowedExtensions = ["jpg", "jpeg", "png", "gif"];
-      if (allowedExtensions.includes(extension)) {
-        console.log("Valid image file extension:", extension);
-      } else {
-        errorPopUp.showErrorModal("Invalid image file extension:", extension);
+      const allowedExtensions = ["jpg", "jpeg", "png"];
+      if (!allowedExtensions.includes(extension)) {
+        errorPopUp.showErrorModal("Invalid image file extension: " + extension);
         return;
       }
     } else {
@@ -394,6 +418,26 @@ const searchInput = document.getElementById("searchInput");
       return;
     }
 
+    // Upload the image file to the image upload endpoint in the backend
+    const imageUploadForm = new FormData();
+    imageUploadForm.append("image", imageFile);
+
+    let imageUrl = "";
+
+    try {
+      const imageResponse = await fetch(urlObject.imageUpload, {
+        method: "POST",
+        body: imageUploadForm,
+      });
+
+      const imageResult = await imageResponse.json();
+      imageUrl = imageResult.data;
+    } catch (error) {
+      errorPopUp.showErrorModal(error.message || "An unexpected error occurred.");
+      return;
+    }
+
+    // Other fields
     const color = formData.get("color");
     const dateAdded = new Date().toISOString();
 
@@ -421,11 +465,17 @@ const searchInput = document.getElementById("searchInput");
     const categoryData = inventoryData.find(
       (data) => data.categoryName === categoryName
     );
+    if (!categoryData) {
+      errorPopUp.showErrorModal("Category not found: " + categoryName);
+      return;
+    }
     const category_id = categoryData.categoryID;
 
-    await addProductToInventory(category_id, productData);
-    closeAddProductModal();
-    getAdminInventory(); // Refresh the inventory
-    searchInput.value = "";
+    confirmPopUp.showConfirmModal("Add this product to the inventory?", async () => {
+      await addProductToInventory(category_id, productData);
+      closeAddProductModal();
+      getAdminInventory();
+      searchInput.value = "";
+    });
   });
 })();

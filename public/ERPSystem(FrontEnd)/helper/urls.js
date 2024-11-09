@@ -19,4 +19,5 @@ export const urlObject = {
   addEmployee: HOSTNAME + "/employee/manage",
   updateEmployee: HOSTNAME + "/employee/manage/", // add employeeId
   updateLoggedInEmployeeInfo: HOSTNAME + "/employee/update/generalInfo/", // add employeeId
+  imageUpload: HOSTNAME + "/upload",
 };

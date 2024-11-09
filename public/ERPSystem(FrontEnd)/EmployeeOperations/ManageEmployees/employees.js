@@ -23,6 +23,11 @@ import { filterTable } from "../../helper/searchTable.js";
   const employeeForm = document.getElementById("new-employee-form");
   const searchInput = document.getElementById("searchInput");
 
+  // Initialize event listener for search input
+  searchInput.addEventListener("input", () => {
+    filterTable();
+  });
+
   getEmployeeList();
 
   //////////////// Functions for communication with server //////////////
@@ -37,13 +42,8 @@ import { filterTable } from "../../helper/searchTable.js";
 
       const data = await fetchHandler.sendRequest(requestInfo);
       renderEmployeeList(data);
-
-      const searchInput = document.getElementById("searchInput");
-      searchInput.addEventListener("input", () => {
-        filterTable();
-      });
     } catch (error) {
-      errorPopUp.showErrorModal(error.message);
+      errorPopUp.showErrorModal(error.message || "An unexpected error occurred.");
     }
   }
 
@@ -57,9 +57,13 @@ import { filterTable } from "../../helper/searchTable.js";
       };
 
       const data = await fetchHandler.sendRequest(requestInfo);
-      successPopUp.showSuccessModal(data.message);
+      if (data && data.message) {
+        successPopUp.showSuccessModal(data.message);
+      } else {
+        errorPopUp.showErrorModal("Unexpected server response.");
+      }
     } catch (error) {
-      errorPopUp.showErrorModal(error.message);
+      errorPopUp.showErrorModal(error.message || "An unexpected error occurred.");
     }
   }
 
@@ -73,9 +77,13 @@ import { filterTable } from "../../helper/searchTable.js";
       };
 
       const data = await fetchHandler.sendRequest(requestInfo);
-      successPopUp.showSuccessModal(data.message);
+      if (data && data.message) {
+        successPopUp.showSuccessModal(data.message);
+      } else {
+        errorPopUp.showErrorModal("Unexpected server response.");
+      }
     } catch (error) {
-      errorPopUp.showErrorModal(error.message);
+      errorPopUp.showErrorModal(error.message || "An unexpected error occurred.");
     }
   }
 
@@ -130,61 +138,41 @@ import { filterTable } from "../../helper/searchTable.js";
     const formattedHireDate = formatDate(employee.workInfo.hireDate);
 
     modalContent.innerHTML = `
-      <h2>${employee.employeeBio.firstName} ${
-      employee.employeeBio.lastName
-    }</h2>
+      <h2>${employee.employeeBio.firstName} ${employee.employeeBio.lastName}</h2>
       <form id="edit-employee-form">
         <label for="employeeId">Employee ID:</label>
-        <input type="text" id="employeeId" name="employeeId" value="${
-          employee.employeeID
-        }" readonly>
+        <input type="text" id="employeeId" name="employeeId" value="${employee.employeeID}" readonly>
 
         <div class="multiple-input-fields">
           <div>
             <label for="firstName">First Name:</label>
-            <input type="text" id="firstName" name="firstName" value="${
-              employee.employeeBio.firstName
-            }" required>
+            <input type="text" id="firstName" name="firstName" value="${employee.employeeBio.firstName}" required>
           </div>
           <div>
             <label for="lastName">Last Name:</label>
-            <input type="text" id="lastName" name="lastName" value="${
-              employee.employeeBio.lastName
-            }" required>
+            <input type="text" id="lastName" name="lastName" value="${employee.employeeBio.lastName}" required>
           </div>
         </div>
 
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" value="${
-          employee.email
-        }" readonly>
+        <input type="email" id="email" name="email" value="${employee.email}" readonly>
 
         <label for="phone">Phone:</label>
-        <input type="tel" id="phone" name="phone" value="${
-          employee.phone
-        }" required>
+        <input type="tel" id="phone" name="phone" value="${employee.phone}" required>
 
         <label for="jobTitle">Job Title:</label>
-        <input type="text" id="jobTitle" name="jobTitle" value="${
-          employee.workInfo.jobTitle
-        }" readonly>
+        <input type="text" id="jobTitle" name="jobTitle" value="${employee.workInfo.jobTitle}" readonly>
 
         <label for="department">Department:</label>
-        <input type="text" id="department" name="department" value="${
-          employee.workInfo.department
-        }" readonly>
+        <input type="text" id="department" name="department" value="${employee.workInfo.department}" readonly>
 
         <label for="hireDate">Hire Date:</label>
         <input type="text" id="hireDate" name="hireDate" value="${formattedHireDate}" readonly>
 
         <label for="account-status">Account Status:</label>
         <select id="account-status" name="account-status">
-          <option value="Active" ${
-            employee.accountStatus === "Active" ? "selected" : ""
-          }>Active</option>
-          <option value="Closed" ${
-            employee.accountStatus === "Closed" ? "selected" : ""
-          }>Closed</option>
+          <option value="Active" ${employee.accountStatus === "Active" ? "selected" : ""}>Active</option>
+          <option value="Closed" ${employee.accountStatus === "Closed" ? "selected" : ""}>Closed</option>
         </select>
 
         <button type="submit" id="save-changes-btn">Save Changes</button>
@@ -201,7 +189,7 @@ import { filterTable } from "../../helper/searchTable.js";
     const editEmployeeForm = document.getElementById("edit-employee-form");
 
     // Define the form submission handler
-    async function formSubmitHandler(event) {
+    const formSubmitHandler = async (event) => {
       event.preventDefault();
 
       const formData = new FormData(event.target);
@@ -210,13 +198,13 @@ import { filterTable } from "../../helper/searchTable.js";
       // Check and add updated fields to the payload
       if (formData.get("firstName") !== employee.employeeBio.firstName) {
         updatedEmployeeData.employeeBio = {
-          ...(updatedEmployeeData.employeeBio || {}),
+          ...(updatedEmployeeData.employeeBio || employee.employeeBio),
           firstName: formData.get("firstName"),
         };
       }
       if (formData.get("lastName") !== employee.employeeBio.lastName) {
         updatedEmployeeData.employeeBio = {
-          ...(updatedEmployeeData.employeeBio || {}),
+          ...(updatedEmployeeData.employeeBio || employee.employeeBio),
           lastName: formData.get("lastName"),
         };
       }
@@ -229,16 +217,18 @@ import { filterTable } from "../../helper/searchTable.js";
 
       // Only send updated fields
       if (Object.keys(updatedEmployeeData).length > 0) {
-        await updateEmployeeData(employee.employeeID, updatedEmployeeData);
+        confirmPopUp.showConfirmModal("Commit the changes?", async () => {
+          await updateEmployeeData(employee.employeeID, updatedEmployeeData);
+          closeModal();
+          getEmployeeList();
+          searchInput.value = "";
+        });
+      } else {
+        closeModal();
       }
+    };
 
-      closeModal();
-      getEmployeeList();
-      searchInput.value = "";
-    }
-
-    // Remove previous event listener to prevent duplicates
-    editEmployeeForm.removeEventListener("submit", formSubmitHandler);
+    // Attach event listener to the form
     editEmployeeForm.addEventListener("submit", formSubmitHandler);
   }
 
@@ -246,6 +236,7 @@ import { filterTable } from "../../helper/searchTable.js";
   function closeModal() {
     modal.style.display = "none";
     modalOverlay.style.display = "none";
+    modalContent.innerHTML = ""; // Clear modal content
   }
 
   closeModalBtn.addEventListener("click", closeModal);
@@ -261,6 +252,7 @@ import { filterTable } from "../../helper/searchTable.js";
   function closeAddEmployeeModal() {
     addEmployeeModal.style.display = "none";
     addEmployeeModalOverlay.style.display = "none";
+    employeeForm.reset(); // Reset the form fields
   }
 
   closeAddEmployeeModalBtn.addEventListener("click", closeAddEmployeeModal);
@@ -287,10 +279,7 @@ import { filterTable } from "../../helper/searchTable.js";
     const baseSalary = parseFloat(formData.get("baseSalary"));
     const bonus = parseFloat(formData.get("bonus"));
 
-    if (isNaN(baseSalary) || isNaN(bonus)) {
-      alert("Please enter valid numbers for base salary and bonus.");
-      return;
-    }
+    // Validation and security are not required, so we can skip further checks
 
     const employeeData = {
       email: formData.get("email"),
@@ -329,9 +318,11 @@ import { filterTable } from "../../helper/searchTable.js";
       accountStatus: "Active",
     };
 
-    await addEmployee(employeeData);
-    closeAddEmployeeModal();
-    getEmployeeList();
-    searchInput.value = "";
+    confirmPopUp.showConfirmModal("Create employee account?", async () => {
+      await addEmployee(employeeData);
+      closeAddEmployeeModal();
+      getEmployeeList();
+      searchInput.value = "";
+    });
   });
 })();

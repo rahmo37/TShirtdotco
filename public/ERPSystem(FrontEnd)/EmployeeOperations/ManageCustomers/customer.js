@@ -19,6 +19,11 @@ import { filterTable } from "../../helper/searchTable.js";
   const addUserModalOverlay = document.getElementById("add-User-modal-overlay");
   const searchInput = document.getElementById("searchInput");
 
+  // Initialize event listener for search input
+  searchInput.addEventListener("input", () => {
+    filterTable();
+  });
+
   getUserList();
 
   //////////////// Functions for communication with server //////////////
@@ -34,12 +39,8 @@ import { filterTable } from "../../helper/searchTable.js";
       const data = await fetchHandler.sendRequest(requestInfo);
       const userData = data.data; // Store user data
       renderUserList(userData);
-      const searchInput = document.getElementById("searchInput");
-      searchInput.addEventListener("input", () => {
-        filterTable();
-      });
     } catch (error) {
-      errorPopUp.showErrorModal("Error fetching User List:", error.message);
+      errorPopUp.showErrorModal("Error fetching User List:", error.message || "An unexpected error occurred.");
     }
   }
 
@@ -53,9 +54,13 @@ import { filterTable } from "../../helper/searchTable.js";
       };
 
       const data = await fetchHandler.sendRequest(requestInfo);
-      successPopUp.showSuccessModal(data.message);
+      if (data && data.message) {
+        successPopUp.showSuccessModal(data.message);
+      } else {
+        errorPopUp.showErrorModal("Unexpected server response.");
+      }
     } catch (error) {
-      errorPopUp.showErrorModal(error.message);
+      errorPopUp.showErrorModal(error.message || "An unexpected error occurred.");
     }
   }
 
@@ -70,9 +75,13 @@ import { filterTable } from "../../helper/searchTable.js";
 
       const data = await fetchHandler.sendRequest(requestInfo);
 
-      successPopUp.showSuccessModal(data.message);
+      if (data && data.message) {
+        successPopUp.showSuccessModal(data.message);
+      } else {
+        errorPopUp.showErrorModal("Unexpected server response.");
+      }
     } catch (error) {
-      errorPopUp.showErrorModal(error.message);
+      errorPopUp.showErrorModal(error.message || "An unexpected error occurred.");
     }
   }
 
@@ -122,66 +131,47 @@ import { filterTable } from "../../helper/searchTable.js";
 
   // Open customer details modal
   function openCustomerModal(customer) {
-    const formattedDate = new Date(customer.accountCreated).toLocaleDateString(
-      "en-US",
-      {
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit",
-      }
-    );
+    const formattedDate = new Date(customer.accountCreated).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    });
 
     modalContent.innerHTML = `
       <h2>User Information</h2>
       <form id="edit-user-form">
 
         <label for="customerId">Customer ID:</label>
-        <input type="text" id="customerId" name="customerId" value="${
-          customer.customerID
-        }" readonly>
+        <input type="text" id="customerId" name="customerId" value="${customer.customerID}" readonly>
 
         <div class="multiple-input-fields">
           <div>
             <label for="firstName">First Name:</label>
-            <input type="text" id="firstName" name="firstName" value="${
-              customer.customerBio.firstName
-            }" required>
+            <input type="text" id="firstName" name="firstName" value="${customer.customerBio.firstName}" required>
           </div>
           <div>
             <label for="lastName">Last Name:</label>
-            <input type="text" id="lastName" name="lastName" value="${
-              customer.customerBio.lastName
-            }" required>
+            <input type="text" id="lastName" name="lastName" value="${customer.customerBio.lastName}" required>
           </div>
         </div>
 
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" value="${
-          customer.email
-        }" readonly>
+        <input type="email" id="email" name="email" value="${customer.email}" readonly>
 
         <label for="phone">Phone Number:</label>
-        <input type="tel" id="phone" name="phone" value="${
-          customer.phone
-        }" required>
+        <input type="tel" id="phone" name="phone" value="${customer.phone}" required>
 
         <label for="street">Street:</label>
-        <input type="text" id="street" name="street" value="${
-          customer.customerBio.address.street
-        }" required>
+        <input type="text" id="street" name="street" value="${customer.customerBio.address.street}" required>
 
         <div class="multiple-input-fields">
           <div>
             <label for="city">City:</label>
-            <input type="text" id="city" name="city" value="${
-              customer.customerBio.address.city
-            }" required>
+            <input type="text" id="city" name="city" value="${customer.customerBio.address.city}" required>
           </div>
           <div>
             <label for="country">Country:</label>
-            <input type="text" id="country" name="country" value="${
-              customer.customerBio.address.country
-            }" required>
+            <input type="text" id="country" name="country" value="${customer.customerBio.address.country}" required>
           </div>
         </div>
 
@@ -189,26 +179,16 @@ import { filterTable } from "../../helper/searchTable.js";
           <div>
             <label for="gender">Gender:</label>
             <select id="gender" name="gender">
-              <option value="Male" ${
-                customer.customerBio.gender === "Male" ? "selected" : ""
-              }>Male</option>
-              <option value="Female" ${
-                customer.customerBio.gender === "Female" ? "selected" : ""
-              }>Female</option>
-              <option value="Other" ${
-                customer.customerBio.gender === "Other" ? "selected" : ""
-              }>Other</option>
+              <option value="Male" ${customer.customerBio.gender === "Male" ? "selected" : ""}>Male</option>
+              <option value="Female" ${customer.customerBio.gender === "Female" ? "selected" : ""}>Female</option>
+              <option value="Other" ${customer.customerBio.gender === "Other" ? "selected" : ""}>Other</option>
             </select>
           </div>
           <div>
             <label for="account-status">Account Status:</label>
             <select id="account-status" name="account-status">
-              <option value="Active" ${
-                customer.accountStatus === "Active" ? "selected" : ""
-              }>Active</option>
-              <option value="Frozen" ${
-                customer.accountStatus === "Frozen" ? "selected" : ""
-              }>Frozen</option>
+              <option value="Active" ${customer.accountStatus === "Active" ? "selected" : ""}>Active</option>
+              <option value="Frozen" ${customer.accountStatus === "Frozen" ? "selected" : ""}>Frozen</option>
             </select>
           </div>
         </div>
@@ -229,9 +209,8 @@ import { filterTable } from "../../helper/searchTable.js";
     const editUserForm = document.getElementById("edit-user-form");
 
     // Define the form submission handler
-    async function formSubmitHandler(event) {
+    const formSubmitHandler = async (event) => {
       event.preventDefault();
-
       const formData = new FormData(event.target);
       const updatedCustomerData = {};
 
@@ -247,19 +226,19 @@ import { filterTable } from "../../helper/searchTable.js";
       }
       if (formData.get("street") !== customer.customerBio.address.street) {
         updatedCustomerData.address = {
-          ...(updatedCustomerData.address || {}),
+          ...(updatedCustomerData.address || customer.customerBio.address),
           street: formData.get("street"),
         };
       }
       if (formData.get("city") !== customer.customerBio.address.city) {
         updatedCustomerData.address = {
-          ...(updatedCustomerData.address || {}),
+          ...(updatedCustomerData.address || customer.customerBio.address),
           city: formData.get("city"),
         };
       }
       if (formData.get("country") !== customer.customerBio.address.country) {
         updatedCustomerData.address = {
-          ...(updatedCustomerData.address || {}),
+          ...(updatedCustomerData.address || customer.customerBio.address),
           country: formData.get("country"),
         };
       }
@@ -272,16 +251,18 @@ import { filterTable } from "../../helper/searchTable.js";
 
       // Only send updated fields
       if (Object.keys(updatedCustomerData).length > 0) {
-        await updateCustomerData(customer.customerID, updatedCustomerData);
+        confirmPopUp.showConfirmModal("Commit the changes?", async () => {
+          await updateCustomerData(customer.customerID, updatedCustomerData);
+          closeModal();
+          getUserList();
+          searchInput.value = "";
+        });
+      } else {
+        closeModal();
       }
+    };
 
-      closeModal();
-      getUserList();
-      searchInput.value = "";
-    }
-
-    // Remove previous event listener to prevent duplicates
-    editUserForm.removeEventListener("submit", formSubmitHandler);
+    // Attach event listener to the form
     editUserForm.addEventListener("submit", formSubmitHandler);
   }
 
@@ -289,6 +270,7 @@ import { filterTable } from "../../helper/searchTable.js";
   function closeModal() {
     modal.style.display = "none";
     modalOverlay.style.display = "none";
+    modalContent.innerHTML = ""; // Clear modal content
   }
 
   closeModalBtn.addEventListener("click", closeModal);
@@ -304,6 +286,7 @@ import { filterTable } from "../../helper/searchTable.js";
   function closeAddUserModal() {
     addUserModal.style.display = "none";
     addUserModalOverlay.style.display = "none";
+    userForm.reset(); // Reset the form fields
   }
 
   closeAddUserModalBtn.addEventListener("click", closeAddUserModal);
@@ -333,9 +316,11 @@ import { filterTable } from "../../helper/searchTable.js";
       orders: [],
     };
 
-    await addCustomer(customerData);
-    closeAddUserModal();
-    getUserList();
-    searchInput.value = "";
+    confirmPopUp.showConfirmModal("Create customer account?", async () => {
+      await addCustomer(customerData);
+      closeAddUserModal();
+      getUserList();
+      searchInput.value = "";
+    });
   });
 })();
