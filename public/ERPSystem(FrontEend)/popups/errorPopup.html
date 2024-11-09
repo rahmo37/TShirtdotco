@@ -1,0 +1,30 @@
+<!-- errorModal.html -->
+<div
+  class="modal fade"
+  id="errorModal"
+  tabindex="-1"
+  aria-labelledby="errorModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #dc3545; color: white">
+        <h2 class="modal-title modal-primary" id="errorModalLabel">Error!</h2>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <p id="errorMessage" style="font-size: 25px;"">An unknown error occurred.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

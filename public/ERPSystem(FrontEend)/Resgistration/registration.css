@@ -1,0 +1,211 @@
+* {
+  font-family: "Poppins", sans-serif;
+}
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
+.wrapper {
+  background: #ffffff;
+  padding: 0 20px;
+  background-image: url("../img/Background3.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.row {
+  width: 1000px;
+  height: 570px;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: -8px 8px 10px rgba(0, 0, 0, 0.4);
+}
+
+.right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+
+.side-image {
+  background-image: url("../img/RegistrationImg.png");
+  background-position: center bottom;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  position: relative;
+  border-radius: 10px 0 0 10px;
+}
+
+.carousel-indicators button {
+  pointer-events: none;
+  width: 10px !important;
+  height: 10px !important;
+  border-radius: 50%;
+  margin: 0 8px !important;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.carousel-content {
+  flex: 1;
+  min-height: 200px;
+  max-height: 420px;
+  width: 400px;
+  overflow-y: hidden;
+}
+
+.button-container {
+  text-align: center;
+  padding: 15px 0;
+}
+
+.carousel-indicators [data-bs-target] {
+  background-color: #cdd1ef !important;
+}
+
+.carousel-indicators .active {
+  background-color: #6474eb !important;
+}
+
+.carousel-inner {
+  display: flex;
+  position: relative;
+  justify-content: flex-start;
+  margin-top: 40px;
+  padding-top: 50px;
+}
+
+.carousel-indicators {
+  position: absolute;
+  max-height: 10px;
+  top: 30px;
+  margin: 0;
+  z-index: 2;
+}
+
+.carousel-item {
+  transition: none;
+}
+
+.buttons {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  height: 40px;
+  width: 100px;
+  border-radius: 5px;
+  transition: 0.5s;
+}
+
+.input-field {
+  display: flex;
+  flex-direction: column;
+  width: 235px;
+  position: relative;
+  padding: 0 10px 0 10px;
+}
+
+.input {
+  height: 45px;
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  outline: none;
+  color: #40410a;
+  transition: none;
+}
+
+/* Remove blue highlight for autofill */
+.input:-webkit-autofill,
+.input:-webkit-autofill:focus {
+  background-color: white !important; /* Prevent autofill blue background */
+  box-shadow: 0 0 0px 1000px white inset;
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
+  -moz-box-shadow: 0 0 0px 1000px white inset;
+}
+
+h5 {
+  border-radius: 8px;
+  margin-right: 17px;
+  margin-bottom: 12px !important;
+  background-color: #8f98d2;
+  padding: 12px;
+  color: #ffffff !important;
+}
+
+.input-field label {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  pointer-events: none;
+  transition: 0.3s;
+}
+
+.input-field .input:focus ~ label {
+  top: -10px;
+  font-size: 13px;
+}
+
+.input-field .input:valid ~ label {
+  top: -10px;
+  font-size: 13px;
+  color: #3688f2;
+}
+
+.input-field .input:focus,
+.input-field .input:valid {
+  border-bottom: 1px solid #727fd2;
+}
+
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+#nextBtn {
+  background-color: #3648be;
+  color: #fff;
+}
+
+#nextBtn:hover {
+  background: #0527ad;
+  box-shadow: 0 0 10px rgba(81, 112, 233, 0.6), 0 0 20px rgba(81, 112, 233, 0.4),
+    0 0 30px rgba(81, 112, 233, 0.2);
+}
+
+#backBtn:hover {
+  background-color: #b8afb8;
+}
+
+#gender {
+  margin-right: 125px;
+}
+
+#password-header {
+  margin-left: 15px;
+  margin-bottom: 15px;
+}

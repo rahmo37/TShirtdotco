@@ -48,5 +48,10 @@ employee_InventoryOperationRoutes.get(
   inventoryFunctions.getInventoryReport
 );
 
+employee_InventoryOperationRoutes.post(
+  "/report/custom",
+  inventoryFunctions.getCustomSoldProductReport
+);
+
 // Export the module
 module.exports = employee_InventoryOperationRoutes;

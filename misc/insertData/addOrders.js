@@ -16,7 +16,7 @@ const insertOrders = async () => {
   try {
     // Read orders data from JSON file
     const orderData = fs.readFileSync(
-      "../json/ERPDatabase_Updated.orders.json",
+      "../../json/ord.json",
       "utf8"
     );
     const orders = JSON.parse(orderData);

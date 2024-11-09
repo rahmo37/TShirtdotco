@@ -1,0 +1,420 @@
+[
+  {
+    "email": "michael.smith@gmail.com",
+    "password": "$2b$10$DHO0tmFuEjh36ZWvUBrvletah1oFYYHCMKEc.pgSaHJJt2Wf3Wm6K",
+    "phone": "6319876543",
+    "lastLogin": "2024-09-13T04:00:00+00:00",
+    "isAdmin": false,
+    "employeeBio": {
+      "firstName": "Michael",
+      "lastName": "Smith",
+      "address": {
+        "street": "500 sample ave",
+        "city": "sample city",
+        "state": "NY",
+        "zipCode": "54321",
+        "country": "USA"
+      },
+      "gender": "Male"
+    },
+    "workInfo": {
+      "jobTitle": "IT Manager",
+      "employeeType": "permanent",
+      "hireDate": "2024-09-12T04:00:00.000Z",
+      "payFrequency": "bi-weekly",
+      "payAmount": {
+        "baseSalary": 6500,
+        "bonus": 600
+      },
+      "department": "IT",
+      "workingHours": {
+        "startTime": "08:00",
+        "endTime": "16:00"
+      }
+    },
+    "accountCreated": "2024-09-17T04:00:00.000Z",
+    "accountStatus": "Active",
+    "__v": 0,
+    "employeeID": "EMP_531397a05100"
+  },
+  {
+    "email": "jennifer@gmail.com",
+    "password": "$2b$10$A6G7/ooREsJM8k4o36HSreUyAViCMei3GfLx8ujIGuWuI2/7rArJK",
+    "phone": "631223122",
+    "lastLogin": "2024-09-17T08:12:40.406Z",
+    "isAdmin": false,
+    "employeeBio": {
+      "firstName": "Jennifer",
+      "lastName": "Jones",
+      "address": {
+        "street": "189 funcky st",
+        "city": "example town",
+        "state": "NY",
+        "zipCode": "12345",
+        "country": "USA"
+      },
+      "gender": "Female"
+    },
+    "workInfo": {
+      "jobTitle": "Sales Representative",
+      "employeeType": "permanent",
+      "hireDate": "2024-07-19T04:00:00.000Z",
+      "payFrequency": "monthly",
+      "payAmount": {
+        "baseSalary": 4000,
+        "bonus": 400
+      },
+      "department": "Sales",
+      "workingHours": {
+        "startTime": "09:00",
+        "endTime": "17:00"
+      }
+    },
+    "accountCreated": "2024-09-17T04:00:00.000Z",
+    "accountStatus": "Closed",
+    "__v": 0,
+    "employeeID": "EMP_334f86fa782e"
+  },
+  {
+    "email": "john@gmail.com",
+    "password": "$2b$10$tcZW2TBdaAwNTFgX76r/A.DARr.upcUn5rKpNZjPllUZ3qrekdTxi",
+    "phone": "6312341234",
+    "lastLogin": "2024-11-03T01:00:51.282Z",
+    "isAdmin": true,
+    "employeeBio": {
+      "firstName": "John",
+      "lastName": "Doe",
+      "address": {
+        "street": "123 garden st",
+        "city": "example town",
+        "state": "NY",
+        "zipCode": "12345",
+        "country": "USA"
+      },
+      "gender": "Male"
+    },
+    "workInfo": {
+      "jobTitle": "Sales Manager",
+      "employeeType": "permanent",
+      "hireDate": "2024-09-01T05:00:00.000Z",
+      "payFrequency": "monthly",
+      "payAmount": {
+        "baseSalary": 5000,
+        "bonus": 500
+      },
+      "department": "Sales",
+      "workingHours": {
+        "startTime": "09:00",
+        "endTime": "17:00"
+      }
+    },
+    "accountCreated": "2024-09-17T04:00:00.000Z",
+    "accountStatus": "Active",
+    "__v": 0,
+    "employeeID": "EMP_5b7fe5552af8"
+  },
+  {
+    "email": "chris@gmail.com",
+    "password": "$2b$10$ktYU2wlY8f0QaWGchKbWbeP61FOHNt7okXylBtKDsA8w.E5AP/f/6",
+    "phone": "631123126",
+    "lastLogin": "2024-09-17T07:40:33.406Z",
+    "isAdmin": true,
+    "employeeBio": {
+      "firstName": "Chris",
+      "lastName": "Smith",
+      "address": {
+        "street": "154 example st",
+        "city": "example town",
+        "state": "NY",
+        "zipCode": "12345",
+        "country": "USA"
+      },
+      "gender": "Male"
+    },
+    "workInfo": {
+      "jobTitle": "Warehouse Manager",
+      "employeeType": "permanent",
+      "hireDate": "2024-08-15T00:00:00.000Z",
+      "payFrequency": "monthly",
+      "payAmount": {
+        "baseSalary": 6000,
+        "bonus": 750
+      },
+      "department": "Warehouse",
+      "workingHours": {
+        "startTime": "09:00",
+        "endTime": "17:00"
+      }
+    },
+    "accountCreated": "2024-09-17T04:00:00.000Z",
+    "accountStatus": "Closed",
+    "__v": 0,
+    "employeeID": "EMP_7df244ab40d9"
+  },
+  {
+    "email": "susan@gmail.com",
+    "password": "$2b$10$p/estVavyKnk3KBHXq25d.8A51RprfwjWGbrCadHpQ2P2378HBC4K",
+    "phone": "6315551234",
+    "lastLogin": "2024-09-18T09:45:12.503Z",
+    "isAdmin": false,
+    "employeeBio": {
+      "firstName": "Susan",
+      "lastName": "Smith",
+      "address": {
+        "street": "456 sample rd",
+        "city": "sample city",
+        "state": "CA",
+        "zipCode": "90210",
+        "country": "USA"
+      },
+      "gender": "Female"
+    },
+    "workInfo": {
+      "jobTitle": "Marketing Coordinator",
+      "employeeType": "permanent",
+      "hireDate": "2024-06-15T04:00:00.000Z",
+      "payFrequency": "monthly",
+      "payAmount": {
+        "baseSalary": 3500,
+        "bonus": 200
+      },
+      "department": "Marketing",
+      "workingHours": {
+        "startTime": "08:00",
+        "endTime": "16:00"
+      }
+    },
+    "accountCreated": "2024-09-17T04:00:00.000Z",
+    "accountStatus": "Closed",
+    "__v": 0,
+    "employeeID": "EMP_f2f91d3ab90c"
+  },
+  {
+    "employeeID": "EMP_7c250eb34b3c",
+    "email": "kakashi@gmail.com",
+    "password": "$2b$10$paRwHUqjROyVJvrM3hx/pefJatwophVeHMGXWUTSy01ApVoGaf4gG",
+    "phone": "6314567821",
+    "lastLogin": "2024-10-04T07:19:26.345774Z",
+    "isAdmin": false,
+    "employeeBio": {
+      "firstName": "Kakashi",
+      "lastName": "Hatake",
+      "address": {
+        "street": "090 Random st",
+        "city": "Random town",
+        "state": "NY",
+        "zipCode": "12345",
+        "country": "USA"
+      },
+      "gender": "Male"
+    },
+    "workInfo": {
+      "jobTitle": "Warehouse Manager",
+      "employeeType": "permanent",
+      "hireDate": "2024-08-15T00:00:00.000Z",
+      "payFrequency": "monthly",
+      "payAmount": {
+        "baseSalary": 6000,
+        "bonus": 750
+      },
+      "department": "Warehouse",
+      "workingHours": {
+        "startTime": "09:00",
+        "endTime": "17:00"
+      }
+    },
+    "accountCreated": "2024-10-08T06:23:18.232Z",
+    "accountStatus": "Active",
+    "__v": 0
+  },
+  {
+    "employeeID": "EMP_7c03d5a2ee49",
+    "email": "sadiat@example.com",
+    "password": "$2b$10$IlcBwyafFE/t5Hcha0BXUuRtFMShCHUTSrRSOEvCGMrgyPxWdXrS2",
+    "phone": "1231231231",
+    "lastLogin": "2024-10-09T00:00:00+00:00",
+    "isAdmin": false,
+    "employeeBio": {
+      "firstName": "Sadia",
+      "lastName": "Cage",
+      "address": {
+        "street": "123 Random St",
+        "city": "Namek",
+        "state": "NY",
+        "zipCode": "11717",
+        "country": "Country"
+      },
+      "gender": "Male"
+    },
+    "workInfo": {
+      "jobTitle": "Test",
+      "employeeType": "permanent",
+      "hireDate": "2024-10-08T00:00:00.000Z",
+      "payFrequency": "monthly",
+      "payAmount": {
+        "baseSalary": 1700,
+        "bonus": 2000
+      },
+      "department": "Test Department",
+      "workingHours": {
+        "startTime": "8:00",
+        "endTime": "12:00"
+      }
+    },
+    "accountCreated": "2024-10-09T17:09:20.497Z",
+    "accountStatus": "Active",
+    "__v": 0
+  },
+  {
+    "employeeID": "EMP_2fbe6898a2dc",
+    "email": "itachi@gmail.com",
+    "password": "$2b$10$ndvKZbjIbwHQTZ8DERcyreMKyrIRPwhH81xhn2rwH3RIfBp0wvOgq",
+    "phone": "6315567821",
+    "lastLogin": "2024-10-04T07:19:26.346136Z",
+    "isAdmin": true,
+    "employeeBio": {
+      "firstName": "Itachi",
+      "lastName": "Uchiha",
+      "address": {
+        "street": "12 leaf st",
+        "city": "fire town",
+        "state": "NY",
+        "zipCode": "12456",
+        "country": "USA"
+      },
+      "gender": "Male"
+    },
+    "workInfo": {
+      "jobTitle": "Warehouse Manager",
+      "employeeType": "permanent",
+      "hireDate": "2024-08-17T00:00:00.000Z",
+      "payFrequency": "monthly",
+      "payAmount": {
+        "baseSalary": 8000,
+        "bonus": 750
+      },
+      "department": "Warehouse",
+      "workingHours": {
+        "startTime": "09:00",
+        "endTime": "17:00"
+      }
+    },
+    "accountCreated": "2024-10-13T05:13:04.051Z",
+    "accountStatus": "Active",
+    "__v": 0
+  },
+  {
+    "employeeID": "EMP_e2aaa3cafb37",
+    "email": "ryan@gmail.com",
+    "password": "$2b$10$xx2xPuW3M4qAj2kb9H.9F.eZBbg42IwL0E3tGbqNi6aF2zg.mypKO",
+    "phone": "6312309209",
+    "lastLogin": "2024-10-28T05:15:05.346000+00:00",
+    "isAdmin": false,
+    "employeeBio": {
+      "firstName": "Ryan",
+      "lastName": "Machado",
+      "address": {
+        "street": "12 leaf st",
+        "city": "City",
+        "state": "NY",
+        "zipCode": "11717",
+        "country": "Country"
+      },
+      "gender": "Male"
+    },
+    "workInfo": {
+      "jobTitle": "Marketing Coordinator",
+      "employeeType": "permanent",
+      "hireDate": "2024-10-27T05:15:05.346Z",
+      "payFrequency": "monthly",
+      "payAmount": {
+        "baseSalary": 3500,
+        "bonus": 1000
+      },
+      "department": "Marketing",
+      "workingHours": {
+        "startTime": "8:00",
+        "endTime": "12:00"
+      }
+    },
+    "accountCreated": "2024-10-27T05:15:05.565Z",
+    "accountStatus": "Active",
+    "__v": 0
+  },
+  {
+    "employeeID": "EMP_f0585a811802",
+    "email": "umme@gmail.com",
+    "password": "$2b$10$.ifbiWE4Ya4Qt3M4wgsKJuQ/HJ77yNIFKkbkzO8xWhfdT8FaauWuK",
+    "phone": "6311234098",
+    "lastLogin": "2024-11-01T03:49:20.502000+00:00",
+    "isAdmin": true,
+    "employeeBio": {
+      "firstName": "Umme",
+      "lastName": "Roushan",
+      "address": {
+        "street": "123 Rainbow St",
+        "city": "Deer Park",
+        "state": "New York",
+        "zipCode": "11729",
+        "country": "United States"
+      },
+      "gender": "Female"
+    },
+    "workInfo": {
+      "jobTitle": "Warehouse Manager",
+      "employeeType": "permanent",
+      "hireDate": "2024-10-31T03:49:20.502Z",
+      "payFrequency": "monthly",
+      "payAmount": {
+        "baseSalary": 123456,
+        "bonus": 12345
+      },
+      "department": "Warehouse",
+      "workingHours": {
+        "startTime": "09:00",
+        "endTime": "17:00"
+      }
+    },
+    "accountCreated": "2024-10-31T03:49:20.604Z",
+    "accountStatus": "Active",
+    "__v": 0
+  },
+  {
+    "employeeID": "EMP_1004f841838a",
+    "email": "mike@gmail.com",
+    "password": "$2b$10$ObNVoDTxxcADbirPEesVOucUgtQgddAyLemx8vLiJdguqUCM61VqG",
+    "phone": "5169589635",
+    "lastLogin": "2024-11-01T05:19:13.056000+00:00",
+    "isAdmin": false,
+    "employeeBio": {
+      "firstName": "Mike",
+      "lastName": "sdfsdf",
+      "address": {
+        "street": "123 Rainbow St",
+        "city": "Deer Park",
+        "state": "new york",
+        "zipCode": "11729",
+        "country": "United States"
+      },
+      "gender": "Male"
+    },
+    "workInfo": {
+      "jobTitle": "Test",
+      "employeeType": "permanent",
+      "hireDate": "2024-10-31T05:19:13.056Z",
+      "payFrequency": "monthly",
+      "payAmount": {
+        "baseSalary": 123123,
+        "bonus": 232
+      },
+      "department": "Test Dept",
+      "workingHours": {
+        "startTime": "09:00",
+        "endTime": "17:00"
+      }
+    },
+    "accountCreated": "2024-10-31T05:19:13.339Z",
+    "accountStatus": "Active",
+    "__v": 0
+  }
+]

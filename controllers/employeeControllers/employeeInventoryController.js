@@ -341,7 +341,7 @@ inventoryFunctions.restockProduct = async (req, res, next) => {
     }
 
     res.status(200).json({
-      message: "Product restocked",
+      message: "Product restocked successfully",
       data: {
         categoryId,
         productId,
@@ -364,16 +364,10 @@ inventoryFunctions.getInventoryReport = async (req, res, next) => {
     // object to store the compiled inventory report
     const inventoryReport = {};
 
-    // retrieve inventory data for products sold last month
-    inventoryReport.lastMonthSoldProducts = await getSoldProductsReport(
-      session,
-      getDateRange(1)
-    );
-
     // retrieve inventory data from start of the year till current month starting
     inventoryReport.inventoryUpToCurrentMonth = await getSoldProductsReport(
       session,
-      getDateRange(new Date().getMonth())
+      getDateRange(currentNewYorkDateTime().getMonth())
     );
 
     // get the current quantity of products
@@ -383,7 +377,7 @@ inventoryFunctions.getInventoryReport = async (req, res, next) => {
     // get the 5 top selling products
     inventoryReport.topSellingProducts = await getTopSellingProducts(
       session,
-      getDateRange(new Date().getMonth())
+      getDateRange(currentNewYorkDateTime().getMonth())
     );
 
     // get low stock products
@@ -407,6 +401,89 @@ inventoryFunctions.getInventoryReport = async (req, res, next) => {
   }
 };
 
+inventoryFunctions.getCustomSoldProductReport = async (req, res, next) => {
+  try {
+    const { startDate, endDate } = req.body;
+    if (
+      !startDate ||
+      !endDate ||
+      Object.keys(startDate).length === 0 ||
+      Object.keys(startDate).length === 0
+    ) {
+      const err = new Error("You must provide start and end dates");
+      err.status = 400;
+      return next(err);
+    }
+
+    for (let key of Object.keys(startDate)) {
+      const convertedValue = checkAndConvertToNumber(startDate[key]);
+      if (convertedValue === false) {
+        const err = new Error(
+          "Invalid value provided for the start date field: " + key
+        );
+        err.status = 400;
+        return next(err);
+      }
+      startDate[key] = convertedValue;
+    }
+
+    for (let key of Object.keys(endDate)) {
+      const convertedValue = checkAndConvertToNumber(endDate[key]);
+      if (convertedValue === false) {
+        const err = new Error(
+          "Invalid value provided for the end date field: " + key
+        );
+        err.status = 400;
+        return next(err);
+      }
+      endDate[key] = convertedValue;
+    }
+
+    const dateA = currentNewYorkDateTime();
+    dateA.setDate(startDate.day === 31 ? 30 : startDate.day);
+    dateA.setMonth(startDate.month - 1);
+    dateA.setFullYear(startDate.year);
+
+    const dateB = currentNewYorkDateTime();
+    dateB.setDate(endDate.day === 31 ? 30 : endDate.day);
+    dateB.setMonth(endDate.month - 1);
+    dateB.setFullYear(endDate.year);
+
+    console.log(dateB);
+
+    const checkDateA = new Date(
+      Date.UTC(startDate.year, startDate.month - 1, startDate.day)
+    );
+    const checkDateB = new Date(
+      Date.UTC(endDate.year, endDate.month - 1, endDate.day)
+    );
+
+    if (checkDateA.getTime() >= checkDateB.getTime()) {
+      const err = new Error(
+        "The start date must be earlier than the end date."
+      );
+      err.status = 400;
+      return next(err);
+    }
+
+    const customSoldProductReport = await getSoldProductsReport(null, [
+      dateA,
+      dateB,
+    ]);
+
+    console.log(customSoldProductReport);
+
+    res.status(200).json({
+      message: "Custom sold products data included",
+      data: {
+        customSoldProductReport,
+      },
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
 //! Helper functions to gather inventory report
 
 //* generic inventory error function - helper function
@@ -419,20 +496,38 @@ function throwInventoryError(
   throw err;
 }
 
+function checkAndConvertToNumber(value) {
+  // Check if the value is a string that can be converted to a valid number
+  if (typeof value === "string") {
+    value = value.trim();
+    if (value === "" || isNaN(Number(value))) {
+      return false; // Invalid string input
+    }
+    return Number(value); // Convert valid string to number
+  }
+
+  // If the value is already a number, return it
+  if (typeof value === "number" && !isNaN(value)) {
+    return value;
+  }
+
+  // If it's neither a valid number nor a convertible string, return false
+  return false;
+}
+
 //* generic date range function - helper function
 function getDateRange(valueToSubtract) {
   // making a new date instance. its month will be set by subtracting the given value
-  const dateA = new Date();
+  const dateA = currentNewYorkDateTime();
 
   // the date will be set up to the intended month and that month's starting date
   dateA.setMonth(dateA.getMonth() - valueToSubtract);
   dateA.setDate(1);
-  dateA.setHours(0, 0, 0, 0);
+  dateA.setHours(23, 59, 59, 999);
 
   // setting up another date instance so it will reflect the current months first day
-  const dateB = new Date();
-  dateB.setDate(1);
-  dateB.setHours(0, 0, 0, 0);
+  const dateB = currentNewYorkDateTime();
+  dateA.setHours(23, 59, 59, 999);
 
   return [dateA, dateB];
 }
@@ -447,7 +542,7 @@ async function getSoldProductsReport(session, dateArr) {
           orderStatus: "completed", // only completed Orders will be taken
           orderDate: {
             $gte: dateArr[0],
-            $lt: dateArr[1],
+            $lte: dateArr[1],
           }, // orders within the given range will be accumulated
         },
       },
@@ -460,6 +555,9 @@ async function getSoldProductsReport(session, dateArr) {
           productName: { $first: "$items.productName" }, // Since productID uniquely identifies a product, the productName will be the same for all documents in that group. Using 'first' is a convenient way to just grab the productName from the first document
           totalQuantitySold: { $sum: "$items.quantity" },
           imageUrl: { $first: "$items.imageUrl" },
+          currentAvailabilityStatus: {
+            $first: "$items.currentAvailabilityStatus",
+          },
         },
       },
       {
@@ -469,6 +567,7 @@ async function getSoldProductsReport(session, dateArr) {
           productName: 1,
           totalQuantitySold: 1,
           imageUrl: 1,
+          currentAvailabilityStatus: 1,
         },
       },
     ]).session(session); // adding this transaction to the part of the session
@@ -481,12 +580,16 @@ async function getSoldProductsReport(session, dateArr) {
 
     // Get the starting month's name
     const startMonth = new Date(dateArr[0]).toLocaleString("default", {
+      day: "numeric",
       month: "long",
+      year: "numeric",
     });
 
     // Get the ending month's name
     const endMonth = new Date(dateArr[1]).toLocaleString("default", {
+      day: "numeric",
       month: "long",
+      year: "numeric",
     });
 
     // return the overall report
@@ -547,7 +650,7 @@ async function getTopSellingProducts(session, dateArr) {
           orderStatus: "completed",
           orderDate: {
             $gte: dateArr[0],
-            $lte: new Date(),
+            $lte: currentNewYorkDateTime(),
           },
         },
       },
@@ -645,9 +748,13 @@ async function getLowStockProducts(session) {
         $project: {
           _id: 0,
           categoryID: 1,
+          categoryName: 1,
+          productName: "$products.productName",
+          imageUrl: "$products.imageUrl",
           productID: "$products.productID",
           currentQuantity: "$products.stockInfo.currentQuantity",
           restockQuantity: "$products.stockInfo.restockQuantity",
+          restockThreshold: "$products.stockInfo.restockThreshold",
           lastRestock: {
             $dateToString: {
               format: "%Y-%m-%d",

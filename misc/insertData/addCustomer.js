@@ -16,7 +16,7 @@ const insertCustomers = async () => {
   try {
     // Read customers data from JSON file
     const customerData = fs.readFileSync(
-      "../json/ERPDatabase_Customers.json",
+      "../../json/cus.json",
       "utf8"
     );
     const customers = JSON.parse(customerData);

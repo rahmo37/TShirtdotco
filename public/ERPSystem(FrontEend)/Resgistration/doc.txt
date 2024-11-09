@@ -1,0 +1,348 @@
+// import the necessary modules
+import { validateObject } from "../helper/validation.js";
+
+let firstName = "";
+let lastName = "";
+let gender = "";
+let address = "";
+let city = "";
+let country = "";
+let password = "";
+let email = "";
+let phone = "";
+
+// Carousel function
+let currentSlide = 0;
+let isTransitioning = false; // Track if a slide transition is in progress
+
+// Define the buttons
+const nextBtn = document.getElementById("nextBtn");
+const backBtn = document.getElementById("backBtn");
+
+// Add event listeners
+nextBtn.addEventListener("click", nextSlide);
+backBtn.addEventListener("click", prevSlide);
+
+async function nextSlide() {
+  // Prevent lading of the next slid if the slide is transitioning or input field has errors
+  if (isTransitioning) {
+    return;
+  }
+
+  // DEBUG console.log(currentSlide, await hasErrors(currentSlide));
+  if (await hasErrors(currentSlide)) {
+    return;
+  }
+
+  // Correct carousel element
+  const carouselElement = document.querySelector("#cardCarousel");
+
+  // Check if the carousel already exists, and if it doesn’t, create one
+  const carousel =
+    bootstrap.Carousel.getInstance(carouselElement) ||
+    new bootstrap.Carousel(carouselElement);
+
+  // Get the total number of slides (zero-based index)
+  const totalSlides =
+    carouselElement.querySelectorAll(".carousel-item").length - 1;
+
+  // Disable buttons during transition
+  disableButtons();
+
+  // Move to the next slide
+  if (currentSlide < totalSlides) {
+    carousel.next();
+    currentSlide++;
+    // console.log(currentSlide);
+  }
+
+  // Update back button text if not on the first slide
+  if (currentSlide > 0) {
+    backBtn.textContent = "Back";
+  }
+
+  // If it's the last slide, change the next button text to "Register"
+  if (currentSlide === totalSlides) {
+    nextBtn.textContent = "Register";
+    nextBtn.removeEventListener("click", nextSlide);
+    nextBtn.addEventListener("click", registerUser);
+  } else {
+    // Ensure the button text is "Next" until the last slide
+    nextBtn.textContent = "Next";
+    nextBtn.removeEventListener("click", registerUser);
+    nextBtn.addEventListener("click", nextSlide); // Reset the function
+  }
+
+  // Re-enable buttons after transition
+  setTimeout(enableButtons, 700); // 700ms adjusted for the carousel transition duration
+}
+
+function prevSlide() {
+  if (isTransitioning) return; // Prevent multiple clicks during transition
+
+  const carouselElement = document.querySelector("#cardCarousel");
+  const carousel =
+    bootstrap.Carousel.getInstance(carouselElement) ||
+    new bootstrap.Carousel(carouselElement);
+  const totalSlides =
+    carouselElement.querySelectorAll(".carousel-item").length - 1;
+
+  // Disable buttons during transition
+  disableButtons();
+
+  // Move to the previous slide
+  if (currentSlide > 0) {
+    carousel.prev();
+    currentSlide--;
+    // console.log(currentSlide);
+    if (currentSlide === 0) {
+      backBtn.textContent = "Go Back";
+    }
+  } else {
+    window.location.href = "../Login/login.html"; // Redirect on the first slide
+  }
+
+  // If the user moves back from the last slide, reset the next button text
+  if (currentSlide < totalSlides) {
+    nextBtn.textContent = "Next";
+    nextBtn.removeEventListener("click", registerUser);
+    nextBtn.addEventListener("click", nextSlide); // Reset the function
+  }
+
+  // Re-enable buttons after transition
+  setTimeout(enableButtons, 700); // Adjust to match the carousel transition duration
+}
+
+// Disable the next and back buttons
+function disableButtons() {
+  isTransitioning = true;
+  nextBtn.disabled = true;
+  backBtn.disabled = true;
+}
+
+// Enable the next and back buttons
+function enableButtons() {
+  isTransitioning = false;
+  nextBtn.disabled = false;
+  backBtn.disabled = false;
+}
+
+// console.log(
+//   firstName,
+//   lastName,
+//   gender,
+//   address,
+//   city,
+//   country,
+//   password,
+//   email,
+//   phone,
+//   confirmPassword
+// );
+
+//* Helper functions
+// Add an error class
+function addErrClass(elem) {
+  elem.classList.add("is-invalid");
+}
+
+// Remove error class
+function removeErrClass(elem) {
+  elem.classList.remove("is-invalid");
+  elem.classList.add("is-valid");
+}
+
+// Remove error class on value change in the input field
+function removeErrClassOnValueChange(elem) {
+  elem.addEventListener("input", () => {
+    removeErrClass(elem);
+  });
+}
+
+// Set error message
+function setErrMessage(elem, message) {
+  elem.innerHTML = message;
+}
+async function hasErrors(slideNumber) {
+  const firstNameInput = document.getElementById("firstName");
+  const lastNameInput = document.getElementById("lastName");
+  const genderInput = document.getElementById("gender");
+  const addressInput = document.getElementById("address");
+  const cityInput = document.getElementById("city");
+  const countryInput = document.getElementById("country");
+  const passwordInput = document.getElementById("password");
+  const emailInput = document.getElementById("email");
+  const phoneInput = document.getElementById("phone");
+  const confirmPasswordInput = document.getElementById("confirm-password");
+  const firstNameErr = document.getElementById("firstname-err");
+  const lastNameErr = document.getElementById("lastname-err");
+  const genderErr = document.getElementById("gender-err");
+  const addressErr = document.getElementById("address-err");
+  const cityErr = document.getElementById("city-err");
+  const countryErr = document.getElementById("country-err");
+  const emailErr = document.getElementById("email-err");
+  const phoneErr = document.getElementById("phone-err");
+  const passwordErr = document.getElementById("password-err");
+  const confirmPasswordErr = document.getElementById("confirm-password-err");
+
+  if (slideNumber === 0) {
+    removeErrClassOnValueChange(firstNameInput);
+    removeErrClassOnValueChange(lastNameInput);
+    removeErrClassOnValueChange(genderInput);
+    // Check firstName
+    if (validateObject.isFalsy(firstNameInput.value)) {
+      setErrMessage(firstNameErr, "Name field cannot be empty");
+      addErrClass(firstNameInput);
+      return true;
+    } else if (!validateObject.checkNames(firstNameInput.value)) {
+      setErrMessage(firstNameErr, "Invalid name");
+      addErrClass(firstNameInput);
+      return true;
+    } else {
+      removeErrClass(firstNameInput);
+      firstName = firstNameInput.value;
+    }
+
+    // Check the last name
+    if (validateObject.isFalsy(lastNameInput.value)) {
+      setErrMessage(lastNameErr, "Name cannot be empty");
+      addErrClass(lastNameInput);
+      return true;
+    } else if (!validateObject.checkNames(lastNameInput.value)) {
+      setErrMessage(lastNameErr, "Invalid name");
+      addErrClass(lastNameInput);
+      return true;
+    } else {
+      removeErrClass(lastNameInput);
+      lastName = lastNameInput.value;
+    }
+
+    // Check the gender
+    if (validateObject.isFalsy(genderInput.value)) {
+      setErrMessage(genderErr, "Select your gender");
+      addErrClass(genderInput);
+      return true;
+    } else {
+      removeErrClass(genderInput);
+      gender = genderInput.value;
+    }
+  }
+
+  if (slideNumber === 1) {
+    removeErrClassOnValueChange(addressInput);
+    removeErrClassOnValueChange(cityInput);
+    removeErrClassOnValueChange(countryInput);
+
+    // Check streetAddress
+    if (validateObject.isFalsy(addressInput.value)) {
+      setErrMessage(addressErr, "This field cannot be empty");
+      addErrClass(addressInput);
+      return true;
+    } else if (!validateObject.checkStreetAddress(addressInput.value)) {
+      setErrMessage(addressErr, "Invalid Address");
+      addErrClass(addressInput);
+      return true;
+    } else {
+      removeErrClass(addressInput);
+      address = addressInput.value;
+    }
+
+    // Check the city
+    if (validateObject.isFalsy(cityInput.value)) {
+      setErrMessage(cityErr, "This field cannot be empty");
+      addErrClass(cityInput);
+      return true;
+    } else if (!validateObject.checkCityOrCountry(cityInput.value)) {
+      setErrMessage(cityErr, "Invalid City");
+      addErrClass(cityInput);
+      return true;
+    } else {
+      removeErrClass(cityInput);
+      city = cityInput.value;
+    }
+
+    // Check the country
+    if (validateObject.isFalsy(countryInput.value)) {
+      setErrMessage(countryErr, "This field cannot be empty");
+      addErrClass(countryInput);
+      return true;
+    } else if (!validateObject.checkCityOrCountry(countryInput.value)) {
+      setErrMessage(countryErr, "Invalid country");
+      addErrClass(countryInput);
+      return true;
+    } else {
+      removeErrClass(countryInput);
+      country = countryInput.value;
+    }
+  }
+
+  if (slideNumber === 2) {
+    removeErrClassOnValueChange(emailInput);
+    removeErrClassOnValueChange(phoneInput);
+
+    // Check email
+    if (validateObject.isFalsy(emailInput.value)) {
+      setErrMessage(emailErr, "This field cannot be empty");
+      addErrClass(emailInput);
+      return true;
+    } else if (!validateObject.checkEmailFormat(emailInput.value)) {
+      setErrMessage(emailErr, "Invalid email format");
+      addErrClass(emailInput);
+      return true;
+    } else {
+      removeErrClass(emailInput);
+      email = emailInput.value;
+    }
+
+    // Check the city
+    if (validateObject.isFalsy(phoneInput.value)) {
+      setErrMessage(phoneErr, "This field cannot be empty");
+      addErrClass(phoneInput);
+      return true;
+    } else if (!validateObject.checkPhoneNumber(phoneInput.value)) {
+      setErrMessage(phoneErr, "Enter 10 digit numbers only");
+      addErrClass(phoneInput);
+      return true;
+    } else {
+      removeErrClass(phoneInput);
+      phone = phoneInput.value;
+    }
+  }
+
+  if (slideNumber === 3) {
+    removeErrClassOnValueChange(passwordInput);
+    removeErrClassOnValueChange(confirmPasswordInput);
+
+    // Check password
+    if (validateObject.isFalsy(passwordInput.value)) {
+      setErrMessage(passwordErr, "This field cannot be empty");
+      addErrClass(passwordInput);
+      return true;
+    } else if (!validateObject.checkPassword(passwordInput.value)) {
+      setErrMessage(passwordErr, "Invalid format! Example: pass1P&");
+      addErrClass(passwordInput);
+      return true;
+    } else {
+      removeErrClass(passwordInput);
+      password = passwordInput.value;
+    }
+
+    // Check the confirm password
+    if (!validateObject.matchPassword(password, confirmPasswordInput.value)) {
+      console.log("Hi");
+      setErrMessage(confirmPasswordErr, "Passwords don't match");
+      addErrClass(confirmPasswordInput);
+      return true;
+    } else {
+      removeErrClass(confirmPasswordInput);
+      return false;
+    }
+  }
+}
+
+async function registerUser() {
+  if (await hasErrors(currentSlide)) {
+    return;
+  }
+  alert("user registered");
+}

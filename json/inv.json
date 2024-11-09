@@ -1,0 +1,275 @@
+[
+  {
+    "categoryID": "CAT_115e84783044",
+    "categoryName": "t_shirts",
+    "products": [
+      {
+        "productID": "PRO_29e5f51631ca",
+        "productName": "Slim Fit T-Shirt",
+        "productDescription": "A classic slim fit T-shirt made with high-quality cotton.",
+        "unitPrice": 19.99,
+        "stockInfo": {
+          "currentQuantity": 56,
+          "totalSold": 73,
+          "restockThreshold": 30,
+          "lastRestock": "2024-10-02T21:21:33.097Z",
+          "restockQuantity": 50,
+          "stockStatus": "In Stock"
+        },
+        "imageUrl": "slim.jpg",
+        "dateAdded": "2024-10-02T21:21:33.097Z",
+        "color": "White"
+      },
+      {
+        "productID": "PRO_e5f3bffa58a5",
+        "productName": "V-Neck T-Shirt",
+        "productDescription": "Soft and comfortable V-neck T-shirt.",
+        "unitPrice": 22.59,
+        "stockInfo": {
+          "currentQuantity": 64,
+          "totalSold": 0,
+          "restockThreshold": 30,
+          "lastRestock": "2024-10-24T19:13:42.987Z",
+          "restockQuantity": 60,
+          "stockStatus": "In Stock"
+        },
+        "imageUrl": "v-neck.jpg",
+        "dateAdded": "2024-10-24T19:13:42.987Z",
+        "color": "Black"
+      }
+    ],
+    "__v": 22
+  },
+  {
+    "categoryID": "CAT_51189d17aeee",
+    "categoryName": "hoodies_sweatshirts",
+    "products": [
+      {
+        "productID": "PRO_bf2569c11f5e",
+        "productName": "Pullover Hoodie",
+        "productDescription": "Comfortable pullover hoodie with adjustable drawstring.",
+        "unitPrice": 39.99,
+        "stockInfo": {
+          "currentQuantity": 49,
+          "totalSold": 2,
+          "restockThreshold": 20,
+          "lastRestock": "2024-09-17T04:00:00.000Z",
+          "restockQuantity": 30,
+          "stockStatus": "In Stock"
+        },
+        "imageUrl": "pullover.jpg",
+        "dateAdded": "2024-09-17T04:00:00.000Z",
+        "color": "Black"
+      },
+      {
+        "productID": "PRO_66295f6bcd36",
+        "productName": "Zip-Up-Sweatshirt",
+        "productDescription": "Stylish zip-up sweatshirt for casual wear.",
+        "unitPrice": 45.99,
+        "stockInfo": {
+          "currentQuantity": 48,
+          "totalSold": 4,
+          "restockThreshold": 10,
+          "lastRestock": "2024-09-18T04:00:00.000Z",
+          "restockQuantity": 40,
+          "stockStatus": "In Stock"
+        },
+        "imageUrl": "zip-up-sweatshirt.jpg",
+        "dateAdded": "2024-09-18T04:00:00.000Z",
+        "color": "Navy"
+      },
+      {
+        "productID": "PRO_ed1b84bdfa55",
+        "productName": "Casual Hoodie",
+        "productDescription": "A comfortable and stylish hoodie made with soft, breathable fabric, perfect for everyday wear.",
+        "unitPrice": 39.99,
+        "stockInfo": {
+          "currentQuantity": 120,
+          "totalSold": 0,
+          "restockThreshold": 50,
+          "lastRestock": "2024-10-31T00:40:58.904Z",
+          "restockQuantity": 100,
+          "stockStatus": "In Stock"
+        },
+        "imageUrl": "casual.jpg",
+        "dateAdded": "2024-10-31T00:40:58.904Z",
+        "color": "Red"
+      }
+    ],
+    "__v": 1
+  },
+  {
+    "categoryID": "CAT_7aab29394519",
+    "categoryName": "graphic_t_shirts",
+    "products": [
+      {
+        "productID": "PRO_a63b20165329",
+        "productName": "Vintage Band Tee",
+        "productDescription": "Retro-style band tee with a distressed print.",
+        "unitPrice": 29.99,
+        "stockInfo": {
+          "currentQuantity": 85,
+          "totalSold": 5,
+          "restockThreshold": 30,
+          "lastRestock": "2024-09-16T04:00:00.000Z",
+          "restockQuantity": 60,
+          "stockStatus": "In Stock"
+        },
+        "imageUrl": "vintage.jpg",
+        "dateAdded": "2024-09-16T04:00:00.000Z",
+        "color": "Gray"
+      },
+      {
+        "productID": "PRO_3cd1cefd7516",
+        "productName": "Ocean Wave Tee",
+        "productDescription": "Comfortable graphic T-shirt with a stunning ocean wave design.",
+        "unitPrice": 27.99,
+        "stockInfo": {
+          "currentQuantity": 75,
+          "totalSold": 0,
+          "restockThreshold": 25,
+          "lastRestock": "2024-10-12T04:00:00+00:00",
+          "restockQuantity": 50,
+          "stockStatus": "In Stock"
+        },
+        "imageUrl": "ocean.jpg",
+        "dateAdded": "2024-10-02T04:00:00.000Z",
+        "color": "Teal"
+      },
+      {
+        "productID": "PRO_8a9abfe6e1b2",
+        "productName": "Galactic Graphic Tee",
+        "productDescription": "Cool graphic T-shirt with a Galactic design.",
+        "unitPrice": 34.99,
+        "stockInfo": {
+          "currentQuantity": 60,
+          "totalSold": 0,
+          "restockThreshold": 20,
+          "lastRestock": "2024-10-15T00:18:05.841Z",
+          "restockQuantity": 40,
+          "stockStatus": "In Stock"
+        },
+        "imageUrl": "galactic.jpg",
+        "dateAdded": "2024-10-15T00:18:05.841Z",
+        "color": "Black"
+      },
+      {
+        "productID": "PRO_4b406eadac7f",
+        "productName": "Forest Graphic Tee",
+        "productDescription": "Cool graphic T-shirt with a forest design.",
+        "unitPrice": 24.99,
+        "stockInfo": {
+          "currentQuantity": 60,
+          "totalSold": 0,
+          "restockThreshold": 20,
+          "lastRestock": "2024-10-15T00:20:36.389Z",
+          "restockQuantity": 40,
+          "stockStatus": "In Stock"
+        },
+        "imageUrl": "forest.jpg",
+        "dateAdded": "2024-10-15T00:20:36.389Z",
+        "color": "Black"
+      }
+    ],
+    "__v": 4
+  },
+  {
+    "categoryID": "CAT_d3956a5c4cec",
+    "categoryName": "plain_t_shirts",
+    "products": [
+      {
+        "productID": "PRO_e4003175882f",
+        "productName": "Classic Crew Neck Tee Blue",
+        "productDescription": "Simpleeeee and stylish blue colored crew neck T-shirt.",
+        "unitPrice": 26.99,
+        "stockInfo": {
+          "currentQuantity": 150,
+          "totalSold": 0,
+          "restockThreshold": 70,
+          "lastRestock": "2024-10-02T17:44:20.395Z",
+          "restockQuantity": 80,
+          "stockStatus": "In Stock"
+        },
+        "imageUrl": "classic.jpg",
+        "dateAdded": "2024-10-02T17:44:20.395Z",
+        "color": "Blue"
+      },
+      {
+        "productID": "PRO_0655c52a27a8",
+        "productName": "Basic Crew Neck Tee Green",
+        "productDescription": "Simple and stylish green colored crew neck T-shirt.",
+        "unitPrice": 22.99,
+        "stockInfo": {
+          "currentQuantity": 160,
+          "totalSold": 0,
+          "restockThreshold": 70,
+          "lastRestock": "2024-10-02T18:28:40.210Z",
+          "restockQuantity": 80,
+          "stockStatus": "In Stock"
+        },
+        "imageUrl": "basic.jpg",
+        "dateAdded": "2024-10-02T18:28:40.210Z",
+        "color": "Green"
+      },
+      {
+        "productID": "PRO_469c0a364c20",
+        "productName": "Classic Crew Neck Tee red",
+        "productDescription": "Simple and stylish red colored crew neck T-shirt.",
+        "unitPrice": 20.99,
+        "stockInfo": {
+          "currentQuantity": 150,
+          "totalSold": 0,
+          "restockThreshold": 70,
+          "lastRestock": "2024-10-13T03:55:37.204Z",
+          "restockQuantity": 80,
+          "stockStatus": "In Stock"
+        },
+        "imageUrl": "classic.jpg",
+        "dateAdded": "2024-10-13T03:55:37.204Z",
+        "color": "Red"
+      }
+    ],
+    "__v": 19
+  },
+  {
+    "categoryID": "CAT_8199c505d83b",
+    "categoryName": "accessories",
+    "products": [
+      {
+        "productID": "PRO_4eb0feec0e25",
+        "productName": "Baseball Cap",
+        "productDescription": "Classic baseball cap with adjustable strap.",
+        "unitPrice": 12.99,
+        "stockInfo": {
+          "currentQuantity": 128,
+          "totalSold": 2,
+          "restockThreshold": 50,
+          "lastRestock": "2024-09-19T04:00:00.000Z",
+          "restockQuantity": 80,
+          "stockStatus": "In Stock"
+        },
+        "imageUrl": "baseball.jpg",
+        "dateAdded": "2024-09-19T04:00:00.000Z",
+        "color": "Navy"
+      },
+      {
+        "productID": "PRO_23749bf628da",
+        "productName": "Tote Bag",
+        "productDescription": "Spacious and durable tote bag for everyday use.",
+        "unitPrice": 16.99,
+        "stockInfo": {
+          "currentQuantity": 89,
+          "totalSold": 88,
+          "restockThreshold": 40,
+          "lastRestock": "2024-10-15T20:43:11.585Z",
+          "restockQuantity": 50,
+          "stockStatus": "In Stock"
+        },
+        "imageUrl": "tote.jpg",
+        "dateAdded": "2024-09-18T04:00:00.000Z",
+        "color": "Beige"
+      }
+    ],
+    "__v": 7
+  }
+]

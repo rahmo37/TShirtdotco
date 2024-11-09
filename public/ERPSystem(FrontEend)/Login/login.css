@@ -1,0 +1,204 @@
+* {
+  font-family: "Poppins", sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
+.wrapper {
+  background: #ececec;
+  padding: 0 20px;
+  background-image: url("../img/Background3.png");
+  background-repeat: no-repeat; /* Prevent the background from repeating */
+  background-attachment: fixed; /* Keeps the background fixed during scroll */
+  background-size: cover; /* Ensures the background covers the entire container */
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.row {
+  width: 1000px;
+  height: 570px;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: -8px 8px 10px rgba(0, 0, 0, 0.4);
+}
+
+.side-image {
+  background-image: url("../img/ShoppingBG.png");
+  background-position: center bottom;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  position: relative;
+  border-radius: 10px 0 0 10px;
+}
+
+.text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.text p {
+  color: #fff;
+  font-size: 18px;
+  transform: translate(-50%, -600%);
+}
+
+.sign-up {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.sign-up button {
+  width: 250px;
+  font-size: 18px;
+  transform: translate(-50%, -300%);
+}
+
+.right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+
+.input-box {
+  width: 330px;
+  margin-top: 100px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* This adds even spacing between all children */
+}
+
+.input-field {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding: 0 10px 0 10px;
+}
+
+.input {
+  height: 45px;
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  outline: none;
+  color: #40410a;
+}
+
+.input-box img {
+  position: absolute;
+  top: 40px;
+  left: 100px;
+  margin-left: 15px;
+  width: 50%;
+}
+
+.input-box .input-field label {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  pointer-events: none;
+  transition: 0.3s;
+}
+
+.input-field .input:focus ~ label {
+  top: -10px;
+  font-size: 13px;
+}
+
+.input-field .input:valid ~ label {
+  top: -10px;
+  font-size: 13px;
+  color: #3688f2;
+}
+
+.input-field .input:focus,
+.input-field .input:valid {
+  border-bottom: 1px solid #727fd2;
+}
+
+.input:-webkit-autofill,
+.input:-webkit-autofill:focus {
+  background-color: white !important; /* Prevent autofill blue background */
+  box-shadow: 0 0 0px 1000px white inset;
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
+  -moz-box-shadow: 0 0 0px 1000px white inset;
+}
+
+.checkbox {
+  margin-bottom: 20px;
+}
+
+.sign-in,
+.sign-up-btn {
+  margin-top: 30px;
+  margin-bottom: 20px;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  height: 45px;
+  background: #3648be;
+  border-radius: 5px;
+  transition: 0.3s;
+  color: #fff;
+}
+
+.sign-in:hover,
+.sign-up-btn:hover {
+  background: #0527ad;
+  box-shadow: 0 0 10px rgba(81, 112, 233, 0.6), 0 0 20px rgba(81, 112, 233, 0.4),
+    0 0 30px rgba(81, 112, 233, 0.2);
+}
+
+@media only screen and (max-width: 768px) {
+  .side-image {
+    background-image: url("../img/liquid-cheese 2.svg");
+    border-radius: 10px 10px 0 0;
+  }
+  .text {
+    position: absolute;
+    top: 70%;
+    text-align: center;
+  }
+  .text p,
+  i {
+    font-size: 26px;
+    transform: translate(-50%, -220%);
+  }
+
+  .sign-up {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  }
+
+  .sign-up button {
+    font-size: 18px;
+    transform: translate(-50%, -80%);
+  }
+
+  .row {
+    max-width: 420px;
+    width: 100%;
+  }
+}
+
+#eye {
+  position: absolute;
+  left: 300px;
+  top: 15px;
+}

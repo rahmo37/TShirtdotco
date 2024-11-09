@@ -1,0 +1,85 @@
+<div id="main-content">
+  <!-- Header -->
+  <h1>Customers</h1>
+  <button id="add-new-btn">Add Customer</button>
+
+  <!-- Render table -->
+  <div id="table-container"></div>
+  <div class="input-container">
+    <img src="../../img/search.png" class="search-icon">
+    <input type="text" id="searchInput" placeholder="Type to search..." />
+  </div>
+
+  <!-- Modal for displaying User Details -->
+  <div id="customer-modal" class="custom-modal">
+    <span id="close-userDetail-modal" class="close-modal-btn">&times;</span>
+    <div id="modal-content-customer"></div>
+  </div>
+
+  <!-- darken background when viewing user details -->
+  <div id="custom-modal-overlay" class="custom-modal-overlay"></div>
+
+  <!-- Modal for Adding a New User -->
+  <div id="add-User-modal" class="custom-modal">
+    <span id="close-add-User-modal" class="close-modal-btn">&times;</span>
+
+    <div id="add-User-modal-content">
+      <h2>Add New Customer</h2>
+
+      <form id="new-user-form">
+        <div class="multiple-input-fields">
+          <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+          <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required />
+          </div>
+        </div>
+
+        <label for="phone">Phone:</label>
+        <input type="tel" id="phone" name="phone" required />
+
+        <div class="multiple-input-fields">
+          <div>
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" name="firstName" required />
+          </div>
+          <div>
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" name="lastName" required />
+          </div>
+        </div>
+
+        <label for="street">Street:</label>
+        <input type="text" id="street" name="street" required />
+
+        <div class="multiple-input-fields">
+          <div>
+            <label for="city">City:</label>
+            <input type="text" id="city" name="city" required />
+          </div>
+          <div>
+            <label for="country">Country:</label>
+            <input type="text" id="country" name="country" required />
+          </div>
+        </div>
+
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender" required>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+
+        <button type="submit" class="add-to-db">Add Customer</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- darken background when adding customer  -->
+  <div id="add-User-modal-overlay" class="custom-modal-overlay"></div>
+
+  <script src="../js/users.js"></script>
+</div>

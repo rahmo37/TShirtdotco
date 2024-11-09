@@ -1,0 +1,496 @@
+[
+  {
+    "customerID": "CUS_8c865487fe86",
+    "email": "susan@gmail.com",
+    "phone": "6319876543",
+    "password": "$2b$10$ujfR9J.g/5Zh9CsSY1/H4OhbuUgHVwxmhlcSV4SxS0/TQgWKRRuoq",
+    "customerBio": {
+      "firstName": "Susan",
+      "lastName": "Wellington",
+      "address": {
+        "street": "456 tree leaves ave",
+        "city": "sample city",
+        "country": "USA"
+      },
+      "gender": "Female"
+    },
+    "accountCreated": "2024-09-17T04:00:00.000Z",
+    "accountStatus": "Active",
+    "__v": 0
+  },
+  {
+    "customerID": "CUS_d9b3fe967858",
+    "email": "michael@example.com",
+    "phone": "6317896543",
+    "password": "$2b$10$sOB330ItqeNtSxhjXifFOetP3HcAIVbuqfgOJwnFtS0VUW2s.1JfK",
+    "customerBio": {
+      "firstName": "Micheal",
+      "lastName": "Smith",
+      "address": {
+        "street": "789 sample ave",
+        "city": "demo town",
+        "country": "USA"
+      },
+      "gender": "Male"
+    },
+    "accountCreated": "2024-09-20T04:00:00.000Z",
+    "accountStatus": "Active",
+    "__v": 0
+  },
+  {
+    "customerID": "CUS_c65af7bc37a7",
+    "email": "sarah@example.com",
+    "phone": "6319876543",
+    "password": "$2b$10$LRLyjxiqGc33Cat7ikq32uIrMDChbk91FnXM.lSsfDOuIOsJzZCcK",
+    "customerBio": {
+      "firstName": "Sarah",
+      "lastName": "Johnson",
+      "address": {
+        "street": "465 example rd",
+        "city": "sample city",
+        "country": "Canada"
+      },
+      "gender": "Female"
+    },
+    "accountCreated": "2024-09-18T04:00:00.000Z",
+    "accountStatus": "Active",
+    "__v": 0
+  },
+  {
+    "customerID": "CUS_65c9deee56a3",
+    "email": "larry@gmail.com",
+    "phone": "6311233213",
+    "password": "$2b$10$igQHNv0DyA6mC43Mkgk0yuzO1RcG21cPWw.mrDtu6VSreoL0eu66G",
+    "customerBio": {
+      "firstName": "Larry",
+      "lastName": "Rangoon",
+      "address": {
+        "street": "234 garden st",
+        "city": "example town",
+        "country": "USA"
+      },
+      "gender": "Male"
+    },
+    "accountCreated": "2024-09-17T04:00:00.000Z",
+    "accountStatus": "Active",
+    "__v": 0
+  },
+  {
+    "customerID": "CUS_2711435b0111",
+    "email": "arnob@example.com",
+    "phone": "631234265",
+    "password": "$2b$10$pRR25oEsl0WAMoZ4st4Qwut9iIwncxYjJmwmnmYQ2OoZVFtZDBemu",
+    "customerBio": {
+      "firstName": "Arnob",
+      "lastName": "Ahmed",
+      "address": {
+        "street": "567 any rd",
+        "city": "that city",
+        "country": "USA"
+      },
+      "gender": "Male"
+    },
+    "accountCreated": "2024-10-05T07:30:49.909Z",
+    "accountStatus": "Frozen",
+    "__v": 0
+  },
+  {
+    "customerID": "CUS_7b1788a84f64",
+    "email": "zarin@example.com",
+    "phone": "631457896",
+    "password": "$2b$10$ItoHubY03AGQ2e2jnJBFsOIGJrbHJlH0Uxr6rfMyD1MKiVI1G1tBG",
+    "customerBio": {
+      "firstName": "Zarin",
+      "lastName": "Rafa",
+      "address": {
+        "street": "123 any rd",
+        "city": "that city",
+        "country": "USA"
+      },
+      "gender": "Female"
+    },
+    "accountCreated": "2024-10-08T06:25:50.518Z",
+    "accountStatus": "Active",
+    "__v": 0
+  },
+  {
+    "customerID": "CUS_db665bdd3c2a",
+    "email": "rakib@example.com",
+    "phone": "6311635426",
+    "password": "$2b$10$.dNM8P/0ZbcPflDoW7gQbOoQX1IhPN1Sj8JNr7yogf.kK/W/Nkx3u",
+    "customerBio": {
+      "firstName": "Rakib",
+      "lastName": "Uddin",
+      "address": {
+        "street": "123 random rd",
+        "city": "tree city",
+        "country": "USA"
+      },
+      "gender": "Male"
+    },
+    "accountCreated": "2024-10-08T06:29:52.845Z",
+    "accountStatus": "Active",
+    "__v": 0
+  },
+  {
+    "customerID": "CUS_022eda37dcd9",
+    "email": "test@example.com",
+    "phone": "6313058091",
+    "password": "$2b$10$FqPMlnftp.AGwlIHw2F2z.OCrh/hkaQv.YWNVWxToC3J3PXBC0E6e",
+    "customerBio": {
+      "firstName": "John",
+      "lastName": "Doe",
+      "address": {
+        "street": "Street Name",
+        "city": "City",
+        "country": "Country"
+      },
+      "gender": "Male"
+    },
+    "accountCreated": "2024-10-08T18:43:43.809Z",
+    "accountStatus": "Frozen",
+    "__v": 0
+  },
+  {
+    "customerID": "CUS_ebd877d994a3",
+    "email": "test2@example.com",
+    "phone": "3240912345",
+    "password": "$2b$10$.6fgqeWI5vQOJ/jFYAkUe.mNL/gxqMupgcFlpvXPXtZX77tWq0zNm",
+    "customerBio": {
+      "firstName": "fisfn",
+      "lastName": "dfjgsdo",
+      "address": {
+        "street": "sdjf",
+        "city": "dfovg",
+        "country": "dsoi"
+      },
+      "gender": "Male"
+    },
+    "accountCreated": "2024-10-08T18:45:02.742Z",
+    "accountStatus": "Frozen",
+    "__v": 0
+  },
+  {
+    "customerID": "CUS_c502a4defc91",
+    "email": "sam@gmail.com",
+    "phone": "6311234325",
+    "password": "$2b$10$lYL3PDanCaRqQszuZhl2Q.CKCcu8Xf5RJPifRGHItBlFdYsrU50AO",
+    "customerBio": {
+      "firstName": "Samuale",
+      "lastName": "Johnes",
+      "address": {
+        "street": "768 grass rd",
+        "city": "forest city",
+        "country": "USA"
+      },
+      "gender": "Male"
+    },
+    "accountCreated": "2024-10-09T00:01:14.747Z",
+    "accountStatus": "Active",
+    "__v": 0
+  },
+  {
+    "customerID": "CUS_751aa2f58c25",
+    "email": "antar@gmail.com",
+    "phone": "6312341243",
+    "password": "$2b$10$fRU3oTktzSZcaVk1RGYtkeBUei4nay7R913eTyGnDCiW0Ke9u4lVq",
+    "customerBio": {
+      "firstName": "Antar",
+      "lastName": "Ahmed",
+      "address": {
+        "street": "156 paglar math rd",
+        "city": "goran city",
+        "country": "USA"
+      },
+      "gender": "Male"
+    },
+    "accountCreated": "2024-10-13T04:56:40.852Z",
+    "accountStatus": "Active",
+    "__v": 0
+  },
+  {
+    "customerID": "CUS_557b3cdaca24",
+    "email": "rahim.uddin@example.com",
+    "phone": "0123456789",
+    "password": "$2b$10$8qpeb2Cp4gGWDwIPnVI1M.79bJzh2YbUQPQA/caylJWz7FOCz9j.S",
+    "customerBio": {
+      "firstName": "Rahim",
+      "lastName": "Uddin",
+      "address": {
+        "street": "78 Dhanmondi Rd",
+        "city": "Dhaka",
+        "country": "Bangladesh"
+      },
+      "gender": "Male"
+    },
+    "accountCreated": "2024-10-14T04:09:02.178Z",
+    "accountStatus": "Active",
+    "__v": 0
+  },
+  {
+    "customerID": "CUS_550feb0492a8",
+    "email": "joe@gmail.com",
+    "phone": "999-999-9999",
+    "password": "$2b$10$MLQLMBpXRAq64/EOzhFwX.zYGU3Fi8ZQBmS.Ygz60Y0VjjesI7Ns6",
+    "customerBio": {
+      "firstName": "Joe",
+      "lastName": "Mario",
+      "address": {
+        "street": "123 Dog St",
+        "city": "New Yorkkk",
+        "country": "United States"
+      },
+      "gender": "Male"
+    },
+    "accountCreated": "2024-10-14T23:02:43.032Z",
+    "accountStatus": "Active",
+    "__v": 0
+  },
+  {
+    "customerID": "CUS_da95172728ce",
+    "email": "p.attyr20@hotmail.com",
+    "phone": "324",
+    "password": "$2b$10$Qsdnmetv/wkJOBR3MSDd2OU69FBps6XU.XPENUAozCtER0UsW1JHC",
+    "customerBio": {
+      "firstName": "34",
+      "lastName": "34",
+      "address": {
+        "street": "324",
+        "city": "42",
+        "country": "42"
+      },
+      "gender": "Male"
+    },
+    "accountCreated": "2024-10-15T04:25:53.643Z",
+    "accountStatus": "Active",
+    "__v": 0
+  },
+  {
+    "customerID": "CUS_147436d8bd4a",
+    "email": "ryan@gmail.com",
+    "phone": "6314500290",
+    "password": "$2b$10$rwjf9TuZmjJ5VaXQQ6slTe61vQ2XRBlpSn4uojwIqZ968ujVhER.6",
+    "customerBio": {
+      "firstName": "Ryan",
+      "lastName": "Wi",
+      "address": {
+        "street": "Street Name",
+        "city": "City",
+        "country": "Country"
+      },
+      "gender": "Male"
+    },
+    "accountCreated": "2024-10-15T14:29:38.978Z",
+    "accountStatus": "Active",
+    "__v": 0
+  },
+  {
+    "customerID": "CUS_b9746e6a0b2b",
+    "email": "mike@gmail.com",
+    "phone": "5169589635",
+    "password": "$2b$10$tuBbagZvk4KFVb3wH7cT3uykLkn2tP78FX3me1fZiV14p.FXa8cHa",
+    "customerBio": {
+      "firstName": "Mike",
+      "lastName": "Doe",
+      "address": {
+        "street": "123 Rainbow St",
+        "city": "New York",
+        "country": "United States"
+      },
+      "gender": "Male"
+    },
+    "accountCreated": "2024-10-15T17:20:53.912Z",
+    "accountStatus": "Active",
+    "__v": 0
+  },
+  {
+    "customerID": "CUS_a192d9577c71",
+    "email": "bruce@example.com",
+    "phone": "1202403",
+    "password": "$2b$10$Gzrc6xVeudL93I.YfjjlGugi37DjVrmHx8R3ZxYyFEr.MtZHqFfRC",
+    "customerBio": {
+      "firstName": "Rahim",
+      "lastName": "Uddin",
+      "address": {
+        "street": "78 Dhanmondi Rd",
+        "city": "Dhaka",
+        "country": "Bangladesh"
+      },
+      "gender": "Male"
+    },
+    "accountCreated": "2024-10-25T01:18:24.647Z",
+    "accountStatus": "Active",
+    "__v": 0
+  },
+  {
+    "customerID": "CUS_28e423dd36fa",
+    "email": "mark@farmingdale.edu",
+    "phone": "32345",
+    "password": "$2b$10$jhoIdNWuuGhvLRymFy0LoOnw6e41rbkvWUDk2A7wNcRbPM9R2SXYi",
+    "customerBio": {
+      "firstName": "Mark",
+      "lastName": "Wayne",
+      "address": {
+        "street": "sdjf",
+        "city": "Brentwood",
+        "country": "USA"
+      },
+      "gender": "Male"
+    },
+    "accountCreated": "2024-10-25T01:23:06.136Z",
+    "accountStatus": "Frozen",
+    "__v": 0
+  },
+  {
+    "customerID": "CUS_d1a22f26867c",
+    "email": "lisa@gmail.com",
+    "phone": "3477241416",
+    "password": "$2b$10$qke0UCvDioGSoGT1g/qYlOH9GMhZUHeUqI9x93Uww/36PjUSI9/cq",
+    "customerBio": {
+      "firstName": "Lisa",
+      "lastName": "Park",
+      "address": {
+        "street": "Clarke St",
+        "city": "Brentwood",
+        "country": "us"
+      },
+      "gender": "Female"
+    },
+    "accountCreated": "2024-10-25T01:28:04.722Z",
+    "accountStatus": "Frozen",
+    "__v": 0
+  },
+  {
+    "customerID": "CUS_8752b72cfb79",
+    "email": "jalal.uddin@example.com",
+    "phone": "0123457789",
+    "password": "$2b$10$VL4hV4v1G6uwmJXq0qQO1eD0qPxH8tS4/uhFkU.732Z9ja/g8UVWO",
+    "customerBio": {
+      "firstName": "Jalal",
+      "lastName": "Uddin",
+      "address": {
+        "street": "76 Dhanmondi Rd",
+        "city": "Dhaka",
+        "country": "Bangladesh"
+      },
+      "gender": "Male"
+    },
+    "accountCreated": "2024-10-25T03:14:05.615Z",
+    "accountStatus": "Active",
+    "__v": 0
+  },
+  {
+    "customerID": "CUS_681bea9da0bf",
+    "email": "shawlin@gmail.com",
+    "phone": "6319653230",
+    "password": "$2b$10$/1A2oYUFJ26buXYSKXbgYe9YfYxSYeH9vaJ9w.DRsPb4PUVP7aPvy",
+    "customerBio": {
+      "firstName": "Nadia",
+      "lastName": "Shawlin",
+      "address": {
+        "street": "123 easter rd",
+        "city": "Bunny City",
+        "country": "USA"
+      },
+      "gender": "female"
+    },
+    "accountCreated": "2024-10-26T03:54:52.051Z",
+    "accountStatus": "Active",
+    "__v": 0
+  },
+  {
+    "customerID": "CUS_657cf418055e",
+    "email": "idiotictv420@gmail.com",
+    "phone": "6311653230",
+    "password": "$2b$10$n8ukIQCdJo4xeuhN4DoNQ.JCLF7/p2/2w4mubGN9GDaAvARwKplUS",
+    "customerBio": {
+      "firstName": "Obaedur",
+      "lastName": "Rahman",
+      "address": {
+        "street": "26 W 21ST ST",
+        "city": "DEER PARK",
+        "country": "United States"
+      },
+      "gender": "male"
+    },
+    "accountCreated": "2024-10-26T03:56:04.571Z",
+    "accountStatus": "Active",
+    "__v": 0
+  },
+  {
+    "customerID": "CUS_ccde7824dbb7",
+    "email": "john@gmail.com",
+    "phone": "1231231231",
+    "password": "$2b$10$wKgSb6aesxuMlxhKhsUacO284qtjCRTrwKhS0ilh24wTj901b47.2",
+    "customerBio": {
+      "firstName": "Mike",
+      "lastName": "Test",
+      "address": {
+        "street": "12 west 21 St",
+        "city": "New York",
+        "country": "United States"
+      },
+      "gender": "male"
+    },
+    "accountCreated": "2024-10-29T13:01:51.830Z",
+    "accountStatus": "Active",
+    "__v": 0
+  },
+  {
+    "customerID": "CUS_ccc3d74bcea2",
+    "email": "hagsda@gmail.com",
+    "phone": "5169580635",
+    "password": "$2b$10$JrskDf6z3IBvrYpau.6R4OcpnebgAVeRMUj27O/jF4wQ6cnRx0UoO",
+    "customerBio": {
+      "firstName": "asdasd",
+      "lastName": "dsdf",
+      "address": {
+        "street": "26 w 21st st",
+        "city": "New York",
+        "country": "United States"
+      },
+      "gender": "male"
+    },
+    "accountCreated": "2024-10-29T13:03:36.950Z",
+    "accountStatus": "Active",
+    "__v": 0
+  },
+  {
+    "customerID": "CUS_04a7b2c56cdb",
+    "email": "test1@gmail.com",
+    "phone": "1291231231",
+    "password": "$2b$10$BVRLOowrQ0knyX4nmjc0EuTO34ykdNfCzXVS.GtpHjS4ykOMX1kOK",
+    "customerBio": {
+      "firstName": "asd",
+      "lastName": "zcklx",
+      "address": {
+        "street": "26 w 21st st",
+        "city": "New York",
+        "country": "United States"
+      },
+      "gender": "male"
+    },
+    "accountCreated": "2024-10-29T13:18:08.914Z",
+    "accountStatus": "Active",
+    "__v": 0
+  },
+  {
+    "customerID": "CUS_681c4aef7261",
+    "email": "jordan@gmail.com",
+    "phone": "6314567890",
+    "password": "$2b$10$ApVy6qH4I.Ik3FkAbixXeOGJgVXBZOGllMHQgUthjdbQwrgqU6Sl.",
+    "customerBio": {
+      "firstName": "Jordan",
+      "lastName": "Pill",
+      "address": {
+        "street": "12 lilac ln",
+        "city": "Simth Town",
+        "country": "USA"
+      },
+      "gender": "Male"
+    },
+    "accountCreated": "2024-10-30T01:39:31.182Z",
+    "accountStatus": "Active",
+    "__v": 0
+  }
+]

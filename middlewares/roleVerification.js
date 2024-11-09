@@ -5,7 +5,7 @@ const roleVerify = {};
 
 roleVerify.isAdmin = (req, res, next) => {
   if (!req.user || req.user.role !== "admin") {
-    const err = new Error("Not enough permission!");
+    const err = new Error("You do not have permissions to perform this action!");
     err.status = 403;
     return next(err);
   }

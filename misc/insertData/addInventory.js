@@ -16,7 +16,7 @@ const insertInventory = async () => {
   try {
     // Read inventory data from JSON file
     const inventoryData = fs.readFileSync(
-      "../json/ERPDatabase_Updated.inventory.json",
+      "../../json/inv.json",
       "utf8"
     );
     const inventory = JSON.parse(inventoryData);

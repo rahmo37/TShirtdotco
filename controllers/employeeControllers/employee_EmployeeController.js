@@ -158,7 +158,7 @@ employeeFunctions.updateEmployee = async (req, res, next) => {
   try {
     const { employeeId } = req.params;
     const revisedEmployee = req.body;
-    // const userId = req.user.id;
+    const userId = req.user.id;
 
     // checking if the updated date is provided
     if (!revisedEmployee || Object.keys(revisedEmployee).length === 0) {
@@ -167,14 +167,13 @@ employeeFunctions.updateEmployee = async (req, res, next) => {
       return next(err);
     }
 
-    // TODO activate it later
-    //! if (userId === employeeId) {
-    //   const err = new Error(
-    //     "You cannot update your own profile through this portal. Please use the user profile section to make changes."
-    //   );
-    //   err.status = 403;
-    //   return next(err);
-    //! }
+    if (userId === employeeId) {
+      const err = new Error(
+        "You cannot update your own profile through this portal. Please use the settings section to make changes."
+      );
+      err.status = 403;
+      return next(err);
+    }
 
     // Find the employee
     let employeeData = await Employee.findOne({

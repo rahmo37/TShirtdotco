@@ -9,7 +9,7 @@ const { isAdmin, isEmployee } = require("../../middlewares/roleVerification");
 
 // Register necessary middlewares to verify token and role
 // TODO Uncomment token code later
-//! employee_EmployeeOperationRoutes.use(jwtVerifyToken, isEmployee);
+! employee_EmployeeOperationRoutes.use(jwtVerifyToken, isEmployee);
 
 //view employee list route
 employee_EmployeeOperationRoutes.get("/", employeeFunctions.viewEmployees);
@@ -17,35 +17,34 @@ employee_EmployeeOperationRoutes.get("/", employeeFunctions.viewEmployees);
 //get an employee route
 employee_EmployeeOperationRoutes.get(
   "/:employeeId",
-  //! isAdmin,
   employeeFunctions.getAnEmployeeInfo
 );
 
 //close employee account route
 employee_EmployeeOperationRoutes.patch(
   "/close/:employeeId",
-  //! isAdmin,
+  isAdmin,
   employeeFunctions.closeEmployeeAccount
 );
 
 //close employee account route
 employee_EmployeeOperationRoutes.patch(
   "/reopen/:employeeId",
-  //! isAdmin,
+  isAdmin,
   employeeFunctions.reopenEmployeeAccount
 );
 
 //update employee account route
 employee_EmployeeOperationRoutes.put(
   "/:employeeId",
-  //! isAdmin,
+  isAdmin,
   employeeFunctions.updateEmployee
 );
 
 //create employee account route
 employee_EmployeeOperationRoutes.post(
   "/",
-  //! isAdmin,
+  isAdmin,
   employeeFunctions.createEmployee
 );
 

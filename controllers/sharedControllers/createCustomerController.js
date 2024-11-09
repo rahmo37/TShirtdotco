@@ -49,7 +49,7 @@ const createCustomer = async (req, res, next) => {
     // checking if a customer with that email already exists
     if (email) {
       const err = new Error("A customer with this email already exists");
-      err.status = 400;
+      err.status = 409;
       return next(err);
     }
 
@@ -61,7 +61,7 @@ const createCustomer = async (req, res, next) => {
     // checking if a customer with that email already exists
     if (phone) {
       const err = new Error("A customer with this phone number already exists");
-      err.status = 400;
+      err.status = 409;
       return next(err);
     }
 

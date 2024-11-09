@@ -1,0 +1,456 @@
+.main-content {
+  flex: 1;
+  padding: 20px 40px;
+  background-color: #ffffff;
+  position: relative;
+}
+
+/* Add User Button Styling */
+#add-new-btn {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  background-color: #3648be; /* Background color from the second rule */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#add-new-btn:hover {
+  background-color: #4553a0;
+}
+
+#table-container {
+  display: flex;
+  justify-content: center;
+  border: #333;
+  border-width: 2px;
+}
+
+#searchInput {
+  padding-left: 30px;
+  padding-right: 45px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+.input-container {
+  position: fixed;
+  top: 2%;
+  width: 600px;
+  left: 34.5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.highlight {
+  background-color: #56f056  ; /* Light blue highlight color */
+  font-weight: bold;
+  color: #000;
+}
+
+.search-icon {
+  position: absolute;
+  top: 25%;
+  right: 4%;
+  width: 32px;
+  height: auto;
+}
+
+h1 {
+  margin-left: 40px;
+  color: #ffffff;
+}
+
+#table-container {
+  display: flex;
+  justify-content: center;
+  border: #333;
+  border-width: 2px;
+}
+
+table {
+  max-height: 700px;
+  margin-top: 40px;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: block;
+  width: auto;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px;
+}
+
+th {
+  text-transform: uppercase;
+}
+
+th,
+td {
+  padding: 18px 35px;
+  text-align: left;
+  transition: all 0.5s ease;
+  
+}
+
+td:hover {
+  transform: scale(1.25) translateX(15px);
+  color: #0526ff;
+  text-shadow: 20px 20px 5px rgba(0, 0, 0, 0.25);
+}
+
+th {
+  position: sticky;
+  top: 0;
+  background-color: #3648be; /* Keep the header background color */
+  color: white;
+  font-weight: bold;
+  border-bottom: 1px solid #ddd; /* Add a subtle bottom border */
+}
+
+tr {
+  border-bottom: 1px solid #ddd; /* Add a subtle border between rows */
+  transition: background-color 0.5s ease; /* Add transition effect */
+}
+
+tr:nth-child(even) {
+  background-color: #b6bcfc34; /* Slightly darker background for even rows */
+}
+
+tr:hover {
+  background-color: #0000001f; /* Light blue background on hover */
+  cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+/* Optional: Font styling for the table */
+table {
+  font-size: 16px;
+  color: #333;
+}
+
+/* Modal styling */
+.custom-modal {
+  display: none;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  z-index: 501;
+  transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  padding: 30px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  width: 40%;
+  max-width: 700px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.custom-modal-overlay {
+  display: none;
+  position: fixed;
+  z-index: 300;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  contain: strict;
+}
+
+/* Modal header */
+.custom-modal h2 {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+}
+
+label {
+  display: block;
+  font-size: 25px;
+  margin-top: 25px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #333;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"],
+input[type="tel"],
+select,
+textarea {
+  width: 100%;
+  padding: 15px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 10px;
+  background-color: #e1e7f781;
+  font-size: 22px;
+  resize: vertical;
+  box-sizing: border-box;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}
+
+textarea {
+  padding-bottom: 40px !important;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="tel"]:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+}
+
+/* Read-only input field focus styling */
+input[type="text"]:read-only:focus,
+input[type="number"]:read-only:focus,
+input[type="email"]:read-only:focus {
+  background-color: #ffcccc;
+  outline: none;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}
+
+.multiple-input-fields {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.multiple-input-fields > div {
+  width: 48%;
+}
+
+/* General Button Styling */
+button,
+.add-to-db {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  color: white;
+}
+
+/* Specific Button Colors */
+#save-changes-btn,
+.add-to-db {
+  background-color: #3648be;
+  width: 100%;
+  margin-top: 10px;
+}
+
+#restock-product-btn {
+  background-color: #00aa00;
+  width: 100%;
+  padding: 19px;
+  margin-top: 80px;
+}
+
+#delete-btn {
+  background-color: #be3636;
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* Hover States */
+#save-changes-btn:hover,
+.add-to-db:hover {
+  background-color: #4553a0;
+}
+
+#restock-product-btn:hover {
+  background-color: #008607;
+}
+
+#delete-btn:hover {
+  background-color: #a04545;
+}
+
+#add-new-btn:hover {
+  background-color: #4553a0;
+}
+
+.close-modal-btn {
+  position: absolute;
+  top: 10px;
+  right: 35px;
+  cursor: pointer;
+  font-size: 45px;
+  color: #333;
+}
+
+.close-modal-btn:hover {
+  color: #f00;
+}
+
+/* Media Query for Tablets and Small Desktops (Max Width: 1024px) */
+@media screen and (max-width: 1024px) {
+  /* Adjust main content padding */
+  .main-content {
+    padding: 15px 20px;
+  }
+
+  /* Adjust Add New Button */
+  #add-new-btn {
+    top: 15px;
+    right: 20px;
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  /* Adjust Table Container */
+  #table-container {
+    padding: 10px;
+    border-width: 1px;
+  }
+
+  /* Adjust Table */
+  table {
+    width: 100%;
+    max-width: 100%;
+    margin-top: 20px;
+    font-size: 14px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 30px 60px -12px;
+  }
+
+  /* Adjust Table Headers and Cells */
+  th,
+  td {
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+
+  /* Adjust Heading */
+  h1 {
+    margin-left: 20px;
+    font-size: 24px;
+  }
+}
+
+/* Media Query for Mobile Devices (Max Width: 600px) */
+@media screen and (max-width: 1600px) {
+  /* Adjust main content padding */
+  .main-content {
+    padding: 10px 15px;
+  }
+
+  td:hover {
+    transform: scale(1.1) translateX(10px);
+    color: #0526ff;
+    text-shadow: 15px 15px 5px rgba(0, 0, 0, 0.25);
+  }
+
+  .input-container {
+    top: 2%;
+    left: 32%;
+  }
+
+  /* Adjust Add New Button */
+  #add-new-btn {
+    top: 10px;
+    right: 15px;
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+
+  /* Adjust Table Container */
+  #table-container {
+    padding: 5px;
+    border-width: 1px;
+    overflow-x: auto; /* Enable horizontal scrolling if needed */
+  }
+
+  .search-icon {
+    position: absolute;
+    top: 23.5%;
+    width: 23px;
+    right: 3%;
+  }
+
+  /* Adjust Table */
+  table {
+    width: auto;
+    max-width: 100%;
+    max-height: 550px;
+    margin-top: 15px;
+    font-size: 13px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  }
+
+  /* Adjust Table Headers and Cells */
+  th,
+  td {
+    padding: 15px 15px;
+    font-size: 13px;
+  }
+
+  /* Adjust Heading */
+  h1 {
+    margin-left: 15px;
+    font-size: 30px;
+  }
+
+  /* Optional: Adjust Button Text for Better Fit */
+  #add-new-btn {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+
+  /* Adjust Modal Width for Smaller Screens */
+  .modal {
+    width: 90%;
+    padding: 20px;
+  }
+
+  /* Adjust Form Fields Inside Modal */
+  input[type="text"],
+  input[type="number"],
+  input[type="email"],
+  input[type="password"],
+  input[type="tel"],
+  select,
+  textarea {
+    font-size: 16px;
+    padding: 12px;
+  }
+
+  /* Adjust Multiple Input Fields Layout */
+  .multiple-input-fields {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .multiple-input-fields > div {
+    width: 100%;
+  }
+
+  /* Adjust Button Sizes Inside Modal */
+  #save-changes-btn,
+  .add-to-db,
+  #restock-product-btn,
+  #delete-btn {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  #restock-product-btn {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+}

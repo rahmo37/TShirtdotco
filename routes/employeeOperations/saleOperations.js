@@ -13,5 +13,7 @@ const { isAdmin, isEmployee } = require("../../middlewares/roleVerification");
 // retrieve the sales report
 employee_SaleOperationsRoute.get("/report", saleFunction.salesReport);
 
+employee_SaleOperationsRoute.post("/report/custom", saleFunction.getCustomSalesReport);
+
 // Export the module
 module.exports = employee_SaleOperationsRoute;

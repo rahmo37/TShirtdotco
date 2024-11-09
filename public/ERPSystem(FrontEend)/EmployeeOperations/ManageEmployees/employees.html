@@ -1,0 +1,140 @@
+<div id="main-content">
+  <h1>Employees</h1>
+  <button id="add-new-btn">Add Employee</button>
+
+  <!-- Employee table -->
+  <div id="table-container"></div>
+  <div class="input-container">
+    <img src="../../img/search.png" class="search-icon" />
+    <input type="text" id="searchInput" placeholder="Type to search..." />
+  </div>
+
+  <!-- Employee Details Modal -->
+  <div id="employee-modal" class="custom-modal">
+    <span id="close-employeeDetail-modal" class="close-modal-btn">&times;</span>
+    <div id="modal-content-employee"></div>
+  </div>
+
+  <!-- darken background when viewing user details -->
+  <div id="custom-modal-overlay" class="custom-modal-overlay"></div>
+
+  <!-- Add Employee Modal -->
+  <div id="add-employee-modal" class="custom-modal">
+    <span id="close-add-employee-modal" class="close-modal-btn">&times;</span>
+
+    <div id="add-employee-modal-content">
+      <h2>Add New Employee</h2>
+
+      <form id="new-employee-form">
+        <!-- Employee Info Fields -->
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required />
+
+        <label for="phone">Phone:</label>
+        <input type="tel" id="phone" name="phone" required />
+
+        <div class="multiple-input-fields">
+          <div>
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" name="firstName" required />
+          </div>
+          <div>
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" name="lastName" required />
+          </div>
+        </div>
+
+        <label for="isAdmin">Admin:</label>
+        <select id="isAdmin" name="isAdmin">
+          <option value="true">Yes</option>
+          <option value="false" selected>No</option>
+        </select>
+
+        <label for="street">Street:</label>
+        <input type="text" id="street" name="street" required />
+
+        <div class="multiple-input-fields">
+          <div>
+            <label for="city">City:</label>
+            <input type="text" id="city" name="city" required />
+          </div>
+          <div>
+            <label for="state">State:</label>
+            <input type="text" id="state" name="state" required />
+          </div>
+        </div>
+
+        <div class="multiple-input-fields">
+          <div>
+            <label for="zipCode">Zip Code:</label>
+            <input type="text" id="zipCode" name="zipCode" required />
+          </div>
+          <div>
+            <label for="country">Country:</label>
+            <input type="text" id="country" name="country" required />
+          </div>
+        </div>
+
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender">
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+
+        <!-- Work Info Fields -->
+        <label for="jobTitle">Job Title:</label>
+        <input type="text" id="jobTitle" name="jobTitle" required />
+
+        <label for="department">Department:</label>
+        <input type="text" id="department" name="department" required />
+
+        <div class="multiple-input-fields">
+          <div>
+            <label for="payFrequency">Pay Frequency:</label>
+            <select id="payFrequency" name="payFrequency">
+              <option value="monthly">Monthly</option>
+              <option value="bi-weekly">Bi-Weekly</option>
+            </select>
+          </div>
+          <div>
+            <label for="employeeType">Employee Type:</label>
+            <select id="employeeType" name="employeeType">
+              <option value="permanent">Permanent</option>
+              <option value="contract">Contract</option>
+            </select>
+          </div>
+        </div>
+
+        <label for="baseSalary">Base Salary:</label>
+        <input
+          type="number"
+          step="0.01"
+          id="baseSalary"
+          name="baseSalary"
+          required
+        />
+
+        <label for="bonus">Bonus:</label>
+        <input type="number" step="0.01" id="bonus" name="bonus" required />
+
+        <label for="workingHours">Working Hours:</label>
+        <input
+          type="text"
+          id="workingHours"
+          name="workingHours"
+          placeholder="e.g., 09:00-17:00"
+          required
+        />
+
+        <button type="submit" class="add-to-db">Add Employee</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- darken background when adding customer  -->
+  <div id="add-employee-modal-overlay" class="custom-modal-overlay"></div>
+</div>
