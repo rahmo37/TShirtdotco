@@ -411,8 +411,16 @@ async function getSalesOfEachProduct(session, dateArr) {
       }
     });
 
-    const startMonth = dateArr[0].toLocaleString("default", { month: "long" });
-    const endMonth = dateArr[1].toLocaleString("default", { month: "long" });
+    const startMonth = dateArr[0].toLocaleString("default", {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    });
+    const endMonth = dateArr[1].toLocaleString("default", {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    });
 
     return {
       productRevenueByCategory,

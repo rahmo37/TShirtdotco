@@ -12,6 +12,6 @@ correct the unit price field -
 correct the start and end time for employees -
 use urls module - 
 add validation in the fields
-add images in the pop modals
+add images in the pop modals -
 allow admin to add new category
 

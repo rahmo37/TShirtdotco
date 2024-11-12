@@ -40,7 +40,10 @@ import { filterTable } from "../../helper/searchTable.js";
       const userData = data.data; // Store user data
       renderUserList(userData);
     } catch (error) {
-      errorPopUp.showErrorModal("Error fetching User List:", error.message || "An unexpected error occurred.");
+      errorPopUp.showErrorModal(
+        "Error fetching User List:",
+        error.message || "An unexpected error occurred."
+      );
     }
   }
 
@@ -60,7 +63,9 @@ import { filterTable } from "../../helper/searchTable.js";
         errorPopUp.showErrorModal("Unexpected server response.");
       }
     } catch (error) {
-      errorPopUp.showErrorModal(error.message || "An unexpected error occurred.");
+      errorPopUp.showErrorModal(
+        error.message || "An unexpected error occurred."
+      );
     }
   }
 
@@ -81,7 +86,9 @@ import { filterTable } from "../../helper/searchTable.js";
         errorPopUp.showErrorModal("Unexpected server response.");
       }
     } catch (error) {
-      errorPopUp.showErrorModal(error.message || "An unexpected error occurred.");
+      errorPopUp.showErrorModal(
+        error.message || "An unexpected error occurred."
+      );
     }
   }
 
@@ -108,6 +115,10 @@ import { filterTable } from "../../helper/searchTable.js";
 
     data.forEach((customer) => {
       const customerRow = document.createElement("tr");
+      const statusDot =
+        customer.accountStatus.toLowerCase() === "active"
+          ? `<span style="color: #33cc71; font-size: 20px;">&#9679;</span>`
+          : `<span style="color: #0f80f0; font-size: 20px;">&#10054;</span>`;
       customerRow.innerHTML = `
         <td>${customer.customerID}</td>
         <td>${customer.email}</td>
@@ -116,7 +127,7 @@ import { filterTable } from "../../helper/searchTable.js";
         <td>${customer.customerBio.lastName}</td>
         <td>${customer.customerBio.gender}</td>
         <td>${new Date(customer.accountCreated).toLocaleDateString()}</td>
-        <td>${customer.accountStatus}</td>
+        <td>${statusDot} ${customer.accountStatus}</td>
       `;
 
       customerRow.addEventListener("click", () => {
@@ -131,47 +142,76 @@ import { filterTable } from "../../helper/searchTable.js";
 
   // Open customer details modal
   function openCustomerModal(customer) {
-    const formattedDate = new Date(customer.accountCreated).toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-    });
+    const formattedDate = new Date(customer.accountCreated).toLocaleDateString(
+      "en-US",
+      {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+      }
+    );
+
+    const customerImage =
+      customer.customerBio.gender.toLowerCase() === "male"
+        ? "../../img/Male.png"
+        : "../../img/Female.png";
 
     modalContent.innerHTML = `
-      <h2>User Information</h2>
+    <h2 class="entity-name">${customer.customerBio.firstName} ${
+      customer.customerBio.lastName
+    }</h2>
+      <div class="image-container" id="customer-image-container">
+          <img src="${customerImage}"/>
+      </div>
       <form id="edit-user-form">
 
         <label for="customerId">Customer ID:</label>
-        <input type="text" id="customerId" name="customerId" value="${customer.customerID}" readonly>
+        <input type="text" id="customerId" name="customerId" value="${
+          customer.customerID
+        }" readonly>
 
         <div class="multiple-input-fields">
           <div>
             <label for="firstName">First Name:</label>
-            <input type="text" id="firstName" name="firstName" value="${customer.customerBio.firstName}" required>
+            <input type="text" id="firstName" name="firstName" value="${
+              customer.customerBio.firstName
+            }" required>
           </div>
           <div>
             <label for="lastName">Last Name:</label>
-            <input type="text" id="lastName" name="lastName" value="${customer.customerBio.lastName}" required>
+            <input type="text" id="lastName" name="lastName" value="${
+              customer.customerBio.lastName
+            }" required>
           </div>
         </div>
 
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" value="${customer.email}" readonly>
+        <input type="email" id="email" name="email" value="${
+          customer.email
+        }" readonly>
 
         <label for="phone">Phone Number:</label>
-        <input type="tel" id="phone" name="phone" value="${customer.phone}" required>
+        <input type="tel" id="phone" name="phone" value="${
+          customer.phone
+        }" required>
 
         <label for="street">Street:</label>
-        <input type="text" id="street" name="street" value="${customer.customerBio.address.street}" required>
+        <input type="text" id="street" name="street" value="${
+          customer.customerBio.address.street
+        }" required>
 
         <div class="multiple-input-fields">
           <div>
             <label for="city">City:</label>
-            <input type="text" id="city" name="city" value="${customer.customerBio.address.city}" required>
+            <input type="text" id="city" name="city" value="${
+              customer.customerBio.address.city
+            }" required>
           </div>
           <div>
             <label for="country">Country:</label>
-            <input type="text" id="country" name="country" value="${customer.customerBio.address.country}" required>
+            <input type="text" id="country" name="country" value="${
+              customer.customerBio.address.country
+            }" required>
           </div>
         </div>
 
@@ -179,16 +219,26 @@ import { filterTable } from "../../helper/searchTable.js";
           <div>
             <label for="gender">Gender:</label>
             <select id="gender" name="gender">
-              <option value="Male" ${customer.customerBio.gender === "Male" ? "selected" : ""}>Male</option>
-              <option value="Female" ${customer.customerBio.gender === "Female" ? "selected" : ""}>Female</option>
-              <option value="Other" ${customer.customerBio.gender === "Other" ? "selected" : ""}>Other</option>
+              <option value="Male" ${
+                customer.customerBio.gender === "Male" ? "selected" : ""
+              }>Male</option>
+              <option value="Female" ${
+                customer.customerBio.gender === "Female" ? "selected" : ""
+              }>Female</option>
+              <option value="Other" ${
+                customer.customerBio.gender === "Other" ? "selected" : ""
+              }>Other</option>
             </select>
           </div>
           <div>
             <label for="account-status">Account Status:</label>
             <select id="account-status" name="account-status">
-              <option value="Active" ${customer.accountStatus === "Active" ? "selected" : ""}>Active</option>
-              <option value="Frozen" ${customer.accountStatus === "Frozen" ? "selected" : ""}>Frozen</option>
+              <option value="Active" ${
+                customer.accountStatus === "Active" ? "selected" : ""
+              }>Active</option>
+              <option value="Frozen" ${
+                customer.accountStatus === "Frozen" ? "selected" : ""
+              }>Frozen</option>
             </select>
           </div>
         </div>
@@ -203,8 +253,10 @@ import { filterTable } from "../../helper/searchTable.js";
     modal.style.display = "block";
     modalOverlay.style.display = "block";
 
+    document.querySelector(".image-container").focus();
+
     // Set focus to the first input field
-    document.getElementById("firstName").focus();
+    document.getElementById("firstName");
 
     const editUserForm = document.getElementById("edit-user-form");
 
@@ -258,6 +310,7 @@ import { filterTable } from "../../helper/searchTable.js";
           searchInput.value = "";
         });
       } else {
+        event.target.reset();
         closeModal();
       }
     };

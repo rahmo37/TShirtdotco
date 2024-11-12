@@ -1,4 +1,3 @@
-// This function helps in searching the table
 export function filterTable() {
   const input = document.getElementById("searchInput");
   const filter = input.value.toLowerCase();
@@ -19,23 +18,43 @@ export function filterTable() {
 }
 
 function highlightText(row, keyword) {
-  // Remove existing highlights
   const cells = row.getElementsByTagName("td");
+
+  // Remove existing highlights
   for (let cell of cells) {
-    const originalText = cell.textContent;
-    cell.innerHTML = originalText; // Reset to plain text
+    removeHighlights(cell);
   }
 
   if (!keyword) return; // Exit if no keyword is entered
 
   // Apply highlight
   for (let cell of cells) {
-    const originalText = cell.textContent;
-    const regex = new RegExp(`(${keyword})`, "gi"); // Case-insensitive matching
-    const highlightedText = originalText.replace(
-      regex,
-      `<span class="highlight">$1</span>`
-    );
-    cell.innerHTML = highlightedText;
+    highlightCellText(cell, keyword);
   }
+}
+
+function removeHighlights(element) {
+  const highlightSpans = element.querySelectorAll("span.highlight");
+  highlightSpans.forEach((span) => {
+    // Replace the span with its text content
+    span.outerHTML = span.textContent;
+  });
+}
+
+function highlightCellText(cell, keyword) {
+  const regex = new RegExp(`(${keyword})`, "gi"); // Case-insensitive matching
+  cell.childNodes.forEach((node) => {
+    if (node.nodeType === Node.TEXT_NODE) {
+      const matches = node.textContent.match(regex);
+      if (matches) {
+        const newHTML = node.textContent.replace(
+          regex,
+          `<span class="highlight">$1</span>`
+        );
+        const tempElement = document.createElement("span");
+        tempElement.innerHTML = newHTML;
+        node.parentNode.replaceChild(tempElement, node);
+      }
+    }
+  });
 }

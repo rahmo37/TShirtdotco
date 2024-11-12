@@ -100,16 +100,16 @@
             </a>
           </li>
           <li class="sidebar-item">
-            <a class="sidebar-link">
+            <a id="order-loader" class="sidebar-link">
               <i class="fa-solid fa-cart-shopping"></i>
               <span>Order</span>
             </a>
           </li>
 
           <li class="sidebar-item">
-            <a href="#" class="sidebar-link">
+            <a id="settings-loader" class="sidebar-link">
               <i class="fa-solid fa-gears"></i>
-              <span>Account</span>
+              <span>Settings</span>
             </a>
           </li>
         </ul>
@@ -122,12 +122,21 @@
       </aside>
       <div class="main p-3" id="outer-main-container">
         <!-- ! All the external files are loaded here -->
-         
       </div>
 
       <!-- ! Popup container -->
       <div id="modalContainer"></div>
     </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        let tooltipTriggerList = [].slice.call(
+          document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        );
+        tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+          new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+      });
+    </script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"

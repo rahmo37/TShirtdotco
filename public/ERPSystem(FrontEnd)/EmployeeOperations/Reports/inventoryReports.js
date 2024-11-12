@@ -173,15 +173,15 @@ function viewCurrentInventory(report) {
   const currentInventory = report;
 
   // This will calculate the total product
-  let totalProductInHand = 0;
+  let totalProducts = 0;
 
   // Adding the total product for each category
   currentInventory.forEach((category) => {
     const totalQuantity = category.products.reduce(
-      (sum, product) => sum + product.currentQuantity,
+      (sum, product) => sum + 1,
       0
     );
-    totalProductInHand += totalQuantity;
+    totalProducts += totalQuantity;
     category.categoryTotal = totalQuantity;
     category.categoryName = category.categoryName
       .split("_")
@@ -204,7 +204,7 @@ function viewCurrentInventory(report) {
     paginationClass: "current-inventory-pagination",
     prevButtonClass: "current-inventory-prev",
     nextButtonClass: "current-inventory-next",
-    footer: "Total product at hand in all categories: " + totalProductInHand,
+    footer: "Total product in all categories: " + totalProducts,
   };
 
   // Append the generated container and get a reference to it

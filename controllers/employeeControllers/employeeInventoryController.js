@@ -471,8 +471,6 @@ inventoryFunctions.getCustomSoldProductReport = async (req, res, next) => {
       dateB,
     ]);
 
-    console.log(customSoldProductReport);
-
     res.status(200).json({
       message: "Custom sold products data included",
       data: {
@@ -715,7 +713,6 @@ async function getTopSellingProducts(session, dateArr) {
         },
       },
     ]);
-    console.log(topSellingProducts);
     return topSellingProducts;
   } catch (err) {
     console.log("Error while getting top selling products", err);
@@ -736,7 +733,7 @@ async function getLowStockProducts(session) {
         $match: {
           // "products.stockInfo.stockStatus": "Low Stock",
           $expr: {
-            $lt: [
+            $lte: [
               "$products.stockInfo.currentQuantity",
               "$products.stockInfo.restockThreshold",
             ],

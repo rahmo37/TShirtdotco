@@ -7,7 +7,7 @@ const currentInventory = require("../../controllers/sharedControllers/getInvento
 const jwtVerifyToken = require("../../middlewares/jwtVerifyToken");
 
 // Register necessary middlewares to verify token
-//! sharedRoute.use(jwtVerifyToken);
+// sharedRoute.use(jwtVerifyToken);
 
 // Create a customer account
 sharedRoute.get("/", currentInventory);

@@ -1,10 +1,16 @@
 // This module loads all the employee operation contents dynamically
-
 // Importing modules
 import { loader } from "../../helper/loadPageDynamically.js";
 import { errorPopUp } from "../../helper/errorPopUpHandler.js";
 import { successPopUp } from "../../helper/successPopupHandler.js";
 import { confirmPopUp } from "../../helper/confirmPopUpHandler.js";
+import { startLogOutTimer } from "../../helper/StartLogoutTimer.js";
+import { infoPopUp } from "../../helper/informationPopUpHandler.js";
+
+// start a timer for automatic log out
+startLogOutTimer(() => {
+  logOutUser(true);
+});
 
 // Toggle Button
 const hamBurger = document.querySelector(".toggle-btn");
@@ -17,6 +23,7 @@ const reportLoader = document.getElementById("report-loader");
 const employeeLoader = document.getElementById("employee-loader");
 const customerLoader = document.getElementById("customer-loader");
 const inventoryLoader = document.getElementById("inventory-loader");
+const settingsLoader = document.getElementById("settings-loader");
 
 // accumulating the buttons for later use
 const btnArray = [
@@ -43,6 +50,7 @@ if (sessionStorage.getItem("justLoggedIn") === "true") {
   await successPopUp.loadModal("../../popups/successPopup.html");
   await errorPopUp.loadModal("../../popups/errorPopup.html");
   await confirmPopUp.loadModal("../../popups/confirmPopUp.html");
+  await infoPopUp.loadModal("../../popups/infoPopUp.html");
 
   // load te reports
   loadReports();
@@ -59,6 +67,7 @@ window.onload = async () => {
   await successPopUp.loadModal("../../popups/successPopup.html");
   await errorPopUp.loadModal("../../popups/errorPopup.html");
   await confirmPopUp.loadModal("../../popups/confirmPopUp.html");
+  await infoPopUp.loadModal("../../popups/infoPopUp.html");
 
   // load te reports
   loadReports();
@@ -92,6 +101,15 @@ customerLoader.addEventListener("click", () => {
   closeSideBar();
 });
 
+settingsLoader.addEventListener("click", () => {
+  loadPageWithFade({
+    htmlUrl: "../EmployeeSettings/employeeSettings.html",
+    cssUrl: "../EmployeeSettings/employeeSettings.css",
+    jsUrl: "../EmployeeSettings/employeeSettings.js",
+  });
+  closeSideBar();
+});
+
 // Load the inventory page
 inventoryLoader.addEventListener("click", () => {
   loadPageWithFade({
@@ -104,8 +122,7 @@ inventoryLoader.addEventListener("click", () => {
 
 // Logout button functionality
 logoutBtn.addEventListener("click", () => {
-  sessionStorage.clear();
-  window.location.href = "../../Login/login.html";
+  logOutUser();
 });
 
 // *Helper Methods
@@ -198,4 +215,16 @@ function applyFadeEffect(loadFunction, callback) {
 // Close the sidebar
 function closeSideBar() {
   sideBar.classList.remove("expand");
+}
+
+function logOutUser(automaticLogout = false) {
+  // Clear session storage
+  sessionStorage.clear();
+
+  if (automaticLogout) {
+    alert("user logged out due to token expiration!");
+  }
+
+  // Redirect to login page
+  window.location.href = "../../Login/login.html";
 }

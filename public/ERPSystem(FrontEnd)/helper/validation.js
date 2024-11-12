@@ -51,6 +51,14 @@ validateObject.checkCityOrCountry = function (value) {
   return locationPattern.test(value.trim());
 };
 
+validateObject.checkZipCode = function (value) {
+  // Patter to only allow numeric characters
+  const zipPattern = /^[0-9]+$/;
+
+  // Check if there are any Alphabetic characters, if there is return false
+  return zipPattern.test(value.trim())
+};
+
 // Check if the value is not empty, doesn't contain spaces, and has only alphabetic characters
 validateObject.checkNames = function (value) {
   return /^[A-Za-z]+$/.test(value.trim());

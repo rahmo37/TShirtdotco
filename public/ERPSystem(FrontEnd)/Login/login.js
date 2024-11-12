@@ -4,6 +4,7 @@ const signInBtn = document.getElementById("sign-in");
 import { urlObject } from "../helper/urls.js";
 import { sessionObject } from "../helper/sessionStorage.js";
 import { successPopUp } from "../helper/successPopupHandler.js";
+import { startLogOutTimer } from "../helper/StartLogoutTimer.js";
 
 // Toggle viewing of the password
 window.onload = async () => {
@@ -84,6 +85,8 @@ signInBtn.addEventListener("click", async () => {
       const token = userData.token;
       // save the user token in the session storage
       sessionObject.setData("token", token);
+
+
 
       // Set just logged in to true
       sessionObject.setData("justLoggedIn", true);

@@ -43,7 +43,9 @@ import { filterTable } from "../../helper/searchTable.js";
       const data = await fetchHandler.sendRequest(requestInfo);
       renderEmployeeList(data);
     } catch (error) {
-      errorPopUp.showErrorModal(error.message || "An unexpected error occurred.");
+      errorPopUp.showErrorModal(
+        error.message || "An unexpected error occurred."
+      );
     }
   }
 
@@ -63,7 +65,9 @@ import { filterTable } from "../../helper/searchTable.js";
         errorPopUp.showErrorModal("Unexpected server response.");
       }
     } catch (error) {
-      errorPopUp.showErrorModal(error.message || "An unexpected error occurred.");
+      errorPopUp.showErrorModal(
+        error.message || "An unexpected error occurred."
+      );
     }
   }
 
@@ -83,7 +87,9 @@ import { filterTable } from "../../helper/searchTable.js";
         errorPopUp.showErrorModal("Unexpected server response.");
       }
     } catch (error) {
-      errorPopUp.showErrorModal(error.message || "An unexpected error occurred.");
+      errorPopUp.showErrorModal(
+        error.message || "An unexpected error occurred."
+      );
     }
   }
 
@@ -111,6 +117,10 @@ import { filterTable } from "../../helper/searchTable.js";
 
     data.data.forEach((employee) => {
       const employeeRow = document.createElement("tr");
+      const statusDot =
+        employee.accountStatus.toLowerCase() === "active"
+          ? `<span style="color: #33cc71; font-size: 20px;">&#9679;</span>`
+          : `<span style="color: #e31c23; font-size: 20px;">&#9679;</span>`;
       employeeRow.innerHTML = `
         <td>${employee.employeeID}</td>
         <td>${employee.employeeBio.firstName}</td>
@@ -119,7 +129,7 @@ import { filterTable } from "../../helper/searchTable.js";
         <td>${employee.phone}</td>
         <td>${employee.workInfo.jobTitle}</td>
         <td>${employee.workInfo.department}</td>
-        <td>${employee.accountStatus}</td>
+        <td>${statusDot} ${employee.accountStatus}</td>
         <td>${employee.isAdmin ? "YES" : "NO"}</td>
       `;
 
@@ -136,43 +146,71 @@ import { filterTable } from "../../helper/searchTable.js";
   // Open employee details modal
   function openEmployeeModal(employee) {
     const formattedHireDate = formatDate(employee.workInfo.hireDate);
+    const employeeImage =
+      employee.employeeBio.gender.toLowerCase() === "male"
+        ? "../../img/employeeMale.png"
+        : "../../img/employeeFemale.png";
 
     modalContent.innerHTML = `
-      <h2>${employee.employeeBio.firstName} ${employee.employeeBio.lastName}</h2>
+      <h2 class="entity-name">${employee.employeeBio.firstName} ${
+      employee.employeeBio.lastName
+    }</h2>
+      <div class="image-container" id="employee-image-container">
+          <img src="${employeeImage}"/>
+      </div>
+      
       <form id="edit-employee-form">
         <label for="employeeId">Employee ID:</label>
-        <input type="text" id="employeeId" name="employeeId" value="${employee.employeeID}" readonly>
+        <input type="text" id="employeeId" name="employeeId" value="${
+          employee.employeeID
+        }" readonly>
 
         <div class="multiple-input-fields">
           <div>
             <label for="firstName">First Name:</label>
-            <input type="text" id="firstName" name="firstName" value="${employee.employeeBio.firstName}" required>
+            <input type="text" id="firstName" name="firstName" value="${
+              employee.employeeBio.firstName
+            }" required>
           </div>
           <div>
             <label for="lastName">Last Name:</label>
-            <input type="text" id="lastName" name="lastName" value="${employee.employeeBio.lastName}" required>
+            <input type="text" id="lastName" name="lastName" value="${
+              employee.employeeBio.lastName
+            }" required>
           </div>
         </div>
 
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" value="${employee.email}" readonly>
+        <input type="email" id="email" name="email" value="${
+          employee.email
+        }" readonly>
 
         <label for="phone">Phone:</label>
-        <input type="tel" id="phone" name="phone" value="${employee.phone}" required>
+        <input type="tel" id="phone" name="phone" value="${
+          employee.phone
+        }" required>
 
         <label for="jobTitle">Job Title:</label>
-        <input type="text" id="jobTitle" name="jobTitle" value="${employee.workInfo.jobTitle}" readonly>
+        <input type="text" id="jobTitle" name="jobTitle" value="${
+          employee.workInfo.jobTitle
+        }" readonly>
 
         <label for="department">Department:</label>
-        <input type="text" id="department" name="department" value="${employee.workInfo.department}" readonly>
+        <input type="text" id="department" name="department" value="${
+          employee.workInfo.department
+        }" readonly>
 
         <label for="hireDate">Hire Date:</label>
         <input type="text" id="hireDate" name="hireDate" value="${formattedHireDate}" readonly>
 
         <label for="account-status">Account Status:</label>
         <select id="account-status" name="account-status">
-          <option value="Active" ${employee.accountStatus === "Active" ? "selected" : ""}>Active</option>
-          <option value="Closed" ${employee.accountStatus === "Closed" ? "selected" : ""}>Closed</option>
+          <option value="Active" ${
+            employee.accountStatus === "Active" ? "selected" : ""
+          }>Active</option>
+          <option value="Closed" ${
+            employee.accountStatus === "Closed" ? "selected" : ""
+          }>Closed</option>
         </select>
 
         <button type="submit" id="save-changes-btn">Save Changes</button>
@@ -183,7 +221,9 @@ import { filterTable } from "../../helper/searchTable.js";
     modalOverlay.style.display = "block";
 
     // Set focus to the first input field
-    document.getElementById("firstName").focus();
+    document.querySelector(".image-container").focus();
+
+    document.getElementById("firstName");
 
     // Form submission handler
     const editEmployeeForm = document.getElementById("edit-employee-form");

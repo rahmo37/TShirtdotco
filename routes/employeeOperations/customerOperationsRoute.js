@@ -9,7 +9,7 @@ const { isAdmin, isEmployee } = require("../../middlewares/roleVerification");
 
 // Register necessary middlewares to  verify token and role
 // TODO Uncomment token code later
-//! employee_CustomerOperationRoutes.use(jwtVerifyToken, isEmployee);
+employee_CustomerOperationRoutes.use(jwtVerifyToken, isEmployee);
 
 // view customer list route
 employee_CustomerOperationRoutes.get("/", customerFunctions.viewCustomers);
@@ -23,20 +23,21 @@ employee_CustomerOperationRoutes.get(
 // freeze a customer account route
 employee_CustomerOperationRoutes.patch(
   "/freeze/:customerId",
-  //! isAdmin,
+  isAdmin,
   customerFunctions.freezeCustomerAccount
 );
 
 // unfreeze a customer account route
 employee_CustomerOperationRoutes.patch(
   "/unfreeze/:customerId",
-  //! isAdmin,
+  isAdmin,
   customerFunctions.unFreezeCustomerAccount
 );
 
 // update a customer account
 employee_CustomerOperationRoutes.put(
   "/:customerId",
+  isAdmin,
   customerFunctions.updateCustomer
 );
 

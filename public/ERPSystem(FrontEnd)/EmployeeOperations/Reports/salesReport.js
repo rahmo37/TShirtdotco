@@ -158,7 +158,12 @@ function viewThisYearSalesReport(report) {
 
 function viewRevenueByProductAndCategory(report) {
   const revenueOfEachProduct = report.productRevenueByCategory
-    .flatMap((category) => category.products)
+    .flatMap((category) =>
+      category.products.map((product) => ({
+        ...product,
+        categoryName: category.categoryName, // Add categoryName to each product
+      }))
+    )
     .sort((a, b) => b.productRevenue - a.productRevenue);
 
   const revenueOfEachCategory = report.productRevenueByCategory
@@ -198,7 +203,6 @@ function viewRevenueByProductAndCategory(report) {
     `#${containerInfo.additionalCanvasId}`
   );
 
-
   const swiperWrapper = containerDiv.querySelector(
     `.swiper-wrapper.${containerInfo.swiperWrapperClass}`
   );
@@ -216,11 +220,22 @@ function viewRevenueByProductAndCategory(report) {
     slide.classList.add("swiper-slide");
     slide.innerHTML = `
     <div class="card position-relative">
-       <img src="../../shirtImg/${product.imageUrl}" class="card-img-top" alt="${product.productName}" 
+       <img src="../../shirtImg/${
+         product.imageUrl
+       }" class="card-img-top" alt="${product.productName}" 
        onerror="this.onerror=null;this.src='../../shirtImg/no-photo.png';">
         <div class="card-body">
         <p class="card-title">${product.productName}</p>
         <h4 class="card-title">Revenue: $${product.productRevenue}</h4>
+      </div>
+      <div class="card-footer">
+          <p class="card-text my-1">Category: ${product.categoryName
+            .split("_")
+            .map((word) => {
+              return word.charAt(0).toUpperCase() + word.slice(1);
+            })
+            .join(" ")}
+            </p>
       </div>
     </div>
       `;
@@ -272,7 +287,6 @@ function viewRevenueByProductAndCategory(report) {
   const categoryRevenues = revenueOfEachCategory.map((category) => {
     return category.categoryRevenue;
   });
-
 
   const chartTypeRight = "pie";
   const chartInfoRight = {
@@ -505,7 +519,7 @@ function updateTotalRevenue(
 
     slide.innerHTML = `
     <div class="card position-relative">
-       <img src="../../img/shopping-cart.png" class="card-img-top" alt="order image" 
+       <img src="../../img/Order.png" class="card-img-top" alt="order image" 
        onerror="this.onerror=null;this.src='../../shirtImg/no-photo.png';">
         <div class="card-body">
         <h6 class="card-title">${order.orderID}</h6>

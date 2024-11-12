@@ -1,141 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Table Keyword Search with Highlight</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background-color: #f2f2f2;
-    }
-
-    .container {
-      width: 80%;
-      max-width: 600px;
-      margin-top: 20px;
-      text-align: center;
-    }
-
-    input[type="text"] {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 10px;
-      font-size: 16px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      background-color: #ffffff;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-
-    th, td {
-      padding: 12px;
-      border: 1px solid #ddd;
-      text-align: left;
-    }
-
-    th {
-      background-color: #4CAF50;
-      color: white;
-    }
-
-    /* Updated highlight style */
-    .highlight {
-      background-color: #d8ff90; /* Light blue highlight color */
-      font-weight: bold;
-      color: #000;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image with Tooltip</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-  <div class="container">
-    <h2>Search Table</h2>
-    <input type="text" id="searchInput" placeholder="Type to search..." onkeyup="filterTable()">
 
-    <table id="dataTable">
-      <thead>
-        <tr>
-          <th>Product ID</th>
-          <th>Product Name</th>
-          <th>Category</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>PRO_123</td>
-          <td>Vintage Band Tee</td>
-          <td>graphic_t_shirts</td>
-        </tr>
-        <tr>
-          <td>PRO_456</td>
-          <td>Ocean Wave Tee</td>
-          <td>graphic_t_shirts</td>
-        </tr>
-        <tr>
-          <td>PRO_789</td>
-          <td>Casual Hoodie</td>
-          <td>hoodies_sweatshirts</td>
-        </tr>
-        <tr>
-          <td>PRO_101</td>
-          <td>Baseball Cap</td>
-          <td>accessories</td>
-        </tr>
-        <tr>
-          <td>PRO_102</td>
-          <td>Slim Fit T-Shirt</td>
-          <td>t_shirts</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+    <img src="your-image.jpg" alt="Image" class="img-fluid" data-bs-toggle="tooltip" title="This is your tooltip text">
 
-  <script>
-    function filterTable() {
-      const input = document.getElementById("searchInput");
-      const filter = input.value.toLowerCase();
-      const table = document.getElementById("dataTable");
-      const rows = table.getElementsByTagName("tr");
-
-      for (let i = 1; i < rows.length; i++) { // Start from 1 to skip the header row
-        let row = rows[i];
-        let textContent = row.textContent.toLowerCase();
-        if (textContent.includes(filter)) {
-          row.style.display = ""; // Show matching row
-          highlightText(row, filter); // Highlight matches
-        } else {
-          row.style.display = "none"; // Hide non-matching row
-        }
-      }
-    }
-
-    function highlightText(row, keyword) {
-      // Remove existing highlights
-      const cells = row.getElementsByTagName("td");
-      for (let cell of cells) {
-        const originalText = cell.textContent;
-        cell.innerHTML = originalText; // Reset to plain text
-      }
-
-      if (!keyword) return; // Exit if no keyword is entered
-
-      // Apply highlight
-      for (let cell of cells) {
-        const originalText = cell.textContent;
-        const regex = new RegExp(`(${keyword})`, "gi"); // Case-insensitive matching
-        const highlightedText = originalText.replace(regex, `<span class="highlight">$1</span>`);
-        cell.innerHTML = highlightedText;
-      }
-    }
-  </script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+                new bootstrap.Tooltip(tooltipTriggerEl);
+            });
+        });
+    </script>
 </body>
 </html>

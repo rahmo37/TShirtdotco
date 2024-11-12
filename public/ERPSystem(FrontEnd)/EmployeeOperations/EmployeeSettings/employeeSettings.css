@@ -1,0 +1,368 @@
+/* Enhanced CSS with Bottom Borders and Aesthetic Design */
+
+.settings-container {
+  max-width: 800px;
+  margin: 60px auto;
+  background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+}
+
+.section {
+  margin-bottom: 40px;
+  padding: 30px;
+  background-color: rgba(255, 255, 255, 0.85);
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 25px;
+  color: #1f2937;
+  text-align: center;
+  position: relative;
+}
+
+.section-title::after {
+  content: "";
+  width: 60px;
+  height: 4px;
+  background: #3b82f6;
+  display: block;
+  margin: 10px auto 0;
+  border-radius: 2px;
+}
+
+.info-row {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 25px;
+  position: relative;
+}
+
+.info-row label {
+  font-weight: 600;
+  color: #4b96ff;
+  margin-bottom: 8px;
+  font-size: 1.3rem;
+}
+
+.info-row input[type="text"],
+.info-row input[type="email"],
+.info-row input[type="tel"],
+.info-row input[type="password"] {
+  padding: 12px 0;
+  border: none;
+  outline: none;
+  border-bottom: 2px solid #0066ff;
+  background-color: transparent;
+  font-size: 1.15rem;
+  transition: border-color 0.3s;
+}
+
+.info-row input[type="text"]:focus,
+.info-row input[type="email"]:focus,
+.info-row input[type="tel"]:focus,
+.info-row input[type="password"]:focus {
+  border-color: #0049c0;
+  outline: none;
+  box-shadow: none;
+}
+
+.info-row input[readonly] {
+  border-bottom: 2px dashed #d1d5db;
+  color: #6b7280;
+  cursor: not-allowed;
+}
+
+.info-row input::placeholder {
+  color: #9ca3af;
+}
+
+.invalid-feedback {
+  color: #e11d48;
+  font-size: 0.9rem;
+  margin-top: 5px;
+}
+
+.is-invalid {
+  border-color: #e11d48 !important;
+}
+
+
+
+.btn-primary {
+  align-items: center;
+  appearance: none;
+  background-image: radial-gradient(
+    100% 100% at 100% 0,
+    #beddfc 0,
+    #5468ff 100%
+  );
+  border: 0;
+  border-radius: 6px;
+  box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,
+    rgba(45, 35, 66, 0.3) 0 7px 13px -3px, rgba(58, 65, 111, 0.5) 0 -3px 0 inset;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  width: 30%;
+  margin-left: 256px;
+  height: 48px;
+  justify-content: center;
+  line-height: 1;
+  list-style: none;
+  overflow: hidden;
+  padding-left: 16px;
+  padding-right: 16px;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  transition: box-shadow 0.15s, transform 0.15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow, transform;
+  font-size: 18px;
+}
+
+.btn-primary:focus {
+  box-shadow: #3c4fe0 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px,
+    rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
+}
+
+.btn-primary:hover {
+  box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px,
+    rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
+  transform: translateY(-2px);
+}
+
+.btn-primary:active {
+  box-shadow: #3c4fe0 0 3px 7px inset;
+  transform: translateY(2px);
+}
+
+h1 {
+  margin-left: 40px;
+  font-size: 2.5rem;
+  color: #fff;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #1f2937;
+}
+
+::selection {
+  background-color: #3b82f6;
+  color: #fff;
+}
+
+input[type="text"]::placeholder,
+input[type="email"]::placeholder,
+input[type="password"]::placeholder,
+input[type="tel"]::placeholder {
+  color: #9ea4ad;
+  opacity: 1;
+}
+
+input[type="text"]:focus::placeholder,
+input[type="email"]:focus::placeholder,
+input[type="password"]:focus::placeholder,
+input[type="tel"]:focus::placeholder {
+  color: transparent;
+}
+
+.info-row input[type="text"],
+.info-row input[type="email"],
+.info-row input[type="tel"],
+.info-row input[type="password"] {
+  border-bottom: 2px solid #d1d5db;
+  background: transparent;
+  color: #1f2937;
+  border-radius: 0%;
+}
+
+@media (max-width: 768px) {
+  .settings-container {
+    padding: 30px 20px;
+  }
+
+  .section {
+    padding: 20px;
+  }
+
+  .btn-primary {
+    font-size: 1rem;
+    padding: 12px 20px;
+  }
+  a/* Enhanced CSS with Bottom Borders and No Border Radius */
+
+  .settings-container {
+    max-width: 800px;
+    margin: 60px auto;
+    background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
+    padding: 40px;
+    border-radius: 0; /* Removed border radius */
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+  }
+
+  .section {
+    margin-bottom: 40px;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.85);
+    border-radius: 0; /* Removed border radius */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 25px;
+    color: #1f2937;
+    text-align: center;
+    position: relative;
+  }
+
+  .section-title::after {
+    content: "";
+    width: 60px;
+    height: 4px;
+    background: #3b82f6;
+    display: block;
+    margin: 10px auto 0;
+  }
+
+  .info-row {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 25px;
+    position: relative;
+  }
+
+  .info-row label {
+    font-weight: 600;
+    color: #4b5563;
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+  }
+
+  .info-row input[type="text"],
+  .info-row input[type="email"],
+  .info-row input[type="tel"],
+  .info-row input[type="password"] {
+    padding: 12px 0;
+    border: none;
+    border-bottom: 2px solid #d1d5db;
+    background-color: transparent;
+    font-size: 1rem;
+    transition: border-bottom-color 0.3s;
+  }
+
+  .info-row input[type="text"]:focus,
+  .info-row input[type="email"]:focus,
+  .info-row input[type="tel"]:focus,
+  .info-row input[type="password"]:focus {
+    border-bottom-color: #0059e9;
+    outline: none;
+  }
+
+  .info-row input[readonly] {
+    border-bottom: 2px dashed #d1d5db;
+    color: #6b7280;
+    cursor: not-allowed;
+  }
+
+  .info-row input::placeholder {
+    color: #9ca3af;
+  }
+
+  .invalid-feedback {
+    color: #e11d48;
+    font-size: 0.9rem;
+    margin-top: 5px;
+  }
+
+  .is-invalid {
+    border-bottom-color: #e11d48 !important;
+  }
+
+  .btn-primary {
+    background: linear-gradient(90deg, #2563eb, #3b82f6);
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #fff;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 30px;
+    transition: background 0.3s, transform 0.2s;
+  }
+
+  .btn-primary:hover {
+    background: linear-gradient(90deg, #1d4ed8, #2563eb);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(59, 130, 246, 0.2);
+  }
+
+  .btn-primary:active {
+    transform: translateY(0);
+    box-shadow: none;
+  }
+
+  h1 {
+    margin-left: 40px;
+    color: #1f2937;
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Additional Aesthetic Enhancements */
+
+  body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #d9e2ec, #f0f4f8);
+    color: #1f2937;
+  }
+
+  ::selection {
+    background-color: #3b82f6;
+    color: #fff;
+  }
+
+  input[type="text"]::placeholder,
+  input[type="email"]::placeholder,
+  input[type="password"]::placeholder,
+  input[type="tel"]::placeholder {
+    color: #9ca3af;
+    opacity: 1;
+  }
+
+  input[type="text"]:focus::placeholder,
+  input[type="email"]:focus::placeholder,
+  input[type="password"]:focus::placeholder,
+  input[type="tel"]:focus::placeholder {
+    color: transparent;
+  }
+
+  @media (max-width: 768px) {
+    .settings-container {
+      padding: 30px 20px;
+    }
+
+    .section {
+      padding: 20px;
+    }
+
+    .btn-primary {
+      font-size: 1rem;
+      padding: 12px 20px;
+    }
+  }
+}

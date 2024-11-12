@@ -8,8 +8,7 @@ const jwtVerifyToken = require("../../middlewares/jwtVerifyToken");
 const { isEmployee } = require("../../middlewares/roleVerification");
 
 // Register necessary middlewares to  verify token and role
-// TODO Uncomment token code later
-// ! employee_InventoryOperationRoutes.use(jwtVerifyToken, isEmployee);
+// employee_InventoryOperationRoutes.use(jwtVerifyToken, isEmployee);
 
 //! this route is currently moved to the shared route folder
 // View inventory route

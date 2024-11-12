@@ -45,7 +45,9 @@ searchInput.addEventListener("input", () => {
       inventoryData = data.data; // Store inventory data
       renderInventory(inventoryData);
     } catch (error) {
-      errorPopUp.showErrorModal(error.message || "An unexpected error occurred.");
+      errorPopUp.showErrorModal(
+        error.message || "An unexpected error occurred."
+      );
     }
   }
 
@@ -64,7 +66,9 @@ searchInput.addEventListener("input", () => {
         errorPopUp.showErrorModal("Unexpected server response.");
       }
     } catch (error) {
-      errorPopUp.showErrorModal(error.message || "An unexpected error occurred.");
+      errorPopUp.showErrorModal(
+        error.message || "An unexpected error occurred."
+      );
     }
   }
 
@@ -82,7 +86,9 @@ searchInput.addEventListener("input", () => {
         errorPopUp.showErrorModal("Unexpected server response.");
       }
     } catch (error) {
-      errorPopUp.showErrorModal(error.message || "An unexpected error occurred.");
+      errorPopUp.showErrorModal(
+        error.message || "An unexpected error occurred."
+      );
     }
   }
 
@@ -100,7 +106,9 @@ searchInput.addEventListener("input", () => {
         errorPopUp.showErrorModal("Unexpected server response.");
       }
     } catch (error) {
-      errorPopUp.showErrorModal(error.message || "An unexpected error occurred.");
+      errorPopUp.showErrorModal(
+        error.message || "An unexpected error occurred."
+      );
     }
   }
 
@@ -119,7 +127,9 @@ searchInput.addEventListener("input", () => {
         errorPopUp.showErrorModal("Unexpected server response.");
       }
     } catch (error) {
-      errorPopUp.showErrorModal(error.message || "An unexpected error occurred.");
+      errorPopUp.showErrorModal(
+        error.message || "An unexpected error occurred."
+      );
     }
   }
 
@@ -136,7 +146,7 @@ searchInput.addEventListener("input", () => {
       <th>Product ID</th>
       <th>Product Name</th>
       <th>Price</th>
-      <th>Total Sold</th>
+      <th>Total Sold <br>(com/in-p/shi)</th>
       <th>Stock</th>
       <th>Stock Status</th>
       <th>Date Added</th>
@@ -172,9 +182,13 @@ searchInput.addEventListener("input", () => {
 
   function openProductModal(categoryID, product) {
     const formattedDateAdded = formatDate(product.dateAdded);
+    const productImage = `../../shirtImg/${product.imageUrl}`;
 
     modalContent.innerHTML = `
-      <h2>${product.productName}</h2>
+      <h2 class="entity-name">${product.productName}</h2>
+      <div class="image-container" id="inventory-image-container">
+          <img src="${productImage}"/>
+      </div>
       <form id="edit-product-form">
 
         <label for="productId">Product ID:</label>
@@ -238,7 +252,9 @@ searchInput.addEventListener("input", () => {
 
     modal.style.display = "block";
     modalOverlay.style.display = "block";
-    document.getElementById("productName").focus();
+
+    document.querySelector(".entity-name").focus();
+    document.getElementById("productName");
 
     const editProductForm = document.getElementById("edit-product-form");
 
@@ -313,7 +329,9 @@ searchInput.addEventListener("input", () => {
             await getAdminInventory();
             searchInput.value = "";
           } catch (error) {
-            errorPopUp.showErrorModal(error.message || "An unexpected error occurred.");
+            errorPopUp.showErrorModal(
+              error.message || "An unexpected error occurred."
+            );
             closeModal();
           }
         }
@@ -334,7 +352,9 @@ searchInput.addEventListener("input", () => {
             await getAdminInventory();
             searchInput.value = "";
           } catch (error) {
-            errorPopUp.showErrorModal(error.message || "An unexpected error occurred.");
+            errorPopUp.showErrorModal(
+              error.message || "An unexpected error occurred."
+            );
           }
         }
       );
@@ -433,7 +453,9 @@ searchInput.addEventListener("input", () => {
       const imageResult = await imageResponse.json();
       imageUrl = imageResult.data;
     } catch (error) {
-      errorPopUp.showErrorModal(error.message || "An unexpected error occurred.");
+      errorPopUp.showErrorModal(
+        error.message || "An unexpected error occurred."
+      );
       return;
     }
 
@@ -471,11 +493,14 @@ searchInput.addEventListener("input", () => {
     }
     const category_id = categoryData.categoryID;
 
-    confirmPopUp.showConfirmModal("Add this product to the inventory?", async () => {
-      await addProductToInventory(category_id, productData);
-      closeAddProductModal();
-      getAdminInventory();
-      searchInput.value = "";
-    });
+    confirmPopUp.showConfirmModal(
+      "Add this product to the inventory?",
+      async () => {
+        await addProductToInventory(category_id, productData);
+        closeAddProductModal();
+        getAdminInventory();
+        searchInput.value = "";
+      }
+    );
   });
 })();
