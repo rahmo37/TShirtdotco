@@ -8,6 +8,12 @@ export function filterTable() {
     // Start from 1 to skip the header row
     let row = rows[i];
     let textContent = row.textContent.toLowerCase();
+    textContent = textContent
+      .split("\n")
+      .map((data) => {
+        return data.trim();
+      })
+      .join("");
     if (textContent.includes(filter)) {
       row.style.display = ""; // Show matching row
       highlightText(row, filter); // Highlight matches
@@ -34,7 +40,8 @@ function highlightText(row, keyword) {
 }
 
 function removeHighlights(element) {
-  const highlightSpans = element.querySelectorAll("span.highlight");
+  const highlightSpans = element.querySelectorAll("span");
+  // console.log(highlightSpans);
   highlightSpans.forEach((span) => {
     // Replace the span with its text content
     span.outerHTML = span.textContent;
@@ -42,9 +49,11 @@ function removeHighlights(element) {
 }
 
 function highlightCellText(cell, keyword) {
-  const regex = new RegExp(`(${keyword})`, "gi"); // Case-insensitive matching
+  const regex = new RegExp(`(${keyword})`, "gi");
   cell.childNodes.forEach((node) => {
+    
     if (node.nodeType === Node.TEXT_NODE) {
+      console.log("Hi");
       const matches = node.textContent.match(regex);
       if (matches) {
         const newHTML = node.textContent.replace(

@@ -117,8 +117,8 @@ import { filterTable } from "../../helper/searchTable.js";
       const customerRow = document.createElement("tr");
       const statusDot =
         customer.accountStatus.toLowerCase() === "active"
-          ? `<span style="color: #33cc71; font-size: 20px;">&#9679;</span>`
-          : `<span style="color: #0f80f0; font-size: 20px;">&#10054;</span>`;
+          ? `<span>&#x1F7E2;</span>`
+          : `<span>&#x1F9CA;</span>`;
       customerRow.innerHTML = `
         <td>${customer.customerID}</td>
         <td>${customer.email}</td>

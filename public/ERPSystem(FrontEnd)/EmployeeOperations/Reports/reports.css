@@ -18,7 +18,8 @@ html {
   transition: all 0.5s ease-in-out;
 }
 
-.header {
+.header,
+.footer {
   margin-top: 5px;
   margin-bottom: 35px;
   color: #6a78d1;
@@ -209,6 +210,25 @@ html {
   box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
     rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
   margin-bottom: 100px;
+  transition: all 0.3s ease-in-out;
+}
+
+.report-box {
+  max-height: 200px;
+}
+
+.report-box .chart-container,
+.report-box .swiper-container,
+.report-box .footer,
+.report-box .date-container {
+  display: none !important;
+}
+
+
+.collapse-btn {
+  position: absolute !important;
+  max-width: 50px;
+  left: 6.5%;
 }
 
 .inventory-tab,
@@ -284,8 +304,8 @@ html {
   transform: scale(1.05);
 }
 
-
-#date-submit-button {
+#date-submit-button,
+.collapse-btn {
   align-items: center;
   appearance: none;
   background-image: radial-gradient(
@@ -312,7 +332,7 @@ html {
   position: relative;
   text-align: left;
   text-decoration: none;
-  transition: box-shadow 0.15s, transform 0.15s;
+  transition: box-shadow 0.3s, transform 0.3s;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
@@ -321,7 +341,8 @@ html {
   font-size: 18px;
 }
 
-#date-submit-button:focus {
+#date-submit-button:focus,
+.collapse-btn:focus {
   box-shadow: #3c4fe0 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px,
     rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
 }
@@ -332,11 +353,11 @@ html {
   transform: translateY(-2px);
 }
 
-#date-submit-button:active {
+#date-submit-button:active,
+.collapse-btn:active {
   box-shadow: #3c4fe0 0 3px 9px inset;
   transform: translateY(2px);
 }
-
 
 .form-control {
   display: block;
@@ -378,6 +399,10 @@ html {
   .inventory-navbar {
     top: 17%;
     left: 90%;
+  }
+
+  .collapse-btn {
+    left: 5.3%;
   }
 
   .custom-swiper-button-next,

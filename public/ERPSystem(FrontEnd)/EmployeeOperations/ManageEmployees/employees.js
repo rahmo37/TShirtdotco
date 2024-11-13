@@ -119,8 +119,8 @@ import { filterTable } from "../../helper/searchTable.js";
       const employeeRow = document.createElement("tr");
       const statusDot =
         employee.accountStatus.toLowerCase() === "active"
-          ? `<span style="color: #33cc71; font-size: 20px;">&#9679;</span>`
-          : `<span style="color: #e31c23; font-size: 20px;">&#9679;</span>`;
+          ? `<span>&#128994;</span>`
+          : `<span >&#128308;</span>`;
       employeeRow.innerHTML = `
         <td>${employee.employeeID}</td>
         <td>${employee.employeeBio.firstName}</td>

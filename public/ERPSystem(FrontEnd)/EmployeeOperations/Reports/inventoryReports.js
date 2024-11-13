@@ -64,6 +64,8 @@ function viewThisYearSoldProducts(report) {
   const containerHTML = generateContainer(containerInfo);
   const containerDiv = appendGeneratedContainer(outerContainer, containerHTML);
 
+  createCollapsible(containerInfo.section);
+
   // Local variables to store chart and swiper instances
   let soldProductsChart;
   let soldProductsSwiper;
@@ -211,6 +213,8 @@ function viewCurrentInventory(report) {
   const containerHTML = generateContainer(containerInfo);
   const containerDiv = appendGeneratedContainer(outerContainer, containerHTML);
 
+  createCollapsible(containerInfo.section);
+
   // Grabbing the current inventory canvas
   const currentInventoryCanvas = containerDiv.querySelector(
     `#${containerInfo.canvasId}`
@@ -310,6 +314,8 @@ function viewTopSellingProduct(report) {
   // Append the generated container and get a reference to it
   const containerHTML = generateContainer(containerInfo);
   const containerDiv = appendGeneratedContainer(outerContainer, containerHTML);
+
+  createCollapsible(containerInfo.section);
 
   const topSoldProductsCanvas = containerDiv.querySelector(
     `#${containerInfo.canvasId}`
@@ -439,6 +445,8 @@ function viewLowStockProducts(report) {
     containerHTML,
     "low-stock-container"
   );
+
+  createCollapsible(containerInfo.section);
 
   const lowStockProductsCanvas = containerDiv.querySelector(
     `#${containerInfo.canvasId}`
@@ -585,9 +593,10 @@ function getNavBarHtml() {
 
 function generateContainer(containerInfo) {
   // Date input HTML
+
   const dateHTML = containerInfo.includeDateInputs
     ? `
-      <div class="row justify-content-center align-items-center mb-4">
+      <div class="row justify-content-center align-items-center date-container mb-4">
         <h5 class="text-center mb-3" style="color: #3648be;">Change Report Range</h5>
         <div class="col-auto">
           <label for="startDate" class="visually-hidden">Start Date</label>
@@ -607,11 +616,12 @@ function generateContainer(containerInfo) {
     `
     : "";
 
-  return `
-      <div class="row d-flex justify-content-center" id="${containerInfo.section}">
+  const containerHTML = `
+      <div class="row d-flex justify-content-center "id="${containerInfo.section}">
         <div class="col-md-12 text-center header">
           <h2>${containerInfo.header}</h2>
         </div>
+        <button class="collapse-btn"><i class="fa-solid fa-minus"></i></button>
         <!-- Carousel Column -->
         <div class="col-md-12">
           <!-- Swiper -->
@@ -635,12 +645,14 @@ function generateContainer(containerInfo) {
         <div class="col-md-6 chart-container">
           <canvas class="report-chart" id="${containerInfo.canvasId}" width="400"></canvas>
         </div>
-        <div class="col-md-12 text-center header my-5">
+        <div class="col-md-12 text-center footer my-5">
           <h2>${containerInfo.footer}</h2>
         </div>
         ${dateHTML}
       </div>
   `;
+
+  return containerHTML;
 }
 
 function appendGeneratedContainer(outerContainer, containerHTML, containerId) {
@@ -980,4 +992,18 @@ function generateHSLColor(length) {
   }
 
   return [backgroundColors, borderColors];
+}
+
+function createCollapsible(section) {
+  const containerElement = document.getElementById(section);
+  const collapseBtn = containerElement.querySelector(".collapse-btn");
+
+  collapseBtn.addEventListener("click", () => {
+    containerElement.classList.toggle("report-box");
+    if (containerElement.classList.contains("report-box")) {
+      collapseBtn.innerHTML = `<i class="fa-solid fa-plus"></i></i>`;
+    } else {
+      collapseBtn.innerHTML = `<i class="fa-solid fa-minus"></i>`;
+    }
+  });
 }
