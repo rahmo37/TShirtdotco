@@ -23,6 +23,7 @@ const reportLoader = document.getElementById("report-loader");
 const employeeLoader = document.getElementById("employee-loader");
 const customerLoader = document.getElementById("customer-loader");
 const inventoryLoader = document.getElementById("inventory-loader");
+const orderLoader = document.getElementById("order-loader");
 const settingsLoader = document.getElementById("settings-loader");
 
 // accumulating the buttons for later use
@@ -31,6 +32,7 @@ const btnArray = [
   employeeLoader,
   customerLoader,
   inventoryLoader,
+  orderLoader,
 ];
 
 // This is the sidebar
@@ -97,6 +99,16 @@ customerLoader.addEventListener("click", () => {
     htmlUrl: "../ManageCustomers/customer.html",
     cssUrl: "../employee_functions.css",
     jsUrl: "../ManageCustomers/customer.js",
+  });
+  closeSideBar();
+});
+
+// Load the customer page
+orderLoader.addEventListener("click", () => {
+  loadPageWithFade({
+    htmlUrl: "../ManageOrders/DisplayOrders/displayOrders.html",
+    cssUrl: "../employee_functions.css",
+    jsUrl: "../ManageOrders/DisplayOrders/displayOrders.js",
   });
   closeSideBar();
 });

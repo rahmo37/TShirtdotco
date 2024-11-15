@@ -512,7 +512,7 @@ function viewLowStockProducts(report) {
     // Append each slide to swiperWrapper
     swiperWrapper.appendChild(slide);
 
-    let confirmMessage = `Restock ${product.productName} with <span style="color: red;">${product.restockQuantity}</span> new items?`;
+    let confirmMessage = `Restock ${product.productName} with <span style="color: green;">${product.restockQuantity}</span> new items?`;
     const restockButton = slide.querySelector(".restock-button");
     restockButton.addEventListener("click", () => {
       confirmPopUp.showConfirmModal(confirmMessage, () => {

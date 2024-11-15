@@ -121,6 +121,7 @@ import { filterTable } from "../../helper/searchTable.js";
         employee.accountStatus.toLowerCase() === "active"
           ? `<span>&#128994;</span>`
           : `<span >&#128308;</span>`;
+        const adminIcon = employee.isAdmin ? `<span>&#11088;</span>` : "";
       employeeRow.innerHTML = `
         <td>${employee.employeeID}</td>
         <td>${employee.employeeBio.firstName}</td>
@@ -130,7 +131,7 @@ import { filterTable } from "../../helper/searchTable.js";
         <td>${employee.workInfo.jobTitle}</td>
         <td>${employee.workInfo.department}</td>
         <td>${statusDot} ${employee.accountStatus}</td>
-        <td>${employee.isAdmin ? "YES" : "NO"}</td>
+        <td>${adminIcon} ${employee.isAdmin ? "YES" : "NO"}</td>
       `;
 
       employeeRow.addEventListener("click", () => {

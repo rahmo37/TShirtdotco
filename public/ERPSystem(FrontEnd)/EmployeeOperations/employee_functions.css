@@ -1,3 +1,7 @@
+.main {
+  overflow: hidden;
+}
+
 .main-content {
   flex: 1;
   padding: 20px 40px;
@@ -13,7 +17,8 @@
 }
 
 #employee-image-container,
-#customer-image-container {
+#customer-image-container,
+#order-image-container {
   height: 450px;
 }
 
@@ -35,22 +40,61 @@
   margin-top: 0px !important;
 }
 
-/* Add User Button Styling */
-#add-new-btn {
+#add-new-btn, .view-order {
   position: absolute;
-  top: 20px;
-  right: 40px;
-  background-color: #3648be; /* Background color from the second rule */
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
+  align-items: center;
+  appearance: none;
+  background-image: radial-gradient(
+    100% 100% at 100% 0,
+    #beddfc 0,
+    #5468ff 100%
+  );
+  border: 0;
+  border-radius: 6px;
+  box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,
+    rgba(45, 35, 66, 0.3) 0 7px 13px -3px, rgba(58, 65, 111, 0.5) 0 -3px 0 inset;
+  box-sizing: border-box;
+  color: #fff;
   cursor: pointer;
+  display: inline-flex;
+  width: fit-content;
+  height: 50px;
+  justify-content: center;
+  line-height: 1;
+  list-style: none;
+  overflow: hidden;
+  padding-left: 16px;
+  padding-right: 16px;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow, transform;
+  font-size: 18px;
+}
+
+#add-new-btn {
+  top: -5%;
+  left: 90%;
+}
+
+#add-new-btn:focus {
+  box-shadow: #3c4fe0 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px,
+    rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
 }
 
 #add-new-btn:hover {
-  background-color: #4553a0;
+  box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px,
+    rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
+}
+
+#add-new-btn:active {
+  box-shadow: #3c4fe0 0 3px 9px inset;
+  transform: translateY(2px);
 }
 
 #table-container {
@@ -65,6 +109,29 @@
   padding-right: 45px;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    background-color: #ffffff50;
+}
+
+tr.orderRow {
+  transform: translateX(-150px);
+  transition: all 0.3s ease-in-out;
+}
+
+tr.orderRow-reset {
+  /* transform: translateX(0); */
+  transition: all 0.3s ease-in-out;
+}
+
+.view-order {
+  position: absolute;
+  visibility: hidden;
+  transition: all 0.3s ease-in-out;
+  width: 150px;
+  height: 100%;
+}
+
+.orderRow .view-order {
+  visibility: visible;
 }
 
 .input-container {
@@ -131,13 +198,11 @@ th,
 td {
   padding: 18px 35px;
   text-align: center;
-  transition: all 0.5s ease;
+  transition: all 0.2s ease;
 }
 
 td:hover {
-  transform: scale(1.25) translateX(15px);
   color: #0526ff;
-  text-shadow: 20px 20px 5px rgba(0, 0, 0, 0.25);
 }
 
 th {
@@ -151,7 +216,7 @@ th {
 
 tr {
   border-bottom: 1px solid #ddd; /* Add a subtle border between rows */
-  transition: background-color 0.5s ease; /* Add transition effect */
+  transition: all 0.5s ease; /* Add transition effect */
 }
 
 tr:nth-child(even) {
@@ -231,7 +296,7 @@ textarea {
   margin-bottom: 15px;
   border: none;
   border-radius: 10px;
-  background-color: #e1e7f781;
+  background-color: #f5f5ff;
   font-size: 22px;
   resize: vertical;
   box-sizing: border-box;
@@ -361,7 +426,6 @@ button,
   table {
     width: 100%;
     max-width: 100%;
-    margin-top: 20px;
     font-size: 14px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 30px 60px -12px;
   }
@@ -387,15 +451,18 @@ button,
     padding: 10px 15px;
   }
 
+  #add-new-btn {
+    top: -6% !important;
+    left: 88%;
+  }
+
   #employee-image-container,
   #customer-image-container {
     height: 300px;
   }
 
   td:hover {
-    transform: scale(1.1) translateX(10px);
     color: #0526ff;
-    text-shadow: 15px 15px 5px rgba(0, 0, 0, 0.25);
   }
 
   .input-container {
@@ -429,7 +496,7 @@ button,
   table {
     width: auto;
     max-width: 100%;
-    max-height: 550px;
+    max-height: 520px;
     margin-top: 15px;
     font-size: 13px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;

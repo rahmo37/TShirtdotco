@@ -25,6 +25,7 @@ const orderSchema = new mongoose.Schema({
   tax: { type: Number, required: true },
   discountInPercentage: { type: Number },
   grandTotal: { type: Number, required: true },
+  placedBy: { type: String, required: true },
 });
 
 // Create the Order model based on the schema

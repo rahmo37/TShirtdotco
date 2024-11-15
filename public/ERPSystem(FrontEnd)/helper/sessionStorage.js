@@ -16,6 +16,11 @@ sessionObject.getData = function (key) {
   return JSON.parse(storedValue); // Parse the stored JSON string
 };
 
+// Function to remove specific data from session storage
+sessionObject.removeData = function (key) {
+  sessionStorage.removeItem(key);
+};
+
 // Clear storage
 sessionObject.clearStorage = function () {
   sessionStorage.clear();

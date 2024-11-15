@@ -16,7 +16,7 @@ infoPopUp.loadModal = async function (popUpLocation) {
 };
 
 // Show the info modal with a specific message
-infoPopUp.showInfoModal = function (message) {
+infoPopUp.showInfoModal = function (message, callback) {
   // Set the info message inside the modal
   const infoMessage = document.getElementById("infoMessage");
   infoMessage.textContent = message;
@@ -24,4 +24,11 @@ infoPopUp.showInfoModal = function (message) {
   // Show the modal using Bootstrap's modal methods
   const infoModal = new bootstrap.Modal(document.getElementById("infoModal"));
   infoModal.show();
+
+  if (callback) {
+    const infoCloser = document.getElementById("info-popup-close");
+    infoCloser.addEventListener("click", () => {
+      callback();
+    });
+  }
 };
