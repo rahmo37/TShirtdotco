@@ -230,7 +230,7 @@ tr:hover {
 
 /* Optional: Font styling for the table */
 table {
-  font-size: 16px;
+  font-size: 12px;
   color: #333;
 }
 
@@ -296,7 +296,7 @@ textarea {
   margin-bottom: 15px;
   border: none;
   border-radius: 10px;
-  background-color: #f5f5ff;
+  background-color: #fffbf8;
   font-size: 22px;
   resize: vertical;
   box-sizing: border-box;
@@ -402,7 +402,7 @@ button,
 }
 
 /* Media Query for Tablets and Small Desktops (Max Width: 1024px) */
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1024px) { /*! 1024 pixels wide or less */
   /* Adjust main content padding */
   .main-content {
     padding: 15px 20px;
@@ -445,7 +445,7 @@ button,
 }
 
 /* Media Query for Mobile Devices (Max Width: 600px) */
-@media screen and (max-width: 1600px) {
+@media screen and (max-width: 1600px) { /*! 1600 pixels wide or less */
   /* Adjust main content padding */
   .main-content {
     padding: 10px 15px;
@@ -564,6 +564,6 @@ button,
   }
 }
 
-/* .active-dot {
-  color: #33cc71;
-} */
+
+/*! @media screen and (min-width: 1024px) means at least 1024 or more  */
+/*! @media screen and (max-width: 1024px) 1024 px or less  */

@@ -1,0 +1,381 @@
+.main {
+  overflow: hidden;
+}
+
+#table-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  border: #333;
+  border-width: 2px;
+}
+
+table {
+  max-height: 600px;
+  margin-top: 40px;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: block;
+  width: auto;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  font-size: 16px;
+  color: #333;
+}
+
+th {
+  text-transform: uppercase;
+}
+
+th,
+td {
+  padding: 18px 35px;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+td:hover {
+  color: #0526ff;
+}
+
+th {
+  position: sticky;
+  top: 0;
+  background-color: #3648be;
+  color: white;
+  font-weight: bold;
+  border-bottom: 1px solid #ddd;
+}
+
+tfoot {
+  position: fixed;
+  bottom: 0%;
+  left: 19%;
+  border-radius: 12px;
+  width: fit-content;
+  font-size: 25px;
+  height: auto;
+  background-color: #3648be;
+  color: white;
+  font-weight: bold;
+  border: 1px solid #fff;
+}
+
+tfoot td:hover {
+  color: #fff;
+  transform: scale(1.05);
+}
+
+tr {
+  border-bottom: 1px solid #ddd;
+  transition: all 0.5s ease;
+}
+
+tr:nth-child(even) {
+  background-color: #b6bcfc34;
+}
+
+tr:hover {
+  background-color: #7575753e;
+  cursor: pointer;
+}
+
+.highlight {
+  background-color: #56f056;
+  font-weight: bold;
+  color: #000;
+}
+
+/* Select and Remove Buttons Styles */
+.select-customer-buttons {
+  align-items: center;
+  appearance: none;
+  border: 0;
+  border-radius: 6px;
+  box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,
+    rgba(45, 35, 66, 0.3) 0 7px 13px -3px, rgba(58, 65, 111, 0.5) 0 -3px 0 inset;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  width: fit-content;
+  height: 50px;
+  justify-content: center;
+  line-height: 1;
+  padding: 0 16px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow, transform;
+  font-size: 18px;
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+}
+
+/* Styles specific to #selectBtn */
+#selectBtn {
+  background-image: radial-gradient(
+    100% 100% at 100% 0,
+    #bcddba 0,
+    #01a801 100%
+  );
+  font-size: larger;
+  min-width: 150px;
+  min-height: 60px;
+}
+
+/* Styles specific to #removeBtn */
+#removeBtn {
+  background-image: radial-gradient(
+    100% 100% at 100% 0,
+    #fac0bd 0,
+    #fa4747 100%
+  );
+  font-size: larger;
+  min-width: 150px;
+  min-height: 60px;
+}
+
+/* Default state: Select button visible, Remove button hidden */
+#selectBtn {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#removeBtn {
+  opacity: 0.3 !important;
+  pointer-events: none;
+}
+
+/* When customer is selected */
+#cardFooter.customer-selected #selectBtn {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+#cardFooter.customer-selected #removeBtn {
+  opacity: 1 !important;
+  pointer-events: auto;
+}
+
+/* Original Focus and Active Effects for Select and Remove Buttons */
+#selectBtn:focus {
+  box-shadow: #3dbf00 0 0 0 1.5px inset, rgba(18, 95, 25, 0.4) 0 2px 4px,
+    rgba(18, 95, 25, 0.4) 0 7px 13px -3px, #34a600 0 -3px 0 inset;
+}
+
+#selectBtn:active {
+  box-shadow: #115511 0 3px 9px inset;
+  transform: translateY(2px);
+}
+
+#removeBtn:focus {
+  box-shadow: #f70404 0 0 0 1.5px inset, rgba(204, 26, 26, 0.4) 0 2px 4px,
+    rgba(204, 26, 26, 0.3) 0 7px 13px -3px, #f70404 0 -3px 0 inset;
+}
+
+#removeBtn:active {
+  box-shadow: #f70404 0 3px 9px inset;
+  transform: translateY(2px);
+}
+
+/* Back Button Styles (Unchanged) */
+#backBtn {
+  position: fixed;
+  left: 8%;
+  top: 4.6%;
+  background-image: radial-gradient(
+    100% 100% at 100% 0,
+    #beddfc 0,
+    #5468ff 100%
+  );
+  z-index: 1000;
+}
+
+#nextBtn {
+  position: fixed;
+  left: 93%;
+  top: 6.3%;
+  background-image: radial-gradient(
+    100% 100% at 100% 0,
+    #beddfc 0,
+    #5468ff 100%
+  );
+  z-index: 1000;
+}
+
+#backBtn:focus,
+#nextBtn:focus {
+  box-shadow: #3c4fe0 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px,
+    rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
+}
+
+#backBtn:hover,
+#nextBtn:hover {
+  box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px,
+    rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
+}
+
+#backBtn:active,
+#nextBtn:active {
+  box-shadow: #3c4fe0 0 3px 9px inset;
+  transform: translateY(2px);
+}
+
+/* Card Styles */
+.zoomed-out-card {
+  transform: scale(0.68) translateX(-160px) translateY(-10px);
+  transform-origin: top;
+}
+
+img {
+  border-radius: 15px 15px 0 0 !important;
+}
+
+.card {
+  border-radius: 15px;
+  font-size: 25px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+.card-footer {
+  background-color: #e3e3e3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  height: 150px;
+  min-height: 100px;
+  transition: all 0.2s ease-in-out;
+  gap: 20px;
+}
+
+.select-customer-buttons-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  gap: 50px;
+  margin-top: 30px;
+}
+
+/* Search Input Styles */
+.input-container {
+  position: fixed;
+  top: 2%;
+  width: 600px;
+  left: 34.5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-icon {
+  position: absolute;
+  margin-top: 40px;
+  z-index: 200;
+  top: 20%;
+  right: 48%;
+  width: 32px;
+  height: auto;
+  transition: all 0.3s ease-in-out;
+}
+
+.search-icon:hover {
+  transform: scale(1.3);
+  cursor: pointer;
+}
+
+#searchInput {
+  position: absolute;
+  width: 100%;
+  padding: 15px;
+  padding-left: 25px;
+  margin-top: 25px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 10px;
+  background-color: #fffbf83a;
+  font-size: 22px;
+  resize: vertical;
+  box-sizing: border-box;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  top: 20%;
+  right: 43%;
+  outline: none;
+}
+
+/* Media Queries */
+@media screen and (max-width: 1600px) {
+  .zoomed-out-card {
+    transform: scale(0.55) translateX(-160px) translateY(-35px);
+    transform-origin: top;
+  }
+
+  #backBtn {
+    top: 6.6%;
+  }
+
+  table {
+    max-height: 400px;
+    font-size: 14px;
+  }
+
+  #searchInput {
+    right: 45%;
+  }
+
+  .card {
+    width: 120%;
+  }
+
+  tfoot {
+    left: 20.5%;
+    bottom: 0%;
+    font-size: large;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  table {
+    max-height: 310px;
+    font-size: 12px;
+  }
+
+  .zoomed-out-card {
+    transform: scale(0.46) translateX(-100px) translateY(-60px);
+    transform-origin: top;
+  }
+
+  #searchInput {
+    right: 53%;
+    width: 80%;
+  }
+
+  #searchInput::placeholder {
+    font-size: 18px;
+  }
+
+  .search-icon {
+    right: 56%;
+  }
+
+  .card {
+    width: 130%;
+  }
+
+  tfoot {
+    left: 21.5%;
+    bottom: 0%;
+    font-size: 12px;
+  }
+}

@@ -13,10 +13,24 @@ import { sessionObject } from "../../../helper/sessionStorage.js";
 
 (function () {
   const ordersTableContainer = document.getElementById("table-container");
-  const addOrderBtn = document.getElementById("add-new-btn");
+  const createOrderBtn = document.getElementById("add-new-btn");
   const searchInput = document.getElementById("searchInput");
   // This is the main container where external content is loaded
   const contentArea = document.getElementById("outer-main-container");
+
+  createOrderBtn.addEventListener("click", () => {
+    loadPageWithFade({
+      htmlUrl: "../ManageOrders/CreateOrders/SelectProduct/selectProduct.html",
+      cssUrl: "../ManageOrders/CreateOrders/SelectProduct/selectProduct.css",
+      jsUrl: "../ManageOrders/CreateOrders/SelectProduct/selectProduct.js",
+    });
+    if (sessionObject.getData("itemsArray")) {
+      sessionObject.removeData("itemsArray");
+    }
+    if (sessionObject.getData("customerObject")) {
+      sessionObject.removeData("customerObject");
+    }
+  });
 
   // Display orders
   getOrderList();

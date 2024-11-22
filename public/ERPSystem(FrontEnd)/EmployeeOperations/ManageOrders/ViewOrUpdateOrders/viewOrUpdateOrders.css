@@ -25,7 +25,7 @@ input[type="tel"],
 select,
 textarea,
 #orderStatus {
-  width: 30%;
+  width: 100%;
   padding: 15px;
   margin-top: 5px;
   margin-bottom: 15px;
@@ -243,7 +243,8 @@ h2 {
   font-size: 18px;
 }
 
-#updateBtn, #addDiscountBtn {
+#updateBtn,
+#addDiscountBtn {
   background-image: radial-gradient(
     100% 100% at 100% 0,
     #beddfc 0,
@@ -254,39 +255,10 @@ h2 {
   visibility: hidden;
 }
 
-
 #addDiscount::placeholder {
   font-size: 18px;
   color: #888; /* Set to a light gray color */
-  opacity: 0.5; /* Adjust opacity to make it dim */
-}
-
-/* Shared Button Styles */
-.order-buttons {
-  align-items: center;
-  appearance: none;
-  border: 0;
-  border-radius: 6px;
-  box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,
-    rgba(45, 35, 66, 0.3) 0 7px 13px -3px, rgba(58, 65, 111, 0.5) 0 -3px 0 inset;
-  box-sizing: border-box;
-  color: #fff;
-  cursor: pointer;
-  display: inline-flex;
-  width: fit-content;
-  height: 50px;
-  justify-content: center;
-  line-height: 1;
-  padding: 0 16px;
-  text-align: left;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  white-space: nowrap;
-  will-change: box-shadow, transform;
-  font-size: 18px;
+  opacity: 0.8; /* Adjust opacity to make it dim */
 }
 
 /* Back Button Styles (Blue Theme) */
@@ -304,7 +276,8 @@ h2 {
 }
 
 #backBtn:focus,
-#updateBtn:focus {
+#updateBtn:focus,
+#addDiscountBtn:focus {
   box-shadow: #3c4fe0 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px,
     rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
   opacity: 1; /* Full opacity on focus */
@@ -317,7 +290,8 @@ h2 {
 }
 
 #backBtn:active,
-#updateBtn:active {
+#updateBtn:active,
+#addDiscountBtn:active {
   box-shadow: #3c4fe0 0 3px 9px inset;
   transform: translateY(2px);
   opacity: 1; /* Full opacity on active */
@@ -325,7 +299,7 @@ h2 {
 
 /* Cancel Button Styles (Red Theme) */
 #cancel-order-btn,
-#delete-product-btn {
+.delete-product-buttons {
   background-image: radial-gradient(
     100% 100% at 100% 0,
     #f2d0d0 0,
@@ -334,15 +308,92 @@ h2 {
 }
 
 #cancel-order-btn:focus,
-#delete-product-btn:focus {
+.delete-product-buttons:focus {
   box-shadow: #f70404 0 0 0 1.5px inset, rgba(204, 26, 26, 0.4) 0 2px 4px,
     rgba(204, 26, 26, 0.3) 0 7px 13px -3px, #f70404 0 -3px 0 inset;
 }
 
 #cancel-order-btn:active,
-#delete-product-btn:active {
+.delete-product-buttons:active {
   box-shadow: #f70404 0 3px 9px inset;
   transform: translateY(2px);
+}
+
+/* Modal styling */
+.custom-modal {
+  display: none;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  z-index: 501;
+  transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  padding: 30px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  width: 40%;
+  max-width: 700px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.custom-modal-overlay {
+  display: none;
+  position: fixed;
+  z-index: 300;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  contain: strict;
+}
+
+/* Modal header */
+.custom-modal h2 {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.close-modal-btn {
+  position: absolute;
+  top: 10px;
+  right: 35px;
+  cursor: pointer;
+  font-size: 45px;
+  color: #333;
+  transition: all 0.3s ease-in;
+}
+
+.close-modal-btn:hover {
+  color: rgb(5, 25, 255);
+  transform: scale(1.3);
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 460px;
+  width: auto;
+}
+
+.image-container img {
+  width: 100%; /* Scale image to fit the container's width */
+  height: 100%; /* Scale image to fit the container's height */
+  object-fit: cover; /* Adjust to cover, contain, or fit within */
+  border-radius: 15px;
+}
+
+.entity-name {
+  color: #7192ff !important;
+  font-size: 32px !important;
+  margin-bottom: 25px !important;
+  margin-top: 0px !important;
 }
 
 @media (max-width: 768px) {
@@ -385,5 +436,12 @@ h2 {
   .custom-swiper-button-prev {
     left: 30px;
     top: 30%;
+  }
+}
+
+
+@media screen and (max-width: 1600px) {
+  .image-container {
+    height: 300px;
   }
 }

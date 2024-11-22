@@ -6,6 +6,7 @@ import { successPopUp } from "../../helper/successPopupHandler.js";
 import { confirmPopUp } from "../../helper/confirmPopUpHandler.js";
 import { startLogOutTimer } from "../../helper/StartLogoutTimer.js";
 import { infoPopUp } from "../../helper/informationPopUpHandler.js";
+import { sessionObject } from "../../helper/sessionStorage.js";
 
 // start a timer for automatic log out
 startLogOutTimer(() => {
@@ -25,6 +26,7 @@ const customerLoader = document.getElementById("customer-loader");
 const inventoryLoader = document.getElementById("inventory-loader");
 const orderLoader = document.getElementById("order-loader");
 const settingsLoader = document.getElementById("settings-loader");
+const tempLoader = document.getElementById("temp-loader");
 
 // accumulating the buttons for later use
 const btnArray = [
@@ -33,6 +35,7 @@ const btnArray = [
   customerLoader,
   inventoryLoader,
   orderLoader,
+  tempLoader,
 ];
 
 // This is the sidebar
@@ -89,6 +92,15 @@ employeeLoader.addEventListener("click", () => {
     htmlUrl: "../ManageEmployees/employees.html",
     cssUrl: "../employee_functions.css",
     jsUrl: "../ManageEmployees/employees.js",
+  });
+  closeSideBar();
+});
+
+tempLoader.addEventListener("click", () => {
+  loadPageWithFade({
+    htmlUrl: "../ManageOrders/CreateOrders/FinalizeOrder/finalizeOrder.html",
+    cssUrl: "../ManageOrders/CreateOrders/FinalizeOrder/finalizeOrder.css",
+    jsUrl: "../ManageOrders/CreateOrders/FinalizeOrder/finalizeOrder.js",
   });
   closeSideBar();
 });
@@ -155,19 +167,48 @@ function loadReports() {
 
 // Function to load page with fade effects
 function loadPageWithFade({ htmlUrl, cssUrl, jsUrl }) {
-  try {
-    applyFadeEffect(() => {
-      loader.removeJs();
-      loader.removeCss();
-      loader.loadPageContent({
-        htmlUrl,
-        cssUrl,
-        jsUrl,
-        targetElement: contentArea,
+  const selectedProducts = sessionObject.getData("itemsArray");
+  const selectCustomer = sessionObject.getData("customerObject");
+  if (
+    selectedProducts ||
+    (selectCustomer && Object.keys(selectCustomer).length > 0)
+  ) {
+    confirmPopUp.showConfirmModal(
+      "You have unsaved data, leave the page?",
+      () => {
+        try {
+          sessionObject.removeData("itemsArray");
+          sessionObject.removeData("customerObject");
+          applyFadeEffect(() => {
+            loader.removeJs();
+            loader.removeCss();
+            loader.loadPageContent({
+              htmlUrl,
+              cssUrl,
+              jsUrl,
+              targetElement: contentArea,
+            });
+          });
+        } catch (error) {
+          console.error("Error loading page:", error);
+        }
+      }
+    );
+  } else {
+    try {
+      applyFadeEffect(() => {
+        loader.removeJs();
+        loader.removeCss();
+        loader.loadPageContent({
+          htmlUrl,
+          cssUrl,
+          jsUrl,
+          targetElement: contentArea,
+        });
       });
-    });
-  } catch (error) {
-    console.error("Error loading page:", error);
+    } catch (error) {
+      console.error("Error loading page:", error);
+    }
   }
 }
 
@@ -235,8 +276,12 @@ function logOutUser(automaticLogout = false) {
 
   if (automaticLogout) {
     alert("user logged out due to token expiration!");
+    // Redirect to login page
+    window.location.href = "../../Login/login.html";
+    return;
+  } else {
+    confirmPopUp.showConfirmModal("Are you sure you want to log out?", () => {
+      window.location.href = "../../Login/login.html";
+    });
   }
-
-  // Redirect to login page
-  window.location.href = "../../Login/login.html";
 }

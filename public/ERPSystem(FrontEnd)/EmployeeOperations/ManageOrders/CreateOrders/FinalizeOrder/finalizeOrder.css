@@ -1,0 +1,181 @@
+body,
+html {
+  height: 100%;
+  margin: 0;
+  overflow: hidden; /* Prevent page scrolling */
+  font-family: "Arial", sans-serif; /* Clean typography */
+}
+
+.main {
+  overflow: hidden;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+/* Section background highlighting */
+.section {
+  background-color: #ffffff; /* White background */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  margin-bottom: 10px;
+  flex: 1;
+}
+
+/* Centered section headers */
+.section h3 {
+  padding: 5px;
+  text-align: center;
+  background-color: #e1e1e16c;
+  margin-bottom: 20px;
+  border-radius: 8px;
+}
+
+#grand-total {
+  font-size: 25px;
+  color: #007bff;
+}
+
+/* Styles for the product table */
+.product-table {
+  max-height: 400px; /* Adjusted to fit within viewport */
+  overflow-y: auto; /* Allow scrolling for table content */
+  border: 1px solid #dee2e6; /* Adds border to the table */
+  border-radius: 10px; /* Rounded corners */
+  background-color: #ffffff; /* White background */
+}
+.product-table table {
+  border-collapse: collapse; /* Remove inner borders */
+  width: 100%;
+}
+
+.product-table th,
+.product-table td {
+  padding: 10px;
+}
+
+.product-table th,
+.product-table td:not(:first-child) {
+  text-align: center;
+}
+
+.product-table td:first-child {
+  text-align: left;
+}
+
+tr {
+  cursor: pointer;
+}
+
+thead th {
+  position: sticky;
+  top: 0;
+  background-color: #f8f9fa; /* Match section color */
+  z-index: 2;
+  border-bottom: 2px solid #dee2e6; /* Bottom border for header */
+}
+tbody tr:hover {
+  background-color: #f4f4f4; /* Highlight row on hover */
+}
+
+.product-table tr {
+  transition: all 0.5s ease;
+}
+.product-table tr:nth-child(even) {
+  background-color: #e6ecfa8c;
+}
+
+/* Adjusted product cell to display image and details side by side */
+.product-cell {
+  display: flex;
+  align-items: center;
+}
+.product-cell img {
+  max-width: 110px;
+  margin-right: 15px;
+  border-radius: 5px;
+}
+.product-details {
+  display: flex;
+  flex-direction: column;
+}
+.product-details p {
+  margin: 0;
+  margin-bottom: 5px;
+}
+
+/* Order Summary Adjustments */
+.order-summary table {
+  border: none; /* Remove borders */
+  width: 100%;
+}
+.order-summary td {
+  padding: 10px;
+  border: none; /* Remove borders from cells */
+}
+.order-summary tr {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.discount-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+.discount-input {
+  width: 80px; /* Adjusted input size */
+}
+
+/* Buttons at the bottom */
+.bottom-btn-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Space between buttons */
+  padding: 10px;
+  background-color: #ffffff; /* White background */
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+.bottom-btn-container button {
+  padding: 10px 30px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.bottom-btn-container .btn-secondary {
+  background-color: #6c757d;
+  color: #fff;
+}
+.bottom-btn-container .btn-primary {
+  background-color: #007bff;
+  color: #fff;
+}
+.bottom-btn-container button:hover {
+  transform: scale(1.05);
+}
+.bottom-btn-container .btn-secondary:hover {
+  background-color: #5a6268;
+}
+.bottom-btn-container .btn-primary:hover {
+  background-color: #0056b3;
+}
+
+@media screen and (max-width: 1600px) {
+  .product-table {
+    max-height: 180px;
+  }
+}

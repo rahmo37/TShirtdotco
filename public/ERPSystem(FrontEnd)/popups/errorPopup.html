@@ -9,7 +9,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header" style="background-color: #dc3545; color: white">
-        <h2 class="modal-title modal-primary" id="errorModalLabel">Error!</h2>
+        <h3 class="modal-title modal-primary" id="errorModalLabel">Error!</h3>
         <button
           type="button"
           class="btn-close"
@@ -18,10 +18,17 @@
         ></button>
       </div>
       <div class="modal-body">
-        <p id="errorMessage" style="font-size: 25px;"">An unknown error occurred.</p>
+        <p id="errorMessage" style="font-size: 25px">
+          An unknown error occurred.
+        </p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+        <button
+          type="button"
+          class="btn btn-danger"
+          id="error-popup-close"
+          data-bs-dismiss="modal"
+        >
           Close
         </button>
       </div>

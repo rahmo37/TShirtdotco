@@ -1,10 +1,10 @@
-export function filterTable() {
+export function filterTable(exclude = 0) {
   const input = document.getElementById("searchInput");
   const filter = input.value.toLowerCase();
   const table = document.getElementById("dataTable");
   const rows = table.getElementsByTagName("tr");
 
-  for (let i = 1; i < rows.length; i++) {
+  for (let i = 1; i < rows.length - exclude; i++) {
     // Start from 1 to skip the header row
     let row = rows[i];
     let textContent = row.textContent.toLowerCase();

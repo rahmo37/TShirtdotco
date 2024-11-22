@@ -250,6 +250,7 @@ function viewCurrentInventory(report) {
         <div class="card-footer">
           <p class="card-text">Category: ${category.categoryName}</p>
           <p class="card-text">Current Quantity: ${product.currentQuantity}</p>
+          <p class="card-text">Total Sold: ${product.totalSold}</p>
         </div>
       </div>`;
 

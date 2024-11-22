@@ -23,4 +23,10 @@ export const urlObject = {
   updateEmployeePassword: HOSTNAME + "/employee/update/password/", // add employeeId
   getAnEmployeeData: HOSTNAME + "/employee/manage/",
   getAllOrders: HOSTNAME + "/employee/order/",
+  addDiscount: HOSTNAME + "/employee/order/discount/", // add orderId
+  updateOrderStatus: HOSTNAME + "/employee/order/status/", // oder id
+  removeProductFromOrder: HOSTNAME + "/shared/order/item/", // order id
+  cancelOrder: HOSTNAME + "/shared/order/cancel/", //order id
+  getACustomer: HOSTNAME + "/employee/customer/", // customer id
+  placeOrder: HOSTNAME + "/shared/order/",
 };
