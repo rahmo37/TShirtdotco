@@ -91,4 +91,5 @@ fetchHandler.methods = {
   put: "PUT",
   get: "GET",
   patch: "PATCH",
+  delete: "DELETE",
 };

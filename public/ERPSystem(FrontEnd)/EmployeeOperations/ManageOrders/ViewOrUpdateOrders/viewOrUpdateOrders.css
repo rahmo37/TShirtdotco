@@ -17,7 +17,7 @@ label {
   color: #333;
 }
 
-input[type="text"],
+input[type="text"]:not(#message-input),
 input[type="number"],
 input[type="email"],
 input[type="password"],
@@ -42,7 +42,7 @@ textarea {
   padding-bottom: 40px !important;
 }
 
-input[type="text"]:focus,
+input[type="text"]:focus:not(#message-input),
 input[type="number"]:focus,
 input[type="email"]:focus,
 input[type="password"]:focus,
@@ -53,7 +53,7 @@ textarea:focus {
 }
 
 /* Read-only input field focus styling */
-input[type="text"]:read-only:focus,
+input[type="text"]:read-only:focus:not(#message-input),
 input[type="number"]:read-only:focus,
 input[type="email"]:read-only:focus {
   background-color: #ffcccc;

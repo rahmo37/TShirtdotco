@@ -29,4 +29,6 @@ export const urlObject = {
   cancelOrder: HOSTNAME + "/shared/order/cancel/", //order id
   getACustomer: HOSTNAME + "/employee/customer/", // customer id
   placeOrder: HOSTNAME + "/shared/order/",
+  saveSubscription: HOSTNAME + "/push-notification/save-subscription",
+  removeSubscription: HOSTNAME + "/push-notification/remove-subscription",
 };

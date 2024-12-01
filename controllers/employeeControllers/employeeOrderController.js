@@ -69,12 +69,12 @@ orderFunctions.changeOrderStatus = async (req, res, next) => {
       return next(err);
     }
 
-    const acceptedStatus = ["processing", "shipped"];
+    const acceptedStatus = ["processing", "shipped", "completed"];
     if (!acceptedStatus.includes(orderStatus)) {
       const err = new Error(
-        `Only changes to the status "processing" or "shipped" are permitted through this URL`
+        `You can only change an order's status to 'processing','shipped' or 'completed' through this URL`
       );
-      err.status = 404;
+      err.status = 400;
       return next(err);
     }
 
@@ -94,13 +94,14 @@ orderFunctions.changeOrderStatus = async (req, res, next) => {
 };
 
 // add discount - function
+// add discount - function
 orderFunctions.addDiscount = async (req, res, next) => {
   try {
-    // Retrieve the order status from the body
+    // Retrieve the discount percentage from the body
     const { discountInPercentage } = req.body;
     const orderID = req.params.orderId;
 
-    // If discountInPercentage is not provided or if the percentNumber is not valid
+    // Validate discountInPercentage
     if (
       !discountInPercentage ||
       isNaN(Number(discountInPercentage)) ||
@@ -115,7 +116,7 @@ orderFunctions.addDiscount = async (req, res, next) => {
       return next(err); // Pass the error to the error handler
     }
 
-    // Find the order with the give order id
+    // Find the order with the given order id
     const order = await Order.findOne({ orderID });
 
     // If no order is found
@@ -125,21 +126,34 @@ orderFunctions.addDiscount = async (req, res, next) => {
       return next(err);
     }
 
-    // If the order is completed
-    if (order.orderStatus === "completed") {
+    // If the order is completed or cancelled
+    if (
+      order.orderStatus === "completed" ||
+      order.orderStatus === "cancelled"
+    ) {
       const err = new Error(
-        "This order is completed, thus no changes can be made!"
+        "This order is settled, thus no changes can be made!"
       );
       err.status = 400;
       return next(err);
     }
 
-    // Now add the discountInPercentage property
-    Object.assign(order, { discountInPercentage });
+    // Recalculate the totalPrice from the items' subtotals
+    const totalPrice = order.items.reduce(
+      (acc, item) => acc + item.subtotal,
+      0
+    );
 
-    // Change the grand total
-    const discountAmount = (order.totalPrice * discountInPercentage) / 100;
-    const discountedTotal = order.totalPrice - discountAmount;
+    // Now add or update the discountInPercentage property
+    order.discountInPercentage = discountInPercentage;
+
+    // Calculate the discount amount
+    const discountAmount = (totalPrice * discountInPercentage) / 100;
+
+    // Calculate the discounted total
+    const discountedTotal = totalPrice - discountAmount;
+
+    // Update the order's totalPrice and grandTotal
     order.totalPrice = +discountedTotal.toFixed(2);
     order.grandTotal = +(discountedTotal + order.tax).toFixed(2);
 
@@ -154,7 +168,6 @@ orderFunctions.addDiscount = async (req, res, next) => {
     return next(err);
   }
 };
-
 
 // Export the module
 module.exports = orderFunctions;

@@ -8,12 +8,15 @@ const jwtVerifyToken = require("../../middlewares/jwtVerifyToken");
 const { isAdmin, isEmployee } = require("../../middlewares/roleVerification");
 
 // Register necessary middlewares to verify token and role
-// ! employee_SaleOperationsRoute.use(jwtVerifyToken,isEmployee,isAdmin);
+!employee_SaleOperationsRoute.use(jwtVerifyToken, isEmployee, isAdmin);
 
 // retrieve the sales report
 employee_SaleOperationsRoute.get("/report", saleFunction.salesReport);
 
-employee_SaleOperationsRoute.post("/report/custom", saleFunction.getCustomSalesReport);
+employee_SaleOperationsRoute.post(
+  "/report/custom",
+  saleFunction.getCustomSalesReport
+);
 
 // Export the module
 module.exports = employee_SaleOperationsRoute;

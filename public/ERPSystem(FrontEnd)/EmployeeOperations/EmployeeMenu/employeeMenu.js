@@ -7,6 +7,13 @@ import { confirmPopUp } from "../../helper/confirmPopUpHandler.js";
 import { startLogOutTimer } from "../../helper/StartLogoutTimer.js";
 import { infoPopUp } from "../../helper/informationPopUpHandler.js";
 import { sessionObject } from "../../helper/sessionStorage.js";
+import { urlObject } from "../../helper/urls.js";
+import { fetchHandler } from "../../helper/fetchHandler.js";
+import { chatInit } from "../../helper/employeeChatConfig.js";
+
+
+// initialize employee chat manager
+chatInit();
 
 // start a timer for automatic log out
 startLogOutTimer(() => {
@@ -26,7 +33,6 @@ const customerLoader = document.getElementById("customer-loader");
 const inventoryLoader = document.getElementById("inventory-loader");
 const orderLoader = document.getElementById("order-loader");
 const settingsLoader = document.getElementById("settings-loader");
-const tempLoader = document.getElementById("temp-loader");
 
 // accumulating the buttons for later use
 const btnArray = [
@@ -35,7 +41,6 @@ const btnArray = [
   customerLoader,
   inventoryLoader,
   orderLoader,
-  tempLoader,
 ];
 
 // This is the sidebar
@@ -62,11 +67,6 @@ if (sessionStorage.getItem("justLoggedIn") === "true") {
   sessionStorage.removeItem("justLoggedIn"); // Reset the flag
 }
 
-// ! Test function
-function getRandomNumber() {
-  return Math.floor(Math.random() * 100) + 1;
-}
-
 window.onload = async () => {
   // load all the necessary modals
   await successPopUp.loadModal("../../popups/successPopup.html");
@@ -76,8 +76,6 @@ window.onload = async () => {
 
   // load te reports
   loadReports();
-
-  console.log("window loaded..." + getRandomNumber());
 };
 
 // Load reports when the report button is pressed
@@ -92,15 +90,6 @@ employeeLoader.addEventListener("click", () => {
     htmlUrl: "../ManageEmployees/employees.html",
     cssUrl: "../employee_functions.css",
     jsUrl: "../ManageEmployees/employees.js",
-  });
-  closeSideBar();
-});
-
-tempLoader.addEventListener("click", () => {
-  loadPageWithFade({
-    htmlUrl: "../ManageOrders/CreateOrders/FinalizeOrder/finalizeOrder.html",
-    cssUrl: "../ManageOrders/CreateOrders/FinalizeOrder/finalizeOrder.css",
-    jsUrl: "../ManageOrders/CreateOrders/FinalizeOrder/finalizeOrder.js",
   });
   closeSideBar();
 });
@@ -271,17 +260,33 @@ function closeSideBar() {
 }
 
 function logOutUser(automaticLogout = false) {
-  // Clear session storage
-  sessionStorage.clear();
-
   if (automaticLogout) {
+    sessionStorage.clear();
     alert("user logged out due to token expiration!");
     // Redirect to login page
     window.location.href = "../../Login/login.html";
     return;
   } else {
-    confirmPopUp.showConfirmModal("Are you sure you want to log out?", () => {
-      window.location.href = "../../Login/login.html";
-    });
+    confirmPopUp.showConfirmModal(
+      "Are you sure you want to log out?",
+      async () => {
+        // Clear session storage
+        sessionStorage.clear();
+        window.location.href = "../../Login/login.html";
+      }
+    );
+  }
+}
+
+// TODO remove later if not using notifications
+async function removeUserNotificationSubscription() {
+  try {
+    const requestInfo = {
+      url: urlObject.removeSubscription,
+      method: fetchHandler.methods.delete,
+    };
+    const data = await fetchHandler.sendRequest(requestInfo);
+  } catch (error) {
+    console.error(error.message);
   }
 }

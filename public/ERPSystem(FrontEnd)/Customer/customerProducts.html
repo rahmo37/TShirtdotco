@@ -84,14 +84,35 @@
             </a>
           </li>
           <li class="sidebar-item">
+            <a href="customerStatus.html" class="sidebar-link">
+              <i class="fa-solid fa-truck"></i>
+              <span>Order Status</span>
+            </a>
+          </li>
+          <li class="sidebar-item">
             <a href="customerCart.html" class="sidebar-link">
               <i class="fa-solid fa-cart-shopping"></i>
               <span>Cart</span>
             </a>
           </li>
+          <li class="sidebar-item">
+            <a href="./customerOrders.html" class="sidebar-link">
+              <i class="fa-solid fa-clock-rotate-left"></i>
+              <span>Order History</span>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a
+              href="../Customer/customerChat/customerLiveChat.html"
+              class="sidebar-link"
+            >
+              <i class="fa-solid fa-comments"></i>
+              <span>Live Chat with Agent</span>
+            </a>
+          </li>
         </ul>
         <div class="sidebar-footer">
-          <a href="login_in.html" class="sidebar-link">
+          <a href="../Login/login.html" class="sidebar-link">
             <i class="lni lni-exit"></i>
             <span>Logout</span>
           </a>
@@ -135,7 +156,7 @@
               const productCard = document.createElement("div");
               productCard.classList.add("col-md-3", "product-card");
               productCard.innerHTML = `
-                            <img src="../shirtImg/${product.imageUrl}" alt="${product.productName}">
+                            <img src="../shirtimg/${product.imageUrl}" alt="${product.productName}">
                             <h3>${product.productName}</h3>
                             <p>$${product.unitPrice}</p>
                             <button class="btn btn-primary" onclick="addToCart('${product.productName}', ${product.unitPrice})">Add to Cart</button>

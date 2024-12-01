@@ -36,11 +36,8 @@ sharedOrderFunctions.createOrder = async (req, res, next) => {
     const orderStatus = "processing";
     const orderDate = currentNewYorkDateTime();
 
-    // TODO uncomment this line once the jwt is active
-    // const placedBy = req.user.id.startsWith("EMP_") ? req.user.id : "customer";
+    const placedBy = req.user.id.startsWith("EMP_") ? req.user.id : "customer";
 
-    // TODO delete this line once jwt is active
-    const placedBy = "customer";
 
     // this order data will collect order data for the new order
     const orderData = {
@@ -464,7 +461,7 @@ sharedOrderFunctions.removeAnItemFromTheOrder = async (req, res, next) => {
     res.status(200).json({
       message:
         "Product removed from the order successfully, new prices has been updated",
-      data: { ...order.toObject() },
+      data: { order: { ...order.toObject() } },
     });
   } catch (err) {
     return next(err);

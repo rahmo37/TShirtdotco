@@ -617,6 +617,7 @@ async function getCurrentQuantityOfProducts(session) {
             $push: {
               productName: "$products.productName",
               currentQuantity: "$products.stockInfo.currentQuantity",
+              totalSold: "$products.stockInfo.totalSold",
               imageUrl: "$products.imageUrl",
             },
           },

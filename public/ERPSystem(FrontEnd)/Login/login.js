@@ -5,6 +5,7 @@ import { urlObject } from "../helper/urls.js";
 import { sessionObject } from "../helper/sessionStorage.js";
 import { successPopUp } from "../helper/successPopupHandler.js";
 import { startLogOutTimer } from "../helper/StartLogoutTimer.js";
+import { initiateSubscription } from "../helper/notificationConfig.js";
 
 // Toggle viewing of the password
 window.onload = async () => {
@@ -86,15 +87,18 @@ signInBtn.addEventListener("click", async () => {
       // save the user token in the session storage
       sessionObject.setData("token", token);
 
-
-
       // Set just logged in to true
       sessionObject.setData("justLoggedIn", true);
       // set the user data based on the role of the user
       if (userData.user.employeeID) {
+        // TODO Remove later if not using push notifications
+        // initiateSubscription();
+
         //if employee
         sessionObject.setData("isEmployee", true);
         sessionObject.setData("employee", userData.user);
+        sessionObject.setData("newNotifications", 0);
+        sessionObject.setData("currentNotificationsArray", []);
 
         if (userData.user.isAdmin) {
           sessionObject.setData("isAdmin", true);
@@ -112,9 +116,8 @@ signInBtn.addEventListener("click", async () => {
 
         // load the customer menu
         // TODO change this to customer menu later
-        window.location.href = "#";
+        window.location.href = "../Customer/customerHome.html";
       }
-      console.log(sessionStorage);
     }
   }
 });
@@ -205,8 +208,6 @@ async function getReport(url) {
   return { err: null, data: rawData.data };
 }
 
-// Load the error popup modal
-// Load the error popup modal
 async function loadModal() {
   try {
     const response = await fetch("../popups/errorPopup.html");

@@ -40,7 +40,8 @@
   margin-top: 0px !important;
 }
 
-#add-new-btn, .view-order {
+#add-new-btn,
+.view-order {
   position: absolute;
   align-items: center;
   appearance: none;
@@ -109,7 +110,7 @@
   padding-right: 45px;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-    background-color: #ffffff50;
+  background-color: #ffffff50 !important;
 }
 
 tr.orderRow {
@@ -283,7 +284,7 @@ label {
   color: #333;
 }
 
-input[type="text"],
+input[type="text"]:not(#message-input) ,
 input[type="number"],
 input[type="email"],
 input[type="password"],
@@ -307,7 +308,7 @@ textarea {
   padding-bottom: 40px !important;
 }
 
-input[type="text"]:focus,
+input[type="text"]:focus:not(#message-input) ,
 input[type="number"]:focus,
 input[type="email"]:focus,
 input[type="password"]:focus,
@@ -318,7 +319,7 @@ textarea:focus {
 }
 
 /* Read-only input field focus styling */
-input[type="text"]:read-only:focus,
+input[type="text"]:read-only:focus:not(#message-input) ,
 input[type="number"]:read-only:focus,
 input[type="email"]:read-only:focus {
   background-color: #ffcccc;
@@ -337,8 +338,8 @@ input[type="email"]:read-only:focus {
 }
 
 /* General Button Styling */
-button,
-.add-to-db {
+button:not(#send-btn),
+.add-to-db  {
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
@@ -402,7 +403,8 @@ button,
 }
 
 /* Media Query for Tablets and Small Desktops (Max Width: 1024px) */
-@media screen and (max-width: 1024px) { /*! 1024 pixels wide or less */
+@media screen and (max-width: 1024px) {
+  /*! 1024 pixels wide or less */
   /* Adjust main content padding */
   .main-content {
     padding: 15px 20px;
@@ -445,7 +447,8 @@ button,
 }
 
 /* Media Query for Mobile Devices (Max Width: 600px) */
-@media screen and (max-width: 1600px) { /*! 1600 pixels wide or less */
+@media screen and (max-width: 1600px) {
+  /*! 1600 pixels wide or less */
   /* Adjust main content padding */
   .main-content {
     padding: 10px 15px;
@@ -528,7 +531,7 @@ button,
   }
 
   /* Adjust Form Fields Inside Modal */
-  input[type="text"],
+  input[type="text"]:not(#message-input) ,
   input[type="number"],
   input[type="email"],
   input[type="password"],
@@ -563,7 +566,6 @@ button,
     margin-bottom: 30px;
   }
 }
-
 
 /*! @media screen and (min-width: 1024px) means at least 1024 or more  */
 /*! @media screen and (max-width: 1024px) 1024 px or less  */

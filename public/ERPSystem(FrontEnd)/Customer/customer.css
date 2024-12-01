@@ -38,20 +38,27 @@ li {
   flex-direction: column;
 }
 
-/* Sidebar styling */
+#sidebar.expand ~ .main {
+  overflow: hidden;
+}
+
 #sidebar {
   position: fixed;
   top: 0;
   left: 0;
   width: 75px;
-  min-width: 75px;
+  min-width: 70px;
   height: 100%;
   z-index: 1000;
   transition: all 0.4s ease-in-out;
   display: flex;
   flex-direction: column;
-  background-color: rgba(114, 127, 210, 0.9);
-  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  background-image: url("../../img/Background3.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
 
 #sidebar.expand {
@@ -67,23 +74,23 @@ li {
 }
 
 i {
-  transition: font-size 0.3s ease-in-out;
-  color: #fff;
+  transition: all 0.3s ease-in-out;
 }
 
 .toggle-btn i {
   font-size: 1.5rem !important;
   margin-left: 5px;
+  color: #fff;
+  transition: none;
 }
 
 a:hover i {
-  font-size: 28px !important;
-  transition: font-size 0.3s ease-in-out;
+  transform: scale(1.1);
+  transition: all 0.3s ease-in-out;
 }
 
 .sidebar-logo {
   margin: auto 0;
-  text-align: center;
 }
 
 .sidebar-logo a {
@@ -106,16 +113,16 @@ a.sidebar-link {
   padding: 0.625rem 1.625rem;
   color: #fff;
   display: block;
-  font-size: 0.9rem;
+  font-size: 1rem;
   white-space: nowrap;
   border-left: 3px solid transparent;
-  transition: background-color 0.3s ease, border-left 0.3s ease, font-size 0.3s ease;
+  transition: all 0.3s ease;
+  margin-bottom: 12px;
 }
 
 a.sidebar-link:hover {
-  background-color: rgba(0, 83, 225, 0.075);
-  border-left: 3px solid #ffffff;
-  font-size: 1.65rem;
+  /* border-left: 5px solid #ffffff; */
+  transform: scale(1.15);
   cursor: pointer;
 }
 
@@ -126,6 +133,54 @@ a.sidebar-link:hover {
 
 .sidebar-item {
   position: relative;
+}
+
+#sidebar:not(.expand) .sidebar-item .sidebar-dropdown {
+  position: absolute;
+  top: 0;
+  left: 70px;
+  background-color: #727fd2;
+  padding: 0;
+  min-width: 15rem;
+  display: none;
+  z-index: 1001;
+}
+
+#sidebar:not(.expand) .sidebar-item:hover .has-dropdown + .sidebar-dropdown {
+  display: block;
+  max-height: 15em;
+  width: 100%;
+  opacity: 1;
+}
+
+#sidebar.expand .sidebar-link[data-bs-toggle="collapse"]::after {
+  border: solid;
+  border-width: 0 0.075rem 0.075rem 0;
+  content: "";
+  display: inline-block;
+  padding: 2px;
+  position: absolute;
+  right: 1.5rem;
+  top: 1.4rem;
+  transform: rotate(-135deg);
+  transition: all 0.2s ease-out;
+}
+
+#sidebar.expand .sidebar-link[data-bs-toggle="collapse"].collapsed::after {
+  transform: rotate(45deg);
+  transition: all 0.2s ease-out;
+}
+
+#sidebar.expand ~ .main::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1001;
+  pointer-events: auto;
 }
 
 /* Customize scrollbar */

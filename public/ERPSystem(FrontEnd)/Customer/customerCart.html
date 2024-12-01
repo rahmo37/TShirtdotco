@@ -1,138 +1,210 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Clothing Store - Cart</title>
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="./customer.css">
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./customerc.css" />
+  </head>
+  <body>
     <div class="wrapper">
-        <!-- Sidebar -->
-        <aside id="sidebar">
-            <div class="d-flex">
-                <button class="toggle-btn" type="button">
-                    <i class="fa-solid fa-grip"></i>
-                </button>
-                <div class="sidebar-logo">
-                    <a href="#">Menu</a>
-                </div>
-            </div>
-            <ul class="sidebar-nav">
-                <li class="sidebar-item">
-                    <a href="customerHome.html" class="sidebar-link">
-                        <i class="fa-solid fa-house"></i>
-                        <span>Home</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="customerProducts.html" class="sidebar-link">
-                        <i class="fa-solid fa-box"></i>
-                        <span>Products</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="customerContact.html" class="sidebar-link">
-                        <i class="fa-solid fa-envelope"></i>
-                        <span>Contact</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="customerAboutUs.html" class="sidebar-link">
-                        <i class="fa-solid fa-info"></i>
-                        <span>About Us</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="customerCart.html" class="sidebar-link">
-                        <i class="fa-solid fa-cart-shopping"></i>
-                        <span>Cart</span>
-                    </a>
-                </li>
-            </ul>
-            <div class="sidebar-footer">
-                <a href="login_in.html" class="sidebar-link">
-                    <i class="lni lni-exit"></i>
-                    <span>Logout</span>
-                </a>
-            </div>
-        </aside>
-
-        <!-- Main Content Area -->
-        <div class="main p-3" id="outer-main-container">
-            <header>
-                <div style="text-align: center;">
-                    <img src="../img/TShirtCoLogo.png" class="logo" alt="Logo" style="width: 500px; height: auto;">
-                </div>
-            </header>
-
-            <div class="container">
-                <h2>Your Shopping Cart</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Item</th>
-                            <th>Price</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody id="cart-items">
-                        <!-- Cart items will be dynamically added here -->
-                    </tbody>
-                </table>
-                <p id="total-price">Total: $0.00</p>
-                <button onclick="checkout()">Checkout</button>
-            </div>
-
-            <footer>
-                <p>&copy; 2024 T-Shirt Co. All Rights Reserved.</p>
-            </footer>
+      <!-- Sidebar -->
+      <aside id="sidebar">
+        <div class="d-flex">
+          <button class="toggle-btn" type="button">
+            <i class="fa-solid fa-grip"></i>
+          </button>
+          <div class="sidebar-logo">
+            <a href="#">Menu</a>
+          </div>
         </div>
+        <ul class="sidebar-nav">
+          <li class="sidebar-item">
+            <a href="customerHome.html" class="sidebar-link">
+              <i class="fa-solid fa-house"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a href="customerProducts.html" class="sidebar-link">
+              <i class="fa-solid fa-box"></i>
+              <span>Products</span>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a href="customerContact.html" class="sidebar-link">
+              <i class="fa-solid fa-envelope"></i>
+              <span>Contact</span>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a href="customerAboutUs.html" class="sidebar-link">
+              <i class="fa-solid fa-info"></i>
+              <span>About Us</span>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a href="customerStatus.html" class="sidebar-link">
+              <i class="fa-solid fa-truck"></i>
+              <span>Order Status</span>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a href="customerCart.html" class="sidebar-link">
+              <i class="fa-solid fa-cart-shopping"></i>
+              <span>Cart</span>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a href="./customerOrders.html" class="sidebar-link">
+              <i class="fa-solid fa-clock-rotate-left"></i>
+              <span>Order History</span>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a
+              href="../Customer/customerChat/customerLiveChat.html"
+              class="sidebar-link"
+            >
+              <i class="fa-solid fa-comments"></i>
+              <span>Live Chat with Agent</span>
+            </a>
+          </li>
+        </ul>
+        <div class="sidebar-footer">
+          <a href="../Login/login.html" class="sidebar-link">
+            <i class="lni lni-exit"></i>
+            <span>Logout</span>
+          </a>
+        </div>
+      </aside>
+
+      <!-- Main Content Area -->
+      <div class="main p-3" id="outer-main-container">
+        <!-- Header -->
+        <header>
+          <h1 class="cart-header">Shopping Cart</h1>
+        </header>
+
+        <!-- Cart Section -->
+        <div class="cart-container">
+          <table class="cart-table">
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th>Price</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="cart-items">
+              <!-- Cart items will be dynamically added here -->
+            </tbody>
+          </table>
+          <p id="total-price">Total: $0.00</p>
+          <button onclick="checkout()">Checkout</button>
+        </div>
+
+        <!-- Suggested Items Section -->
+        <div class="suggested-section">
+          <h3>Suggested Products</h3>
+          <div class="suggested-items" id="suggested-items">
+            <!-- Suggested products will be dynamically added here -->
+          </div>
+        </div>
+
+        <footer>
+          <p>&copy; 2024 Clothing Store. All Rights Reserved.</p>
+        </footer>
+      </div>
     </div>
 
     <!-- Bootstrap and Custom JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="ERPSystemFrontEnd/js/cart.js" type="module"></script>
     <script>
-        // Sample cart data (you would usually load this from localStorage or a backend)
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        let total = 0;
+      async function fetchSuggestedProducts() {
+        try {
+          const response = await fetch(
+            "http://localhost:3001/api/shared/inventory"
+          );
+          const products = await response.json();
+          console.log(products);
 
-        function updateCart() {
-            const cartItems = document.getElementById('cart-items');
-            cartItems.innerHTML = ''; // Clear the current list
-            total = 0; // Reset total
+          const productData = products.data[0].products; // Assuming we're fetching the first category's products
+          const suggestedItemsContainer =
+            document.getElementById("suggested-items");
+          suggestedItemsContainer.innerHTML = "";
 
-            cart.forEach((item, index) => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
+          // Add 3 suggested products
+          productData.slice(0, 3).forEach((product) => {
+            const productDiv = document.createElement("div");
+            productDiv.classList.add("suggestion-card");
+            productDiv.innerHTML = `
+                        <img src="../shirtimg/${product.imageUrl}" alt="${product.productName}">
+                        <h4>${product.productName}</h4>
+                        <p>$${product.unitPrice}</p>
+                    `;
+            suggestedItemsContainer.appendChild(productDiv);
+          });
+        } catch (error) {
+          console.error("Error fetching suggested products:", error);
+          const suggestedItemsContainer =
+            document.getElementById("suggested-items");
+          suggestedItemsContainer.innerHTML =
+            "<p>Failed to load suggested products. Please try again later.</p>";
+        }
+      }
+
+      // Populate suggested products when the page loads
+      window.onload = fetchSuggestedProducts;
+
+      // Example cart data handling (you can adjust based on your requirements)
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      let total = 0;
+
+      function updateCart() {
+        const cartItems = document.getElementById("cart-items");
+        cartItems.innerHTML = ""; // Clear the current list
+        total = 0; // Reset total
+
+        cart.forEach((item, index) => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
                     <td>${item.name}</td>
                     <td>$${item.price.toFixed(2)}</td>
                     <td><button class="remove-btn" onclick="removeFromCart(${index})">Remove</button></td>
                 `;
-                cartItems.appendChild(row);
-                total += item.price;
-            });
+          cartItems.appendChild(row);
+          total += item.price;
+        });
 
-            document.getElementById('total-price').textContent = `Total: $${total.toFixed(2)}`;
-        }
+        document.getElementById(
+          "total-price"
+        ).textContent = `Total: $${total.toFixed(2)}`;
+      }
 
-        function removeFromCart(index) {
-            cart.splice(index, 1);
-            localStorage.setItem('cart', JSON.stringify(cart));
-            updateCart();
-        }
-
-        function checkout() {
-            alert("Proceeding to checkout...");
-            // This is where I would add the order to the database
-        }
-
-        // Initial call to populate the cart
+      function removeFromCart(index) {
+        cart.splice(index, 1);
+        localStorage.setItem("cart", JSON.stringify(cart));
         updateCart();
+      }
+
+      function checkout() {
+        alert("Proceeding to checkout...");
+        // Add checkout logic here
+      }
+
+      // Initial call to populate the cart
+      updateCart();
     </script>
-</body>
+    <script src="customerMenu.js" type="module"></script>
+  </body>
 </html>

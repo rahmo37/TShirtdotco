@@ -7,12 +7,14 @@
 // Importing Modules
 // Project configuration imports
 require("dotenv").config();
+const http = require("http");
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const dbConfig = require("./config/db");
 const requestInfo = require("./middlewares/logRequestInformation");
 const { hashPasswordsInDatabase } = require("./misc/hashPassword");
+// const notificationConfigurations = require("./routes/notification/notificationConfigRoute");
 
 // Employee related imports
 const employeeAuth = require("./routes/authentication/employeeAuth");
@@ -45,6 +47,7 @@ const Employee = require("./models/Employee");
 //!---------------------- Application logic starts ----------------------
 
 // Configuring application
+
 // Creating application instance
 const erpSystem = express();
 
@@ -78,11 +81,18 @@ erpSystem.use("/api/shared/customer", sharedCreateCustomer);
 erpSystem.use("/api/shared/order", sharedOrderOperations);
 erpSystem.use("/api/shared/inventory", sharedGetInventory);
 
+// Notification routes
+// TODO Remove later if not using notifications
+// erpSystem.use("/api/push-notification", notificationConfigurations);
+
 // Not found error handler, if no routes matches this middleware is called
 erpSystem.use(routeNotFoundHandler);
 
 // Error handling middleware
 erpSystem.use(errorHandler);
+
+// Server creation
+const server = http.createServer(erpSystem);
 
 // Database connection
 mongoose
@@ -95,7 +105,7 @@ mongoose
      * Otherwise we go to the catch block
      */
     const PORT = process.env.PORT || 3000;
-    erpSystem.listen(PORT, () => {
+    server.listen(PORT, () => {
       console.log(`ERP Server is listening request on port ${PORT}...`);
     });
 
@@ -105,3 +115,7 @@ mongoose
   .catch((err) => {
     console.error("Database connection error:", err);
   });
+
+module.exports = server;
+
+require("./controllers/chatControllers/chatController.js");

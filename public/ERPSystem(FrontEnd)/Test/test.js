@@ -1,6 +1,6 @@
-import { fetchHandler } from "./helper/fetchHandler.js";
-import { urlObject } from "./helper/urls.js";
-import { sessionObject } from "./helper/sessionStorage.js";
+import { fetchHandler } from "../helper/fetchHandler.js";
+import { urlObject } from "../helper/urls.js";
+import { sessionObject } from "../helper/sessionStorage.js";
 
 async function testFunc() {
   try {

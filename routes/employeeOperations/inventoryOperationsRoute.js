@@ -5,10 +5,10 @@ const express = require("express");
 const employee_InventoryOperationRoutes = express.Router();
 const inventoryFunctions = require("../../controllers/employeeControllers/employeeInventoryController");
 const jwtVerifyToken = require("../../middlewares/jwtVerifyToken");
-const { isEmployee } = require("../../middlewares/roleVerification");
+const { isEmployee, isAdmin } = require("../../middlewares/roleVerification");
 
 // Register necessary middlewares to  verify token and role
-// employee_InventoryOperationRoutes.use(jwtVerifyToken, isEmployee);
+employee_InventoryOperationRoutes.use(jwtVerifyToken, isEmployee);
 
 //! this route is currently moved to the shared route folder
 // View inventory route
@@ -20,6 +20,7 @@ const { isEmployee } = require("../../middlewares/roleVerification");
 // Delete product route
 employee_InventoryOperationRoutes.delete(
   "/:categoryId/:productId",
+  isAdmin,
   inventoryFunctions.deleteProduct
 );
 
@@ -38,6 +39,7 @@ employee_InventoryOperationRoutes.patch(
 // Create product route
 employee_InventoryOperationRoutes.post(
   "/:categoryId",
+  isAdmin,
   inventoryFunctions.createProduct
 );
 

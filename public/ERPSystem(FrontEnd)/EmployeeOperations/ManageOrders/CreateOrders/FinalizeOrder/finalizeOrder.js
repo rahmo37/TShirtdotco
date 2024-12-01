@@ -128,11 +128,14 @@ import { sessionObject } from "../../../../helper/sessionStorage.js";
           try {
             const data = await placeOrder();
             if (data) {
-              successPopUp.showSuccessModal("Order Created Successfully", () => {
-                sessionObject.removeData("itemsArray");
-                sessionObject.removeData("customerObject");
-                navigateToDisplayOrder(mainContentArea);
-              });
+              successPopUp.showSuccessModal(
+                "Order Created Successfully",
+                () => {
+                  sessionObject.removeData("itemsArray");
+                  sessionObject.removeData("customerObject");
+                  navigateToDisplayOrder(mainContentArea);
+                }
+              );
             }
           } catch (error) {
             errorPopUp.showErrorModal(error.message);
@@ -159,12 +162,13 @@ import { sessionObject } from "../../../../helper/sessionStorage.js";
     const discountInput = document.getElementById("discountInput");
     discountBtn.addEventListener("click", () => {
       const discountValue = discountInput.value;
-      if (!isNaN(discountValue) && discountValue > 0 && discountValue <= 100) {
+      if (!isNaN(discountValue) && discountValue >= 0 && discountValue <= 100) {
         buildTheOrder(discountValue);
         init();
       } else {
+        discountInput.value = 0;
         errorPopUp.showErrorModal(
-          "Enter a valid value for the discount amount. Must be between 1 to 100"
+          "Enter a valid value for the discount amount. Must be between 0 to 100"
         );
       }
     });
