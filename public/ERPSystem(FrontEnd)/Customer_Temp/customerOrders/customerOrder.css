@@ -1,0 +1,13 @@
+.tooltip-inner {
+  background-color: #ffffff;
+  color: #000000;
+  border: 1px solid #cccccc;
+  font-size: 0.9rem;
+  padding: 10px;
+  text-align: left;
+  padding-right: 30px;
+}
+
+.tooltip.show {
+  opacity: 1;
+}

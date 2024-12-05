@@ -6,11 +6,11 @@
       {
         "productID": "PRO_29e5f51631ca",
         "productName": "Slim Fit T-Shirt",
-        "productDescription": "A classic slim fit T-shirt made with high-quality cotton.",
-        "unitPrice": 19.99,
+        "productDescription": "A classic slim-fit T-shirt made with high and rich-quality cotton.",
+        "unitPrice": 20,
         "stockInfo": {
-          "currentQuantity": 56,
-          "totalSold": 73,
+          "currentQuantity": 54,
+          "totalSold": 75,
           "restockThreshold": 30,
           "lastRestock": "2024-10-02T21:21:33.097Z",
           "restockQuantity": 50,
@@ -26,19 +26,70 @@
         "productDescription": "Soft and comfortable V-neck T-shirt.",
         "unitPrice": 22.59,
         "stockInfo": {
-          "currentQuantity": 64,
-          "totalSold": 0,
+          "currentQuantity": 76,
+          "totalSold": 48,
           "restockThreshold": 30,
-          "lastRestock": "2024-10-24T19:13:42.987Z",
+          "lastRestock": "2024-11-06T02:28:09.905Z",
           "restockQuantity": 60,
           "stockStatus": "In Stock"
         },
         "imageUrl": "v-neck.jpg",
         "dateAdded": "2024-10-24T19:13:42.987Z",
         "color": "Black"
+      },
+      {
+        "productID": "PRO_cf7f0ad8d441",
+        "productName": "Vintage Graphic T-Shirt",
+        "productDescription": "Vintage graphic T-shirt with a bold retro design, perfect for casual wear",
+        "unitPrice": 29.99,
+        "stockInfo": {
+          "currentQuantity": 69,
+          "totalSold": 6,
+          "restockThreshold": 35,
+          "lastRestock": "2024-11-17T02:39:54.550Z",
+          "restockQuantity": 40,
+          "stockStatus": "In Stock"
+        },
+        "imageUrl": "image-27e7b85815e0.png",
+        "dateAdded": "2024-11-17T02:39:54.550Z",
+        "color": "White"
+      },
+      {
+        "productID": "PRO_9b30fac64541",
+        "productName": "Black Hole Graphic T-Shirt",
+        "productDescription": "Unique graphic T-shirt with a mesmerizing black hole design, perfect for space enthusiasts",
+        "unitPrice": 34.99,
+        "stockInfo": {
+          "currentQuantity": 39,
+          "totalSold": 9,
+          "restockThreshold": 23,
+          "lastRestock": "2024-11-17T02:43:32.500Z",
+          "restockQuantity": 34,
+          "stockStatus": "In Stock"
+        },
+        "imageUrl": "image-cbb11412a600.png",
+        "dateAdded": "2024-11-17T02:43:32.500Z",
+        "color": "Black"
+      },
+      {
+        "productID": "PRO_faadb55cb278",
+        "productName": "Snake Eye Graphic T-Shirt",
+        "productDescription": "Bold and fierce graphic T-shirt featuring a realistic snake eye design, perfect for making a statement",
+        "unitPrice": 32.98,
+        "stockInfo": {
+          "currentQuantity": 60,
+          "totalSold": 0,
+          "restockThreshold": 30,
+          "lastRestock": "2024-11-17T02:54:08.964Z",
+          "restockQuantity": 26,
+          "stockStatus": "In Stock"
+        },
+        "imageUrl": "image-b5e12d9ee5d1.png",
+        "dateAdded": "2024-11-17T02:54:08.964Z",
+        "color": "Black"
       }
     ],
-    "__v": 22
+    "__v": 12
   },
   {
     "categoryID": "CAT_51189d17aeee",
@@ -51,9 +102,9 @@
         "unitPrice": 39.99,
         "stockInfo": {
           "currentQuantity": 49,
-          "totalSold": 2,
+          "totalSold": 32,
           "restockThreshold": 20,
-          "lastRestock": "2024-09-17T04:00:00.000Z",
+          "lastRestock": "2024-12-02T01:00:25.784Z",
           "restockQuantity": 30,
           "stockStatus": "In Stock"
         },
@@ -84,19 +135,70 @@
         "productDescription": "A comfortable and stylish hoodie made with soft, breathable fabric, perfect for everyday wear.",
         "unitPrice": 39.99,
         "stockInfo": {
-          "currentQuantity": 120,
-          "totalSold": 0,
+          "currentQuantity": 145,
+          "totalSold": 75,
           "restockThreshold": 50,
-          "lastRestock": "2024-10-31T00:40:58.904Z",
+          "lastRestock": "2024-11-12T13:20:33.326Z",
           "restockQuantity": 100,
           "stockStatus": "In Stock"
         },
         "imageUrl": "casual.jpg",
         "dateAdded": "2024-10-31T00:40:58.904Z",
         "color": "Red"
+      },
+      {
+        "productID": "PRO_9b846b076619",
+        "productName": "Hooded Sweatshirt",
+        "productDescription": "Comfortable and warm hooded sweatshirt for everyday use.",
+        "unitPrice": 39.99,
+        "stockInfo": {
+          "currentQuantity": 70,
+          "totalSold": 0,
+          "restockThreshold": 30,
+          "lastRestock": "2024-11-09T04:31:13.337Z",
+          "restockQuantity": 40,
+          "stockStatus": "In Stock"
+        },
+        "imageUrl": "image-9d455fa44942.png",
+        "dateAdded": "2024-11-09T04:31:13.337Z",
+        "color": "Grey"
+      },
+      {
+        "productID": "PRO_e9966c130d84",
+        "productName": "Zip-Up Hoodie",
+        "productDescription": "Comfortable zip-up hoodie with soft fleece lining",
+        "unitPrice": 30.99,
+        "stockInfo": {
+          "currentQuantity": 35,
+          "totalSold": 0,
+          "restockThreshold": 15,
+          "lastRestock": "2024-11-26T11:43:20.858Z",
+          "restockQuantity": 20,
+          "stockStatus": "In Stock"
+        },
+        "imageUrl": "image-62715f545629.png",
+        "dateAdded": "2024-11-26T11:43:20.858Z",
+        "color": "yellow"
+      },
+      {
+        "productID": "PRO_d82abeecf7db",
+        "productName": "Oversized Hoodie",
+        "productDescription": "Trendy oversized hoodie with a kangaroo pocket and ribbed cuffs",
+        "unitPrice": 50.99,
+        "stockInfo": {
+          "currentQuantity": 50,
+          "totalSold": 0,
+          "restockThreshold": 25,
+          "lastRestock": "2024-11-26T13:09:28.715Z",
+          "restockQuantity": 25,
+          "stockStatus": "In Stock"
+        },
+        "imageUrl": "image-f61c20b7f17b.png",
+        "dateAdded": "2024-11-26T13:09:28.715Z",
+        "color": "Blue"
       }
     ],
-    "__v": 1
+    "__v": 3
   },
   {
     "categoryID": "CAT_7aab29394519",
@@ -109,9 +211,9 @@
         "unitPrice": 29.99,
         "stockInfo": {
           "currentQuantity": 85,
-          "totalSold": 5,
+          "totalSold": 65,
           "restockThreshold": 30,
-          "lastRestock": "2024-09-16T04:00:00.000Z",
+          "lastRestock": "2024-11-06T16:20:27.819Z",
           "restockQuantity": 60,
           "stockStatus": "In Stock"
         },
@@ -125,10 +227,10 @@
         "productDescription": "Comfortable graphic T-shirt with a stunning ocean wave design.",
         "unitPrice": 27.99,
         "stockInfo": {
-          "currentQuantity": 75,
-          "totalSold": 0,
+          "currentQuantity": 73,
+          "totalSold": 2,
           "restockThreshold": 25,
-          "lastRestock": "2024-10-12T04:00:00+00:00",
+          "lastRestock": "2024-10-12T04:00:00.000Z",
           "restockQuantity": 50,
           "stockStatus": "In Stock"
         },
@@ -142,10 +244,10 @@
         "productDescription": "Cool graphic T-shirt with a Galactic design.",
         "unitPrice": 34.99,
         "stockInfo": {
-          "currentQuantity": 60,
-          "totalSold": 0,
+          "currentQuantity": 58,
+          "totalSold": 42,
           "restockThreshold": 20,
-          "lastRestock": "2024-10-15T00:18:05.841Z",
+          "lastRestock": "2024-11-12T13:20:21.143Z",
           "restockQuantity": 40,
           "stockStatus": "In Stock"
         },
@@ -159,10 +261,10 @@
         "productDescription": "Cool graphic T-shirt with a forest design.",
         "unitPrice": 24.99,
         "stockInfo": {
-          "currentQuantity": 60,
-          "totalSold": 0,
+          "currentQuantity": 55,
+          "totalSold": 45,
           "restockThreshold": 20,
-          "lastRestock": "2024-10-15T00:20:36.389Z",
+          "lastRestock": "2024-11-06T02:28:18.976Z",
           "restockQuantity": 40,
           "stockStatus": "In Stock"
         },
@@ -171,7 +273,7 @@
         "color": "Black"
       }
     ],
-    "__v": 4
+    "__v": 0
   },
   {
     "categoryID": "CAT_d3956a5c4cec",
@@ -183,14 +285,14 @@
         "productDescription": "Simpleeeee and stylish blue colored crew neck T-shirt.",
         "unitPrice": 26.99,
         "stockInfo": {
-          "currentQuantity": 150,
-          "totalSold": 0,
+          "currentQuantity": 130,
+          "totalSold": 20,
           "restockThreshold": 70,
           "lastRestock": "2024-10-02T17:44:20.395Z",
           "restockQuantity": 80,
           "stockStatus": "In Stock"
         },
-        "imageUrl": "classic.jpg",
+        "imageUrl": "classic_blue.jpg",
         "dateAdded": "2024-10-02T17:44:20.395Z",
         "color": "Blue"
       },
@@ -207,15 +309,15 @@
           "restockQuantity": 80,
           "stockStatus": "In Stock"
         },
-        "imageUrl": "basic.jpg",
+        "imageUrl": "basic_green.jpg",
         "dateAdded": "2024-10-02T18:28:40.210Z",
         "color": "Green"
       },
       {
         "productID": "PRO_469c0a364c20",
-        "productName": "Classic Crew Neck Tee red",
+        "productName": "Classic Crew Neck Tee Red",
         "productDescription": "Simple and stylish red colored crew neck T-shirt.",
-        "unitPrice": 20.99,
+        "unitPrice": 15.99,
         "stockInfo": {
           "currentQuantity": 150,
           "totalSold": 0,
@@ -224,12 +326,12 @@
           "restockQuantity": 80,
           "stockStatus": "In Stock"
         },
-        "imageUrl": "classic.jpg",
+        "imageUrl": "classic_red.jpg",
         "dateAdded": "2024-10-13T03:55:37.204Z",
         "color": "Red"
       }
     ],
-    "__v": 19
+    "__v": 0
   },
   {
     "categoryID": "CAT_8199c505d83b",
@@ -241,8 +343,8 @@
         "productDescription": "Classic baseball cap with adjustable strap.",
         "unitPrice": 12.99,
         "stockInfo": {
-          "currentQuantity": 128,
-          "totalSold": 2,
+          "currentQuantity": 123,
+          "totalSold": 7,
           "restockThreshold": 50,
           "lastRestock": "2024-09-19T04:00:00.000Z",
           "restockQuantity": 80,
@@ -258,18 +360,35 @@
         "productDescription": "Spacious and durable tote bag for everyday use.",
         "unitPrice": 16.99,
         "stockInfo": {
-          "currentQuantity": 89,
-          "totalSold": 88,
+          "currentQuantity": 45,
+          "totalSold": 95,
           "restockThreshold": 40,
-          "lastRestock": "2024-10-15T20:43:11.585Z",
+          "lastRestock": "2024-11-11T15:21:13.596Z",
           "restockQuantity": 50,
           "stockStatus": "In Stock"
         },
         "imageUrl": "tote.jpg",
         "dateAdded": "2024-09-18T04:00:00.000Z",
         "color": "Beige"
+      },
+      {
+        "productID": "PRO_1473879f15cc",
+        "productName": "Beanie Hat",
+        "productDescription": "Warm and comfortable beanie hat, perfect for winter wear.",
+        "unitPrice": 19.99,
+        "stockInfo": {
+          "currentQuantity": 48,
+          "totalSold": 2,
+          "restockThreshold": 20,
+          "lastRestock": "2024-11-17T02:30:47.696Z",
+          "restockQuantity": 30,
+          "stockStatus": "In Stock"
+        },
+        "imageUrl": "image-01296b92eab4.png",
+        "dateAdded": "2024-11-17T02:30:47.696Z",
+        "color": "Black"
       }
     ],
-    "__v": 7
+    "__v": 1
   }
 ]

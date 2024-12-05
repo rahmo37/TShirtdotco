@@ -619,7 +619,7 @@ function generateContainer(containerInfo) {
 
   const containerHTML = `
       <div class="row d-flex justify-content-center "id="${containerInfo.section}">
-        <div class="col-md-12 text-center header">
+        <div class="col-md-12 text-center header" tabindex="-1">
           <h2>${containerInfo.header}</h2>
         </div>
         <button class="collapse-btn"><i class="fa-solid fa-minus"></i></button>
@@ -726,6 +726,11 @@ async function handleDateSubmit(
       soldProductsSwiper
     );
 
+    if (updatedInstances) {
+      startDateInput.value = "";
+      endDateInput.value = "";
+    }
+
     return updatedInstances;
   } catch (error) {
     errorPopUp.showErrorModal(error.message);
@@ -783,8 +788,11 @@ function updateSoldProducts(
   // Update the header and footer with the new date range
   const headerElement = containerDiv.querySelector(".header h2");
   headerElement.innerHTML = `Sold Products from <br>${startDateValue} - ${endDateValue}`;
+  headerElement.setAttribute("tabindex", "0");
+  headerElement.focus();
 
-  const footerElement = containerDiv.querySelector(".header.my-5 h2");
+  const footerElement = containerDiv.querySelector(".footer.my-5 h2");
+  console.log(footerElement);
   footerElement.textContent = "Total products sold: " + totalProductsSold;
 
   // Update the swiper slides

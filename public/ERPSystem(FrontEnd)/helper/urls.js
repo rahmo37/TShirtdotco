@@ -31,4 +31,5 @@ export const urlObject = {
   placeOrder: HOSTNAME + "/shared/order/",
   saveSubscription: HOSTNAME + "/push-notification/save-subscription",
   removeSubscription: HOSTNAME + "/push-notification/remove-subscription",
+  getOrdersOfACustomer: HOSTNAME + "/customer/order/" // customer id 
 };

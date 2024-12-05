@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Helvetica Neue", Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+      }
+      .faq-container {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 0 20px;
+      }
+      h3 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 40px;
+      }
+      .faq-item {
+        background-color: #fff;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        overflow: hidden;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+      }
+      .faq-item:hover {
+        transform: translateY(-2px);
+      }
+      .faq-question {
+        padding: 20px;
+        margin: 0;
+        font-size: 18px;
+        cursor: pointer;
+        position: relative;
+        color: #333;
+      }
+      .faq-question::after {
+        content: "+";
+        position: absolute;
+        right: 20px;
+        font-size: 24px;
+        transition: transform 0.3s;
+      }
+      .faq-item.active .faq-question::after {
+        transform: rotate(45deg);
+      }
+      .faq-answer {
+        padding: 0 20px 20px 20px;
+        display: none;
+        color: #555;
+        line-height: 1.6;
+      }
+      .chat-button {
+        display: block;
+        width: 220px;
+        margin: 30px auto;
+        padding: 15px;
+        background-color: #007bff;
+        color: #fff;
+        text-align: center;
+        border-radius: 50px;
+        font-size: 16px;
+        cursor: pointer;
+        text-decoration: none;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s;
+      }
+      .chat-button:hover {
+        background-color: #0056b3;
+      }
+
+      @media (max-width: 600px) {
+        .faq-question {
+          font-size: 16px;
+        }
+        .chat-button {
+          width: 100%;
+        }
+      }
+    </style>
+    <link rel="stylesheet" href="./faq.css" />
+    <link rel="stylesheet" href="../Home/home.css" />
+  </head>
+  <body>
+    <section id="header">
+      <a href="#"><img src="../../img/tshritLogoSmall.png" class="logo" /></a>
+
+      <div>
+        <ul id="navbar">
+          <li><a href="../Home/home.html">Home</a></li>
+          <li><a href="../Collection/collection.html">Collection</a></li>
+          <li><a href="../ViewOrders/viewOrders.html">Orders</a></li>
+          <li><a href="../About/about.html">About</a></li>
+          <li>
+            <a class="active" href="./faq.html">Help</a>
+          </li>
+          <li>
+            <a href="../Cart/cart.html"
+              ><i class="fa-solid fa-bag-shopping"></i
+            ></a>
+          </li>
+          <li>
+            <a href="../../Login/login.html"><i class="fa fa-sign-out"></i></a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="page-header-help">
+      <h2>Your Satisfaction, Our Priority</h2>
+      <p>Speak directly with a live agent for personalized support.</p>
+    </section>
+
+    <div class="faq-container">
+      <h3>Frequently Asked Questions</h3>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          1. What categories of products do you offer?
+        </div>
+        <div class="faq-answer">
+          We offer a wide range of products including T-shirts, Graphic
+          T-shirts, Plain T-shirts, Accessories, Hoodies, and Sweatshirts.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">2. Can I cancel my order?</div>
+        <div class="faq-answer">
+          Yes, you can cancel your order, even if the order has shipped, but
+          once delivered, no other changes can be made
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">3. How can I chat with a live agent?</div>
+        <div class="faq-answer">
+          Click on the "Chat with Live Agent" button at the bottom of this page
+          to connect with a customer service representative.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">4. Do you offer discount codes?</div>
+        <div class="faq-answer">
+          Yes! Use code <strong>DISCOUNT5</strong> at checkout to receive a 5%
+          discount on your purchase.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">5. Is there free shipping available?</div>
+        <div class="faq-answer">
+          We offer free standard shipping on all orders over $50 within the
+          continental United States.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">6. How can I check my order status?</div>
+        <div class="faq-answer">
+          Log in to your account and navigate to the "Order" section to view the
+          current status of your orders.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">7. How do I view my order history?</div>
+        <div class="faq-answer">
+          Your order history is available in your account dashboard under the
+          "Order History" tab.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">8. What payment methods do you accept?</div>
+        <div class="faq-answer">
+          We accept VISA, MasterCard, Maestro, and American Express for all
+          purchases.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">9. When will your app be available?</div>
+        <div class="faq-answer">
+          Our mobile app is coming soon! Stay tuned for updates and exclusive
+          app-only offers.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">10. What are your business hours?</div>
+        <div class="faq-answer">
+          Our business hours are from 9:00 AM to 5:00 PM, Monday through
+          Saturday.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">11. Can I modify products in my cart?</div>
+        <div class="faq-answer">
+          Yes, you can add, remove, or adjust quantities of items in your cart
+          before completing your purchase.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">12. Do you offer graphic T-shirts?</div>
+        <div class="faq-answer">
+          Absolutely! We have a diverse collection of graphic T-shirts featuring
+          various designs and themes.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">13. Do you sell hoodies and sweatshirts?</div>
+        <div class="faq-answer">
+          Yes, our catalog includes a range of comfortable hoodies and
+          sweatshirts for all seasons.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">14. How do I apply a discount code?</div>
+        <div class="faq-answer">
+          You can enter your discount code during the checkout process in the
+          designated field.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">15. Do you ship internationally?</div>
+        <div class="faq-answer">
+          Currently, we ship within the United States only, but we are working
+          on expanding our shipping options.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">16. How long does shipping take?</div>
+        <div class="faq-answer">
+          Standard shipping typically takes 5-7 business days. Expedited
+          shipping options are also available at checkout.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">17. Can I track my shipment?</div>
+        <div class="faq-answer">
+          Yes, once your order is shipped, we will provide a tracking number via
+          email.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">18. How do I contact customer support?</div>
+        <div class="faq-answer">
+          You can reach our customer support team via email at
+          tshirtdotco@example.com or by calling (789)-159-7530.
+        </div>
+      </div>
+
+      <a href="#" class="chat-button" id="chat-button">Chat with Live Agent</a>
+    </div>
+
+    <footer class="section-p1">
+      <div class="col">
+        <h4>Contact</h4>
+        <p>123 Random Road, Ney York, USA</p>
+        <p>(789)-159-7530</p>
+        <p>9:00am - 5:00pm, Mon - Sat</p>
+        <div class="follow">
+          <h4>Follow Us</h4>
+          <div class="icon">
+            <i class="fa-brands fa-facebook"></i>
+            <i class="fa-brands fa-twitter"></i>
+            <i class="fa-brands fa-instagram"></i>
+            <i class="fa-brands fa-youtube"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <h4>About</h4>
+        <a href="">About Us</a>
+        <a href="">Privacy Policy</a>
+        <a href="">Terms & Conditions</a>
+        <a href="">Contact Us</a>
+      </div>
+
+      <div class="col">
+        <h4>My Account</h4>
+        <a href="">Account Info</a>
+        <a href="">Cart</a>
+        <a href="">Current Orders</a>
+        <a href="">Help</a>
+      </div>
+
+      <div class="col install">
+        <h4>Mobile Application Coming Soon</h4>
+        <div class="row">
+          <img src="../../img/app.jpg" />
+          <img src="../../img/play.jpg" />
+        </div>
+        <p>Secured Payment Gateways</p>
+        <img src="../../img/pay.png" alt="" />
+      </div>
+
+      <div class="copyright">
+        <p>&copy; 2024, T-Shirt.co - Designed with Love for E-commerce</p>
+      </div>
+    </footer>
+
+    <script>
+      // Collapsible FAQ
+      const faqItems = document.querySelectorAll(".faq-item");
+
+      faqItems.forEach((item) => {
+        const question = item.querySelector(".faq-question");
+        question.addEventListener("click", () => {
+          item.classList.toggle("active");
+          const answer = item.querySelector(".faq-answer");
+          if (item.classList.contains("active")) {
+            answer.style.display = "block";
+          } else {
+            answer.style.display = "none";
+          }
+        });
+      });
+
+      // Chat Button
+      const chatButton = document.getElementById("chat-button");
+      chatButton.addEventListener("click", (e) => {
+        e.preventDefault();
+        window.location.href = "../Chat/customerLiveChat.html";
+      });
+    </script>
+  </body>
+</html>

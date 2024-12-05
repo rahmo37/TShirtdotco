@@ -104,8 +104,7 @@ signInBtn.addEventListener("click", async () => {
           sessionObject.setData("isAdmin", true);
         }
 
-        // load the employee menu
-        // TODO change this to employee menu later
+        //! load the employee menu
         window.location.href =
           "../EmployeeOperations/EmployeeMenu/employeeMenu.html";
       } else {
@@ -113,10 +112,10 @@ signInBtn.addEventListener("click", async () => {
         sessionObject.setData("isEmployee", false);
         sessionObject.setData("customer", userData.user);
         sessionObject.setData("customerOrders", userData.orders);
+        sessionObject.setData("customerProductSelectionArray", []);
 
-        // load the customer menu
-        // TODO change this to customer menu later
-        window.location.href = "../Customer/customerHome.html";
+        //! load the customer menu
+        window.location.href = "../CustomerOperations/Home/home.html";
       }
     }
   }

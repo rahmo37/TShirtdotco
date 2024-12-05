@@ -1,0 +1,160 @@
+/* Table Container */
+.table {
+  width: 100%;
+  padding: 20px;
+}
+
+/* Table Header */
+.table_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: #346edb; /* Primary color */
+  color: #fff;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.table_header p {
+  font-size: 1.5em;
+  text-align: center;
+  color: #fff;
+  font-weight: 600;
+  margin: 0;
+}
+
+.table_header p i {
+  background-color: transparent;
+  margin-right: 15px;
+  padding: 2px;
+  border-radius: 50px;
+  color: #fff;
+  font-size: 26px;
+  cursor: pointer;
+}
+
+.table_header input {
+  padding: 10px 20px;
+  margin: 0 10px;
+  outline: none;
+  border: 1px solid #fff;
+  border-radius: 6px;
+  background-color: rgb(242, 242, 242);
+}
+
+.table_header input::placeholder {
+  color: rgb(125, 125, 125);
+}
+
+/* Table Section */
+.table_section {
+  height: 400px;
+  overflow: auto;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+  border: 1px solid #0059ff;
+}
+
+/* Table Styles */
+table {
+  width: 100%;
+  table-layout: fixed;
+  min-width: 1000px;
+  border-collapse: collapse;
+  text-align: center;
+  background-color: #fff;
+}
+
+tbody {
+  border: none !important;
+}
+
+thead th {
+  position: sticky;
+  top: 0;
+  background-color: #346edb;
+  color: #fff;
+  font-size: 16px;
+  text-transform: uppercase;
+  padding: 15px 10px;
+}
+
+th,
+td {
+  border-bottom: 1px solid #ecf0f1;
+  padding: 15px 10px;
+  word-break: break-all;
+  text-align: center;
+  color: #2c3e50;
+  font-size: large;
+  transition: all 0.6s ease;
+}
+
+tr {
+}
+
+tr:nth-child(even) {
+  background-color: #e1efff;
+}
+
+tr:hover td {
+  cursor: pointer;
+  background-color: #e0e8fa; /* Light teal */
+}
+
+/* Scrollbar Styles */
+.table_section::-webkit-scrollbar {
+  width: 8px;
+}
+
+.table_section::-webkit-scrollbar-thumb {
+  background-color: #bdc3c7;
+  border-radius: 4px;
+}
+
+.table_section::-webkit-scrollbar-thumb:hover {
+  background-color: #95a5a6;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .table_header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .table_header input {
+    margin: 10px 0;
+    width: 100%;
+  }
+
+  table {
+    min-width: auto;
+  }
+}
+
+::-webkit-scrollbar {
+  height: 5px;
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #909adb;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.highlight {
+  background-color: #56f056; /* Light blue highlight color */
+  font-weight: bold;
+  color: #000;
+}
+
+.hide {
+  display: none;
+}

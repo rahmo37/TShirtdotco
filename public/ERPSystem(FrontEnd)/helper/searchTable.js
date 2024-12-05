@@ -53,7 +53,6 @@ function highlightCellText(cell, keyword) {
   cell.childNodes.forEach((node) => {
     
     if (node.nodeType === Node.TEXT_NODE) {
-      console.log("Hi");
       const matches = node.textContent.match(regex);
       if (matches) {
         const newHTML = node.textContent.replace(

@@ -7,7 +7,7 @@ const createCustomer = require("../../controllers/sharedControllers/createCustom
 const jwtVerifyToken = require("../../middlewares/jwtVerifyToken");
 
 // Register necessary middlewares to verify token
-sharedRoute.use(jwtVerifyToken);
+// sharedRoute.use(jwtVerifyToken);
 
 // Create a customer account
 sharedRoute.post("/", createCustomer);

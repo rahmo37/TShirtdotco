@@ -1,341 +1,178 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Chat Page</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <!-- Optional: Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us</title>
     <style>
-        /* CSS Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        /* Root Variables */
-        :root {
-            --primary-color: #4A76A8;
-            --secondary-color: #fff;
-            --accent-color: #dcf8c6;
-            --background-color: #f0f2f5;
-            --text-color: #333;
-            --font-family: 'Poppins', sans-serif;
-        }
-        body {
-            background-color: var(--background-color);
-            font-family: var(--font-family);
-            overflow: hidden;
-        }
-        /* Header */
-        .chat-header {
-            background-color: var(--primary-color);
-            color: var(--secondary-color);
-            padding: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: relative;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-        }
-        .chat-header h5 {
-            font-size: 20px;
-            font-weight: 600;
-        }
-        .user-icon {
-            cursor: pointer;
-            position: relative;
-            display: flex;
-            align-items: center;
-        }
-        .user-icon img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: 2px solid var(--secondary-color);
-        }
-        .user-icon i {
-            color: var(--secondary-color);
-            margin-left: -15px;
-            font-size: 14px;
-            background-color: var(--primary-color);
-            border-radius: 50%;
-            padding: 2px;
-        }
-        /* Customer Info Panel */
-        .customer-info {
-            display: none;
-            position: absolute;
-            top: 70px;
-            right: 15px;
-            background-color: var(--secondary-color);
-            color: var(--text-color);
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            width: 270px;
-            z-index: 1000;
-            animation: fadeIn 0.3s ease-in-out;
-        }
-        .customer-info::before {
-            content: '';
-            position: absolute;
-            top: -10px;
-            right: 20px;
-            border-width: 0 10px 10px 10px;
-            border-style: solid;
-            border-color: transparent transparent var(--secondary-color) transparent;
-        }
-        .customer-info p {
-            margin-bottom: 10px;
-            font-size: 14px;
-        }
-        .customer-info p strong {
-            font-weight: 600;
-        }
-        /* Chat Container */
-        .chat-container {
-            
-            overflow-y: auto;
-            padding: 20px;
-            background-image: url('https://i.imgur.com/OZaT7jl.png');
-            background-size: cover;
-            background-position: center;
-        }
-        /* Message Styles */
-        .message {
-            margin-bottom: 20px;
-            display: flex;
-            align-items: flex-end;
-            animation: slideUp 0.3s ease-in-out;
-        }
-        .message .avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            overflow: hidden;
-            margin-right: 15px;
-            flex-shrink: 0;
-        }
-        .message .avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .message .message-content {
-            max-width: 70%;
-            background-color: var(--secondary-color);
-            padding: 15px 20px;
-            border-radius: 20px 20px 20px 0;
-            position: relative;
-            color: var(--text-color);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-        .message .message-content::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: -10px;
-            border-width: 10px 10px 0 0;
-            border-style: solid;
-            border-color: var(--secondary-color) transparent transparent transparent;
-        }
-        .message .message-content .timestamp {
-            font-size: 12px;
-            color: #999;
-            text-align: right;
-            margin-top: 5px;
-        }
-        /* Sent Messages */
-        .message.sent {
-            flex-direction: row-reverse;
-        }
-        .message.sent .avatar {
-            margin-left: 15px;
-            margin-right: 0;
-        }
-        .message.sent .message-content {
-            background-color: var(--accent-color);
-            border-radius: 20px 20px 0 20px;
-        }
-        .message.sent .message-content::after {
-            left: auto;
-            right: -10px;
-            transform: scaleX(-1);
-        }
-        /* Message Input */
-        .message-input {
-            padding: 15px;
-            background-color: var(--secondary-color);
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            box-shadow: 0 -2px 8px rgba(0,0,0,0.1);
-        }
-        .message-input .input-field {
-            flex: 1;
-            position: relative;
-        }
-        .message-input input {
-            width: 100%;
-            border-radius: 30px;
-            border: none;
-            padding: 15px 50px 15px 20px;
-            font-size: 16px;
-            background-color: #f0f0f0;
-            color: var(--text-color);
-            outline: none;
-        }
-        .message-input .emoji-btn {
-            position: absolute;
-            right: 60px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            font-size: 20px;
-            color: #999;
-            cursor: pointer;
-        }
-        .message-input .send-btn {
-            background-color: var(--primary-color);
-            color: var(--secondary-color);
-            border: none;
-            padding: 12px;
-            border-radius: 50%;
-            margin-left: 15px;
-            font-size: 20px;
-            cursor: pointer;
-        }
-        /* Animations */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        /* Responsive */
-        @media (max-width: 600px) {
-            .message .message-content {
-                max-width: 80%;
-            }
-            .customer-info {
-                width: 220px;
-                right: 10px;
-            }
-        }
+      body {
+        font-family: "Arial", sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #f9f9f9;
+        color: #333;
+      }
+      .about-us-container {
+        max-width: 1200px;
+        margin: auto;
+        padding: 20px;
+        text-align: center;
+      }
+      .about-us-header {
+        background: #909adb;
+        color: #fff;
+        padding: 50px 20px;
+        border-radius: 5px;
+      }
+      .about-us-header h1 {
+        font-size: 3rem;
+        margin: 0;
+      }
+      .about-us-header p {
+        font-size: 1.2rem;
+        margin-top: 10px;
+      }
+      .about-us-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        margin-top: 40px;
+      }
+      .content-box {
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+      .content-box:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+      }
+      .content-box h3 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+        color: #909adb;
+      }
+      .content-box p {
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+      .team-container {
+        text-align: center;
+        margin-top: 40px;
+      }
+      .team-container h2 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+        color: #909adb;
+      }
+      .team-members {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+      }
+      .team-member {
+        background: #fff;
+        padding: 15px;
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+      .team-member img {
+        border-radius: 50%;
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        margin-bottom: 10px;
+      }
+      .team-member h4 {
+        font-size: 1.2rem;
+        margin: 5px 0;
+        color: #909adb;
+      }
+      .team-member p {
+        font-size: 0.9rem;
+        color: #666;
+      }
+      footer {
+        margin-top: 50px;
+        padding: 20px 0;
+        background: #333;
+        color: #fff;
+        text-align: center;
+      }
+      footer a {
+        color: #909adb;
+        text-decoration: none;
+      }
     </style>
-</head>
-<body>
-    <!-- Header -->
-    <header class="chat-header">
-        <h5>Chat Support</h5>
-        <div class="user-icon" id="user-icon">
-            <img src="https://i.imgur.com/4Y9q9c7.png" alt="User">
-            <i class="fas fa-caret-down"></i>
-            <div class="customer-info" id="customer-info">
-                <p><strong>ID:</strong> 12345</p>
-                <p><strong>Name:</strong> John Doe</p>
-                <p><strong>Order Count:</strong> 5</p>
-            </div>
-        </div>
-    </header>
-    <!-- Main Content -->
-    <main>
-        <div class="chat-container" id="chat-container">
-            <!-- Chat messages -->
-            <div class="message">
-                <div class="avatar">
-                    <img src="https://i.imgur.com/Hp7fhjR.png" alt="Agent">
-                </div>
-                <div class="message-content">
-                    <p>Hello, how can I assist you today?</p>
-                    <div class="timestamp">10:00 AM</div>
-                </div>
-            </div>
-            <div class="message sent">
-                <div class="avatar">
-                    <img src="https://i.imgur.com/4Y9q9c7.png" alt="User">
-                </div>
-                <div class="message-content">
-                    <p>I have a question about my recent order.</p>
-                    <div class="timestamp">10:01 AM</div>
-                </div>
-            </div>
-            <!-- More messages -->
-        </div>
-        <!-- Message Input -->
-        <div class="message-input">
-            <div class="input-field">
-                <input type="text" id="message-input" placeholder="Type a message">
-                <button class="emoji-btn"><i class="far fa-smile"></i></button>
-            </div>
-            <button class="send-btn" id="send-btn"><i class="fas fa-paper-plane"></i></button>
-        </div>
-    </main>
-    <!-- JavaScript -->
-    <script>
-        // Toggle customer info panel
-        document.getElementById('user-icon').addEventListener('click', function(event) {
-            event.stopPropagation();
-            var infoPanel = document.getElementById('customer-info');
-            infoPanel.style.display = infoPanel.style.display === 'block' ? 'none' : 'block';
-        });
-        // Close the customer info when clicking outside
-        document.addEventListener('click', function(event) {
-            var infoPanel = document.getElementById('customer-info');
-            if (!event.target.closest('#user-icon')) {
-                infoPanel.style.display = 'none';
-            }
-        });
-        // Send message functionality
-        const sendBtn = document.getElementById('send-btn');
-        const messageInput = document.getElementById('message-input');
-        const chatContainer = document.getElementById('chat-container');
+  </head>
+  <body>
+    <div class="about-us-container">
+      <div class="about-us-header">
+        <h1>About Us</h1>
+        <p>Your ultimate destination for trendy and comfortable T-shirts.</p>
+      </div>
 
-        sendBtn.addEventListener('click', sendMessage);
-        messageInput.addEventListener('keydown', function(event) {
-            if (event.key === 'Enter') {
-                sendMessage();
-            }
-        });
+      <div class="about-us-content">
+        <div class="content-box">
+          <h3>Our Mission</h3>
+          <p>
+            At [Your Brand Name], we strive to provide premium-quality T-shirts
+            that reflect your unique style. Comfort, durability, and creativity
+            are our core values.
+          </p>
+        </div>
+        <div class="content-box">
+          <h3>Our Vision</h3>
+          <p>
+            We aim to redefine everyday fashion by bringing innovation and
+            sustainability into our designs. Your T-shirt is not just apparel;
+            it's your identity.
+          </p>
+        </div>
+        <div class="content-box">
+          <h3>Why Choose Us?</h3>
+          <p>
+            From vibrant prints to classic basics, we offer a range of designs
+            crafted with love. Ethical production and customer satisfaction are
+            at the heart of what we do.
+          </p>
+        </div>
+      </div>
 
-        function sendMessage() {
-            const messageText = messageInput.value.trim();
-            if (messageText !== '') {
-                const messageElement = document.createElement('div');
-                messageElement.classList.add('message', 'sent');
-                messageElement.innerHTML = `
-                    <div class="avatar">
-                        <img src="https://i.imgur.com/4Y9q9c7.png" alt="User">
-                    </div>
-                    <div class="message-content">
-                        <p>${messageText}</p>
-                        <div class="timestamp">${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</div>
-                    </div>
-                `;
-                chatContainer.appendChild(messageElement);
-                chatContainer.scrollTop = chatContainer.scrollHeight;
-                messageInput.value = '';
-            }
-        }
-    </script>
-</body>
+      <div class="team-container">
+        <h2>Meet the Team</h2>
+        <div class="team-members">
+          <div class="team-member">
+            <img src="https://via.placeholder.com/100" alt="Nick Eckstein" />
+            <h4>Nick Eckstein</h4>
+          </div>
+          <div class="team-member">
+            <img
+              src="https://via.placeholder.com/100"
+              alt="Alejandro Cerrato"
+            />
+            <h4>Alejandro Cerrato</h4>
+          </div>
+          <div class="team-member">
+            <img src="https://via.placeholder.com/100" alt="Aidan Massa" />
+            <h4>Aidan Massa</h4>
+          </div>
+          <div class="team-member">
+            <img src="https://via.placeholder.com/100" alt="Obaedur Rahman" />
+            <h4>Obaedur Rahman</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>
+        &copy; 2024 [Your Brand Name]. Crafted with ❤️ for T-shirt lovers.
+        <a href="#contact">Contact Us</a>
+      </p>
+    </footer>
+  </body>
 </html>

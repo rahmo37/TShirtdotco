@@ -472,6 +472,11 @@ async function handleDateSubmit(
       eachOrderSwiper
     );
 
+    if (updatedInstances) {
+      startDateInput.value = "";
+      endDateInput.value = "";
+    }
+
     // Return the updated instances
     return updatedInstances;
   } catch (error) {
@@ -496,8 +501,10 @@ function updateTotalRevenue(
 
   const headerElement = containerDiv.querySelector(".header h2");
   headerElement.innerHTML = `Revenue From <br>${startMonth} - ${endMonth}`;
+  headerElement.setAttribute("tabindex", "0");
+  headerElement.focus();
 
-  const footerElement = containerDiv.querySelector(".header.my-5 h2");
+  const footerElement = containerDiv.querySelector(".footer.my-5 h2");
   footerElement.textContent = "Total Revenue: $" + totalRevenue;
 
   // Update the swiper slides
@@ -635,7 +642,7 @@ function generateContainer(containerInfo) {
 
   return `
       <div class="row d-flex justify-content-center" id="${containerInfo.section}">
-        <div class="col-md-12 text-center header">
+        <div class="col-md-12 text-center header tabindex="-1"">
           <h2>${containerInfo.header}</h2>
         </div>
         <button class="collapse-btn"><i class="fa-solid fa-minus"></i></button>
