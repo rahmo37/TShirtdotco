@@ -52,6 +52,14 @@ const Employee = require("./models/Employee");
 // Creating application instance
 const erpSystem = express();
 
+if (process.env.DOMAIN === "tshirtdotco") {
+  const corsOptions = {
+    origin: "http://167.88.44.159:3001", // your frontend URL
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  };
+}
+
 // Enable cors-origin requests
 erpSystem.use(cors());
 
@@ -108,10 +116,14 @@ mongoose
      * If database connection is successful, we start our server
      * Otherwise we go to the catch block
      */
-    const PORT = process.env.PORT || 3000;
-    server.listen(PORT, () => {
-      console.log(`ERP Server is listening request on port ${PORT}...`);
-    });
+    const PORT = process.env.PORT || 3001;
+    server.listen(
+      PORT,
+      process.env.DOMAIN === "tshirtdotco" ? "0.0.0.0" : "localhost",
+      () => {
+        console.log(`ERP Server is listening request on port ${PORT}...`);
+      }
+    );
 
     // Hash entity passwords, implies when records are added manually in the database
     hashPasswordsInDatabase([Customer, Employee]);

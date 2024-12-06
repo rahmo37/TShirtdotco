@@ -1,5 +1,8 @@
 // This module has all the urls
-const HOSTNAME = "http://localhost:3001/api";
+import { environment } from "./environmentConfig.js";
+
+const HOSTNAME =
+  window.location.hostname === "localhost" ? `${environment.DEV}/api` : `${environment.PRO}/api`;
 export const urlObject = {
   employeeLogin: HOSTNAME + "/employee/login",
   customerLogin: HOSTNAME + "/customer/login",
@@ -31,5 +34,5 @@ export const urlObject = {
   placeOrder: HOSTNAME + "/shared/order/",
   saveSubscription: HOSTNAME + "/push-notification/save-subscription",
   removeSubscription: HOSTNAME + "/push-notification/remove-subscription",
-  getOrdersOfACustomer: HOSTNAME + "/customer/order/" // customer id 
+  getOrdersOfACustomer: HOSTNAME + "/customer/order/", // customer id
 };

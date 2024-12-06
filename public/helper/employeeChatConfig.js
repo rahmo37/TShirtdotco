@@ -5,6 +5,7 @@ import { sessionObject } from "./sessionStorage.js";
 import { errorPopUp } from "./errorPopUpHandler.js";
 import { infoPopUp } from "./informationPopUpHandler.js";
 import { confirmPopUp } from "./confirmPopUpHandler.js";
+import { environment } from "./environmentConfig.js";
 
 // Get the current new notification count
 let newNotificationCount = sessionObject.getData("newNotifications");
@@ -275,7 +276,9 @@ function removeNotification(customerId, notificationTime) {
 // Employee Chat management function
 function employeeChatManagement() {
   // Configure Socket Communication
-  const socket = io("http://localhost:3001");
+  const socket = io(
+    window.location.hostname === "localhost" ? environment.DEV : environment.PRO
+  );
   const employee = sessionObject.getData("employee");
   let customerId = "";
   const notificationCounter = document.getElementById("notification-counter");

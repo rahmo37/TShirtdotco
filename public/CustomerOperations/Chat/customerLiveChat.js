@@ -2,6 +2,7 @@
 
 // Importing modules
 import { sessionObject } from "../../helper/sessionStorage.js";
+import { environment } from "../../helper/environmentConfig.js";
 
 // setTimeOut id
 let timerId = "";
@@ -122,7 +123,9 @@ function getCustomerChatInterfaceHtml() {
 
 function customerChatManager(message) {
   // Create a connection with the backend
-  const socket = io("http://localhost:3001");
+  const socket = io(
+    window.location.hostname === "localhost" ? environment.DEV : environment.PRO
+  );
 
   // Grab the customer information for identification
   const customer = sessionObject.getData("customer");

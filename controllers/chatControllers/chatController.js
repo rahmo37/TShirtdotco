@@ -8,8 +8,11 @@ const moment = require("moment");
 // Register the server with socket.io
 const io = socketIo(server, {
   cors: {
-    origin: "http://127.0.0.1:5501", // Allow your frontend origin
-    methods: ["GET", "POST"], // Allowed HTTP methods
+    origin:
+      process.env.DOMAIN === "tshirtdotco"
+        ? ["http://167.88.44.159:3001", "http://www.tshirtdotco.com:3001"]
+        : ["http://127.0.0.1:5501"], // Make sure this is always an array
+    methods: ["GET", "POST"],
     credentials: true,
   },
 });

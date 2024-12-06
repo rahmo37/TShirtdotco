@@ -7,6 +7,7 @@ import { successPopUp } from "../helper/successPopupHandler.js";
 import { startLogOutTimer } from "../helper/StartLogoutTimer.js";
 import { initiateSubscription } from "../helper/notificationConfig.js";
 
+
 // Toggle viewing of the password
 window.onload = async () => {
   const input = document.getElementById("password");
