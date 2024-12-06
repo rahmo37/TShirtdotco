@@ -14,6 +14,7 @@ const cors = require("cors");
 const dbConfig = require("./config/db");
 const requestInfo = require("./middlewares/logRequestInformation");
 const { hashPasswordsInDatabase } = require("./misc/hashPassword");
+const path = require("path");
 // const notificationConfigurations = require("./routes/notification/notificationConfigRoute");
 
 // Employee related imports
@@ -59,6 +60,9 @@ erpSystem.use(requestInfo);
 
 // Data parsing middleware
 erpSystem.use(express.json());
+
+// Serve static files from the 'public' folder
+erpSystem.use(express.static(path.join(__dirname, "/public")));
 
 // Routes
 // Employee routes
