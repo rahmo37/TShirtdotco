@@ -1,4 +1,4 @@
 // connection string / url
 module.exports = {
-  url: process.env.url,
+  url: process.env.URL,
 };
