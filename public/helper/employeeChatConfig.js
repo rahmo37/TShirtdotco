@@ -277,7 +277,7 @@ function removeNotification(customerId, notificationTime) {
 function employeeChatManagement() {
   // Configure Socket Communication
   const socket = io(
-    window.location.hostname === "localhost" ? environment.DEV : environment.PRO
+    window.location.hostname === "localhost" ||  window.location.hostname === "127.0.0.1" ? environment.DEV : environment.PRO
   );
   const employee = sessionObject.getData("employee");
   let customerId = "";

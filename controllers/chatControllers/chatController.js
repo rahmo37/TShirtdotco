@@ -10,8 +10,8 @@ const io = socketIo(server, {
   cors: {
     origin:
       process.env.DOMAIN === "tshirtdotco"
-        ? ["https://www.tshirtdotco.com"] // Use the HTTPS frontend URL
-        : ["http://127.0.0.1:5501"], // Keep this for local development
+        ? ["http://167.88.44.159:3001", "http://www.tshirtdotco.com:3001"]
+        : ["http://127.0.0.1:5500"], // Make sure this is always an array
     methods: ["GET", "POST"],
     credentials: true,
   },

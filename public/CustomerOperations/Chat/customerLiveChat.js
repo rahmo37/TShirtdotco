@@ -124,9 +124,11 @@ function getCustomerChatInterfaceHtml() {
 function customerChatManager(message) {
   // Create a connection with the backend
   const socket = io(
-    window.location.hostname === "localhost" ? environment.DEV : environment.PRO
+    window.location.hostname === "localhost" ||
+      window.location.hostname === "127.0.0.1"
+      ? environment.DEV
+      : environment.PRO
   );
-
   // Grab the customer information for identification
   const customer = sessionObject.getData("customer");
 

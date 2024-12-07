@@ -2,7 +2,7 @@
 import { environment } from "./environmentConfig.js";
 
 const HOSTNAME =
-  window.location.hostname === "localhost" ? `${environment.DEV}/api` : `${environment.PRO}/api`;
+  window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1" ? `${environment.DEV}/api` : `${environment.PRO}/api`;
 export const urlObject = {
   employeeLogin: HOSTNAME + "/employee/login",
   customerLogin: HOSTNAME + "/customer/login",
