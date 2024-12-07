@@ -1,5 +1,5 @@
 // This module configures the environments
 export const environment = {
-  DEV: "http://localhost:3001",
-  PRO: "http://167.88.44.159:3001",
+  DEV: "http://localhost:3001", // Development environment
+  PRO: "https://www.tshirtdotco.com", // Use NGINX to proxy API requests
 };

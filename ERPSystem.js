@@ -54,7 +54,7 @@ const erpSystem = express();
 
 if (process.env.DOMAIN === "tshirtdotco") {
   const corsOptions = {
-    origin: "http://167.88.44.159:3001", // your frontend URL
+    origin: "https://167.88.44.159:3001", // your frontend URL
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
     allowedHeaders: ["Content-Type", "Authorization"],
   };
