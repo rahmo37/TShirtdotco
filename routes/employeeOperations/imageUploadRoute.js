@@ -16,7 +16,7 @@ const storage = multer.diskStorage({
     // Set destination folder for uploaded images
     cb(
       null,
-      path.join(__dirname, "../../public/ERPSystem(FrontEnd)/shirtImg/")
+      path.join(__dirname, "../../public/shirtImg/")
     );
   },
   filename: (req, file, cb) => {

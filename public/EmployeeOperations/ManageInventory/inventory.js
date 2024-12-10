@@ -452,6 +452,8 @@ searchInput.addEventListener("input", () => {
 
       const imageResult = await imageResponse.json();
       imageUrl = imageResult.data;
+
+      console.log(imageUrl);
     } catch (error) {
       errorPopUp.showErrorModal(
         error.message || "An unexpected error occurred."
