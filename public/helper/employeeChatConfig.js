@@ -273,12 +273,18 @@ function removeNotification(customerId, notificationTime) {
   sessionObject.setData("currentNotificationsArray", currentNotificationsArray);
 }
 
-// Employee Chat management function
+
 function employeeChatManagement() {
-  // Configure Socket Communication
+  const productionServer = environment.PRO.includes(window.location.hostname)
+    ? `https://${window.location.hostname}`
+    : null;
+
   const socket = io(
-    window.location.hostname === "localhost" ||  window.location.hostname === "127.0.0.1" ? environment.DEV : environment.PRO
+    ["localhost", "127.0.0.1"].includes(window.location.hostname)
+      ? environment.DEV
+      : productionServer
   );
+
   const employee = sessionObject.getData("employee");
   let customerId = "";
   const notificationCounter = document.getElementById("notification-counter");

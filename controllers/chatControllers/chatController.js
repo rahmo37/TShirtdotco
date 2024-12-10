@@ -10,7 +10,13 @@ const io = socketIo(server, {
   cors: {
     origin:
       process.env.DOMAIN === "tshirtdotco"
-        ? ["http://167.88.44.159:3001", "http://www.tshirtdotco.com:3001"]
+        ? [
+            "https://167.88.44.159:3001",
+            "https://www.tshirtdotco.com:3001",
+            "https://tshirtdotco.com:3001",
+            "www.tshirtdotco.com",
+            "tshirtdotco.com",
+          ]
         : ["http://127.0.0.1:5500"], // Make sure this is always an array
     methods: ["GET", "POST"],
     credentials: true,

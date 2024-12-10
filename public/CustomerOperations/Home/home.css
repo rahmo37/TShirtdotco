@@ -76,16 +76,17 @@ body {
 }
 
 #navbar li a {
+  display: inline-block;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
   color: #1a1a1a;
-  transition: 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 #navbar li a:hover,
 #navbar li a.active {
-  color: #909adb;
+  color: #7486ff;
 }
 
 #navbar li a.active::after,
@@ -93,14 +94,16 @@ body {
   content: "";
   width: 30%;
   height: 2px;
-  background: #909adb;
+  background: #7486ff;
   position: absolute;
   bottom: -4px;
   left: 20px;
 }
 
-#hero {
-  background-image: url("../../img/homeImage.jpg");
+#home-slide-1,
+#home-slide-2,
+#home-slide-3,
+#home-slide-4 {
   height: 90vh;
   width: 100%;
   background-size: cover;
@@ -112,15 +115,33 @@ body {
   flex-direction: column;
 }
 
-#hero h4 {
+#home-slide-1 h4,
+#home-slide-2 h4,
+#home-slide-3 h4,
+#home-slide-4 {
   padding-bottom: 15px;
 }
 
-#hero h2 {
-  color: #909adb;
+#home-slide-1 h2 {
+  color: #7486ff;
 }
 
-#hero button {
+#home-slide-1 {
+  background-image: url("../../img/homeImage.jpg");
+}
+
+#home-slide-2 h2,
+#home-slide-3 h2 {
+  color: #ebebeb;
+}
+
+#home-slide-2 p,
+#home-slide-3 p {
+  color: #ffffff;
+}
+
+#home-slide-2 button,
+#home-slide-3 button {
   background-image: url("../../img/buttonBg.png");
   background-color: transparent;
   color: #fff;
@@ -130,6 +151,53 @@ body {
   cursor: pointer;
   font-weight: 700;
   font-size: 14px;
+}
+
+#home-slide-4 button {
+  background-image: url("../../img/buttonBg.png");
+  background-color: transparent;
+  color: #ffefef;
+  border: 0;
+  padding: 20px 80px 14px 50px;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+#home-slide-2 {
+  background-image: url("../../img/collection-image.jpeg");
+}
+
+#home-slide-3 {
+  background-image: url("../../img/delivery-cover.png");
+}
+
+#home-slide-4 {
+  background-image: url("../../img/live-chat.jpg");
+}
+
+.top-indicators {
+  position: absolute;
+  top: 0;
+  top: 1%;
+  left: 35%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+}
+
+.top-indicators button {
+  width: 26px !important;
+  height: 4px !important;
+  background-color: #6c757d;
+  border: none;
+  margin: 5px;
+}
+
+.top-indicators .active {
+  background-color: #7486ff;
 }
 
 #feature {
@@ -519,7 +587,7 @@ footer .copyright {
   transition: all 0.3s ease;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-    cursor:pointer
+  cursor: pointer;
 }
 
 .box:hover {

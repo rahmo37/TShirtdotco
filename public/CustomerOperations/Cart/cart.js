@@ -250,7 +250,7 @@ function generateCheckOutSectionHtml() {
   checkOutSectionWrapper.classList.add("checkout-section");
 
   checkOutSectionWrapper.innerHTML = `
-    <p><span>Total Amount</span> <span>$${totalAmount.toFixed(2)}</span></p>
+    <p><span>Total Amount:</span> <span>$${totalAmount.toFixed(2)}</span></p>
     <hr />
     <div class="discount-section">
       <input type="text" class="coupon-code-input" placeholder="Enter Coupon Code" />
@@ -261,7 +261,7 @@ function generateCheckOutSectionHtml() {
     2
   )}</span></p>
     <hr />
-    <p><span>Adjusted Total Amount</span> <span style="color:green">$${adjustedTotal.toFixed(
+    <p><span>Adjusted Total Amount:</span> <span style="color:green; font-size:18px; font-weight: 600">$${adjustedTotal.toFixed(
       2
     )}</span></p>
     <hr />

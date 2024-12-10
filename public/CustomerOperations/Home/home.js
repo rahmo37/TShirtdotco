@@ -24,6 +24,8 @@ async function init() {
   const productContainer = document.querySelector(".pro-container");
   const filterForm = document.getElementById("filterForm");
   const viewCollection = document.getElementById("view-collection");
+  const trackOrder = document.getElementById("track-order");
+  const getHelp = document.getElementById("get-help");
 
   const productSelectionArray =
     sessionObject.getData("customerProductSelectionArray") || [];
@@ -34,10 +36,23 @@ async function init() {
     });
   }
 
+  if (trackOrder) {
+    trackOrder.addEventListener("click", () => {
+      window.location.href =
+        "../../CustomerOperations/ViewOrders/viewOrders.html";
+    });
+  }
+
+  if (getHelp) {
+    getHelp.addEventListener("click", () => {
+      window.location.href = "../../CustomerOperations/FAQ/faq.html";
+    });
+  }
+
   productContainer.innerHTML = "";
 
   // Product Data
-  const productData = await getAllProducts();
+  let productData = await getAllProducts();
 
   if (!productData || productData.length === 0) {
     errorPopUp.showErrorModal("Failed to load products.");
@@ -45,6 +60,15 @@ async function init() {
   }
 
   sessionObject.setData("allProducts", productData);
+
+  const homeLink = document.getElementById("home-link");
+  if (homeLink && homeLink.classList.contains("active")) {
+    productData = productData
+      .sort((a, b) => {
+        return b.stockInfo.totalSold - a.stockInfo.totalSold;
+      })
+      .slice(0, 10);
+  }
 
   productData.forEach((product) => {
     const alreadySelectedProductIndex = productSelectionArray.findIndex(

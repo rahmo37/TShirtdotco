@@ -28,7 +28,7 @@ html,
 body {
   height: 100%; /* Ensure the body fills the viewport height */
   overflow: hidden !important;
-  font-family: "Spartan", sans-serif;
+  font-family: "Spartan", sans-serif !important;
 }
 
 ul {
