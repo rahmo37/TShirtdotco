@@ -14,8 +14,8 @@ const io = socketIo(server, {
             "https://167.88.44.159:3001",
             "https://www.tshirtdotco.com:3001",
             "https://tshirtdotco.com:3001",
-            "www.tshirtdotco.com",
-            "tshirtdotco.com",
+            "https://www.tshirtdotco.com",
+            "https://tshirtdotco.com",
           ]
         : ["http://127.0.0.1:5500"], // Make sure this is always an array
     methods: ["GET", "POST"],
