@@ -1,8 +1,12 @@
 // This module has all the urls
 import { environment } from "./environmentConfig.js";
 
-const HOSTNAME =
-  window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1" ? `${environment.DEV}/api` : `${environment.PRO}/api`;
+const HOSTNAME = ["localhost", "127.0.0.1"].includes(window.location.hostname)
+  ? `${environment.DEV}/api`
+  : environment.PRO.includes(window.location.hostname)
+  ? `https://${window.location.hostname}/api`
+  : null;
+
 export const urlObject = {
   employeeLogin: HOSTNAME + "/employee/login",
   customerLogin: HOSTNAME + "/customer/login",
