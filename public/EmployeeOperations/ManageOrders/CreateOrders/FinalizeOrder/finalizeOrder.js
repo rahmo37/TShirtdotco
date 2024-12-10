@@ -326,9 +326,10 @@ import { sessionObject } from "../../../../helper/sessionStorage.js";
 
   function loadPageWithFade({ htmlUrl, cssUrl, jsUrl, targetElement }) {
     try {
+      targetElement.innerHTML = "";
+      loader.removeJs();
+      loader.removeCss();
       applyFadeEffect(() => {
-        loader.removeJs();
-        loader.removeCss();
         loader.loadPageContent({
           htmlUrl,
           cssUrl,

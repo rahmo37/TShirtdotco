@@ -97,7 +97,7 @@ import { sortTableBySelection } from "../../../../../helper/sortBySelection.js";
 
     if (nextBtn) {
       nextBtn.addEventListener("click", () => {
-        if(isEmptyObject(selectedCustomer)) {
+        if (isEmptyObject(selectedCustomer)) {
           errorPopUp.showErrorModal("Please select a customer for the order");
           return;
         }
@@ -354,9 +354,10 @@ import { sortTableBySelection } from "../../../../../helper/sortBySelection.js";
 
   function loadPageWithFade({ htmlUrl, cssUrl, jsUrl, targetElement }) {
     try {
+      targetElement.innerHTML = "";
+      loader.removeJs();
+      loader.removeCss();
       applyFadeEffect(() => {
-        loader.removeJs();
-        loader.removeCss();
         loader.loadPageContent({
           htmlUrl,
           cssUrl,

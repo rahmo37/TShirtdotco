@@ -11,7 +11,6 @@ import { urlObject } from "../../helper/urls.js";
 import { fetchHandler } from "../../helper/fetchHandler.js";
 import { chatInit } from "../../helper/employeeChatConfig.js";
 
-
 // initialize employee chat manager
 chatInit();
 
@@ -168,9 +167,10 @@ function loadPageWithFade({ htmlUrl, cssUrl, jsUrl }) {
         try {
           sessionObject.removeData("itemsArray");
           sessionObject.removeData("customerObject");
+          contentArea.innerHTML = "";
+          loader.removeJs();
+          loader.removeCss();
           applyFadeEffect(() => {
-            loader.removeJs();
-            loader.removeCss();
             loader.loadPageContent({
               htmlUrl,
               cssUrl,
@@ -185,9 +185,10 @@ function loadPageWithFade({ htmlUrl, cssUrl, jsUrl }) {
     );
   } else {
     try {
+      contentArea.innerHTML = "";
+      loader.removeJs();
+      loader.removeCss();
       applyFadeEffect(() => {
-        loader.removeJs();
-        loader.removeCss();
         loader.loadPageContent({
           htmlUrl,
           cssUrl,

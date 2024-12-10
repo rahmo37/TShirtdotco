@@ -591,9 +591,10 @@ function appendGeneratedContainer(outerContainer, containerHTML) {
 // Function to load page with fade effects
 function loadPageWithFade({ htmlUrl, cssUrl, jsUrl }) {
   try {
+    mainContentArea.innerHTML = "";
+    loader.removeJs();
+    loader.removeCss();
     applyFadeEffect(() => {
-      loader.removeJs();
-      loader.removeCss();
       loader.loadPageContent({
         htmlUrl,
         cssUrl,
