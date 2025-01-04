@@ -44,7 +44,7 @@ function viewThisYearSalesReport(report) {
 
   const containerInfo = {
     section: "sectionE",
-    header: "This Year's Total Revenue Up To Current Day",
+    header: "All-Time Revenue Up To Current Day",
     canvasId: "monthly-sales-canvas",
     swiperId: "each-order-container",
     swiperWrapperClass: "each-order-swiper-wrapper",

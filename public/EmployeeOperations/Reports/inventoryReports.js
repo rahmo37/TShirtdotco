@@ -49,7 +49,7 @@ function viewThisYearSoldProducts(report) {
   const outerContainer = document.querySelector(".inventory-tab");
   const containerInfo = {
     section: "sectionC",
-    header: "This Year's Sold Products Up To Current Date",
+    header: "All-Time Sold Products Up to the Current Date",
     canvasId: "sold-products-canvas",
     swiperId: "sold-products-container",
     swiperWrapperClass: "sold-products-swiper-wrapper",

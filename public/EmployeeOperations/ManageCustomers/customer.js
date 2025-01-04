@@ -18,10 +18,17 @@ import { filterTable } from "../../helper/searchTable.js";
   const userForm = document.getElementById("new-user-form");
   const addUserModalOverlay = document.getElementById("add-User-modal-overlay");
   const searchInput = document.getElementById("searchInput");
+  const tableSummaryBtn = document.getElementById("table-summary-btn");
+  const tableSummary = document.querySelector(".table-summary");
 
   // Initialize event listener for search input
   searchInput.addEventListener("input", () => {
     filterTable();
+  });
+
+  tableSummaryBtn.addEventListener("click", () => {
+    tableSummary.classList.toggle("expand");
+    tableSummaryBtn.classList.toggle("show");
   });
 
   getUserList();
@@ -96,6 +103,10 @@ import { filterTable } from "../../helper/searchTable.js";
 
   // Render user list in table
   function renderUserList(data) {
+    let totalCustomer = data.length;
+    let activeCustomer = 0;
+    let frozenCustomer = 0;
+
     usersContainer.innerHTML = ""; // Clear the container
 
     const table = document.createElement("table");
@@ -114,6 +125,11 @@ import { filterTable } from "../../helper/searchTable.js";
     table.appendChild(headerRow);
 
     data.forEach((customer) => {
+      if (customer.accountStatus.toLowerCase() === "active") {
+        activeCustomer++;
+      } else {
+        frozenCustomer++;
+      }
       const customerRow = document.createElement("tr");
       const statusDot =
         customer.accountStatus.toLowerCase() === "active"
@@ -138,6 +154,23 @@ import { filterTable } from "../../helper/searchTable.js";
     });
 
     usersContainer.appendChild(table);
+
+    // configure table summary
+    const tableSummary = document.querySelector(".table-summary");
+    tableSummary.innerHTML = "<h4>Table Summary</h4>";
+
+    const totalCustomerSummary = document.createElement("p");
+    totalCustomerSummary.innerHTML = `<p>&#128100; Total Customer(s): ${totalCustomer}</p>`;
+
+    const totalActiveCustomerSummary = document.createElement("p");
+    totalActiveCustomerSummary.innerHTML = `<p>&#128994; Active Customer(s): ${activeCustomer}</p>`;
+
+    const totalFrozenCustomerSummary = document.createElement("p");
+    totalFrozenCustomerSummary.innerHTML = `<p>&#129482; Frozen Customer(s): ${frozenCustomer}</p>`;
+
+    tableSummary.appendChild(totalCustomerSummary);
+    tableSummary.appendChild(totalActiveCustomerSummary);
+    tableSummary.appendChild(totalFrozenCustomerSummary);
   }
 
   // Open customer details modal
