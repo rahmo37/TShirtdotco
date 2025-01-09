@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Information Page</title>
+    <style>
+      /* Optional Google Font for aesthetics */
+      @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap");
+
+      /* Reset default margin and padding */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* Body styling:
+         - Center .container horizontally and vertically
+         - Background image is fixed and covers the screen
+         - Optional subtle overlay for better text readability
+      */
+      body {
+        width: 100%;
+        min-height: 100vh;
+        background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+          url("./img/Background3.png") no-repeat center center fixed;
+        background-size: cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: "Open Sans", Arial, sans-serif;
+        color: #333;
+      }
+
+      /* Container styling:
+         - 80% of viewport width and 80% of viewport height
+         - Rounded corners and a subtle box-shadow
+         - Flex container for left and right sections
+      */
+      .container {
+        width: 80%;
+        height: 80vh;
+        border-radius: 10px;
+        background-color: rgba(255, 255, 255, 0.95);
+        box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
+          rgba(0, 0, 0, 0.23) 0px 6px 6px;
+        display: flex;
+        overflow: hidden;
+      }
+
+      /* Left and right sections each take half the container width */
+      .inner-container {
+        width: 50%;
+      }
+
+      /* Left section:
+         - Flexible column layout
+         - Content centered both horizontally and vertically
+      */
+      .left {
+        background-color: #b0acfc85;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        text-align: center;
+      }
+
+      /* Right section has a background image in the center */
+      .right {
+        background-image: url("./img/information.svg");
+        background-repeat: no-repeat;
+        background-size: 80%;
+        background-position: center;
+      }
+
+      /* Headings adjusted for spacing */
+      .left h1 {
+        margin-bottom: 20px;
+        font-weight: 700;
+      }
+
+      .information {
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 20px;
+        border-radius: 10px;
+        font-size: 1rem;
+        text-align: center;
+        line-height: 1.6;
+      }
+
+      /* Credentials section styling */
+      .credentials {
+        margin-top: 20px;
+      }
+
+      .credentials h2 {
+        margin-bottom: 10px;
+        font-weight: 700;
+      }
+
+      /* No extra margin on email/password paragraphs */
+      .credentials p {
+        margin: 5px 0;
+        font-weight: 400;
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 768px) {
+        .container {
+          flex-direction: column;
+          width: 90%;
+          height: auto;
+        }
+        .inner-container {
+          width: 100%;
+          height: auto;
+        }
+        .left {
+          height: auto;
+          padding: 30px;
+        }
+        .right {
+          height: 300px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Left side: text content -->
+      <div class="left inner-container">
+        <h1>Welcome to Information Page</h1>
+        <div class="information">
+          <h4>To access the system, please visit:</h4>
+          <br />
+          <a
+            href="https://www.tshirtdotco.com/Login/login.html"
+            target="_blank"
+          >
+            https://www.tshirtdotco.com/Login/login.html
+          </a>
+
+          <div class="credentials">
+            <h4>Employee Login Credentials</h4>
+            <p>Email: john@gmail.com</p>
+            <p>Password: john123</p>
+            <p>
+              <span style="color: red; font-weight: 700">NOTE:</span> When
+              logging in as an employee, please check the "Employee login"
+              checkbox.
+            </p>
+          </div>
+
+          <div class="credentials">
+            <h4>Customer Login Credentials</h4>
+            <p>Email: susan@gmail.com</p>
+            <p>Password: susan123</p>
+          </div>
+
+          <p style="margin-top: 20px">
+            Or sign up as a new customer by clicking the sign-up button and
+            providing the necessary information.
+          </p>
+        </div>
+      </div>
+
+      <!-- Right side: background image -->
+      <div class="right inner-container"></div>
+    </div>
+  </body>
+</html>
