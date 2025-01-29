@@ -15,10 +15,7 @@ mongoose
 const insertEmployees = async () => {
   try {
     // Read employee data from JSON file
-    const employeeData = fs.readFileSync(
-      "../../json/emp.json",
-      "utf8"
-    );
+    const employeeData = fs.readFileSync("../../json/emp.json", "utf8");
     const employees = JSON.parse(employeeData);
 
     // Insert employee data into MongoDB
