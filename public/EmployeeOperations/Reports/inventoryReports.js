@@ -662,7 +662,13 @@ function appendGeneratedContainer(outerContainer, containerHTML, containerId) {
     containerDiv.classList.add(containerId);
   }
   containerDiv.innerHTML = containerHTML;
-  outerContainer.appendChild(containerDiv);
+
+  if (outerContainer) {
+    outerContainer.appendChild(containerDiv);
+  } else {
+    window.location.reload();
+  }
+
   return containerDiv;
 }
 
