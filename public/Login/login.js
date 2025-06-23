@@ -277,5 +277,6 @@ export const loginAsDefaultCustomer = function () {
 };
 
 function setInitialLoad() {
+  console.log("Reached");
   sessionObject.setData("initLoad", true);
 }
