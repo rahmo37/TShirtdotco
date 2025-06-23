@@ -163,6 +163,14 @@ async function init() {
       }
     });
   }
+
+  if (sessionObject.getData("initLoad")) {
+    infoPopUp.showInfoModal(
+      `Visiting as ${sessionObject.getData("customer").customerBio.firstName}
+        ${sessionObject.getData("customer").customerBio.lastName}`
+    );
+    sessionObject.setData("initLoad", false);
+  }
 }
 
 function generateProductsHtml(product, selectedIndex) {

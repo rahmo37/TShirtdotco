@@ -5,6 +5,7 @@ import { fetchHandler } from "../../helper/fetchHandler.js";
 import { urlObject } from "../../helper/urls.js";
 import { errorPopUp } from "../../helper/errorPopUpHandler.js";
 import { confirmPopUp } from "../../helper/confirmPopUpHandler.js";
+import { infoPopUp } from "../../helper/informationPopUpHandler.js";
 import { successPopUp } from "../../helper/successPopupHandler.js";
 import { geSalesReport } from "./salesReport.js";
 import { sessionObject } from "../../helper/sessionStorage.js";
@@ -36,6 +37,14 @@ async function getInventoryReport() {
     viewCurrentInventory(inventoryReport.currentQuantityOfProducts);
     viewThisYearSoldProducts(inventoryReport.inventoryUpToCurrentMonth);
     viewLowStockProducts(inventoryReport.lowStockProducts);
+
+    if (sessionObject.getData("initLoad")) {
+      infoPopUp.showInfoModal(
+        `Visiting Admin Panel as: ${sessionObject.getData("employee").employeeBio.firstName}
+            ${sessionObject.getData("employee").employeeBio.lastName}`
+      );
+      sessionObject.setData("initLoad", false);
+    }
   } catch (error) {
     errorPopUp.showErrorModal(error.message);
   }

@@ -7,75 +7,95 @@ import { successPopUp } from "../helper/successPopupHandler.js";
 import { startLogOutTimer } from "../helper/StartLogoutTimer.js";
 import { initiateSubscription } from "../helper/notificationConfig.js";
 
-
 // Toggle viewing of the password
-window.onload = async () => {
-  const input = document.getElementById("password");
-  const iconEye = document.getElementById("eye");
+if (signUpBtn && signInBtn) {
+  window.onload = async () => {
+    const input = document.getElementById("password");
+    const iconEye = document.getElementById("eye");
 
-  await loadModal();
+    await loadModal();
 
-  iconEye.addEventListener("click", () => {
-    if (input.type === "password") {
-      input.type = "text";
-      iconEye.classList.remove("fa-eye-slash");
-      iconEye.classList.add("fa-eye");
-    } else {
-      input.type = "password";
-      iconEye.classList.remove("fa-eye");
-      iconEye.classList.add("fa-eye-slash");
+    if (input && iconEye) {
+      iconEye.addEventListener("click", () => {
+        if (input.type === "password") {
+          input.type = "text";
+          iconEye.classList.remove("fa-eye-slash");
+          iconEye.classList.add("fa-eye");
+        } else {
+          input.type = "password";
+          iconEye.classList.remove("fa-eye");
+          iconEye.classList.add("fa-eye-slash");
+        }
+      });
     }
-  });
-};
+  };
+}
 
 // On clicking the Sign-Up button, navigate to the registration page
-signUpBtn.addEventListener("click", () => {
-  window.location.href = "../Resgistration/registration.html";
-});
+if (signUpBtn) {
+  signUpBtn.addEventListener("click", () => {
+    window.location.href = "../Resgistration/registration.html";
+  });
+}
 
 // On clicking the Sign-In button, validate the inputs
-signInBtn.addEventListener("click", async () => {
-  const emailInput = document.getElementById("email");
-  const passwordInput = document.getElementById("password");
-  const employeeCheckbox = document.getElementById("employeeCheckbox").checked;
-  const emailErr = document.getElementById("email-err");
-  const passwordErr = document.getElementById("password-err");
+if (signInBtn) {
+  signInBtn.addEventListener("click", async () => {
+    const emailInput = document.getElementById("email");
+    const passwordInput = document.getElementById("password");
+    const employeeCheckbox =
+      document.getElementById("employeeCheckbox").checked;
+    const emailErr = document.getElementById("email-err");
+    const passwordErr = document.getElementById("password-err");
 
-  // Email validation
-  let email = "";
-  if (emailInput.value.length === 0) {
-    setErrMessage(emailErr, "Email cannot be empty");
-    addErrClass(emailInput);
-  } else if (
-    !(emailInput.value.indexOf(".") > 0 && emailInput.value.indexOf("@") > 0) ||
-    /[^a-zA-Z0-9.@_-]/.test(emailInput.value)
-  ) {
-    setErrMessage(emailErr, "Entered email is not in correct format");
-    addErrClass(emailInput);
-  } else {
-    removeErrClass(emailInput);
-    email = emailInput.value;
-  }
+    // Email validation
+    let email = "";
+    if (emailInput.value.length === 0) {
+      setErrMessage(emailErr, "Email cannot be empty");
+      addErrClass(emailInput);
+    } else if (
+      !(
+        emailInput.value.indexOf(".") > 0 && emailInput.value.indexOf("@") > 0
+      ) ||
+      /[^a-zA-Z0-9.@_-]/.test(emailInput.value)
+    ) {
+      setErrMessage(emailErr, "Entered email is not in correct format");
+      addErrClass(emailInput);
+    } else {
+      removeErrClass(emailInput);
+      email = emailInput.value;
+    }
 
-  // Password validation
-  let password = "";
-  if (passwordInput.value.length === 0) {
-    setErrMessage(passwordErr, "Password field cannot be empty");
-    addErrClass(passwordInput);
-  } else {
-    removeErrClass(passwordInput);
-    password = passwordInput.value;
-  }
+    // Password validation
+    let password = "";
+    if (passwordInput.value.length === 0) {
+      setErrMessage(passwordErr, "Password field cannot be empty");
+      addErrClass(passwordInput);
+    } else {
+      removeErrClass(passwordInput);
+      password = passwordInput.value;
+    }
 
-  emailInput.addEventListener("input", () => {
-    removeErrClass(emailInput);
+    emailInput.addEventListener("input", () => {
+      removeErrClass(emailInput);
+    });
+    passwordInput.addEventListener("input", () => {
+      removeErrClass(passwordInput);
+    });
+
+    // Login and Validate
+    loginAndValidate(email, password, employeeCheckbox);
   });
-  passwordInput.addEventListener("input", () => {
-    removeErrClass(passwordInput);
-  });
+}
 
+export const loginAndValidate = async function (
+  email,
+  password,
+  checkBox,
+  newWindow = false
+) {
   if (email && password) {
-    const result = await validateUser(email, password, employeeCheckbox);
+    const result = await validateUser(email, password, checkBox);
     if (result.err) {
       showErrorModal(result.err); // Display the error message in the modal
     } else {
@@ -90,6 +110,7 @@ signInBtn.addEventListener("click", async () => {
 
       // Set just logged in to true
       sessionObject.setData("justLoggedIn", true);
+
       // set the user data based on the role of the user
       if (userData.user.employeeID) {
         // TODO Remove later if not using push notifications
@@ -106,8 +127,15 @@ signInBtn.addEventListener("click", async () => {
         }
 
         //! load the employee menu
-        window.location.href =
-          "../EmployeeOperations/EmployeeMenu/employeeMenu.html";
+        if (newWindow) {
+          window.open(
+            "../EmployeeOperations/EmployeeMenu/employeeMenu.html",
+            "_blank"
+          );
+        } else {
+          window.location.href =
+            "../EmployeeOperations/EmployeeMenu/employeeMenu.html";
+        }
       } else {
         // if customer
         sessionObject.setData("isEmployee", false);
@@ -116,11 +144,18 @@ signInBtn.addEventListener("click", async () => {
         sessionObject.setData("customerProductSelectionArray", []);
 
         //! load the customer menu
-        window.location.href = "../CustomerOperations/Home/home.html";
+        if (newWindow) {
+          window.open("../CustomerOperations/Home/home.html", "_blank");
+        } else {
+          window.location.href = "../CustomerOperations/Home/home.html";
+        }
       }
     }
+  } else {
+    console.error("No email password provided");
+    showErrorModal("Internal Server Error");
   }
-});
+};
 
 async function validateUser(email, password, isEmployee) {
   try {
@@ -230,4 +265,17 @@ function showErrorModal(message) {
   // Show the modal using Bootstrap's modal methods
   const errorModal = new bootstrap.Modal(document.getElementById("errorModal"));
   errorModal.show();
+}
+
+export const loginAsDefaultEmployee = function () {
+  setInitialLoad();
+  loginAndValidate("john@gmail.com", "john123", true, true);
+};
+export const loginAsDefaultCustomer = function () {
+  setInitialLoad();
+  loginAndValidate("susan@gmail.com", "susan123", false, true);
+};
+
+function setInitialLoad() {
+  sessionObject.setData("initLoad", true);
 }

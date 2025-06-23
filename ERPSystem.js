@@ -15,6 +15,7 @@ const dbConfig = require("./config/db");
 const requestInfo = require("./middlewares/logRequestInformation");
 const { hashPasswordsInDatabase } = require("./misc/hashPassword");
 const path = require("path");
+
 // const notificationConfigurations = require("./routes/notification/notificationConfigRoute");
 
 // Employee related imports
@@ -46,6 +47,9 @@ const Customer = require("./models/Customer");
 const Employee = require("./models/Employee");
 
 //!---------------------- Application logic starts ----------------------
+
+
+
 
 // Configuring application
 

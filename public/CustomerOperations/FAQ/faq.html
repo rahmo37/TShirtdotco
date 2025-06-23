@@ -15,15 +15,18 @@
         margin: 0;
         padding: 0;
       }
+      #page-header-help {
+        margin-bottom: 0 !important;
+      }
       .faq-container {
         max-width: 800px;
         margin: 50px auto;
         padding: 0 20px;
+        text-align: center;
       }
       h3 {
-        text-align: center;
         color: #333;
-        margin-bottom: 40px;
+        margin-bottom: 20px;
       }
       .faq-item {
         background-color: #fff;
@@ -32,6 +35,7 @@
         overflow: hidden;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         transition: all 0.3s ease;
+        text-align: left;
       }
       .faq-item:hover {
         transform: translateY(-2px);
@@ -61,9 +65,9 @@
         line-height: 1.6;
       }
       .chat-button {
-        display: block;
+        display: inline-block;
         width: 220px;
-        margin: 30px auto;
+        margin: 20px auto;
         padding: 15px;
         background-color: #007bff;
         color: #fff;
@@ -78,7 +82,6 @@
       .chat-button:hover {
         background-color: #0056b3;
       }
-
       @media (max-width: 600px) {
         .faq-question {
           font-size: 16px;
@@ -92,19 +95,16 @@
   </head>
   <body>
     <section id="header">
-      <a href="../Home/home.html"
-        ><img src="../../img/tshritLogoSmall.png" class="logo"
-      /></a>
-
+      <a href="../Home/home.html">
+        <img src="../../img/tshritLogoSmall.png" class="logo" />
+      </a>
       <div>
         <ul id="navbar">
           <li><a href="../Home/home.html">Home</a></li>
           <li><a href="../Collection/collection.html">Collection</a></li>
           <li><a href="../ViewOrders/viewOrders.html">Orders</a></li>
           <li><a href="../About/about.html">About</a></li>
-          <li>
-            <a class="active" href="./faq.html">Help</a>
-          </li>
+          <li><a class="active" href="./faq.html">Help</a></li>
           <li>
             <a href="../Cart/cart.html"
               ><i class="fa-solid fa-shopping-cart"></i
@@ -123,161 +123,165 @@
     </section>
 
     <div class="faq-container">
-      <h3>Frequently Asked Questions</h3>
-
-      <div class="faq-item">
-        <div class="faq-question">
-          1. What categories of products do you offer?
-        </div>
-        <div class="faq-answer">
-          We offer a wide range of products including T-shirts, Graphic
-          T-shirts, Plain T-shirts, Accessories, Hoodies, and Sweatshirts.
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-question">2. Can I cancel my order?</div>
-        <div class="faq-answer">
-          Yes, you can cancel your order very easily, even if the order has
-          shipped, but once delivered, no other changes can be made
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-question">3. How can I chat with a live agent?</div>
-        <div class="faq-answer">
-          Click on the "Chat with Live Agent" button at the bottom of this page
-          to connect with a customer service representative.
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-question">4. Do you offer discount codes?</div>
-        <div class="faq-answer">
-          Yes! Use code <strong>DISCOUNT5</strong> at checkout to receive a 5%
-          discount on your purchase.
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-question">5. Is there free shipping available?</div>
-        <div class="faq-answer">
-          We offer free standard shipping on all orders over $50 within the
-          continental United States.
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-question">6. How can I check my order status?</div>
-        <div class="faq-answer">
-          Log in to your account and navigate to the "Order" section to view the
-          current status of your orders.
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-question">7. How do I view my order history?</div>
-        <div class="faq-answer">
-          Your order history is available in your account dashboard under the
-          "Order History" tab.
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-question">8. What payment methods do you accept?</div>
-        <div class="faq-answer">
-          We accept VISA, MasterCard, Maestro, and American Express for all
-          purchases.
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-question">9. When will your app be available?</div>
-        <div class="faq-answer">
-          Our mobile app is coming soon! Stay tuned for updates and exclusive
-          app-only offers.
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-question">10. What are your business hours?</div>
-        <div class="faq-answer">
-          Our business hours are from 9:00 AM to 5:00 PM, Monday through
-          Saturday.
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-question">11. Can I modify products in my cart?</div>
-        <div class="faq-answer">
-          Yes, you can add, remove, or adjust quantities of items in your cart
-          before completing your purchase.
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-question">12. Do you offer graphic T-shirts?</div>
-        <div class="faq-answer">
-          Absolutely! We have a diverse collection of graphic T-shirts featuring
-          various designs and themes.
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-question">13. Do you sell hoodies and sweatshirts?</div>
-        <div class="faq-answer">
-          Yes, our catalog includes a range of comfortable hoodies and
-          sweatshirts for all seasons.
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-question">14. How do I apply a discount code?</div>
-        <div class="faq-answer">
-          You can enter your discount code during the checkout process in the
-          designated field.
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-question">15. Do you ship internationally?</div>
-        <div class="faq-answer">
-          Currently, we ship within the United States only, but we are working
-          on expanding our shipping options.
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-question">16. How long does shipping take?</div>
-        <div class="faq-answer">
-          Standard shipping typically takes 5-7 business days. Expedited
-          shipping options are also available at checkout.
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-question">17. Can I track my shipment?</div>
-        <div class="faq-answer">
-          Yes, you can easily check your most up-to-date order status by
-          clicking the order's section in the navigation bar
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-question">18. How do I contact customer support?</div>
-        <div class="faq-answer">
-          You can reach our customer support team via email at
-          tshirtdotco@example.com or by calling (789)-159-7530.
-        </div>
-      </div>
-
       <a href="#" class="chat-button" id="chat-button">Chat with Live Agent</a>
+
+      <div class="faq-container">
+        <h3>Frequently Asked Questions</h3>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            1. What categories of products do you offer?
+          </div>
+          <div class="faq-answer">
+            We offer a wide range of products including T-shirts, Graphic
+            T-shirts, Plain T-shirts, Accessories, Hoodies, and Sweatshirts.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">2. Can I cancel my order?</div>
+          <div class="faq-answer">
+            Yes, you can cancel your order very easily, even if the order has
+            shipped, but once delivered, no other changes can be made
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">3. How can I chat with a live agent?</div>
+          <div class="faq-answer">
+            Click on the "Chat with Live Agent" button at the bottom of this
+            page to connect with a customer service representative.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">4. Do you offer discount codes?</div>
+          <div class="faq-answer">
+            Yes! Use code <strong>DISCOUNT5</strong> at checkout to receive a 5%
+            discount on your purchase.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">5. Is there free shipping available?</div>
+          <div class="faq-answer">
+            We offer free standard shipping on all orders over $50 within the
+            continental United States.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">6. How can I check my order status?</div>
+          <div class="faq-answer">
+            Log in to your account and navigate to the "Order" section to view
+            the current status of your orders.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">7. How do I view my order history?</div>
+          <div class="faq-answer">
+            Your order history is available in your account dashboard under the
+            "Order History" tab.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">8. What payment methods do you accept?</div>
+          <div class="faq-answer">
+            We accept VISA, MasterCard, Maestro, and American Express for all
+            purchases.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">9. When will your app be available?</div>
+          <div class="faq-answer">
+            Our mobile app is coming soon! Stay tuned for updates and exclusive
+            app-only offers.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">10. What are your business hours?</div>
+          <div class="faq-answer">
+            Our business hours are from 9:00 AM to 5:00 PM, Monday through
+            Saturday.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">11. Can I modify products in my cart?</div>
+          <div class="faq-answer">
+            Yes, you can add, remove, or adjust quantities of items in your cart
+            before completing your purchase.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">12. Do you offer graphic T-shirts?</div>
+          <div class="faq-answer">
+            Absolutely! We have a diverse collection of graphic T-shirts
+            featuring various designs and themes.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            13. Do you sell hoodies and sweatshirts?
+          </div>
+          <div class="faq-answer">
+            Yes, our catalog includes a range of comfortable hoodies and
+            sweatshirts for all seasons.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">14. How do I apply a discount code?</div>
+          <div class="faq-answer">
+            You can enter your discount code during the checkout process in the
+            designated field.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">15. Do you ship internationally?</div>
+          <div class="faq-answer">
+            Currently, we ship within the United States only, but we are working
+            on expanding our shipping options.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">16. How long does shipping take?</div>
+          <div class="faq-answer">
+            Standard shipping typically takes 5-7 business days. Expedited
+            shipping options are also available at checkout.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">17. Can I track my shipment?</div>
+          <div class="faq-answer">
+            Yes, you can easily check your most up-to-date order status by
+            clicking the order's section in the navigation bar
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">18. How do I contact customer support?</div>
+          <div class="faq-answer">
+            You can reach our customer support team via email at
+            tshirtdotco@example.com or by calling (789)-159-7530.
+          </div>
+        </div>
+      </div>
     </div>
 
     <footer class="section-p1">
       <div class="col">
         <h4>Contact</h4>
-        <p>123 Random Road, Ney York, USA</p>
+        <p>123 Random Road, New York, USA</p>
         <p>(789)-159-7530</p>
         <p>9:00am - 5:00pm, Mon - Sat</p>
         <div class="follow">
@@ -293,18 +297,18 @@
 
       <div class="col">
         <h4>About</h4>
-        <a href="">About Us</a>
-        <a href="">Privacy Policy</a>
-        <a href="">Terms & Conditions</a>
-        <a href="">Contact Us</a>
+        <a href="#">About Us</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms & Conditions</a>
+        <a href="#">Contact Us</a>
       </div>
 
       <div class="col">
         <h4>My Account</h4>
-        <a href="">Account Info</a>
-        <a href="">Cart</a>
-        <a href="">Current Orders</a>
-        <a href="">Help</a>
+        <a href="#">Account Info</a>
+        <a href="#">Cart</a>
+        <a href="#">Current Orders</a>
+        <a href="#">Help</a>
       </div>
 
       <div class="col install">
@@ -323,25 +327,17 @@
     </footer>
 
     <script>
-      // Collapsible FAQ
-      const faqItems = document.querySelectorAll(".faq-item");
-
-      faqItems.forEach((item) => {
-        const question = item.querySelector(".faq-question");
-        question.addEventListener("click", () => {
+      document.querySelectorAll(".faq-item").forEach((item) => {
+        item.querySelector(".faq-question").addEventListener("click", () => {
           item.classList.toggle("active");
           const answer = item.querySelector(".faq-answer");
-          if (item.classList.contains("active")) {
-            answer.style.display = "block";
-          } else {
-            answer.style.display = "none";
-          }
+          answer.style.display = item.classList.contains("active")
+            ? "block"
+            : "none";
         });
       });
 
-      // Chat Button
-      const chatButton = document.getElementById("chat-button");
-      chatButton.addEventListener("click", (e) => {
+      document.getElementById("chat-button").addEventListener("click", (e) => {
         e.preventDefault();
         window.location.href = "../Chat/customerLiveChat.html";
       });
