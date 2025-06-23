@@ -128,9 +128,7 @@ export const loginAndValidate = async function (
 
         //! load the employee menu
         if (newWindow) {
-          function setInitialLoad() {
-            sessionObject.setData("initLoad", true);
-          }
+          setInitialLoad()
           window.open(
             "../EmployeeOperations/EmployeeMenu/employeeMenu.html",
             "_blank"
@@ -148,9 +146,7 @@ export const loginAndValidate = async function (
 
         //! load the customer menu
         if (newWindow) {
-          function setInitialLoad() {
-            sessionObject.setData("initLoad", true);
-          }
+          setInitialLoad()
           window.open("../CustomerOperations/Home/home.html", "_blank");
         } else {
           window.location.href = "../CustomerOperations/Home/home.html";
