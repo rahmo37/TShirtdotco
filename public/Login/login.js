@@ -128,6 +128,9 @@ export const loginAndValidate = async function (
 
         //! load the employee menu
         if (newWindow) {
+          function setInitialLoad() {
+            sessionObject.setData("initLoad", true);
+          }
           window.open(
             "../EmployeeOperations/EmployeeMenu/employeeMenu.html",
             "_blank"
@@ -145,6 +148,9 @@ export const loginAndValidate = async function (
 
         //! load the customer menu
         if (newWindow) {
+          function setInitialLoad() {
+            sessionObject.setData("initLoad", true);
+          }
           window.open("../CustomerOperations/Home/home.html", "_blank");
         } else {
           window.location.href = "../CustomerOperations/Home/home.html";
@@ -277,6 +283,5 @@ export const loginAsDefaultCustomer = function () {
 };
 
 function setInitialLoad() {
-  console.log("Reached");
   sessionObject.setData("initLoad", true);
 }
