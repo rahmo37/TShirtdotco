@@ -8,7 +8,7 @@ const jwtVerifyToken = require("../../middlewares/jwtVerifyToken");
 const { isAdmin, isEmployee } = require("../../middlewares/roleVerification");
 
 // Register necessary middlewares to verify token and role
-!employee_SaleOperationsRoute.use(jwtVerifyToken, isEmployee, isAdmin);
+employee_SaleOperationsRoute.use(jwtVerifyToken, isEmployee, isAdmin);
 
 // retrieve the sales report
 employee_SaleOperationsRoute.get("/report", saleFunction.salesReport);

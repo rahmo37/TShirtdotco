@@ -9,7 +9,7 @@ const { isAdmin, isEmployee } = require("../../middlewares/roleVerification");
 
 // Register necessary middlewares to verify token and role
 // TODO Uncomment token code later
-! employee_EmployeeOperationRoutes.use(jwtVerifyToken, isEmployee);
+employee_EmployeeOperationRoutes.use(jwtVerifyToken, isEmployee);
 
 //view employee list route
 employee_EmployeeOperationRoutes.get("/", employeeFunctions.viewEmployees);

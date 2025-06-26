@@ -172,7 +172,7 @@ function getDateRange(valueToSubtract) {
 
   // setting up another date instance so it will reflect the current months first day
   const dateB = currentNewYorkDateTime();
-  dateA.setHours(23, 59, 59, 999);
+  dateB.setHours(23, 59, 59, 999);
 
   return [dateA, dateB];
 }

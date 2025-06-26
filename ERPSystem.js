@@ -48,20 +48,23 @@ const Employee = require("./models/Employee");
 
 //!---------------------- Application logic starts ----------------------
 
-
-
-
 // Configuring application
 
 // Creating application instance
 const erpSystem = express();
 
+let corsOptions;
 if (process.env.DOMAIN === "tshirtdotco") {
-  const corsOptions = {
+  corsOptions = {
     origin: "https://167.88.44.159:3001", // your frontend URL
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
     allowedHeaders: ["Content-Type", "Authorization"],
   };
+  // Enable cors-origin requests with custom options when running on tshirtdotco
+  erpSystem.use(cors(corsOptions));
+} else {
+  // Default cors usage for other environments
+  erpSystem.use(cors());
 }
 
 // Enable cors-origin requests

@@ -17,8 +17,6 @@ inventoryFunctions.deleteProduct = async (req, res, next) => {
   try {
     const { categoryId, productId } = req.params;
 
-    // starting a session for transaction
-    const session = await mongoose.startSession();
     session.startTransaction();
 
     /**
@@ -408,7 +406,7 @@ inventoryFunctions.getCustomSoldProductReport = async (req, res, next) => {
       !startDate ||
       !endDate ||
       Object.keys(startDate).length === 0 ||
-      Object.keys(startDate).length === 0
+      Object.keys(endDate).length === 0
     ) {
       const err = new Error("You must provide start and end dates");
       err.status = 400;
@@ -526,7 +524,7 @@ function getDateRange(valueToSubtract) {
 
   // setting up another date instance so it will reflect the current months first day
   const dateB = currentNewYorkDateTime();
-  dateA.setHours(23, 59, 59, 999);
+  dateB.setHours(23, 59, 59, 999);
 
   return [dateA, dateB];
 }
